@@ -1,0 +1,105 @@
+
+lemma Afin_zero_card (ℓ : ℕ) (δ : ℝ) : (Afin ℓ δ 0).card ≤ 1 := by
+  have : qn ℓ 0 = 1 := by simp [qn]
+  calc (Afin ℓ δ 0).card ≤ (Finset.range (qn ℓ 0)).card := Finset.card_filter_le _ _
+    _ = 1 := by rw [this]; simp
+
+lemma Afin_prod {ℓ : ℕ} (hℓ : 1 ≤ ℓ) {δ : ℝ} (hδ : 0 < δ) (N : ℕ) :
+    ((Afin ℓ δ N).card : ℝ) ≤
+      ∏ n ∈ Finset.range N, (2 * δ * (ℓ : ℝ) ^ (2 * n + 1) + 2) := by
+  induction N with
+  | zero => simpa using (by exact_mod_cast Afin_zero_card ℓ δ : ((Afin ℓ δ 0).card : ℝ) ≤ 1)
+  | succ N ih =>
+    rw [Finset.prod_range_succ]
+    have h1 := Afin_succ hℓ hδ N
+    have h2 : (((Afin ℓ δ (N + 1)).card : ℕ) : ℝ) ≤
+        ((Afin ℓ δ N).card : ℝ) * (2 * ⌈δ * ((ℓ ^ (2 * N + 1) : ℕ) : ℝ)⌉₊ : ℕ) := by exact_mod_cast h1
+    have h3 : ((2 * ⌈δ * ((ℓ ^ (2 * N + 1) : ℕ) : ℝ)⌉₊ : ℕ) : ℝ) ≤ 2 * δ * (ℓ : ℝ) ^ (2 * N + 1) + 2 := by
+      push_cast
+      have := Nat.ceil_lt_add_one (show 0 ≤ δ * ((ℓ ^ (2 * N + 1) : ℕ) : ℝ) by positivity)
+      push_cast at this
+      nlinarith
+    have h4 : 0 ≤ ((Afin ℓ δ N).card : ℝ) := Nat.cast_nonneg _
+    calc _ ≤ _ := h2
+      _ ≤ ((Afin ℓ δ N).card : ℝ) * (2 * δ * (ℓ : ℝ) ^ (2 * N + 1) + 2) := by gcongr
+      _ ≤ (∏ n ∈ Finset.range N, (2 * δ * (ℓ : ℝ) ^ (2 * n + 1) + 2)) *
+            (2 * δ * (ℓ : ℝ) ^ (2 * N + 1) + 2) := by gcongr
+
+lemma prod_a (ℓ : ℕ) (N : ℕ) :
+    ∏ n ∈ Finset.range N, (ℓ : ℝ) ^ (2 * n + 1) = (ℓ : ℝ) ^ (N ^ 2) := by
+  induction N with
+  | zero => simp
+  | succ N ih =>
+    rw [Finset.prod_range_succ, ih, ← pow_add]
+    congr 1; ring
+
+lemma sum_inv_a_le {ℓ : ℕ} (hℓ : 2 ≤ ℓ) (N : ℕ) :
+    ∑ n ∈ Finset.range N, 1 / (ℓ : ℝ) ^ (2 * n + 1) ≤ 1 := by
+  have hℓR : (2 : ℝ) ≤ ℓ := by exact_mod_cast hℓ
+  calc ∑ n ∈ Finset.range N, 1 / (ℓ : ℝ) ^ (2 * n + 1)
+      ≤ ∑ n ∈ Finset.range N, (1 / 2 : ℝ) ^ (n + 1) := by
+        refine Finset.sum_le_sum fun n _ => ?_
+        rw [one_div_pow]
+        have h1 : (2 : ℝ) ^ (n + 1) ≤ (ℓ : ℝ) ^ (2 * n + 1) := by
+          calc (2 : ℝ) ^ (n + 1) ≤ (2 : ℝ) ^ (2 * n + 1) :=
+                pow_le_pow_right₀ (by norm_num) (by omega)
+            _ ≤ (ℓ : ℝ) ^ (2 * n + 1) := by gcongr
+        exact one_div_le_one_div_of_le (by positivity) h1
+    _ ≤ 1 := geom_half_le N
+
+/-- **Density upper bound** (Theorem "density", upper bound). -/
+theorem density_upper {ℓ : ℕ} (hℓ : 2 ≤ ℓ) {δ : ℝ} (hδ : 0 < δ) (N K : ℕ) (hK : qn ℓ N ≤ K) :
+    (((Finset.range K).filter fun k : ℕ => okN ℓ δ N (k : ℤ)).card : ℝ)
+      ≤ 2 * K * Real.exp (1 / δ) * (2 * δ) ^ N := by
+  have hℓ1 : 1 ≤ ℓ := by omega
+  have hqpos : (0 : ℝ) < qn ℓ N := by exact_mod_cast qn_pos hℓ1 N
+  have hℓR : (0 : ℝ) < ℓ := by exact_mod_cast (by omega : 0 < ℓ)
+  -- the residue bound
+  have hA : ((Afin ℓ δ N).card : ℝ) ≤ qn ℓ N * Real.exp (1 / δ) * (2 * δ) ^ N := by
+    refine (Afin_prod hℓ1 hδ N).trans ?_
+    have hfac : ∀ n ∈ Finset.range N,
+        (2 * δ * (ℓ : ℝ) ^ (2 * n + 1) + 2)
+          ≤ (ℓ : ℝ) ^ (2 * n + 1) * ((2 * δ) * Real.exp (1 / δ * (1 / (ℓ : ℝ) ^ (2 * n + 1)))) := by
+      intro n _
+      have ha : (0 : ℝ) < (ℓ : ℝ) ^ (2 * n + 1) := by positivity
+      have h1 := Real.add_one_le_exp (1 / δ * (1 / (ℓ : ℝ) ^ (2 * n + 1)))
+      calc 2 * δ * (ℓ : ℝ) ^ (2 * n + 1) + 2
+          = (ℓ : ℝ) ^ (2 * n + 1) * ((2 * δ) * (1 / δ * (1 / (ℓ : ℝ) ^ (2 * n + 1)) + 1)) := by
+            field_simp
+        _ ≤ (ℓ : ℝ) ^ (2 * n + 1) * ((2 * δ) * Real.exp (1 / δ * (1 / (ℓ : ℝ) ^ (2 * n + 1)))) := by
+            gcongr
+    calc ∏ n ∈ Finset.range N, (2 * δ * (ℓ : ℝ) ^ (2 * n + 1) + 2)
+        ≤ ∏ n ∈ Finset.range N, ((ℓ : ℝ) ^ (2 * n + 1) *
+            ((2 * δ) * Real.exp (1 / δ * (1 / (ℓ : ℝ) ^ (2 * n + 1))))) :=
+          Finset.prod_le_prod (fun n _ => by positivity) hfac
+      _ = (∏ n ∈ Finset.range N, (ℓ : ℝ) ^ (2 * n + 1)) *
+            ((2 * δ) ^ N * Real.exp (∑ n ∈ Finset.range N, 1 / δ * (1 / (ℓ : ℝ) ^ (2 * n + 1)))) := by
+          rw [Finset.prod_mul_distrib, Finset.prod_mul_distrib, Finset.prod_const, Finset.card_range,
+            Real.exp_sum]
+      _ ≤ (ℓ : ℝ) ^ (N ^ 2) * ((2 * δ) ^ N * Real.exp (1 / δ)) := by
+          rw [prod_a]
+          gcongr
+          rw [← Finset.mul_sum]
+          calc 1 / δ * ∑ n ∈ Finset.range N, 1 / (ℓ : ℝ) ^ (2 * n + 1) ≤ 1 / δ * 1 := by
+                gcongr; exact sum_inv_a_le hℓ N
+            _ = 1 / δ := mul_one _
+      _ = qn ℓ N * Real.exp (1 / δ) * (2 * δ) ^ N := by
+          unfold qn; push_cast; ring
+  -- periodic counting
+  have hcount := count_le hℓ1 δ N K
+  have hc : (((Finset.range K).filter fun k : ℕ => okN ℓ δ N (k : ℤ)).card : ℝ)
+      ≤ (((K / qn ℓ N + 1 : ℕ)) : ℝ) * ((Afin ℓ δ N).card : ℝ) := by exact_mod_cast hcount
+  have hdiv : (((K / qn ℓ N + 1 : ℕ)) : ℝ) ≤ 2 * K / qn ℓ N := by
+    have h1 : ((K / qn ℓ N : ℕ) : ℝ) ≤ (K : ℝ) / qn ℓ N := Nat.cast_div_le
+    have h2 : (1 : ℝ) ≤ (K : ℝ) / qn ℓ N := by
+      rw [le_div_iff₀ hqpos]; simpa using (by exact_mod_cast hK : (qn ℓ N : ℝ) ≤ K)
+    push_cast
+    calc ((K / qn ℓ N : ℕ) : ℝ) + 1 ≤ (K : ℝ) / qn ℓ N + (K : ℝ) / qn ℓ N := by linarith
+      _ = 2 * K / qn ℓ N := by ring
+  have hA0 : 0 ≤ ((Afin ℓ δ N).card : ℝ) := Nat.cast_nonneg _
+  calc _ ≤ (((K / qn ℓ N + 1 : ℕ)) : ℝ) * ((Afin ℓ δ N).card : ℝ) := hc
+    _ ≤ (2 * K / qn ℓ N) * (qn ℓ N * Real.exp (1 / δ) * (2 * δ) ^ N) := by gcongr
+    _ = 2 * K * Real.exp (1 / δ) * (2 * δ) ^ N := by field_simp
+
+end MixedPrime
+end LeanCheck

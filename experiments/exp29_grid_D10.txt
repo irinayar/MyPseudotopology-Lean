@@ -1,0 +1,26 @@
+﻿D=10 X=100000 lam=1.7397 C=3.22952 excess=1.3214 logDX/ln2=19.93 logDX/ln3=12.58
+D=10 X=126827 lam=1.8275 C=3.33886 excess=1.4583 logDX/ln2=20.27 logDX/ln3=12.79
+D=10 X=160852 lam=2.836 C=2.44904 excess=0.7631 logDX/ln2=20.62 logDX/ln3=13.01
+D=10 X=204005 lam=3.8657 C=1.99805 excess=0.4060 logDX/ln2=20.96 logDX/ln3=13.22
+D=10 X=258734 lam=4.1872 C=2.00747 excess=0.4353 logDX/ln2=21.30 logDX/ln3=13.44
+D=10 X=328146 lam=5.4211 C=1.76124 excess=0.2434 logDX/ln2=21.65 logDX/ln3=13.66
+D=10 X=416179 lam=7.2024 C=1.49818 excess=0.0260 logDX/ln2=21.99 logDX/ln3=13.87
+D=10 X=527830 lam=8.9 C=1.45301 excess=0.0073 logDX/ln2=22.33 logDX/ln3=14.09
+D=10 X=669433 lam=11.453 C=1.39652 excess=-0.0241 logDX/ln2=22.67 logDX/ln3=14.31
+D=10 X=849025 lam=14.041 C=1.39119 excess=-0.0134 logDX/ln2=23.02 logDX/ln3=14.52
+D=10 X=1076797 lam=17.907 C=1.36878 excess=-0.0204 logDX/ln2=23.36 logDX/ln3=14.74
+D=10 X=1365675 lam=22.369 C=1.36584 excess=-0.0122 logDX/ln2=23.70 logDX/ln3=14.95
+D=10 X=1732051 lam=28.863 C=1.34557 excess=-0.0224 logDX/ln2=24.05 logDX/ln3=15.17
+D=10 X=2196717 lam=36.456 C=1.34414 excess=-0.0166 logDX/ln2=24.39 logDX/ln3=15.39
+D=10 X=2786040 lam=46.277 C=1.34021 excess=-0.0147 logDX/ln2=24.73 logDX/ln3=15.60
+D=10 X=3533465 lam=56.089 C=1.36793 excess=0.0168 logDX/ln2=25.07 logDX/ln3=15.82
+D=10 X=4481405 lam=53.833 C=1.54344 excess=0.1915 logDX/ln2=25.42 logDX/ln3=16.04
+D=10 X=5683653 lam=42.446 C=1.9575 excess=0.6006 logDX/ln2=25.76 logDX/ln3=16.25
+D=10 X=7208434 lam=33.467 C=2.48265 excess=1.1194 logDX/ln2=26.10 logDX/ln3=16.47
+D=10 X=9142276 lam=26.388 C=3.14868 excess=1.7775 logDX/ln2=26.45 logDX/ln3=16.69
+D=10 X=11594919 lam=20.806 C=3.99339 excess=2.6120 logDX/ln2=26.79 logDX/ln3=16.90
+D=10 X=14705544 lam=16.405 C=5.06472 excess=3.6704 logDX/ln2=27.13 logDX/ln3=17.12
+D=10 X=18650672 lam=12.935 C=6.42346 excess=5.0128 logDX/ln2=27.47 logDX/ln3=17.33
+D=10 X=23654178 lam=10.199 C=8.14671 excess=6.7153 logDX/ln2=27.82 logDX/ln3=17.55
+D=10 X=30000000 lam=8.0415 C=10.3323 excess=8.8746 logDX/ln2=28.16 logDX/ln3=17.77
+

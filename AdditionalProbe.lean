@@ -1,0 +1,19 @@
+import LeanCheck.ChainHamelFinal
+open Filter Topology
+#check Filter.tendsto_inf
+#check Filter.tendsto_iInf
+#check Filter.tendsto_comap_iff
+#check IsCompact.isClosed
+#check induced_id
+#check IsCompact.of_isClosed_subset
+#check Set.infinite_coe_iff
+#check Infinite.natEmbedding
+#check HahnSeries.single_pow
+#check HahnSeries.coeff_single_mul
+#check HahnSeries.coeff_mul_single
+#check HahnSeries.coeffAddMonoidHom
+#check RatFunc.eval₂RingHom
+#check RatFunc.eval₂
+#check Transcendental
+#check Module.Basis.constr
+#check Module.Basis.constr_basis

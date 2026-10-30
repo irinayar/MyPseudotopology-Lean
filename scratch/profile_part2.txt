@@ -1,0 +1,154 @@
+
+/-- First-crossing argument: if all partial sums have circle norm at most `1/8`, steps are in `[0, β]`
+with `β ≤ 1/8`, then the total is at most `1/8`. -/
+lemma sum_le_eighth (b : ℕ → ℝ) (N : ℕ) (β : ℝ) (hβ : β ≤ 1 / 8)
+    (hb0 : ∀ i, i < N → 0 ≤ b i) (hbβ : ∀ i, i < N → b i ≤ β)
+    (hnrm : ∀ m, m ≤ N → nrm (∑ i ∈ Finset.range m, b i) ≤ 1 / 8) :
+    ∑ i ∈ Finset.range N, b i ≤ 1 / 8 := by
+  classical
+  by_contra hcon
+  push_neg at hcon
+  have hex : ∃ m, 1 / 8 < ∑ i ∈ Finset.range m, b i := ⟨N, hcon⟩
+  set m := Nat.find hex with hmdef
+  have hm1 : 1 / 8 < ∑ i ∈ Finset.range m, b i := Nat.find_spec hex
+  have hmN : m ≤ N := Nat.find_min' hex hcon
+  have hm0 : m ≠ 0 := by
+    intro h0; rw [h0] at hm1; simp at hm1; linarith
+  have hprev : ∑ i ∈ Finset.range (m - 1), b i ≤ 1 / 8 := by
+    have := Nat.find_min hex (show m - 1 < m by omega)
+    push_neg at this; exact this
+  have hsplit : ∑ i ∈ Finset.range m, b i = ∑ i ∈ Finset.range (m - 1), b i + b (m - 1) := by
+    have h : m = (m - 1) + 1 := by omega
+    conv_lhs => rw [h]
+    rw [Finset.sum_range_succ]
+  have hbm : b (m - 1) ≤ 1 / 8 := (hbβ (m - 1) (by omega)).trans hβ
+  have hle : ∑ i ∈ Finset.range m, b i ≤ 1 / 4 := by linarith
+  have hnn : 0 ≤ ∑ i ∈ Finset.range m, b i :=
+    Finset.sum_nonneg fun i hi => hb0 i (by have := Finset.mem_range.mp hi; omega)
+  have := hnrm m hmN
+  rw [nrm_eq_abs (by rw [abs_of_nonneg hnn]; linarith), abs_of_nonneg hnn] at this
+  linarith
+
+/-- **Uniform profile bound and summability** (Theorem 7.17), finite form:
+if `x` has Lipschitz constant `C` and `h₀,…,h_{N-1}` have profiles of sizes `ε_i ≤ 1/(16 C A_r)` with
+pairwise distinct centres for each base, then `∑ ‖h_i x‖ / ε_i ≤ 2 C A_r`, `A_r = (1+r)/(1-r)`. -/
+theorem profile_summability {L : Finset ℕ} (hL : L.Nonempty) {r : ℝ} (hr0 : 0 < r) (hr1 : r < 1)
+    {x C : ℝ} (hC0 : 0 < C) (hC : ∀ k : ℤ, nrm ((k : ℝ) * x) ≤ C * Pn (Sc L) k)
+    (N : ℕ) (h : ℕ → ℤ) (ε : ℕ → ℝ) (P : ℕ → ℕ → ℕ)
+    (hprof : ∀ i < N, HasProfile L r (ε i) (P i) (h i))
+    (hdist : ∀ ℓ ∈ L, ∀ i < N, ∀ j < N, P i ℓ = P j ℓ → i = j)
+    (hε0 : ∀ i < N, 0 < ε i) (hεs : ∀ i < N, ε i ≤ 1 / (16 * C * ((1 + r) / (1 - r)))) :
+    ∑ i ∈ Finset.range N, nrm ((h i : ℝ) * x) / ε i ≤ 2 * C * ((1 + r) / (1 - r)) := by
+  classical
+  set A : ℝ := (1 + r) / (1 - r) with hA
+  have h1r : 0 < 1 - r := by linarith
+  have hA1 : 1 ≤ A := by rw [hA, le_div_iff₀ h1r]; linarith
+  have hA0 : 0 < A := by linarith
+  set η : ℝ := 1 / (8 * C * A) with hηdef
+  have hη : 0 < η := by positivity
+  have hεη : ∀ i < N, ε i ≤ η / 2 := by
+    intro i hi
+    have := hεs i hi
+    have e : η / 2 = 1 / (16 * C * A) := by rw [hηdef]; field_simp; ring
+    rw [e]; exact this
+  set t : ℕ → ℕ := fun i => ⌊η / ε i⌋₊ with htdef
+  have ht2 : ∀ i < N, η / (2 * ε i) ≤ t i := by
+    intro i hi
+    have hy : 2 ≤ η / ε i := by rw [le_div_iff₀ (hε0 i hi)]; linarith [hεη i hi]
+    have h1 : η / ε i - 1 < t i := by
+      have := Nat.lt_floor_add_one (η / ε i)
+      simp only [htdef]; linarith
+    have e : η / (2 * ε i) = (η / ε i) / 2 := by field_simp
+    rw [e]; linarith
+  have ht3 : ∀ i < N, (t i : ℝ) * ε i ≤ η := by
+    intro i hi
+    have := Nat.floor_le (div_nonneg hη.le (hε0 i hi).le : 0 ≤ η / ε i)
+    calc (t i : ℝ) * ε i ≤ (η / ε i) * ε i := by gcongr
+      _ = η := by field_simp [(hε0 i hi).ne']
+  -- character values
+  set a : ℕ → ℝ := fun i => nrm ((h i : ℝ) * x) with hadef
+  have ha_le : ∀ i < N, a i ≤ C * ε i := by
+    intro i hi
+    have h1 := hC (h i)
+    have h2 := (hprof i hi).Pn_le hL (hε0 i hi).le hr0.le hr1.le
+    calc a i ≤ C * Pn (Sc L) (h i) := h1
+      _ ≤ C * ε i := by gcongr
+  set b : ℕ → ℝ := fun i => (t i : ℝ) * a i with hbdef
+  have hb0 : ∀ i, i < N → 0 ≤ b i := fun i _ => by positivity
+  have hbβ : ∀ i, i < N → b i ≤ 1 / (8 * A) := by
+    intro i hi
+    calc b i = (t i : ℝ) * a i := rfl
+      _ ≤ (t i : ℝ) * (C * ε i) := by gcongr; exact ha_le i hi
+      _ = C * ((t i : ℝ) * ε i) := by ring
+      _ ≤ C * η := by gcongr; exact ht3 i hi
+      _ = 1 / (8 * A) := by rw [hηdef]; field_simp
+  -- signs and integer parts
+  have hsign : ∀ i : ℕ, ∃ (sg : ℤ) (j : ℤ), (sg = 1 ∨ sg = -1) ∧ (sg : ℝ) * ((h i : ℝ) * x) = a i + j := by
+    intro i
+    have hr := nrm_eq ((h i : ℝ) * x)
+    by_cases hnn : 0 ≤ (h i : ℝ) * x - round ((h i : ℝ) * x)
+    · refine ⟨1, round ((h i : ℝ) * x), Or.inl rfl, ?_⟩
+      have ha' : a i = (h i : ℝ) * x - round ((h i : ℝ) * x) := by
+        rw [hadef]; simp only; rw [hr, abs_of_nonneg hnn]
+      rw [ha']; push_cast; ring
+    · push_neg at hnn
+      refine ⟨-1, -(round ((h i : ℝ) * x)), Or.inr rfl, ?_⟩
+      have ha' : a i = -((h i : ℝ) * x - round ((h i : ℝ) * x)) := by
+        rw [hadef]; simp only; rw [hr, abs_of_neg hnn]
+      rw [ha']; push_cast; ring
+  choose s j hs hsj using hsign
+  -- prefix bounds
+  have hpre : ∀ m, m ≤ N → nrm (∑ i ∈ Finset.range m, b i) ≤ 1 / 8 := by
+    intro m hm
+    set K : ℤ := ∑ i ∈ Finset.range m, s i * ((t i : ℤ) * h i) with hK
+    have hKx : (K : ℝ) * x = ∑ i ∈ Finset.range m, b i + ((∑ i ∈ Finset.range m, (t i : ℤ) * j i : ℤ) : ℝ) := by
+      rw [hK]; push_cast
+      rw [Finset.sum_mul, ← Finset.sum_add_distrib]
+      refine Finset.sum_congr rfl fun i _ => ?_
+      have := hsj i
+      calc (s i : ℝ) * ((t i : ℝ) * (h i : ℝ)) * x = (t i : ℝ) * ((s i : ℝ) * ((h i : ℝ) * x)) := by ring
+        _ = (t i : ℝ) * (a i + j i) := by rw [this]
+        _ = b i + (t i : ℝ) * j i := by simp only [hbdef]; ring
+    have hPK : Pn (Sc L) K ≤ η * A := by
+      apply MixedPrime.Pn_le (Sc_nonempty hL)
+      rintro q ⟨ℓ, hℓ, n, hn, rfl⟩
+      rw [Nat.cast_pow]
+      refine profile_sum (L := L) hr0 hr1 (Finset.range m) (fun i => (t i : ℤ) * h i)
+        (fun i => (t i : ℝ) * ε i) P η hη.le ?_ ?_ ?_ s ?_ ℓ hℓ n hn
+      · intro i hi
+        exact (hprof i (by have := Finset.mem_range.mp hi; omega)).nsmul (t i)
+      · intro i hi
+        exact ht3 i (by have := Finset.mem_range.mp hi; omega)
+      · intro ℓ' hℓ' i hi j' hj' hij
+        exact hdist ℓ' hℓ' i (by have := Finset.mem_range.mp hi; omega) j'
+          (by have := Finset.mem_range.mp hj'; omega) hij
+      · intro i hi; exact hs i
+    have hup : nrm ((K : ℝ) * x) ≤ 1 / 8 := by
+      calc nrm ((K : ℝ) * x) ≤ C * Pn (Sc L) K := hC K
+        _ ≤ C * (η * A) := by gcongr
+        _ = 1 / 8 := by rw [hηdef]; field_simp
+    rw [hKx, nrm_add_int] at hup
+    exact hup
+  have hsum : ∑ i ∈ Finset.range N, b i ≤ 1 / 8 :=
+    sum_le_eighth b N (1 / (8 * A)) (by rw [div_le_div_iff₀ (by positivity) (by norm_num)]; nlinarith)
+      hb0 hbβ hpre
+  -- conclusion
+  have hterm : ∀ i < N, a i / ε i ≤ (2 / η) * b i := by
+    intro i hi
+    have hε := hε0 i hi
+    have ha0 : 0 ≤ a i := nrm_nonneg _
+    have h3 : η / (2 * ε i) * a i ≤ (t i : ℝ) * a i := by gcongr; exact ht2 i hi
+    have e : (2 / η) * ((η / (2 * ε i)) * a i) = a i / ε i := by field_simp
+    calc a i / ε i = (2 / η) * ((η / (2 * ε i)) * a i) := e.symm
+      _ ≤ (2 / η) * ((t i : ℝ) * a i) := by gcongr
+      _ = (2 / η) * b i := rfl
+  calc ∑ i ∈ Finset.range N, nrm ((h i : ℝ) * x) / ε i
+      = ∑ i ∈ Finset.range N, a i / ε i := rfl
+    _ ≤ ∑ i ∈ Finset.range N, (2 / η) * b i :=
+        Finset.sum_le_sum fun i hi => hterm i (Finset.mem_range.mp hi)
+    _ = (2 / η) * ∑ i ∈ Finset.range N, b i := by rw [← Finset.mul_sum]
+    _ ≤ (2 / η) * (1 / 8) := by gcongr
+    _ = 2 * C * A := by rw [hηdef]; field_simp; ring
+
+end MixedPrime
+end LeanCheck

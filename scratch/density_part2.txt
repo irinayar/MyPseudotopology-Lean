@@ -1,0 +1,116 @@
+
+lemma qn_succ (ℓ N : ℕ) : qn ℓ (N + 1) = ℓ ^ (2 * N + 1) * qn ℓ N := by
+  unfold qn
+  rw [show (N + 1) ^ 2 = (2 * N + 1) + N ^ 2 by ring, pow_add]
+
+lemma nrm_unit {t : ℝ} (h0 : 0 ≤ t) (h1 : t < 1) : nrm t = min t (1 - t) := by
+  rw [nrm_eq, abs_sub_round_eq_min, Int.fract_eq_self.mpr ⟨h0, h1⟩]
+
+/-- At most `2 ⌈δ a⌉` of the `a` lifts of a residue modulo `q_N` to a residue modulo `q_{N+1} = a q_N`
+satisfy the next constraint. -/
+lemma lift_card {ℓ : ℕ} (hℓ : 1 ≤ ℓ) {δ : ℝ} (hδ : 0 < δ) (N c : ℕ) (hc : c < qn ℓ N) :
+    ((Finset.range (ℓ ^ (2 * N + 1))).filter fun j : ℕ =>
+        nrm ((((c + qn ℓ N * j : ℕ)) : ℝ) / (qn ℓ (N + 1) : ℝ)) < δ).card
+      ≤ 2 * ⌈δ * ((ℓ ^ (2 * N + 1) : ℕ) : ℝ)⌉₊ := by
+  set a : ℕ := ℓ ^ (2 * N + 1) with ha
+  set q : ℕ := qn ℓ N with hq
+  set c0 : ℕ := ⌈δ * (a : ℝ)⌉₊ with hc0
+  have hq0 : 0 < q := qn_pos hℓ N
+  have ha0 : 0 < a := by rw [ha]; positivity
+  have hM : qn ℓ (N + 1) = a * q := qn_succ ℓ N
+  have hqR : (0 : ℝ) < q := by exact_mod_cast hq0
+  have haR : (0 : ℝ) < a := by exact_mod_cast ha0
+  have hsub : ((Finset.range a).filter fun j : ℕ =>
+        nrm ((((c + q * j : ℕ)) : ℝ) / (qn ℓ (N + 1) : ℝ)) < δ)
+      ⊆ Finset.range c0 ∪ Finset.Ico (a - c0) a := by
+    intro j hj
+    simp only [Finset.mem_filter, Finset.mem_range] at hj
+    obtain ⟨hja, hnr⟩ := hj
+    simp only [Finset.mem_union, Finset.mem_range, Finset.mem_Ico]
+    have hy : c + q * j < a * q := by nlinarith
+    have hMR : ((qn ℓ (N + 1) : ℕ) : ℝ) = a * q := by rw [hM]; push_cast; ring
+    have hyR : (((c + q * j : ℕ)) : ℝ) = c + q * j := by push_cast; ring
+    have ht0 : 0 ≤ (((c + q * j : ℕ)) : ℝ) / (qn ℓ (N + 1) : ℝ) := by positivity
+    have ht1 : (((c + q * j : ℕ)) : ℝ) / (qn ℓ (N + 1) : ℝ) < 1 := by
+      rw [div_lt_one (by rw [hMR]; positivity), hMR]
+      exact_mod_cast hy
+    rw [nrm_unit ht0 ht1] at hnr
+    rcases min_lt_iff.mp hnr with h1 | h1
+    · left
+      rw [div_lt_iff₀ (by rw [hMR]; positivity), hMR, hyR] at h1
+      have h2 : (q : ℝ) * j < δ * a * q := by
+        have : (0 : ℝ) ≤ c := Nat.cast_nonneg c
+        nlinarith
+      have h3 : (j : ℝ) < δ * a := by
+        have : (q : ℝ) * j < q * (δ * a) := by nlinarith
+        exact lt_of_mul_lt_mul_left this hqR.le
+      exact Nat.lt_ceil.mpr h3
+    · right
+      have h2 : 1 - (((c + q * j : ℕ)) : ℝ) / (qn ℓ (N + 1) : ℝ) = ((a * q : ℝ) - (c + q * j)) / (a * q) := by
+        rw [hMR, hyR]; field_simp
+      rw [h2, div_lt_iff₀ (by positivity)] at h1
+      have hcq : (c : ℝ) + 1 ≤ q := by exact_mod_cast hc
+      have h3 : (q : ℝ) * ((a : ℝ) - j - 1) < δ * a * q := by nlinarith
+      have h4 : ((a : ℝ) - j - 1) < δ * a := by
+        have : (q : ℝ) * ((a : ℝ) - j - 1) < q * (δ * a) := by nlinarith
+        exact lt_of_mul_lt_mul_left this hqR.le
+      have h5 : ((a : ℝ) - j - 1) < c0 := lt_of_lt_of_le h4 (Nat.le_ceil _)
+      have h6 : a < j + 1 + c0 := by
+        have : (a : ℝ) < j + 1 + c0 := by linarith
+        exact_mod_cast this
+      exact ⟨by omega, hja⟩
+  calc _ ≤ (Finset.range c0 ∪ Finset.Ico (a - c0) a).card := Finset.card_le_card hsub
+    _ ≤ (Finset.range c0).card + (Finset.Ico (a - c0) a).card := Finset.card_union_le _ _
+    _ ≤ c0 + c0 := by
+        rw [Finset.card_range, Nat.card_Ico]
+        have : a - (a - c0) ≤ c0 := by omega
+        omega
+    _ = 2 * c0 := by ring
+
+/-- One step of the recursion for the number of admissible residues. -/
+lemma Afin_succ {ℓ : ℕ} (hℓ : 1 ≤ ℓ) {δ : ℝ} (hδ : 0 < δ) (N : ℕ) :
+    (Afin ℓ δ (N + 1)).card ≤ (Afin ℓ δ N).card * (2 * ⌈δ * ((ℓ ^ (2 * N + 1) : ℕ) : ℝ)⌉₊) := by
+  have hq := qn_pos hℓ N
+  have himg : (Afin ℓ δ (N + 1)).image (fun r => r % qn ℓ N) ⊆ Afin ℓ δ N := by
+    intro r hr
+    obtain ⟨k, hk, rfl⟩ := Finset.mem_image.mp hr
+    simp only [Afin, Finset.mem_filter, Finset.mem_range] at hk
+    simp only [Afin, Finset.mem_filter, Finset.mem_range]
+    refine ⟨Nat.mod_lt _ hq, ?_⟩
+    have h1 : okN ℓ δ N (k : ℤ) := fun n h1 hn => hk.2 n h1 (by omega)
+    have := (okN_mod hℓ (δ := δ) (N := N) (k : ℤ)).mp h1
+    simpa using this
+  calc (Afin ℓ δ (N + 1)).card
+      ≤ (2 * ⌈δ * ((ℓ ^ (2 * N + 1) : ℕ) : ℝ)⌉₊) * ((Afin ℓ δ (N + 1)).image (fun r => r % qn ℓ N)).card := by
+        apply Finset.card_le_mul_card_image
+        intro a' ha'
+        have ha'N : a' < qn ℓ N := by
+          have := himg ha'
+          simp only [Afin, Finset.mem_filter, Finset.mem_range] at this
+          exact this.1
+        calc ((Afin ℓ δ (N + 1)).filter fun r => r % qn ℓ N = a').card
+            ≤ (((Finset.range (ℓ ^ (2 * N + 1))).filter fun j : ℕ =>
+                nrm ((((a' + qn ℓ N * j : ℕ)) : ℝ) / (qn ℓ (N + 1) : ℝ)) < δ).image
+                  fun j => a' + qn ℓ N * j).card := by
+              apply Finset.card_le_card
+              intro r hr
+              simp only [Finset.mem_filter, Afin, Finset.mem_range] at hr
+              obtain ⟨⟨hrlt, hrok⟩, hmod⟩ := hr
+              simp only [Finset.mem_image, Finset.mem_filter, Finset.mem_range]
+              have hdec : a' + qn ℓ N * (r / qn ℓ N) = r := by rw [← hmod]; exact Nat.mod_add_div r _
+              refine ⟨r / qn ℓ N, ⟨?_, ?_⟩, hdec⟩
+              · rw [Nat.div_lt_iff_lt_mul hq]
+                rw [qn_succ] at hrlt
+                nlinarith
+              · have := hrok (N + 1) (by omega) le_rfl
+                rw [← hdec] at this
+                simpa using this
+          _ ≤ _ := Finset.card_image_le
+          _ ≤ 2 * ⌈δ * ((ℓ ^ (2 * N + 1) : ℕ) : ℝ)⌉₊ := lift_card hℓ hδ N a' ha'N
+    _ ≤ (2 * ⌈δ * ((ℓ ^ (2 * N + 1) : ℕ) : ℝ)⌉₊) * (Afin ℓ δ N).card := by
+        gcongr
+        exact Finset.card_le_card himg
+    _ = _ := by ring
+
+end MixedPrime
+end LeanCheck

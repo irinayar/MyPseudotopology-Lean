@@ -1,0 +1,33 @@
+name: Lean build and axiom reports
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: leanprover/lean-action@fe408643ea7367d8c0404a8be3975bb145f5fb64 # v1
+        with:
+          build: 'true'
+          build-args: 'LeanCheck'
+          test: 'false'
+      - name: Main axiom report
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean LeanCheck/Axioms.lean | tee axioms-main.log
+          if grep -q 'sorryAx' axioms-main.log; then exit 1; fi
+      - name: Mixed-prime axiom report
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean LeanCheck/MixedPrimeAxioms.lean | tee axioms-mixed.log
+          if grep -q 'sorryAx' axioms-mixed.log; then exit 1; fi

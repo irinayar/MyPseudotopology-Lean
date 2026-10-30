@@ -1,0 +1,156 @@
+K=10000000000 T0=0.12 count(P<T0)=33234
+generators sorted by E (first 25): k, P(k), E(k), centres, k mod 5,7,11,13
+  k=603127296 P=0.04115 E=0.04115 c=(5,3) mod5,7,11,13=1,2,2,5
+  k=787968 P=0.03292 E=0.04688 c=(5,3) mod5,7,11,13=3,6,5,12
+  k=393744 P=0.03704 E=0.04694 c=(3,2) mod5,7,11,13=4,1,10,0
+  k=1678703616 P=0.02927 E=0.04886 c=(5,2) mod5,7,11,13=1,2,7,5
+  k=392688 P=0.04938 E=0.04938 c=(3,3) mod5,7,11,13=3,2,10,10
+  k=1679491584 P=0.05275 E=0.05275 c=(5,3) mod5,7,11,13=4,1,1,4
+  k=2282618880 P=0.05350 E=0.05469 c=(6,3) mod5,7,11,13=0,3,3,9
+  k=1075577856 P=0.05472 E=0.05484 c=(5,2) mod5,7,11,13=1,3,1,2
+  k=394224 P=0.03704 E=0.05731 c=(3,2) mod5,7,11,13=4,5,6,12
+  k=1075576320 P=0.06173 E=0.06173 c=(5,3) mod5,7,11,13=0,0,5,0
+  k=602339328 P=0.04889 E=0.06250 c=(5,1) mod5,7,11,13=3,3,8,6
+  k=603519984 P=0.03125 E=0.06250 c=(4,3) mod5,7,11,13=4,4,1,2
+  k=604307952 P=0.03842 E=0.06250 c=(4,4) mod5,7,11,13=2,3,6,1
+  k=603066384 P=0.06274 E=0.06274 c=(4,3) mod5,7,11,13=4,4,8,11
+  k=1977550848 P=0.06439 E=0.06439 c=(5,4) mod5,7,11,13=3,0,9,0
+  k=2281830912 P=0.03321 E=0.06641 c=(5,2) mod5,7,11,13=2,4,9,10
+  k=3656254464 P=0.06311 E=0.07025 c=(6,4) mod5,7,11,13=4,2,5,5
+  k=603912672 P=0.06250 E=0.07030 c=(3,3) mod5,7,11,13=2,6,0,12
+  k=1207374336 P=0.07031 E=0.07031 c=(4,4) mod5,7,11,13=1,0,3,12
+  k=1180656 P=0.03519 E=0.07037 c=(4,3) mod5,7,11,13=1,1,4,9
+  k=603125760 P=0.03704 E=0.07377 c=(4,2) mod5,7,11,13=0,6,6,3
+  k=480 P=0.07407 E=0.07407 c=(3,2) mod5,7,11,13=0,4,7,12
+  k=1056 P=0.06250 E=0.07407 c=(3,3) mod5,7,11,13=1,6,0,3
+  k=786432 P=0.04512 E=0.07407 c=(4,3) mod5,7,11,13=2,3,9,10
+  k=847344 P=0.07056 E=0.07407 c=(4,3) mod5,7,11,13=4,1,3,4
+
+level E<0.12: generators=1035
+   residues mod 5: [198, 209, 209, 210, 209]
+   residues mod 7: [142, 157, 149, 145, 151, 146, 145]
+   residues mod 11: [87, 91, 91, 98, 99, 92, 103, 83, 101, 86, 104]
+   residues mod 13: [80, 83, 76, 74, 75, 78, 80, 88, 79, 78, 81, 82, 81]
+   x=1/5       max ||kx||/E =    8.533  mean =    2.416
+   x=2/5       max ||kx||/E =    9.720  mean =    2.425
+   x=1/7       max ||kx||/E =    7.837  mean =    2.444
+   x=1/11      max ||kx||/E =    9.697  mean =    2.500
+   x=1/13      max ||kx||/E =    9.346  mean =    2.475
+   x=1/25      max ||kx||/E =    9.720  mean =    2.489
+   x=1/4(H)    max ||kx||/E =    0.000  mean =    0.000
+   x=1/3(H)    max ||kx||/E =    0.000  mean =    0.000
+   x=5/12(H)   max ||kx||/E =    0.000  mean =    0.000
+   x=1/9(H)    max ||kx||/E =    7.102  mean =    1.918
+   x=sqrt2     max ||kx||/E =    7.424  mean =    2.514
+   x=phi       max ||kx||/E =   11.441  mean =    2.517
+   x=pi        max ||kx||/E =   10.241  mean =    2.489
+   x=e         max ||kx||/E =    6.993  mean =    2.390
+   x=ln2       max ||kx||/E =    9.726  mean =    2.470
+   x=Liouville max ||kx||/E =    3.113  mean =    0.993
+level E<0.10: generators=372
+   residues mod 5: [73, 74, 83, 71, 71]
+   residues mod 7: [59, 55, 54, 52, 46, 57, 49]
+   residues mod 11: [29, 41, 26, 35, 36, 41, 33, 32, 36, 31, 32]
+   residues mod 13: [32, 29, 24, 29, 24, 32, 33, 33, 28, 20, 30, 30, 28]
+   x=1/5       max ||kx||/E =    8.533  mean =    2.835
+   x=2/5       max ||kx||/E =    9.720  mean =    2.815
+   x=1/7       max ||kx||/E =    7.837  mean =    2.796
+   x=1/11      max ||kx||/E =    9.697  mean =    2.983
+   x=1/13      max ||kx||/E =    9.346  mean =    2.919
+   x=1/25      max ||kx||/E =    9.720  mean =    2.915
+   x=1/4(H)    max ||kx||/E =    0.000  mean =    0.000
+   x=1/3(H)    max ||kx||/E =    0.000  mean =    0.000
+   x=5/12(H)   max ||kx||/E =    0.000  mean =    0.000
+   x=1/9(H)    max ||kx||/E =    7.102  mean =    2.463
+   x=sqrt2     max ||kx||/E =    7.424  mean =    2.873
+   x=phi       max ||kx||/E =   11.441  mean =    2.962
+   x=pi        max ||kx||/E =   10.241  mean =    2.898
+   x=e         max ||kx||/E =    6.993  mean =    2.736
+   x=ln2       max ||kx||/E =    9.726  mean =    2.934
+   x=Liouville max ||kx||/E =    2.911  mean =    0.944
+level E<0.08: generators=94
+   residues mod 5: [19, 23, 15, 15, 22]
+   residues mod 7: [16, 11, 17, 15, 11, 12, 12]
+   residues mod 11: [10, 7, 4, 12, 11, 11, 7, 11, 7, 6, 8]
+   residues mod 13: [9, 6, 8, 7, 8, 12, 3, 9, 3, 7, 8, 5, 9]
+   x=1/5       max ||kx||/E =    8.533  mean =    3.166
+   x=2/5       max ||kx||/E =    9.720  mean =    3.633
+   x=1/7       max ||kx||/E =    7.837  mean =    3.423
+   x=1/11      max ||kx||/E =    9.697  mean =    3.666
+   x=1/13      max ||kx||/E =    9.346  mean =    3.350
+   x=1/25      max ||kx||/E =    9.720  mean =    3.722
+   x=1/4(H)    max ||kx||/E =    0.000  mean =    0.000
+   x=1/3(H)    max ||kx||/E =    0.000  mean =    0.000
+   x=5/12(H)   max ||kx||/E =    0.000  mean =    0.000
+   x=1/9(H)    max ||kx||/E =    7.102  mean =    3.018
+   x=sqrt2     max ||kx||/E =    7.424  mean =    3.134
+   x=phi       max ||kx||/E =   11.441  mean =    3.849
+   x=pi        max ||kx||/E =   10.241  mean =    3.524
+   x=e         max ||kx||/E =    6.993  mean =    3.084
+   x=ln2       max ||kx||/E =    9.726  mean =    3.727
+   x=Liouville max ||kx||/E =    2.911  mean =    0.980
+level E<0.07: generators=16
+   residues mod 5: [2, 3, 2, 4, 5]
+   residues mod 7: [2, 2, 3, 4, 3, 1, 1]
+   residues mod 11: [0, 3, 1, 1, 0, 2, 2, 1, 2, 2, 2]
+   residues mod 13: [3, 1, 2, 0, 1, 2, 1, 0, 0, 1, 2, 1, 2]
+   x=1/5       max ||kx||/E =    8.533  mean =    4.512
+   x=2/5       max ||kx||/E =    9.720  mean =    5.118
+   x=1/7       max ||kx||/E =    7.837  mean =    5.117
+   x=1/11      max ||kx||/E =    9.697  mean =    4.500
+   x=1/13      max ||kx||/E =    9.346  mean =    3.509
+   x=1/25      max ||kx||/E =    9.720  mean =    4.627
+   x=1/4(H)    max ||kx||/E =    0.000  mean =    0.000
+   x=1/3(H)    max ||kx||/E =    0.000  mean =    0.000
+   x=5/12(H)   max ||kx||/E =    0.000  mean =    0.000
+   x=1/9(H)    max ||kx||/E =    7.102  mean =    1.187
+   x=sqrt2     max ||kx||/E =    7.424  mean =    3.682
+   x=phi       max ||kx||/E =   11.441  mean =    4.715
+   x=pi        max ||kx||/E =   10.241  mean =    4.961
+   x=e         max ||kx||/E =    6.993  mean =    3.065
+   x=ln2       max ||kx||/E =    9.726  mean =    4.837
+   x=Liouville max ||kx||/E =    2.620  mean =    1.103
+level E<0.06: generators=9
+   residues mod 5: [1, 3, 0, 2, 3]
+   residues mod 7: [0, 2, 3, 2, 0, 1, 1]
+   residues mod 11: [0, 2, 1, 1, 0, 1, 1, 1, 0, 0, 2]
+   residues mod 13: [1, 0, 1, 0, 1, 2, 0, 0, 0, 1, 1, 0, 2]
+   x=1/5       max ||kx||/E =    8.533  mean =    4.531
+   x=2/5       max ||kx||/E =    9.720  mean =    6.289
+   x=1/7       max ||kx||/E =    7.837  mean =    5.335
+   x=1/11      max ||kx||/E =    9.697  mean =    4.626
+   x=1/13      max ||kx||/E =    9.346  mean =    4.349
+   x=1/25      max ||kx||/E =    9.720  mean =    5.291
+   x=1/4(H)    max ||kx||/E =    0.000  mean =    0.000
+   x=1/3(H)    max ||kx||/E =    0.000  mean =    0.000
+   x=5/12(H)   max ||kx||/E =    0.000  mean =    0.000
+   x=1/9(H)    max ||kx||/E =    7.102  mean =    2.111
+   x=sqrt2     max ||kx||/E =    6.261  mean =    2.775
+   x=phi       max ||kx||/E =   11.441  mean =    5.585
+   x=pi        max ||kx||/E =   10.241  mean =    5.823
+   x=e         max ||kx||/E =    6.993  mean =    3.056
+   x=ln2       max ||kx||/E =    9.726  mean =    5.937
+   x=Liouville max ||kx||/E =    2.620  mean =    1.387
+level E<0.05: generators=5
+   residues mod 5: [0, 2, 0, 2, 1]
+   residues mod 7: [0, 1, 3, 0, 0, 0, 1]
+   residues mod 11: [0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 2]
+   residues mod 13: [1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 1]
+   x=1/5       max ||kx||/E =    8.533  mean =    5.970
+   x=2/5       max ||kx||/E =    9.720  mean =    6.949
+   x=1/7       max ||kx||/E =    6.943  mean =    4.934
+   x=1/11      max ||kx||/E =    9.697  mean =    5.067
+   x=1/13      max ||kx||/E =    9.346  mean =    4.707
+   x=1/25      max ||kx||/E =    9.720  mean =    6.413
+   x=1/4(H)    max ||kx||/E =    0.000  mean =    0.000
+   x=1/3(H)    max ||kx||/E =    0.000  mean =    0.000
+   x=5/12(H)   max ||kx||/E =    0.000  mean =    0.000
+   x=1/9(H)    max ||kx||/E =    7.102  mean =    1.420
+   x=sqrt2     max ||kx||/E =    6.169  mean =    2.790
+   x=phi       max ||kx||/E =   11.441  mean =    6.083
+   x=pi        max ||kx||/E =   10.241  mean =    7.359
+   x=e         max ||kx||/E =    6.993  mean =    3.722
+   x=ln2       max ||kx||/E =    9.726  mean =    7.512
+   x=Liouville max ||kx||/E =    2.162  mean =    1.333
+level E<0.04: generators=0
+level E<0.04: generators=0

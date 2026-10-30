@@ -1,0 +1,195 @@
+import LeanCheck.ChainT3
+import LeanCheck.ChainPell
+
+/-!
+# The single-function topologies as family topologies, joins, and the representation corollary
+(HamelCharactersTVG_v18 Theorem 5.1, Corollary 5.3, Proposition 4.2 (Bohr comparison), Proposition 8.1 (joins))
+
+`σ_f = sigmaT f ⊤ = sigmaI (fa f)` and `τ_f = tauT f ⊤ = tauI (fa f)` where `fa f a = f_a` and the parameter `a`
+ranges over all of `ℝ`.
+-/
+
+namespace LeanCheck
+
+open Filter Topology Cardinal
+
+lemma iInf_top_subtype {α : Type*} (g : ℝ → TopologicalSpace α) :
+    (⨅ a : (⊤ : Submodule ℚ ℝ), g a) = ⨅ a : ℝ, g a :=
+  le_antisymm (le_iInf fun a => iInf_le (fun a : (⊤ : Submodule ℚ ℝ) => g a) ⟨a, Submodule.mem_top⟩)
+    (le_iInf fun a => iInf_le (fun a : ℝ => g a) a)
+
+/-- `σ_f` is the family topology of `{f_a}`. -/
+theorem sigmaT_top_eq (f : ℝ →+ ℚ) : sigmaT f ⊤ = sigmaI (fa f) := by
+  rw [sigmaT_eq_A]
+  unfold sigmaI
+  have : (⨅ a : (⊤ : Submodule ℚ ℝ), TopologicalSpace.induced
+      (fun x : ℝ => (((f ((a : ℝ) * x) : ℚ) : ℝ) : Circ)) circTop) =
+      ⨅ a : ℝ, TopologicalSpace.induced (fun x : ℝ => (((fa f a x : ℚ) : ℝ) : Circ)) circTop :=
+    iInf_top_subtype (fun a : ℝ => TopologicalSpace.induced
+      (fun x : ℝ => (((f (a * x) : ℚ) : ℝ) : Circ)) circTop)
+  rw [this]
+  rfl
+
+/-- `τ_f` is the family topology of `{f_a}`. -/
+theorem tauT_top_eq (f : ℝ →+ ℚ) : tauT f ⊤ = tauI (fa f) := by
+  unfold tauT TfS tauI
+  have : (⨅ a : (⊤ : Submodule ℚ ℝ), TopologicalSpace.induced (fa f (a : ℝ)) usualQ) =
+      ⨅ a : ℝ, TopologicalSpace.induced (fa f a) usualQ :=
+    iInf_top_subtype (fun a : ℝ => TopologicalSpace.induced (fa f a) usualQ)
+  rw [this]
+  rfl
+
+lemma fa_rescaled (f : ℝ →+ ℚ) : Rescaled (fa f) := by
+  intro a c
+  refine ⟨a * c, fun x => ?_⟩
+  simp only [fa_apply]
+  rw [mul_assoc]
+
+/-! ### Theorem 5.1 for arbitrary families -/
+
+/-- `σ_𝒮` for a set 𝒮 of rational-valued additive functions. -/
+noncomputable def sigmaS (𝒮 : Set (ℝ →+ ℚ)) : TopologicalSpace ℝ :=
+  sigmaI (fun s : 𝒮 => (s : ℝ →+ ℚ))
+
+/-- **Theorem 5.1.**  For every family 𝒮 and every nonzero `g ∈ D`, `g` is unbounded on every `σ_𝒮`-neighbourhood
+of zero; consequently no nonzero `g ∈ D` is `σ_𝒮`-continuous (`D_{σ_𝒮} = {0}`). -/
+theorem vanishing_family (𝒮 : Set (ℝ →+ ℚ)) (g : ℝ →+ ℚ) (hg : g ≠ 0) :
+    (∀ V ∈ @nhds ℝ (sigmaS 𝒮) 0, ∀ B : ℝ, ∃ x ∈ V, B < |((g x : ℚ) : ℝ)|) ∧
+    ¬ Continuous[sigmaS 𝒮, (inferInstance : TopologicalSpace ℝ)] (fun x : ℝ => ((g x : ℚ) : ℝ)) :=
+  ⟨fun V hV B => sigmaI_unbounded (fun s : 𝒮 => (s : ℝ →+ ℚ)) g hg V hV B,
+    sigmaI_dual_rat (fun s : 𝒮 => (s : ℝ →+ ℚ)) g hg⟩
+
+/-! ### Proposition 8.1, supremum identities -/
+
+/-- `σ_D = ⋁_{f ≠ 0} σ_f` and `τ_D = ⋁_{f ≠ 0} τ_f` (Mathlib: `⨅`), and `σ_D ⊊ τ_D`. -/
+theorem family_joins :
+    (⨅ f : {f : ℝ →+ ℚ // f ≠ 0}, sigmaT f.1 ⊤) = sigmaI (fun s : ℝ →+ ℚ => s) ∧
+    (⨅ f : {f : ℝ →+ ℚ // f ≠ 0}, tauT f.1 ⊤) = tauI (fun s : ℝ →+ ℚ => s) ∧
+    tauI (fun s : ℝ →+ ℚ => s) < sigmaI (fun s : ℝ →+ ℚ => s) := by
+  have hne : Nonempty {f : ℝ →+ ℚ // f ≠ 0} := by
+    have h : #{f : ℝ →+ ℚ // f ≠ 0} ≠ 0 := by
+      rw [card_nonzero_addHom]; exact Cardinal.power_ne_zero _ two_ne_zero
+    exact Cardinal.mk_ne_zero_iff.1 h
+  have hX0 : TopologicalSpace.induced (fun x : ℝ => ((((0 : ℝ →+ ℚ) x : ℚ) : ℝ) : Circ)) circTop = ⊤ := by
+    have : (fun x : ℝ => ((((0 : ℝ →+ ℚ) x : ℚ) : ℝ) : Circ)) = fun _ => (0 : Circ) := by
+      funext x; simp
+    rw [this]
+    exact induced_const
+  have hY0 : TopologicalSpace.induced ((0 : ℝ →+ ℚ)) usualQ = ⊤ := by
+    have : ((0 : ℝ →+ ℚ) : ℝ → ℚ) = fun _ => (0 : ℚ) := by funext x; simp
+    rw [this]
+    exact induced_const
+  have h1 : (⨅ f : {f : ℝ →+ ℚ // f ≠ 0}, sigmaT f.1 ⊤) = sigmaI (fun s : ℝ →+ ℚ => s) := by
+    simp_rw [sigmaT_top_eq]
+    unfold sigmaI
+    rw [← inf_iInf]
+    congr 1
+    apply le_antisymm
+    · refine le_iInf fun s => ?_
+      by_cases hs : s = 0
+      · subst hs; rw [hX0]; exact le_top
+      · exact (iInf_le _ ⟨s, hs⟩).trans ((iInf_le _ (1 : ℝ)).trans (by
+          have : fa s 1 = s := by ext x; simp [fa_apply]
+          rw [this]))
+    · exact le_iInf fun f => le_iInf fun a => iInf_le _ (fa f.1 a)
+  have h2 : (⨅ f : {f : ℝ →+ ℚ // f ≠ 0}, tauT f.1 ⊤) = tauI (fun s : ℝ →+ ℚ => s) := by
+    simp_rw [tauT_top_eq]
+    unfold tauI
+    rw [← inf_iInf]
+    congr 1
+    apply le_antisymm
+    · refine le_iInf fun s => ?_
+      by_cases hs : s = 0
+      · subst hs; rw [hY0]; exact le_top
+      · exact (iInf_le _ ⟨s, hs⟩).trans ((iInf_le _ (1 : ℝ)).trans (by
+          have : fa s 1 = s := by ext x; simp [fa_apply]
+          rw [this]))
+    · exact le_iInf fun f => le_iInf fun a => iInf_le _ (fa f.1 a)
+  refine ⟨h1, h2, ?_⟩
+  obtain ⟨f0⟩ := hne
+  have hresc : Rescaled (fun s : ℝ →+ ℚ => s) := fun s c => ⟨s.comp (AddMonoidHom.mulLeft c), fun x => rfl⟩
+  obtain ⟨-, -, -, -, -, -, -, -, -, -, -, h12, -⟩ := family_properties (fun s : ℝ →+ ℚ => s) hresc f0.1 f0.2
+  exact h12
+
+/-! ### Corollary 5.3 -/
+
+/-- **Corollary 5.3.**  `σ_f` cannot be generated by the usual topology and any family of maps in `D` into
+`ℚ_usual`; nevertheless it is a nondiscrete Hausdorff TVG topology strictly stronger than usual, and `1/n → 0`. -/
+theorem representation_failure (f : ℝ →+ ℚ) (hf : f ≠ 0) :
+    (¬ ∃ 𝒯 : Set (ℝ →+ ℚ), sigmaT f ⊤ = tauI (fun s : 𝒯 => (s : ℝ →+ ℚ))) ∧
+    (@T2Space ℝ (sigmaT f ⊤) ∧ ({0} : Set ℝ) ∉ @nhds ℝ (sigmaT f ⊤) 0 ∧ sigmaT f ⊤ < uR) ∧
+    Tendsto (fun n : ℕ => (1 : ℝ) / n) atTop (@nhds ℝ (sigmaT f ⊤) 0) := by
+  obtain ⟨u, hu⟩ := exists_unit f hf
+  obtain ⟨-, -, hT2, -, hnd, -, -, -, -, -, hlt, -, -⟩ :=
+    family_properties (fa f) (fa_rescaled f) 1 (fa_ne_zero f u hu 1 one_ne_zero)
+  rw [← sigmaT_top_eq f] at hT2 hnd hlt
+  refine ⟨?_, ⟨hT2, hnd, hlt⟩, ?_⟩
+  · rintro ⟨𝒯, h𝒯⟩
+    -- every member of 𝒯 is σ_f-continuous hence zero, so τ_𝒯 = usual
+    have hzero : ∀ s : 𝒯, (s : ℝ →+ ℚ) = 0 := by
+      intro s
+      by_contra hs
+      have hc : Continuous[sigmaT f ⊤, (inferInstance : TopologicalSpace ℝ)] (fun x : ℝ => (((s : ℝ →+ ℚ) x : ℚ) : ℝ)) := by
+        rw [h𝒯]
+        exact @Continuous.comp ℝ ℚ ℝ (tauI (fun s : 𝒯 => (s : ℝ →+ ℚ))) usualQ _ (s : ℝ →+ ℚ)
+          (fun q : ℚ => (q : ℝ)) Rat.continuous_coe_real (tauI_cont_phi _ s)
+      exact sigmaI_dual_rat (fa f) (s : ℝ →+ ℚ) hs (by rw [← sigmaT_top_eq]; exact hc)
+    have hτ : tauI (fun s : 𝒯 => (s : ℝ →+ ℚ)) = uR := by
+      unfold tauI
+      have : ∀ s : 𝒯, TopologicalSpace.induced ((s : ℝ →+ ℚ)) usualQ = ⊤ := by
+        intro s
+        rw [hzero s]
+        have : ((0 : ℝ →+ ℚ) : ℝ → ℚ) = fun _ => (0 : ℚ) := by funext x; simp
+        rw [this]
+        exact induced_const
+      simp_rw [this]
+      simp
+    rw [hτ] at h𝒯
+    exact absurd h𝒯 (ne_of_lt hlt)
+  · rw [tendsto_sigma_iff]
+    refine ⟨tendsto_const_div_atTop_nhds_zero_nat 1, fun a => ?_⟩
+    have hr : Tendsto (fun n : ℕ => (((f (((a : ℝ)) * ((1 : ℝ) / n)) : ℚ) : ℝ))) atTop (𝓝 0) := by
+      have e : ∀ n : ℕ, ((f (((a : ℝ)) * ((1 : ℝ) / n)) : ℚ) : ℝ) = ((f (a : ℝ) : ℚ) : ℝ) / n := by
+        intro n
+        by_cases hn : (n : ℝ) = 0
+        · simp [hn]
+        · have : (a : ℝ) * ((1 : ℝ) / n) = (((1 / (n : ℚ)) : ℚ) : ℝ) * (a : ℝ) := by push_cast; ring
+          rw [this, f_ratmul]; push_cast; ring
+      simp_rw [e]
+      exact tendsto_const_div_atTop_nhds_zero_nat _
+    have := (continuous_coe_circ.tendsto (0 : ℝ)).comp hr
+    simpa [Function.comp_def] using this
+
+/-! ### Proposition 4.2, the comparison with the Bohr topology of the usual line -/
+
+/-- The Bohr topology `t` of the usual real line is strictly coarser than `β_f` (Mathlib: `β_f < t`). -/
+theorem bohr_lt_beta (f : ℝ →+ ℚ) (hf : f ≠ 0) : betaT f ⊤ < theta (HR : Set Chars) := by
+  obtain ⟨u, hu⟩ := exists_unit f hf
+  refine lt_of_le_of_ne ?_ ?_
+  · unfold theta
+    refine le_iInf fun χ => ?_
+    have hχ : (χ : Chars) ∈ HR := χ.2
+    obtain ⟨b, hb⟩ : ∃ b : ℝ, ∀ x, (χ : Chars) x = ((b * x : ℝ) : Circ) := by
+      simpa [HR] using hχ
+    have : @Continuous ℝ Circ (betaT f ⊤) circTop (χ : Chars) := by
+      have e : ((χ : Chars) : ℝ → Circ) = cmulHom b := funext hb
+      rw [e]; exact cmulHom_cont_beta f ⊤ b
+    exact continuous_iff_le_induced.1 this
+  · intro heq
+    have hc : @Continuous ℝ Circ (betaT f ⊤) circTop (pfHom f 1) :=
+      pfHom_cont_beta f ⊤ ⟨1, Submodule.mem_top⟩
+    rw [heq] at hc
+    have hmem : pfHom f 1 ∈ HR := (dual_theta_iff HR (pfHom f 1)).1 hc
+    obtain ⟨b, hb⟩ := hmem
+    have h3 : faR f 1 = AddMonoidHom.mulLeft b := lift_unique (faR f 1) (AddMonoidHom.mulLeft b) (fun x => by
+      have := hb x
+      simpa [pfHom_apply, faR_apply] using this)
+    have h4 : ∀ x : ℝ, ((f (1 * x) : ℚ) : ℝ) = b * x := fun x => by
+      simpa [faR_apply] using congrArg (fun L : ℝ →+ ℝ => L x) h3
+    have h5 : fa f 1 = 0 := rat_linear_contra (fa f 1) b (fun x => by simpa [fa_apply] using h4 x)
+    apply hf
+    ext x
+    have := congrArg (fun m : ℝ →+ ℚ => m x) h5
+    simpa [fa_apply] using this
+
+end LeanCheck

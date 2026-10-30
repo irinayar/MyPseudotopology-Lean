@@ -1,0 +1,27 @@
+D=20: least positive k with P_2(k-m)<1/D, P_3(k)<1/D (digits of k; -1 = not finished in 2000000 steps)
+  m=-12: digits=9 k=300480516
+  m=-11: digits=6 k=196101
+  m=-10: digits=3 k=486
+  m=-9: digits=7 k=1180167
+  m=-8: digits=6 k=196104
+  m=-7: digits=3 k=489
+  m=-6: digits=6 k=393738
+  m=-5: digits=6 k=196587
+  m=-4: digits=9 k=300676620
+  m=-3: digits=6 k=392685
+  m=-2: digits=6 k=196590
+  m=-1: digits=6 k=589839
+  m=1: digits=9 k=300480513
+  m=2: digits=6 k=196098
+  m=3: digits=1 k=3
+  m=4: digits=7 k=1573908
+  m=5: digits=6 k=196101
+  m=6: digits=6 k=394230
+  m=7: digits=6 k=787479
+  m=8: digits=6 k=196104
+  m=9: digits=9 k=300676617
+  m=10: digits=6 k=393738
+  m=11: digits=6 k=197643
+  m=12: digits=6 k=983580
+  found 24, unfinished 0
+

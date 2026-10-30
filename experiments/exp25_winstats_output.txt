@@ -1,0 +1,16 @@
+D=100 k=37074752603481701889
+  binary k-1: forced/total/free = 39/66/27  (t=6 bits per window)
+  ternary k:  forced/total/free = 20/42/22  (t=4 trits per window)
+  v2(k-1)=9 v3(k)=4
+D=200 k=24168444555598036601864193
+  binary k-1: forced/total/free = 51/85/34  (t=7 bits per window)
+  ternary k:  forced/total/free = 24/54/30  (t=4 trits per window)
+  v2(k-1)=16 v3(k)=9
+D=500 k=6207496413615241618428036085462998253569
+  binary k-1: forced/total/free = 72/133/61  (t=8 bits per window)
+  ternary k:  forced/total/free = 39/84/45  (t=5 trits per window)
+  v2(k-1)=16 v3(k)=9
+surv_D50.txt: survivors=46; distinct binary prefixes mod 2^25 of k-1: 21 (top bit of scale 2^25: low 7, high 14); distinct ternary prefixes mod 3^16: 42 (top trit of scale 3^16: low 24, high 18)
+   raw (not de-duplicated) binary n=5: low 12, high 34
+surv_D60.txt: survivors=21; distinct binary prefixes mod 2^25 of k-1: 16 (low 6, high 10); distinct ternary prefixes mod 3^16: 20 (low 12, high 8)
+   raw (not de-duplicated) binary n=5: low 7, high 14

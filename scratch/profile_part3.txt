@@ -1,0 +1,58 @@
+
+/-- **Profile test 1** (Corollary 7.18, first part): a separated profile sequence with `ε_i → 0` and a
+divergent series `∑ ‖h_i x‖ / ε_i` excludes every Lipschitz constant. -/
+theorem not_lipschitz_of_divergent {L : Finset ℕ} (hL : L.Nonempty) {r : ℝ} (hr0 : 0 < r) (hr1 : r < 1)
+    {x : ℝ} (h : ℕ → ℤ) (ε : ℕ → ℝ) (P : ℕ → ℕ → ℕ)
+    (hprof : ∀ i, HasProfile L r (ε i) (P i) (h i))
+    (hdist : ∀ ℓ ∈ L, ∀ i j, P i ℓ = P j ℓ → i = j)
+    (hε0 : ∀ i, 0 < ε i) (hlim : Filter.Tendsto ε Filter.atTop (nhds 0))
+    (hdiv : ¬ Summable fun i => nrm ((h i : ℝ) * x) / ε i) :
+    ¬ ∃ C : ℝ, 0 < C ∧ ∀ k : ℤ, nrm ((k : ℝ) * x) ≤ C * Pn (Sc L) k := by
+  rintro ⟨C, hC0, hC⟩
+  set A : ℝ := (1 + r) / (1 - r) with hA
+  have h1r : 0 < 1 - r := by linarith
+  have hA1 : 1 ≤ A := by rw [hA, le_div_iff₀ h1r]; linarith
+  have hbd : 0 < 1 / (16 * C * A) := by positivity
+  obtain ⟨i0, hi0⟩ := (Filter.tendsto_atTop.mp hlim) |>.1 |> fun _ =>
+    (Metric.tendsto_atTop.mp hlim) (1 / (16 * C * A)) hbd |> fun ⟨N, hN⟩ => ⟨N, hN⟩
+  have hsm : Summable fun i => nrm ((h (i + i0) : ℝ) * x) / ε (i + i0) := by
+    apply summable_of_sum_range_le (c := 2 * C * A)
+    · intro i; exact div_nonneg (nrm_nonneg _) (hε0 _).le
+    · intro N
+      refine profile_summability hL hr0 hr1 hC0 hC N (fun i => h (i + i0)) (fun i => ε (i + i0))
+        (fun i => P (i + i0)) (fun i _ => hprof _) ?_ (fun i _ => hε0 _) ?_
+      · intro ℓ hℓ i _ j _ hij
+        have := hdist ℓ hℓ _ _ hij
+        omega
+      · intro i _
+        have := hi0 (i + i0) (by omega)
+        rw [Real.dist_eq, sub_zero, abs_of_pos (hε0 _)] at this
+        exact this.le
+  exact hdiv ((summable_nat_add_iff i0).mp hsm)
+
+/-- **Profile test 2** (Corollary 7.18, second part): if for arbitrarily small `ε` there is an infinite
+separated sequence of `ε`-profile integers with `∑ ‖h_i x‖ = ∞`, then no Lipschitz constant exists. -/
+theorem not_lipschitz_of_fixed_scale {L : Finset ℕ} (hL : L.Nonempty) {r : ℝ} (hr0 : 0 < r) (hr1 : r < 1)
+    {x : ℝ}
+    (hex : ∀ ε : ℝ, 0 < ε → ∃ (h : ℕ → ℤ) (P : ℕ → ℕ → ℕ),
+      (∀ i, HasProfile L r ε (P i) (h i)) ∧ (∀ ℓ ∈ L, ∀ i j, P i ℓ = P j ℓ → i = j) ∧
+      ¬ Summable fun i => nrm ((h i : ℝ) * x)) :
+    ¬ ∃ C : ℝ, 0 < C ∧ ∀ k : ℤ, nrm ((k : ℝ) * x) ≤ C * Pn (Sc L) k := by
+  rintro ⟨C, hC0, hC⟩
+  set A : ℝ := (1 + r) / (1 - r) with hA
+  have h1r : 0 < 1 - r := by linarith
+  have hA1 : 1 ≤ A := by rw [hA, le_div_iff₀ h1r]; linarith
+  set ε : ℝ := 1 / (16 * C * A) with hε
+  have hε0 : 0 < ε := by positivity
+  obtain ⟨h, P, hprof, hdist, hdiv⟩ := hex ε hε0
+  apply hdiv
+  apply summable_of_sum_range_le (c := 2 * C * A * ε)
+  · intro i; exact nrm_nonneg _
+  · intro N
+    have := profile_summability hL hr0 hr1 hC0 hC N h (fun _ => ε) P (fun i _ => hprof i)
+      (fun ℓ hℓ i _ j _ hij => hdist ℓ hℓ i j hij) (fun _ _ => hε0) (fun _ _ => le_rfl)
+    rw [← Finset.sum_div, div_le_iff₀ hε0] at this
+    exact this
+
+end MixedPrime
+end LeanCheck

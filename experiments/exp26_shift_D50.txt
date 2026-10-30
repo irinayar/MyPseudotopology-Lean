@@ -1,0 +1,27 @@
+D=50: least positive k with P_2(k-m)<1/D, P_3(k)<1/D (digits of k; -1 = not finished in 3000000 steps)
+  m=-12: digits=13 k=7627190370804
+  m=-11: digits=15 k=573600700365813
+  m=-10: digits=15 k=563432030405622
+  m=-9: digits=13 k=7628868287991
+  m=-8: digits=6 k=590328
+  m=-7: digits=15 k=567690557719545
+  m=-6: digits=16 k=1696270892596218
+  m=-5: digits=15 k=554979333636603
+  m=-4: digits=9 k=301858812
+  m=-3: digits=13 k=5084033318397
+  m=-2: digits=16 k=1127754527407614
+  m=-1: digits=15 k=563432331870207
+  m=1: digits=13 k=7627190764545
+  m=2: digits=16 k=1127754225548802
+  m=3: digits=18 k=147484984184079363
+  m=4: digits=13 k=7628868681732
+  m=5: digits=9 k=603323397
+  m=6: digits=15 k=567691160452614
+  m=7: digits=16 k=1135383396285447
+  m=8: digits=15 k=560889174817800
+  m=9: digits=9 k=301464585
+  m=10: digits=13 k=5084033712138
+  m=11: digits=16 k=1696270591131147
+  m=12: digits=13 k=2543156855820
+  found 24, unfinished 0
+

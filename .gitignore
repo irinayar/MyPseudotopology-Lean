@@ -1,0 +1,13 @@
+/.lake/
+/build/
+*.olean
+*.ilean
+*.trace
+*.log
+*.class
+*.exe
+*.dll
+*.pdb
+__pycache__/
+.DS_Store
+Thumbs.db

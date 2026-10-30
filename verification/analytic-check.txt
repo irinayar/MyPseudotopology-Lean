@@ -1,0 +1,14 @@
+'LeanCheck.MixedPrimeAnalytic.cosine_series_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.MixedPrimeAnalytic.cosine_series_center_max' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.MixedPrimeAnalytic.product_bound_with_exceptions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.MixedPrimeAnalytic.one_sub_sum_le_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.MixedPrimeAnalytic.product_lower_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.MixedPrimeAnalytic.geometric_sum_le_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.MixedPrimeAnalytic.paired_geometric_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.MixedPrimeAnalytic.paired_geometric_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.MixedPrimeAnalytic.relative_mass_product_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.MixedPrimeAnalytic.square_level_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.MixedPrimeAnalytic.two_colour_three_level_span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.MixedPrimeAnalytic.finite_cover_of_bounded_packing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

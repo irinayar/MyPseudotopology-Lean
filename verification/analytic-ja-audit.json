@@ -1,0 +1,117 @@
+{
+  "date": "2026-10-30T03:28:22.079488+00:00",
+  "lean_version": "4.35.0",
+  "module_hashes": {
+    "LeanCheck/MixedPrimeAnalytic.lean": "71a942c94d546491bd88a4acad1f17825cc2667b60339d5a89d1fd07bdbca123",
+    "LeanCheck/MixedPrimeAveraging.lean": "4c91ee15849ca34d4808594b28b37d292e434c8492fe12b2f539f0937c1e1754"
+  },
+  "declarations": [
+    {
+      "name": "LeanCheck.MixedPrimeAnalytic.cosine_series_summable",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "LeanCheck.MixedPrimeAnalytic.cosine_series_center_max",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "LeanCheck.MixedPrimeAnalytic.product_bound_with_exceptions",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "LeanCheck.MixedPrimeAnalytic.one_sub_sum_le_product",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "LeanCheck.MixedPrimeAnalytic.product_lower_half",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "LeanCheck.MixedPrimeAnalytic.geometric_sum_le_two",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "LeanCheck.MixedPrimeAnalytic.paired_geometric_sum",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "LeanCheck.MixedPrimeAnalytic.paired_geometric_prefix",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "LeanCheck.MixedPrimeAnalytic.relative_mass_product_bounds",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "LeanCheck.MixedPrimeAnalytic.square_level_gap",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "LeanCheck.MixedPrimeAnalytic.two_colour_three_level_span",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "LeanCheck.MixedPrimeAnalytic.finite_cover_of_bounded_packing",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "LeanCheck.MixedPrimeAveraging.finite_translation_orthogonality",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "new_declarations_checked": 13,
+  "complete_analytic_JA_formalized": false,
+  "full_project_rebuild": false
+}

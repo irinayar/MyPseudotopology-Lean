@@ -32,6 +32,14 @@ This source snapshot preserves the original modules. Local build wrappers have b
 replaced with portable wrappers; generated files and the original release/update/Pages
 workflows are excluded. No license is inferred or assigned by this export.
 
+## Additional analytic formalization
+
+`LeanCheck/MixedPrimeAnalytic.lean` and `LeanCheck/MixedPrimeAveraging.lean`
+were independently typechecked with the installed Lean 4.35.0 / Mathlib environment.
+Their 13 audited declarations use only `propext`, `Classical.choice`, and `Quot.sound`.
+See `ANALYTIC_JA_PROGRESS.md` for exact scope and missing links. These checks are not
+a new full-project rebuild and do not formalize the complete analytic JA theorem.
+
 ## Historical statement mapping
 
 # LeanCheck - machine-checked parts of HamelCharactersTVG

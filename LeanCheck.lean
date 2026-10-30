@@ -117,3 +117,7 @@ import LeanCheck.ChainN1
 import LeanCheck.ChainN2
 import LeanCheck.MixedPrimeAxioms
 import LeanCheck.MixedPrimeProduct
+
+import LeanCheck.MixedPrimeAnalytic
+
+import LeanCheck.MixedPrimeAveraging

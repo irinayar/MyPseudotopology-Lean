@@ -25,7 +25,7 @@ automatic CI is currently inactive because the upload token lacks GitHub workflo
 - `LeanCheck.lean` is the main library import target; `LeanCheck/` contains the formalization modules and audit entry points.
 - `scratch/` and `AdditionalProbe.lean` contain supplementary probes or drafts; they are preserved for completeness but are not part of the default build or certified by any future library CI result.
 - `experiments/` contains supporting numerical source code, data, and notes. These are not Lean proofs and are not run by Lean CI.
-- The complete analytic mixed-prime joint-approximation proof has **not** been formalized. `MixedPrimeProduct.lean` checks selected abstract components, not the full analytic cascade or the complete JA deduction.
+- The analytic mixed-prime joint-approximation (JA) proof is formalized **conditionally**: `JA_of_matveev` (`LeanCheck/JAWeilE.lean`) derives `JAProp` from the explicit hypothesis `TwoTermSeparation` (the two-term separation estimate obtained from Matveev's bound for linear forms in logarithms), which is **not** proved here. It is not an unconditional proof of JA. See `JA_FORMALIZATION.md` and `verification/ja-check.txt`. `MixedPrimeProduct.lean` checks only selected abstract components.
 - A Lean proof verifies its formal statement under its hypotheses. The correspondence with a paper statement still requires mathematical review. The historical mapping below records earlier work; its counts are not a fresh audit of every declaration.
 
 This source snapshot preserves the original modules. Local build wrappers have been

@@ -1,5 +1,7 @@
 # Analytic joint-approximation formalization progress
 
+> **Update 31 October 2026:** this file records the state of 30 October 2026. The JA development has since been completed conditionally on the two-term separation estimate; see `JA_FORMALIZATION.md`.
+
 The complete analytic joint-approximation theorem is **not yet formalized**.
 The following two modules are new checked components. No new axiom, `sorry`, or
 assumption that JA holds has been inserted to stand in for a missing proof.

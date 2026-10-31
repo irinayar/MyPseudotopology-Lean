@@ -1,0 +1,19 @@
+Axiom report for the joint-approximation (JA) development, 31 October 2026.
+Lean 4.35.0 + pinned Mathlib. 'lake build' of all 47 LeanCheck/JA*.lean modules completed successfully; no sorry in any of them.
+
+'LeanCheck.JAWeil.JA_of_matveev' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAWeil.compactQuotientCriterion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAWeil.weil_seminorm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAWeil.weil_abstract' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAOnePrime.oneprime' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAOnePrime.oneprime_two_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAMain.JA_of_inputs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JACentral2.central_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JACentral.prod_f_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAProductFinal.product_final' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JANonDeep.non_deep_card_le_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAClose.close_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAClose.hTT_of_two_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JASep.separated_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JASorted.arc_mass_sorted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAHeights.JA_of_centralBound' depends on axioms: [propext, Classical.choice, Quot.sound]

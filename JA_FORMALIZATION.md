@@ -78,7 +78,7 @@ lake env lean LeanCheck/JAWeilE.lean               # prints the axioms of JA_of_
 ## TVGplus modules
 
 `LeanCheck/TVGPlus*.lean` (`TVGPlusValuation`, `TVGPlusCount`, `TVGPlusCert`, `TVGPlusCertData`, `TVGPlusCertRows`,
-`TVGPlusCertRowsData`, `TVGPlusPair`, `TVGPlusDD`, `TVGPlusSizes`, `TVGPlusGcd`, `TVGPlusOrderA`-`E`, `TVGPlusOrder`, `TVGPlusPairGcd`) formalize the elementary results of the article *Quantitative Bounds for Prime
+`TVGPlusCertRowsData`, `TVGPlusPair`, `TVGPlusDD`, `TVGPlusSizes`, `TVGPlusDual`, `TVGPlusPairDual`, `TVGPlusGcd`, `TVGPlusOrderA`-`E`, `TVGPlusOrder`, `TVGPlusPairGcd`) formalize the elementary results of the article *Quantitative Bounds for Prime
 Square Metrics*: valuation thresholds and the universal divisor, the pigeonhole upper bound, exact finite certificates,
 and, under the hypothesis `DD S` of diagonal density, residue independence and the valuation vectors of the ball.
 `TVGPlusPair.lean` derives `DD {2, 3}` from `JAProp`, so these results hold for the pair `{2, 3}` conditionally on
@@ -89,4 +89,7 @@ Matveev separation and from the weak separation). `TVGPlusDD` proves that `DD (A
 for a finite set of primes is equivalent to a chain of block approximations, and that a shifted target reduces to the unit target.
 `TVGPlusSizes` gives the explicit size bound in the block construction `k = m a + (1 - m) b` (`|k| <= (|m| + 1)(|a| + |b|)`), the identity
 `A_S^2 - 4 c_S = sum_p sum_{q != p} (log p log q)^(-1/2)`, `x_S < A_S^2`, and the one-prime limit of `log u / (log (1/delta))^2`.
+`TVGPlusDual` proves the dual-group lemma: under `DD S`, a parameter is continuous for the `P_S`-topology exactly when `M alpha` is an
+integer for some `M` whose prime factors lie in `S` (`dual_of_DD`, with the converse `contAt_of_denominator`); `TVGPlusPairDual` gives the dual
+`Z[1/6]/Z` of the `{2,3}` join from `JAProp`, from the Matveev separation and from the weak separation.
 Not formalized: the exact searches for the least witnesses. Axiom report: `verification/tvgplus-check.txt`.

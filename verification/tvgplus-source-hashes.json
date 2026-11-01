@@ -7,6 +7,7 @@
     "LeanCheck/TVGPlusCertRowsData.lean": "8c1a6698c85953fce1e23692712295e0001698b0a7d5499e9ede91abbfc9723b",
     "LeanCheck/TVGPlusCount.lean": "2fb379f4705bbc7b2e954f674e70b5cab749f2159b47cc68948d6b83a6f3a56b",
     "LeanCheck/TVGPlusDD.lean": "eb4d72cc07b1fcc4988a2022db787e064cfbedd3ed79e89acc245e724cf90092",
+    "LeanCheck/TVGPlusDual.lean": "d8d7988e4049633b4fce2c344c03c8b49e621d403c56e798312b1197736006ba",
     "LeanCheck/TVGPlusGcd.lean": "570a6da4422f7547c3d16c94b8384c218aac0bc611d8076d60640a1d602a11b4",
     "LeanCheck/TVGPlusOrder.lean": "c7dd26f4db8e44602486fa80a982431057725d4ceb7cd549b34595f20c365d27",
     "LeanCheck/TVGPlusOrderA.lean": "adb32cb063cbd0ea6b50ef48ca002b582b5e16a324a6dcaf348460b505142ae0",
@@ -15,6 +16,7 @@
     "LeanCheck/TVGPlusOrderD.lean": "cb5767112d86bf3edf95a3a060fd0a114b673d5ba90d45eca2ba1871c7b66424",
     "LeanCheck/TVGPlusOrderE.lean": "458887d795e19ee43bc9a8dbcd7c3c55c8735db6cfbaf3dc17d14a18995a3613",
     "LeanCheck/TVGPlusPair.lean": "5e9832391ee8f38f5e71b7af9c117326f6b8403bdb3398f15a8033c30a7c4873",
+    "LeanCheck/TVGPlusPairDual.lean": "157a61b34ffeaaf4336f877c10ac66fd0c33f5dd1d3bd2b573006d73ed47efc1",
     "LeanCheck/TVGPlusPairGcd.lean": "dc2396256b743988f3560b8fd90e80de6f656ef5f08f78f43c941286c084d321",
     "LeanCheck/TVGPlusSizes.lean": "07a7c92fe49506b14935b5bd4ee552fdc600edbe5038274512e25d5bac950489",
     "LeanCheck/TVGPlusValuation.lean": "2906f57d81705715ac446d56676435ad412f6f9654e0e1292de686e1cb2353dc"

@@ -229,6 +229,10 @@ import LeanCheck.TVGPlusCount
 
 import LeanCheck.TVGPlusDD
 
+import LeanCheck.TVGPlusDual
+
+import LeanCheck.TVGPlusPairDual
+
 import LeanCheck.TVGPlusPair
 
 import LeanCheck.TVGPlusGcd

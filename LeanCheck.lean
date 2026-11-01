@@ -229,4 +229,20 @@ import LeanCheck.TVGPlusCount
 
 import LeanCheck.TVGPlusPair
 
+import LeanCheck.TVGPlusGcd
+
+import LeanCheck.TVGPlusOrder
+
+import LeanCheck.TVGPlusOrderA
+
+import LeanCheck.TVGPlusOrderB
+
+import LeanCheck.TVGPlusOrderC
+
+import LeanCheck.TVGPlusOrderD
+
+import LeanCheck.TVGPlusOrderE
+
+import LeanCheck.TVGPlusPairGcd
+
 import LeanCheck.TVGPlusValuation

@@ -78,9 +78,11 @@ lake env lean LeanCheck/JAWeilE.lean               # prints the axioms of JA_of_
 ## TVGplus modules
 
 `LeanCheck/TVGPlus*.lean` (`TVGPlusValuation`, `TVGPlusCount`, `TVGPlusCert`, `TVGPlusCertData`, `TVGPlusCertRows`,
-`TVGPlusCertRowsData`, `TVGPlusPair`) formalize the elementary results of the article *Quantitative Bounds for Prime
+`TVGPlusCertRowsData`, `TVGPlusPair`, `TVGPlusGcd`, `TVGPlusOrderA`-`E`, `TVGPlusOrder`, `TVGPlusPairGcd`) formalize the elementary results of the article *Quantitative Bounds for Prime
 Square Metrics*: valuation thresholds and the universal divisor, the pigeonhole upper bound, exact finite certificates,
 and, under the hypothesis `DD S` of diagonal density, residue independence and the valuation vectors of the ball.
 `TVGPlusPair.lean` derives `DD {2, 3}` from `JAProp`, so these results hold for the pair `{2, 3}` conditionally on
-`TwoTermSeparation` (through `JAWeil.JA_of_matveev`). Not formalized: the asymptotic constants, the character argument for
-the gcd equality, and the search for `35 ≤ k ≤ 70`. Axiom report: `verification/tvgplus-check.txt`.
+`TwoTermSeparation` (through `JAWeil.JA_of_matveev`). `TVGPlusGcd.gcd_iff` proves, under `DD S`, that `D_S(δ)` is the gcd of the ball (by an elementary construction that replaces the
+character argument); `TVGPlusOrder` proves both bounds of the logarithmic order (`uS_lower` with `c_S`, `uS_upper` with `x_S`),
+and the exact one-prime value `u_{p}(δ) = p^(a_p(δ)²)`; `TVGPlusPairGcd` states the gcd equality for `{2, 3}` (from `JAProp`, from the
+Matveev separation and from the weak separation). Not formalized: the search for `35 ≤ k ≤ 70`. Axiom report: `verification/tvgplus-check.txt`.

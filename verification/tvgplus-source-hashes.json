@@ -6,7 +6,15 @@
     "LeanCheck/TVGPlusCertRows.lean": "92a20df718a1af82fbb235651f21b3fc20c29499a84b25f8708de8742e4b46ea",
     "LeanCheck/TVGPlusCertRowsData.lean": "8c1a6698c85953fce1e23692712295e0001698b0a7d5499e9ede91abbfc9723b",
     "LeanCheck/TVGPlusCount.lean": "2fb379f4705bbc7b2e954f674e70b5cab749f2159b47cc68948d6b83a6f3a56b",
+    "LeanCheck/TVGPlusGcd.lean": "570a6da4422f7547c3d16c94b8384c218aac0bc611d8076d60640a1d602a11b4",
+    "LeanCheck/TVGPlusOrder.lean": "c7dd26f4db8e44602486fa80a982431057725d4ceb7cd549b34595f20c365d27",
+    "LeanCheck/TVGPlusOrderA.lean": "adb32cb063cbd0ea6b50ef48ca002b582b5e16a324a6dcaf348460b505142ae0",
+    "LeanCheck/TVGPlusOrderB.lean": "389aeec64b01d1c1995aa795af7821bb9ee2a66408f0f8c475b021a69853c61c",
+    "LeanCheck/TVGPlusOrderC.lean": "c08295b533dd059f0b098e6ec94ac0ddec6463bb03a93fe324889c96fff89153",
+    "LeanCheck/TVGPlusOrderD.lean": "cb5767112d86bf3edf95a3a060fd0a114b673d5ba90d45eca2ba1871c7b66424",
+    "LeanCheck/TVGPlusOrderE.lean": "458887d795e19ee43bc9a8dbcd7c3c55c8735db6cfbaf3dc17d14a18995a3613",
     "LeanCheck/TVGPlusPair.lean": "5e9832391ee8f38f5e71b7af9c117326f6b8403bdb3398f15a8033c30a7c4873",
-    "LeanCheck/TVGPlusValuation.lean": "7185a6a4dd732caee08de6a6733b2d490d521e4478f60848dec26d355f61a3a9"
+    "LeanCheck/TVGPlusPairGcd.lean": "dc2396256b743988f3560b8fd90e80de6f656ef5f08f78f43c941286c084d321",
+    "LeanCheck/TVGPlusValuation.lean": "2906f57d81705715ac446d56676435ad412f6f9654e0e1292de686e1cb2353dc"
   }
 }

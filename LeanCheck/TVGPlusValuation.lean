@@ -18,8 +18,9 @@ Checked here (no axiom, no `sorry`):
 * `residues`, `valuation_vector_iff`, `gcd_valuation`: residue independence and the valuation-vector criterion
   *under the explicit hypothesis* `DD S` (density of the diagonal), which is not proved here.
 
-Not checked here: the pigeonhole upper bounds, the asymptotic constants, the identification of the dual group,
-and the statement `g_S(δ) = D_S(δ)` (which needs the character argument), and `DD S` itself.
+Not checked in this file: `DD S` itself (see `TVGPlusPair` for `S = {2, 3}`).  The pigeonhole upper bounds are in
+`TVGPlusCount`; the statement `g_S(δ) = D_S(δ)` under `DD S` is `TVGPlusGcd.gcd_iff` (proved by an elementary construction in place of the
+character argument); the logarithmic order is `TVGPlusOrder{A,B,C,D,E}`, `TVGPlusOrder`.
 -/
 
 namespace LeanCheck

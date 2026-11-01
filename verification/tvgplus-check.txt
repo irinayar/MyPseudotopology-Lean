@@ -1,5 +1,5 @@
-Axiom report for the TVGplus Lean modules, 1 November 2026.
-Lean 4.35.0 + pinned Mathlib. 'lake build' of the seven LeanCheck/TVGPlus*.lean modules completed successfully; no sorry.
+Axiom report for the TVGplus Lean modules, 1 November 2026 (second part).
+Lean 4.35.0 + pinned Mathlib. 'lake build' of all LeanCheck/TVGPlus*.lean modules (sixteen) completed successfully; no sorry.
 
 LeanCheck/TVGPlusValuation.lean:314:0: 'LeanCheck.TVGPlus.forced_prime' depends on axioms: [propext, Classical.choice, Quot.sound]
 LeanCheck/TVGPlusValuation.lean:315:0: 'LeanCheck.TVGPlus.forced' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -24,3 +24,26 @@ LeanCheck/TVGPlusPair.lean:80:0: 'LeanCheck.TVGPlus.DD_pair_of_JA' depends on ax
 LeanCheck/TVGPlusPair.lean:81:0: 'LeanCheck.TVGPlus.pair_residues_of_matveev' depends on axioms: [propext, Classical.choice, Quot.sound]
 LeanCheck/TVGPlusPair.lean:82:0: 'LeanCheck.TVGPlus.pair_valuation_vector_iff_of_matveev' depends on axioms: [propext, Classical.choice, Quot.sound]
 LeanCheck/TVGPlusPair.lean:83:0: 'LeanCheck.TVGPlus.pair_gcd_valuation_of_matveev' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusGcd.lean:170:0: 'LeanCheck.TVGPlus.exists_unit_small' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusGcd.lean:171:0: 'LeanCheck.TVGPlus.exists_not_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusGcd.lean:172:0: 'LeanCheck.TVGPlus.gcd_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderA.lean:202:0: 'LeanCheck.TVGPlus.upper_mult' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderA.lean:204:0: 'LeanCheck.TVGPlus.pigeonhole_mult' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderB.lean:177:0: 'LeanCheck.TVGPlus.aThr_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderB.lean:178:0: 'LeanCheck.TVGPlus.aThr_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderB.lean:179:0: 'LeanCheck.TVGPlus.log_Dvis_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderB.lean:180:0: 'LeanCheck.TVGPlus.log_Dvis_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderB.lean:181:0: 'LeanCheck.TVGPlus.order_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderC.lean:93:0: 'LeanCheck.TVGPlus.f_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderC.lean:94:0: 'LeanCheck.TVGPlus.sqrt_ge_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderC.lean:95:0: 'LeanCheck.TVGPlus.cS_le_xS' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderD.lean:89:0: 'LeanCheck.TVGPlus.count_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderD.lean:90:0: 'LeanCheck.TVGPlus.count_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrderE.lean:196:0: 'LeanCheck.TVGPlus.order_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrder.lean:99:0: 'LeanCheck.TVGPlus.uS_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrder.lean:100:0: 'LeanCheck.TVGPlus.uS_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrder.lean:101:0: 'LeanCheck.TVGPlus.xS_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusOrder.lean:102:0: 'LeanCheck.TVGPlus.uS_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusPairGcd.lean:39:0: 'LeanCheck.TVGPlus.pair_gcd_iff_of_JA' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusPairGcd.lean:40:0: 'LeanCheck.TVGPlus.pair_gcd_iff_of_matveev' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusPairGcd.lean:41:0: 'LeanCheck.TVGPlus.pair_gcd_iff_of_weak_separation' depends on axioms: [propext, Classical.choice, Quot.sound]

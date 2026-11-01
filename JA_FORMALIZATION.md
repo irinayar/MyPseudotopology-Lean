@@ -26,6 +26,18 @@ bound for linear forms in logarithms (opposite-sign case, close pair of prime-sq
 `t = sqrt(log Q)`, integers `0 < |r| ≤ ⌈t²⌉`, `|s| ≤ ⌈4t³⌉`, conclusion
 `‖r/Q + s/Q'‖ ≥ Q⁻¹ exp(-A log²(2+t))`).
 
+**Weaker hypothesis suffices.** The chain uses the separation only through a profile `a(t)` (the separation radius at a close pair
+is `Q⁻¹ exp(-a(t))`), with two growth conditions (`JAProfile.lean`: `WindowProfile`, `CloseGrowth`). `A log²(2+t)` satisfies them
+(`windowProfile_A`, `closeGrowth_A`), and so does `c t` for every `0 ≤ c < 1`:
+
+```lean
+theorem JA_of_weak_separation (c : ℝ) (h0 : 0 ≤ c) (h1 : c < 1)
+    (hP : JAClose.TwoTermSep (fun t => c * t)) : JAProp
+```
+
+i.e. a separation `‖r/Q + s/Q'‖ ≥ Q⁻¹ exp(-c sqrt(log Q))` already gives JA. This is still a hypothesis, not a proof; it is
+only a weaker one than the Matveev form above (`JAMain.JA_of_profile` is the general statement).
+
 **JA is therefore formalized conditionally on that estimate. It is not an unconditional Lean proof of JA.**
 Matveev's theorem is not in Mathlib and is not proved here, and the form of `TwoTermSeparation` has not been
 verified against the published statement by an independent reader.
@@ -43,6 +55,7 @@ The axiom report is in `verification/ja-check.txt`: every listed declaration dep
 | Center maximality, far-field recursion, kernel tail conversion, merged growth | `JACenter`, `JAFar`, `JAKernTail`, `JAFarSep`, `JAMerged`, `JASorted` |
 | Separated levels (S6a), close levels with the two-term separation (S6b), non-deep levels (S6c) | `JASep`, `JAClose`, `JANonDeep` |
 | Final product bound (S7) and assembly of `CentralBound` | `JAProductFinal`, `JAAssemble`, `JACentral`, `JACentral2`, `JAMain` |
+| Separation profiles (`WindowProfile`, `CloseGrowth`, linear profile `c t`) | `JAProfile` |
 | One-prime theorem (`P_ℓ`-continuous parameters lie in `ℤ[1/ℓ]/ℤ`) | `JAOnePrime` |
 | Weil's theorem for `ℤ` (compact-quotient criterion) | `JAWeilA` (Haar measure, `L²`, translations), `JAWeilB` (compact convolution operator), `JAWeilC` (`weil_abstract`), `JAWeilD` (`weil_seminorm`), `JAWeilE` (`compactQuotientCriterion`, `JA_of_matveev`) |
 | Earlier reduction to a general fact (superseded) | `JACompact` |

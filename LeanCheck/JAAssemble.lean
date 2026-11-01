@@ -32,18 +32,18 @@ lemma normK_congr {N : ℕ} [NeZero N] (D : ℝ) {Q Q' : ℕ} [NeZero Q] [NeZero
   subst h; rfl
 
 /-- The conclusion of `hTT_of_two_term`, as a predicate. -/
-def HTT (A T₁ : ℝ) : Prop :=
+def HTT (a : ℝ → ℝ) (T₁ : ℝ) : Prop :=
   ∀ (b n b' n' : ℕ), ((b = 2 ∧ b' = 3) ∨ (b = 3 ∧ b' = 2)) → 1 ≤ n → 1 ≤ n' →
       T₁ ≤ Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ)) → b ^ (n ^ 2) < b' ^ (n' ^ 2) →
       ((b' ^ (n' ^ 2) : ℕ) : ℝ) < Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ)) * ((b ^ (n ^ 2) : ℕ) : ℝ) →
       ∀ r s : ℤ, r ≠ 0 → |r| ≤ (⌈(Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ))) ^ 2⌉₊ : ℤ) →
         |s| ≤ (⌈4 * (Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ))) ^ 3⌉₊ : ℤ) →
-        Real.exp (-(A * (Real.log (2 + Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ)))) ^ 2)) /
+        Real.exp (-(a (Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ))))) /
             ((b ^ (n ^ 2) : ℕ) : ℝ) ≤
           MixedPrime.nrm ((r : ℝ) / ((b ^ (n ^ 2) : ℕ) : ℝ) + (s : ℝ) / ((b' ^ (n' ^ 2) : ℕ) : ℝ))
 
-lemma htt_exists (A : ℝ) (hA : 0 ≤ A) (hP : TwoTermSeparation A) : ∃ T₁ : ℝ, HTT A T₁ :=
-  hTT_of_two_term A hA hP
+lemma htt_exists (a : ℝ → ℝ) (ha : ∀ t, 0 ≤ t → 0 ≤ a t) (hP : TwoTermSep a) : ∃ T₁ : ℝ, HTT a T₁ :=
+  hTT_of_two_term_G a ha hP
 
 /-- Close levels have different primes. -/
 lemma bases_differ (L : ℕ) (b n : ℕ → ℕ) (hb : ∀ i, b i = 2 ∨ b i = 3)
@@ -158,13 +158,13 @@ theorem level_close {N : ℕ} [NeZero N] (D : ℝ) (hD : 3 ≤ D) (m : ℕ) (hm 
     (hmono : ∀ a c, a < c → c < L → JAMerged.lp (b a) (n a) < JAMerged.lp (b c) (n c))
     (hQ : ∀ j, j < L → 25 * D ≤ (((b j) ^ ((n j) ^ 2) : ℕ) : ℝ))
     (hQN : ∀ j, j < L → (b j) ^ ((n j) ^ 2) ∣ N)
-    (A T₁ : ℝ) (htt : HTT A T₁)
+    (a : ℝ → ℝ) (T₁ : ℝ) (htt : HTT a T₁)
     (p : ℕ) (hp1 : p + 1 < L)
     (ht2 : 2 ≤ Real.sqrt (JAMerged.lp (b p) (n p)))
     (hT : T₁ ≤ Real.sqrt (JAMerged.lp (b p) (n p)))
     (htop : (8 * (30 * D / 7)) ^ 2 * Real.exp (-(3 * Real.sqrt (JAMerged.lp (b p) (n p)))) ≤ 1 / 2)
     (hε : (2 * m : ℝ) / N ≤
-      3 * (Real.exp (-(A * (Real.log (2 + Real.sqrt (JAMerged.lp (b p) (n p))))^ 2)) /
+      3 * (Real.exp (-(a (Real.sqrt (JAMerged.lp (b p) (n p))))) /
         (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ)) / 4)
     (hclose : (((b (p + 1)) ^ ((n (p + 1)) ^ 2) : ℕ) : ℝ) <
       Real.sqrt (JAMerged.lp (b p) (n p)) * (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ)) :
@@ -172,7 +172,7 @@ theorem level_close {N : ℕ} [NeZero N] (D : ℝ) (hD : 3 ≤ D) (m : ℕ) (hm 
       1 + (200 * D ^ 4 / (Real.sqrt (JAMerged.lp (b p) (n p))) ^ 6 +
           30 * D / 7 * (200 * D ^ 4 / (4 * (Real.sqrt (JAMerged.lp (b p) (n p))) ^ 3) ^ 3) +
           (30 * D / 7) ^ 2 * (2048 * (200 * D ^ 4 + 8 * (30 * D / 7)) *
-            (1 / (Real.exp (-(A * (Real.log (2 + Real.sqrt (JAMerged.lp (b p) (n p)))) ^ 2)) /
+            (1 / (Real.exp (-(a (Real.sqrt (JAMerged.lp (b p) (n p))))) /
               (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ) * (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ))) ^ 3 *
             ((8 * (30 * D / 7)) ^ 2 * Real.exp (-(3 * Real.sqrt (JAMerged.lp (b p) (n p))))))) := by
   classical
@@ -196,7 +196,7 @@ theorem level_close {N : ℕ} [NeZero N] (D : ℝ) (hD : 3 ≤ D) (m : ℕ) (hm 
   have hTT : ∀ r s : ℤ, r ≠ 0 →
       |r| ≤ (⌈(Real.sqrt (Real.log (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ))) ^ 2⌉₊ : ℤ) →
       |s| ≤ (⌈4 * (Real.sqrt (Real.log (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ))) ^ 3⌉₊ : ℤ) →
-      Real.exp (-(A * (Real.log (2 + Real.sqrt (Real.log (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ)))) ^ 2)) /
+      Real.exp (-(a (Real.sqrt (Real.log (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ))))) /
           (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ) ≤
         MixedPrime.nrm ((r : ℝ) / (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ) +
           (s : ℝ) / (((b (p + 1)) ^ ((n (p + 1)) ^ 2) : ℕ) : ℝ)) := by
@@ -204,7 +204,7 @@ theorem level_close {N : ℕ} [NeZero N] (D : ℝ) (hD : 3 ≤ D) (m : ℕ) (hm 
       (by rw [hlog p]; exact hclose)
   have key := close_factor (N := N) D hD m hm h2m L (fun j => (b j) ^ ((n j) ^ 2)) hQ hQN
     (hgrow_of_merged b n L hb hmono) p (by omega) (by rw [hlog p]; exact htop)
-    (by rw [hlog p]; exact ht2) A (by rw [hlog p]; exact hε) hTT
+    (by rw [hlog p]; exact ht2) a (by rw [hlog p]; exact hε) hTT
   unfold klist
   rw [hlog p] at key
   linarith

@@ -144,8 +144,16 @@ theorem compactQuotientCriterion : CompactQuotientCriterion := by
 theorem JA_of_matveev (A : ℝ) (hA : 0 ≤ A) (hP : JAClose.TwoTermSeparation A) : JAProp :=
   JAMain.JA_of_inputs compactQuotientCriterion A hA hP
 
+/-- **Joint approximation from the weak two-term separation**: if for some `c < 1` the separation holds with profile
+`a(t) = c t`, i.e. `‖r/Q + s/Q'‖ ≥ Q⁻¹ exp(-c sqrt (log Q))`, then JA holds.  (Matveev's bound is of the stronger form
+`exp(-A log^2(2+t))`; this theorem shows that a much weaker separation already suffices.) -/
+theorem JA_of_weak_separation (c : ℝ) (h0 : 0 ≤ c) (h1 : c < 1)
+    (hP : JAClose.TwoTermSep (fun t => c * t)) : JAProp :=
+  JAMain.JA_of_profile compactQuotientCriterion _ (windowProfile_weak c h0 h1) (closeGrowth_weak c h1) hP
+
 #print axioms compactQuotientCriterion
 #print axioms JA_of_matveev
+#print axioms JA_of_weak_separation
 
 end JAWeil
 end LeanCheck

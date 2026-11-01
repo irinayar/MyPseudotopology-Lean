@@ -214,26 +214,26 @@ theorem close_factor (D : ℝ) (hD : 3 ≤ D) (m : ℕ) (hm : 1 ≤ m) (h2m : 2 
       sc (p + k))
     (p : ℕ) (hp : p + 2 ≤ L)
     (htop : (8 * (30 * D / 7)) ^ 2 * Real.exp (-(3 * Real.sqrt (Real.log (sc p)))) ≤ 1 / 2)
-    (ht2 : 2 ≤ Real.sqrt (Real.log (sc p))) (A : ℝ)
+    (ht2 : 2 ≤ Real.sqrt (Real.log (sc p))) (a : ℝ → ℝ)
     (hε : (2 * m : ℝ) / N ≤
-      3 * (Real.exp (-(A * (Real.log (2 + Real.sqrt (Real.log (sc p)))) ^ 2)) / sc p) / 4)
+      3 * (Real.exp (-(a (Real.sqrt (Real.log (sc p))))) / sc p) / 4)
     (hTT : ∀ r s : ℤ, r ≠ 0 → |r| ≤ (⌈(Real.sqrt (Real.log (sc p))) ^ 2⌉₊ : ℤ) →
       |s| ≤ (⌈4 * (Real.sqrt (Real.log (sc p))) ^ 3⌉₊ : ℤ) →
-      Real.exp (-(A * (Real.log (2 + Real.sqrt (Real.log (sc p)))) ^ 2)) / sc p ≤
+      Real.exp (-(a (Real.sqrt (Real.log (sc p))))) / sc p ≤
         nrm ((r : ℝ) / sc p + (s : ℝ) / sc (p + 1))) :
     Hs (Ftri N m) (((List.range L).map (fun j => normK N (sc j) (wQ D (sc j)))).drop p) 0 /
         Hs (Ftri N m) (((List.range L).map (fun j => normK N (sc j) (wQ D (sc j)))).drop (p + 1)) 0 - 1 ≤
       200 * D ^ 4 / (Real.sqrt (Real.log (sc p))) ^ 6 +
         30 * D / 7 * (200 * D ^ 4 / (4 * (Real.sqrt (Real.log (sc p))) ^ 3) ^ 3) +
         (30 * D / 7) ^ 2 * (2048 * (200 * D ^ 4 + 8 * (30 * D / 7)) *
-          (1 / (Real.exp (-(A * (Real.log (2 + Real.sqrt (Real.log (sc p)))) ^ 2)) / sc p * sc p)) ^ 3 *
+          (1 / (Real.exp (-(a (Real.sqrt (Real.log (sc p))))) / sc p * sc p)) ^ 3 *
           ((8 * (30 * D / 7)) ^ 2 * Real.exp (-(3 * Real.sqrt (Real.log (sc p)))))) := by
   classical
   set B : ℝ := 30 * D / 7 with hBdef
   set C₁ : ℝ := 200 * D ^ 4 + 8 * B with hC₁
   set t : ℝ := Real.sqrt (Real.log (sc p)) with ht
   set q : ℝ := (8 * B) ^ 2 * Real.exp (-(3 * t)) with hq
-  set u : ℝ := Real.exp (-(A * (Real.log (2 + t)) ^ 2)) / sc p with hu
+  set u : ℝ := Real.exp (-(a t)) / sc p with hu
   set ks : List (ZMod N → ℝ) := (List.range L).map (fun j => normK N (sc j) (wQ D (sc j))) with hks
   set F := Ftri N m with hF
   have hD0 : 0 < D := by linarith
@@ -465,16 +465,18 @@ theorem close_factor (D : ℝ) (hD : 3 ≤ D) (m : ℕ) (hm : 1 ≤ m) (h2m : 2 
 `Q = b^{n^2}`, `Q' = b'^{n'^2}` of the two different primes `2, 3`, with `Q < Q' < t Q` (`t = sqrt (log Q)`, a close pair) and
 `Q` large, for integers `0 < |r| ≤ ⌈t^2⌉`, `|s| ≤ ⌈4 t^3⌉` of opposite signs,
 `‖r/Q + s/Q'‖ ≥ Q^{-1} exp(-A log^2(2+t))`. -/
-def TwoTermSeparation (A : ℝ) : Prop :=
+def TwoTermSep (a : ℝ → ℝ) : Prop :=
   ∃ T₀ : ℝ, ∀ (b n b' n' : ℕ) (r s : ℤ), ((b = 2 ∧ b' = 3) ∨ (b = 3 ∧ b' = 2)) → 1 ≤ n → 1 ≤ n' →
     T₀ ≤ Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ)) →
     b ^ (n ^ 2) < b' ^ (n' ^ 2) →
     ((b' ^ (n' ^ 2) : ℕ) : ℝ) < Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ)) * ((b ^ (n ^ 2) : ℕ) : ℝ) →
     r ≠ 0 → |r| ≤ (⌈(Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ))) ^ 2⌉₊ : ℤ) →
     |s| ≤ (⌈4 * (Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ))) ^ 3⌉₊ : ℤ) → r * s < 0 →
-    Real.exp (-(A * (Real.log (2 + Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ)))) ^ 2)) /
-        ((b ^ (n ^ 2) : ℕ) : ℝ) ≤
+    Real.exp (-(a (Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ))))) / ((b ^ (n ^ 2) : ℕ) : ℝ) ≤
       nrm ((r : ℝ) / ((b ^ (n ^ 2) : ℕ) : ℝ) + (s : ℝ) / ((b' ^ (n' ^ 2) : ℕ) : ℝ))
+
+/-- The original form of the hypothesis: the separation profile `a(t) = A log^2(2+t)`. -/
+def TwoTermSeparation (A : ℝ) : Prop := TwoTermSep (fun t => A * (Real.log (2 + t)) ^ 2)
 
 /-- The easy cases (`s = 0` or the same sign): no Diophantine input is needed. -/
 lemma two_term_easy (Q Q' : ℝ) (hQ : 0 < Q) (hQQ : Q ≤ Q') (M Nn : ℝ) (hMN : 2 * (M + Nn) ≤ Q)
@@ -539,13 +541,13 @@ lemma radii_le_exp (t : ℝ) (ht : 18 ≤ t) :
 
 /-- The hypothesis `hTT` of `close_factor` from `TwoTermSeparation`: the opposite-sign case is the external input, the other
 cases are elementary. -/
-theorem hTT_of_two_term (A : ℝ) (hA : 0 ≤ A) (hP : TwoTermSeparation A) :
+theorem hTT_of_two_term_G (a : ℝ → ℝ) (ha : ∀ t, 0 ≤ t → 0 ≤ a t) (hP : TwoTermSep a) :
     ∃ T₁ : ℝ, ∀ (b n b' n' : ℕ), ((b = 2 ∧ b' = 3) ∨ (b = 3 ∧ b' = 2)) → 1 ≤ n → 1 ≤ n' →
       T₁ ≤ Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ)) → b ^ (n ^ 2) < b' ^ (n' ^ 2) →
       ((b' ^ (n' ^ 2) : ℕ) : ℝ) < Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ)) * ((b ^ (n ^ 2) : ℕ) : ℝ) →
       ∀ r s : ℤ, r ≠ 0 → |r| ≤ (⌈(Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ))) ^ 2⌉₊ : ℤ) →
         |s| ≤ (⌈4 * (Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ))) ^ 3⌉₊ : ℤ) →
-        Real.exp (-(A * (Real.log (2 + Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ)))) ^ 2)) /
+        Real.exp (-(a (Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ))))) /
             ((b ^ (n ^ 2) : ℕ) : ℝ) ≤
           nrm ((r : ℝ) / ((b ^ (n ^ 2) : ℕ) : ℝ) + (s : ℝ) / ((b' ^ (n' ^ 2) : ℕ) : ℝ)) := by
   obtain ⟨T₀, hT₀⟩ := hP
@@ -580,13 +582,26 @@ theorem hTT_of_two_term (A : ℝ) (hA : 0 ≤ A) (hP : TwoTermSeparation A) :
     clear_value t Q Q'
     have heasy := two_term_easy Q Q' hQpos hQQ' (⌈t ^ 2⌉₊ : ℝ) (⌈4 * t ^ 3⌉₊ : ℝ) hrad r s hr0 hrM' hsN' hneg
     refine le_trans ?_ heasy
-    have hexp1 : Real.exp (-(A * (Real.log (2 + t)) ^ 2)) ≤ 1 := by
+    have hexp1 : Real.exp (-(a t)) ≤ 1 := by
       apply Real.exp_le_one_iff.mpr
-      have : 0 ≤ A * (Real.log (2 + t)) ^ 2 := by positivity
+      have : 0 ≤ a t := ha t (by linarith)
       linarith
     exact div_le_div_of_nonneg_right hexp1 hQpos.le
 
+/-- The original `A log^2(2+t)` form. -/
+theorem hTT_of_two_term (A : ℝ) (hA : 0 ≤ A) (hP : TwoTermSeparation A) :
+    ∃ T₁ : ℝ, ∀ (b n b' n' : ℕ), ((b = 2 ∧ b' = 3) ∨ (b = 3 ∧ b' = 2)) → 1 ≤ n → 1 ≤ n' →
+      T₁ ≤ Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ)) → b ^ (n ^ 2) < b' ^ (n' ^ 2) →
+      ((b' ^ (n' ^ 2) : ℕ) : ℝ) < Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ)) * ((b ^ (n ^ 2) : ℕ) : ℝ) →
+      ∀ r s : ℤ, r ≠ 0 → |r| ≤ (⌈(Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ))) ^ 2⌉₊ : ℤ) →
+        |s| ≤ (⌈4 * (Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ))) ^ 3⌉₊ : ℤ) →
+        Real.exp (-(A * (Real.log (2 + Real.sqrt (Real.log ((b ^ (n ^ 2) : ℕ) : ℝ)))) ^ 2)) /
+            ((b ^ (n ^ 2) : ℕ) : ℝ) ≤
+          nrm ((r : ℝ) / ((b ^ (n ^ 2) : ℕ) : ℝ) + (s : ℝ) / ((b' ^ (n' ^ 2) : ℕ) : ℝ)) :=
+  hTT_of_two_term_G (fun t => A * (Real.log (2 + t)) ^ 2) (fun t _ => by positivity) hP
+
 #print axioms radii_le_exp
+#print axioms hTT_of_two_term_G
 #print axioms hTT_of_two_term
 
 end JAClose

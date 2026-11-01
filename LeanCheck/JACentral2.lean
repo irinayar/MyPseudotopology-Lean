@@ -92,10 +92,11 @@ lemma final_arith (SA SB S0 F a b cs Cp E : ℝ) (hSA : SA ≤ E * a ^ 2) (hSB :
   nlinarith [h3]
 
 /-- **`CentralBound` from the two-term separation.** -/
-theorem central_bound (D A : ℝ) (hD : 3 ≤ D) (hA : 0 ≤ A) (hP : JAClose.TwoTermSeparation A) :
+theorem central_bound (D : ℝ) (a : ℝ → ℝ) (hD : 3 ≤ D) (ha : WindowProfile a) (hG : CloseGrowth a)
+    (hP : JAClose.TwoTermSep a) :
     ∃ C : ℝ, 0 < C ∧ JAHeights.CentralBound D C := by
   classical
-  obtain ⟨Cp, X₀, hCp, hprod⟩ := prod_f_bound D A hD hA hP
+  obtain ⟨Cp, X₀, hCp, hprod⟩ := prod_f_bound D a hD ha hG hP
   have hD0 : 0 < D := by linarith
   have hsa3 : 3 ≤ JAHeights.sD D := by
     have : (3 : ℝ) ≤ (JAHeights.sD D : ℝ) := le_trans hD (Nat.le_ceil D)

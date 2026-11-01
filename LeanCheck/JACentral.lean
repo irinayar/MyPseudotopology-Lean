@@ -25,7 +25,8 @@ lemma htop_of_large (B t : ℝ) (ht : (8 * B) ^ 2 ≤ t) :
   linarith
 
 /-- **The product of the factors is bounded** (S7 applied to the actual list). -/
-theorem prod_f_bound (D A : ℝ) (hD : 3 ≤ D) (hA : 0 ≤ A) (hP : JAClose.TwoTermSeparation A) :
+theorem prod_f_bound (D : ℝ) (a : ℝ → ℝ) (hD : 3 ≤ D) (ha : WindowProfile a) (hG : CloseGrowth a)
+    (hP : JAClose.TwoTermSep a) :
     ∃ Cp X₀ : ℝ, 0 < Cp ∧ ∀ (X N m L : ℕ) [NeZero N] (b n : ℕ → ℕ)
       [inst : ∀ j, NeZero ((b j) ^ ((n j) ^ 2))],
       X₀ ≤ (X : ℝ) → (∀ i, b i = 2 ∨ b i = 3) → (∀ i, i < L → 1 ≤ n i) →
@@ -38,9 +39,9 @@ theorem prod_f_bound (D A : ℝ) (hD : 3 ≤ D) (hA : 0 ≤ A) (hP : JAClose.Two
       ∏ i ∈ range L, (Hs (Ftri N m) ((klist N D L b n).drop i) 0 /
         Hs (Ftri N m) ((klist N D L b n).drop (i + 1)) 0) ≤ Cp := by
   classical
-  obtain ⟨T₁, htt⟩ := htt_exists A hA hP
-  obtain ⟨Tc, hTc1, hcc⟩ := JAProductFinal.close_cube D A hD hA
-  obtain ⟨X₀', hX₀'⟩ := JANonDeep.non_deep_card_le_two D A (by linarith) hA
+  obtain ⟨T₁, htt⟩ := htt_exists a ha.nonneg hP
+  obtain ⟨Tc, hTc1, hcc⟩ := JAProductFinal.close_cube_G D a hD hG
+  obtain ⟨X₀', hX₀'⟩ := JANonDeep.non_deep_card_le_two D a (by linarith) ha
   have hD0 : 0 < D := by linarith
   have hB1 : 1 ≤ 30 * D / 7 := by linarith
   obtain ⟨Cs, hCs⟩ : ∃ Cs : ℝ, Cs = 200 * D ^ 4 + 30 * D / 7 * (512 * (200 * D ^ 4 + 8 * (30 * D / 7)) *
@@ -72,7 +73,7 @@ theorem prod_f_bound (D A : ℝ) (hD : 3 ≤ D) (hA : 0 ≤ A) (hP : JAClose.Two
     have : 0 < (b j) ^ ((n j) ^ 2) := Nat.pos_of_ne_zero (inst j).out
     exact_mod_cast this
   set E : Finset ℕ := (range L).filter (fun i => ¬ (4 * (((b i) ^ ((n i) ^ 2) : ℕ) : ℝ) *
-      Real.exp (A * (Real.log (2 + Real.sqrt (Real.log (((b i) ^ ((n i) ^ 2) : ℕ) : ℝ)))) ^ 2) ≤ X)) with hE
+      Real.exp (a (Real.sqrt (Real.log (((b i) ^ ((n i) ^ 2) : ℕ) : ℝ)))) ≤ X)) with hE
   have hEcard : E.card ≤ 2 := by
     have hinj := JAProductFinal.period_inj L b n hmono
     have h1 : (E.image (fun i => (b i, n i))).card = E.card :=
@@ -90,7 +91,7 @@ theorem prod_f_bound (D A : ℝ) (hD : 3 ≤ D) (hA : 0 ≤ A) (hP : JAClose.Two
         1 + (Cs + Cc) * (1 / Real.sqrt (JAMerged.lp (b i) (n i))) ^ 3 := by
     intro p hp hpE hT
     have hdeep : 4 * (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ) *
-        Real.exp (A * (Real.log (2 + Real.sqrt (Real.log (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ)))) ^ 2) ≤ X := by
+        Real.exp (a (Real.sqrt (Real.log (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ)))) ≤ X := by
       by_contra h
       exact hpE (Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hp, h⟩)
     rw [hlog p] at hdeep
@@ -101,15 +102,15 @@ theorem prod_f_bound (D A : ℝ) (hD : 3 ≤ D) (hA : 0 ≤ A) (hP : JAClose.Two
     have htc : Tc ≤ Real.sqrt (JAMerged.lp (b p) (n p)) := le_trans hTbc hT
     have htop := htop_of_large (30 * D / 7) _ htB
     have hs0 : 0 ≤ (1 / Real.sqrt (JAMerged.lp (b p) (n p))) ^ 3 := by positivity
-    have hexp1 : 1 ≤ Real.exp (A * (Real.log (2 + Real.sqrt (JAMerged.lp (b p) (n p)))) ^ 2) :=
-      Real.one_le_exp (by positivity)
+    have hexp1 : 1 ≤ Real.exp (a (Real.sqrt (JAMerged.lp (b p) (n p)))) :=
+      Real.one_le_exp (ha.nonneg _ (Real.sqrt_nonneg _))
     have h4Q : 4 * (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ) ≤ X := by nlinarith
     have hrad := JANonDeep.deep_radius X (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ)
-      (A * (Real.log (2 + Real.sqrt (JAMerged.lp (b p) (n p)))) ^ 2) hX0 hQp hdeep
+      (a (Real.sqrt (JAMerged.lp (b p) (n p)))) hX0 hQp hdeep
     have h3X : 3 / (X : ℝ) = 3 * (2 * (2 / X)) / 4 := by ring
     by_cases hcl : p + 1 < L ∧ (((b (p + 1)) ^ ((n (p + 1)) ^ 2) : ℕ) : ℝ) <
         Real.sqrt (JAMerged.lp (b p) (n p)) * (((b p) ^ ((n p) ^ 2) : ℕ) : ℝ)
-    · have h1 := level_close D hD m hm h2m L b n hb hn hmono hQ hQN A T₁ htt p hcl.1 ht2 htT htop
+    · have h1 := level_close D hD m hm h2m L b n hb hn hmono hQ hQN a T₁ htt p hcl.1 ht2 htT htop
         (by
           calc (2 * m : ℝ) / N ≤ 3 / X := hmN
             _ = 3 * (2 * (2 / X)) / 4 := h3X

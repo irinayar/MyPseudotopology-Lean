@@ -172,6 +172,7 @@ import LeanCheck.JAMulti
 
 import LeanCheck.JAMulti2
 
+import LeanCheck.JAProfile
 import LeanCheck.JANonDeep
 
 import LeanCheck.JAOnePrime

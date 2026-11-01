@@ -1,5 +1,5 @@
-Axiom report for the joint-approximation (JA) development, 31 October 2026.
-Lean 4.35.0 + pinned Mathlib. 'lake build' of all 47 LeanCheck/JA*.lean modules completed successfully; no sorry in any of them.
+Axiom report for the joint-approximation (JA) development, 1 November 2026.
+Lean 4.35.0 + pinned Mathlib. 'lake build' of the changed modules JAProfile, JANonDeep, JAClose, JAProductFinal, JAAssemble, JACentral, JACentral2, JAMain, JAWeilE and of their dependents JACompact, TVGPlusPair completed successfully (after the separation profile refactor); no sorry in any JA module.
 
 'LeanCheck.JAWeil.JA_of_matveev' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LeanCheck.JAWeil.compactQuotientCriterion' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -17,3 +17,9 @@ Lean 4.35.0 + pinned Mathlib. 'lake build' of all 47 LeanCheck/JA*.lean modules 
 'LeanCheck.JASep.separated_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LeanCheck.JASorted.arc_mass_sorted' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LeanCheck.JAHeights.JA_of_centralBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAWeil.JA_of_weak_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAMain.JA_of_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JANonDeep.windowProfile_A' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAProductFinal.closeGrowth_A' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAProductFinal.close_cube_G' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.JAClose.hTT_of_two_term_G' depends on axioms: [propext, Classical.choice, Quot.sound]

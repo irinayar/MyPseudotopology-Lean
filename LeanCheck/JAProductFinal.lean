@@ -212,62 +212,70 @@ lemma log_sq_add_le (A t : ℝ) (hA : 0 ≤ A) (ht : (16 * A + 6) ^ 2 ≤ t) :
   have hAl : A * (Real.log (2 + t)) ^ 2 ≤ A * (16 * ρ) := mul_le_mul_of_nonneg_left hlam hA
   nlinarith
 
-/-- `exp(3A log^2(2+t) - 3t) ≤ (1/t)^3` for large `t`. -/
-lemma exp_close_le (A t : ℝ) (hA : 0 ≤ A) (ht : (16 * A + 6) ^ 2 ≤ t) :
-    Real.exp (3 * (A * (Real.log (2 + t)) ^ 2) - 3 * t) ≤ (1 / t) ^ 3 := by
-  have hA6 : 0 < 16 * A + 6 := by linarith
-  have ht0 : 0 < t := lt_of_lt_of_le (by positivity) ht
-  have hk := log_sq_add_le A t hA ht
+/-- `CloseGrowth` for the original profile `a(t) = A log^2(2+t)`. -/
+theorem closeGrowth_A (A : ℝ) (hA : 0 ≤ A) : CloseGrowth (fun t => A * (Real.log (2 + t)) ^ 2) :=
+  ⟨(16 * A + 6) ^ 2, fun t hT _ => log_sq_add_le A t hA hT⟩
+
+/-- `exp(3 a(t) - 3t) ≤ (1/t)^3` once `a(t) + log t ≤ t`. -/
+lemma exp_close_le_G (a t : ℝ) (ht0 : 0 < t) (hk : a + Real.log t ≤ t) :
+    Real.exp (3 * a - 3 * t) ≤ (1 / t) ^ 3 := by
   have h3 : Real.exp (3 * Real.log t) = t ^ 3 := by
     have := Real.exp_log (pow_pos ht0 3)
     rw [Real.log_pow] at this
     push_cast at this
     exact this
-  have hle : Real.exp (3 * (A * (Real.log (2 + t)) ^ 2) - 3 * t) ≤ Real.exp (-(3 * Real.log t)) := by
+  have hle : Real.exp (3 * a - 3 * t) ≤ Real.exp (-(3 * Real.log t)) := by
     apply Real.exp_le_exp.mpr
     linarith
   refine hle.trans ?_
   rw [Real.exp_neg, h3, one_div_pow]
   simp
 
-/-- The right-hand side of `close_factor` is at most `Cc (1/t)^3` for `t ≥ T_A`. -/
-lemma close_cube (D A : ℝ) (hD : 3 ≤ D) (hA : 0 ≤ A) :
+/-- `exp(3A log^2(2+t) - 3t) ≤ (1/t)^3` for large `t`. -/
+lemma exp_close_le (A t : ℝ) (hA : 0 ≤ A) (ht : (16 * A + 6) ^ 2 ≤ t) :
+    Real.exp (3 * (A * (Real.log (2 + t)) ^ 2) - 3 * t) ≤ (1 / t) ^ 3 := by
+  have hA6 : 0 < 16 * A + 6 := by linarith
+  have ht0 : 0 < t := lt_of_lt_of_le (by positivity) ht
+  exact exp_close_le_G _ t ht0 (log_sq_add_le A t hA ht)
+
+/-- The right-hand side of `close_factor` is at most `Cc (1/t)^3` for `t ≥ T`, for a general close-growth profile `a`. -/
+lemma close_cube_G (D : ℝ) (a : ℝ → ℝ) (hD : 3 ≤ D) (hG : CloseGrowth a) :
     ∃ T : ℝ, 1 ≤ T ∧ ∀ t q : ℝ, T ≤ t → 0 < q →
       200 * D ^ 4 / t ^ 6 +
           30 * D / 7 * (200 * D ^ 4 / (4 * t ^ 3) ^ 3) +
           (30 * D / 7) ^ 2 * (2048 * (200 * D ^ 4 + 8 * (30 * D / 7)) *
-            (1 / (Real.exp (-(A * (Real.log (2 + t)) ^ 2)) / q * q)) ^ 3 *
+            (1 / (Real.exp (-(a t)) / q * q)) ^ 3 *
             ((8 * (30 * D / 7)) ^ 2 * Real.exp (-(3 * t)))) ≤
         (200 * D ^ 4 + 30 * D / 7 * (200 * D ^ 4) +
           (30 * D / 7) ^ 2 * (2048 * (200 * D ^ 4 + 8 * (30 * D / 7)) * (8 * (30 * D / 7)) ^ 2)) *
           (1 / t) ^ 3 := by
+  obtain ⟨T₀, hT₀⟩ := hG
   have hD0 : 0 < D := by linarith
-  refine ⟨max 1 ((16 * A + 6) ^ 2), le_max_left _ _, ?_⟩
+  refine ⟨max 1 T₀, le_max_left _ _, ?_⟩
   intro t q hT hq
   have ht1 : 1 ≤ t := le_trans (le_max_left _ _) hT
-  have htA : (16 * A + 6) ^ 2 ≤ t := le_trans (le_max_right _ _) hT
+  have htA : T₀ ≤ t := le_trans (le_max_right _ _) hT
   have ht0 : 0 < t := by linarith
   set B : ℝ := 30 * D / 7 with hB
   have hB0 : 0 ≤ B := by rw [hB]; positivity
   have hs0 : 0 ≤ (1 / t) ^ 3 := by positivity
   -- the Matveev term
-  have hsimp : (1 / (Real.exp (-(A * (Real.log (2 + t)) ^ 2)) / q * q)) ^ 3 =
-      Real.exp (3 * (A * (Real.log (2 + t)) ^ 2)) := by
+  have hsimp : (1 / (Real.exp (-(a t)) / q * q)) ^ 3 = Real.exp (3 * a t) := by
     rw [div_mul_cancel₀ _ hq.ne', one_div, ← Real.exp_neg, neg_neg, ← Real.exp_nat_mul]
     norm_num
-  have hexp := exp_close_le A t hA htA
-  have hprod : Real.exp (3 * (A * (Real.log (2 + t)) ^ 2)) * Real.exp (-(3 * t)) ≤ (1 / t) ^ 3 := by
+  have hexp := exp_close_le_G (a t) t ht0 (hT₀ t htA ht1)
+  have hprod : Real.exp (3 * a t) * Real.exp (-(3 * t)) ≤ (1 / t) ^ 3 := by
     rw [← Real.exp_add]
-    have : 3 * (A * (Real.log (2 + t)) ^ 2) + -(3 * t) = 3 * (A * (Real.log (2 + t)) ^ 2) - 3 * t := by ring
+    have : 3 * a t + -(3 * t) = 3 * a t - 3 * t := by ring
     rw [this]; exact hexp
   have hC : 0 ≤ 200 * D ^ 4 + 8 * B := by positivity
   have h3 : B ^ 2 * (2048 * (200 * D ^ 4 + 8 * B) *
-        Real.exp (3 * (A * (Real.log (2 + t)) ^ 2)) * ((8 * B) ^ 2 * Real.exp (-(3 * t)))) ≤
+        Real.exp (3 * a t) * ((8 * B) ^ 2 * Real.exp (-(3 * t)))) ≤
       B ^ 2 * (2048 * (200 * D ^ 4 + 8 * B) * (8 * B) ^ 2) * (1 / t) ^ 3 := by
-    have e : B ^ 2 * (2048 * (200 * D ^ 4 + 8 * B) * Real.exp (3 * (A * (Real.log (2 + t)) ^ 2)) *
+    have e : B ^ 2 * (2048 * (200 * D ^ 4 + 8 * B) * Real.exp (3 * a t) *
         ((8 * B) ^ 2 * Real.exp (-(3 * t)))) =
         B ^ 2 * (2048 * (200 * D ^ 4 + 8 * B) * (8 * B) ^ 2) *
-          (Real.exp (3 * (A * (Real.log (2 + t)) ^ 2)) * Real.exp (-(3 * t))) := by ring
+          (Real.exp (3 * a t) * Real.exp (-(3 * t))) := by ring
     rw [e]
     exact mul_le_mul_of_nonneg_left hprod (by positivity)
   have h6 := inv_pow6_le t ht1
@@ -284,8 +292,24 @@ lemma close_cube (D A : ℝ) (hD : 3 ≤ D) (hA : 0 ≤ A) :
   rw [hsimp, e1]
   nlinarith [h3, h13, h14]
 
+/-- The original `A log^2(2+t)` form of `close_cube_G`. -/
+lemma close_cube (D A : ℝ) (hD : 3 ≤ D) (hA : 0 ≤ A) :
+    ∃ T : ℝ, 1 ≤ T ∧ ∀ t q : ℝ, T ≤ t → 0 < q →
+      200 * D ^ 4 / t ^ 6 +
+          30 * D / 7 * (200 * D ^ 4 / (4 * t ^ 3) ^ 3) +
+          (30 * D / 7) ^ 2 * (2048 * (200 * D ^ 4 + 8 * (30 * D / 7)) *
+            (1 / (Real.exp (-(A * (Real.log (2 + t)) ^ 2)) / q * q)) ^ 3 *
+            ((8 * (30 * D / 7)) ^ 2 * Real.exp (-(3 * t)))) ≤
+        (200 * D ^ 4 + 30 * D / 7 * (200 * D ^ 4) +
+          (30 * D / 7) ^ 2 * (2048 * (200 * D ^ 4 + 8 * (30 * D / 7)) * (8 * (30 * D / 7)) ^ 2)) *
+          (1 / t) ^ 3 :=
+  close_cube_G D (fun t => A * (Real.log (2 + t)) ^ 2) hD (closeGrowth_A A hA)
+
 #print axioms product_final
 #print axioms sep_cube
+#print axioms closeGrowth_A
+#print axioms exp_close_le_G
+#print axioms close_cube_G
 #print axioms close_cube
 
 end JAProductFinal

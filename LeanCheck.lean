@@ -227,6 +227,8 @@ import LeanCheck.TVGPlusCertRowsData
 
 import LeanCheck.TVGPlusCount
 
+import LeanCheck.TVGPlusDD
+
 import LeanCheck.TVGPlusPair
 
 import LeanCheck.TVGPlusGcd

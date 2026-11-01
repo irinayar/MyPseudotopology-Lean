@@ -215,3 +215,17 @@ import LeanCheck.JAWindow
 import LeanCheck.JAWindowQ
 
 import LeanCheck.JAWindowTail
+
+import LeanCheck.TVGPlusCert
+
+import LeanCheck.TVGPlusCertData
+
+import LeanCheck.TVGPlusCertRows
+
+import LeanCheck.TVGPlusCertRowsData
+
+import LeanCheck.TVGPlusCount
+
+import LeanCheck.TVGPlusPair
+
+import LeanCheck.TVGPlusValuation

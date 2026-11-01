@@ -61,3 +61,13 @@ lake env lean LeanCheck/JAWeilE.lean               # prints the axioms of JA_of_
 - `JACompact.lean` (reduction of the compact-quotient criterion to the general statement `PrecompactMAP`) was
   written first and is kept; `JAWeilE.lean` proves the criterion outright.
 - The numerical experiments in `experiments/` are not Lean proofs.
+
+## TVGplus modules
+
+`LeanCheck/TVGPlus*.lean` (`TVGPlusValuation`, `TVGPlusCount`, `TVGPlusCert`, `TVGPlusCertData`, `TVGPlusCertRows`,
+`TVGPlusCertRowsData`, `TVGPlusPair`) formalize the elementary results of the article *Quantitative Bounds for Prime
+Square Metrics*: valuation thresholds and the universal divisor, the pigeonhole upper bound, exact finite certificates,
+and, under the hypothesis `DD S` of diagonal density, residue independence and the valuation vectors of the ball.
+`TVGPlusPair.lean` derives `DD {2, 3}` from `JAProp`, so these results hold for the pair `{2, 3}` conditionally on
+`TwoTermSeparation` (through `JAWeil.JA_of_matveev`). Not formalized: the asymptotic constants, the character argument for
+the gcd equality, and the search for `35 ≤ k ≤ 70`. Axiom report: `verification/tvgplus-check.txt`.

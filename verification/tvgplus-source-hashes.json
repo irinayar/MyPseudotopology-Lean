@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-01",
+  "source_files": {
+    "LeanCheck/TVGPlusCert.lean": "9a78c50f4e05ae9b9038ec3bb2e34fe7fb6eee0fb8f1057ba7bad99f12b97e73",
+    "LeanCheck/TVGPlusCertData.lean": "7a1c811ce9b194b5cf647ab21443740de97380fe1b3e71b0a8675bb08460dc1c",
+    "LeanCheck/TVGPlusCertRows.lean": "92a20df718a1af82fbb235651f21b3fc20c29499a84b25f8708de8742e4b46ea",
+    "LeanCheck/TVGPlusCertRowsData.lean": "8c1a6698c85953fce1e23692712295e0001698b0a7d5499e9ede91abbfc9723b",
+    "LeanCheck/TVGPlusCount.lean": "2fb379f4705bbc7b2e954f674e70b5cab749f2159b47cc68948d6b83a6f3a56b",
+    "LeanCheck/TVGPlusPair.lean": "5e9832391ee8f38f5e71b7af9c117326f6b8403bdb3398f15a8033c30a7c4873",
+    "LeanCheck/TVGPlusValuation.lean": "7185a6a4dd732caee08de6a6733b2d490d521e4478f60848dec26d355f61a3a9"
+  }
+}

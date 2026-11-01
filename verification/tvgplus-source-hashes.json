@@ -16,6 +16,7 @@
     "LeanCheck/TVGPlusOrderE.lean": "458887d795e19ee43bc9a8dbcd7c3c55c8735db6cfbaf3dc17d14a18995a3613",
     "LeanCheck/TVGPlusPair.lean": "5e9832391ee8f38f5e71b7af9c117326f6b8403bdb3398f15a8033c30a7c4873",
     "LeanCheck/TVGPlusPairGcd.lean": "dc2396256b743988f3560b8fd90e80de6f656ef5f08f78f43c941286c084d321",
+    "LeanCheck/TVGPlusSizes.lean": "07a7c92fe49506b14935b5bd4ee552fdc600edbe5038274512e25d5bac950489",
     "LeanCheck/TVGPlusValuation.lean": "2906f57d81705715ac446d56676435ad412f6f9654e0e1292de686e1cb2353dc"
   }
 }

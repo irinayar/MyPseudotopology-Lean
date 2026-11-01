@@ -280,3 +280,7 @@ New modules (compiled, standard axioms only, no `sorry`; not pushed): `TVGPlusGc
 ## Update, 1 November 2026 (TVGplus questions 2 and 3: block reduction of diagonal density)
 
 New module `TVGPlusDD.lean` (compiled, standard axioms only, no `sorry`; not pushed): `DD_union` (`DD A`, `DD B`, `JAblock A B` imply `DD (A ∪ B)`), `JAblock_of_DD` (converse for disjoint `A`, `B`), `DD_insert_iff` (`DD (insert p T) ↔ DD T ∧ JAblock {p} T`), `affine_target` (an arbitrary pair of integer targets reduces to the unit target by `k = t_B + (t_A - t_B) m`). So `DD({p,q,r})` is equivalent to the pair property and the new block property `JA({p},{q,r})`. Questions 2 (effective bound for a shifted target) and 3 (`DD(S)` for three or more primes) are NOT resolved; see `TVGplus_questions_2_3.md`.
+
+## Update, 1 November 2026 (TVGPlusSizes: explicit sizes and the rest of the logarithmic-order theorem; not pushed)
+
+`TVGPlusSizes.lean` (compiled, standard axioms only, no `sorry`): `block_combine` (the `DD_union` construction with the size bound `|k| <= (|m|+1)(|a|+|b|)`), `affine_target_size`, `aS_sq_sub_four_cS`, `xS_lt_aS_sq`, `order_singleton_limit`. With these, the only parts of the TVGplus theorem on the logarithmic order that are not formalized are none of the stated inequalities; the character argument of Lemma 4.1 and the numerical computations remain outside Lean.

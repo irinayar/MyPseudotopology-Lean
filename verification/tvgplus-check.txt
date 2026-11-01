@@ -1,5 +1,5 @@
-Axiom report for the TVGplus Lean modules, 1 November 2026 (third part).
-Lean 4.35.0 + pinned Mathlib. 'lake build' of all LeanCheck/TVGPlus*.lean modules (seventeen) completed successfully; no sorry.
+Axiom report for the TVGplus Lean modules, 1 November 2026 (fourth part).
+Lean 4.35.0 + pinned Mathlib. 'lake build' of all LeanCheck/TVGPlus*.lean modules (eighteen) completed successfully; no sorry.
 
 LeanCheck/TVGPlusValuation.lean:314:0: 'LeanCheck.TVGPlus.forced_prime' depends on axioms: [propext, Classical.choice, Quot.sound]
 LeanCheck/TVGPlusValuation.lean:315:0: 'LeanCheck.TVGPlus.forced' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -51,3 +51,8 @@ LeanCheck/TVGPlusDD.lean:129:0: 'LeanCheck.TVGPlus.DD_union' depends on axioms: 
 LeanCheck/TVGPlusDD.lean:130:0: 'LeanCheck.TVGPlus.affine_target' depends on axioms: [propext, Classical.choice, Quot.sound]
 LeanCheck/TVGPlusDD.lean:131:0: 'LeanCheck.TVGPlus.JAblock_of_DD' depends on axioms: [propext, Classical.choice, Quot.sound]
 LeanCheck/TVGPlusDD.lean:132:0: 'LeanCheck.TVGPlus.DD_insert_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusSizes.lean:190:0: 'LeanCheck.TVGPlus.block_combine' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusSizes.lean:191:0: 'LeanCheck.TVGPlus.affine_target_size' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusSizes.lean:192:0: 'LeanCheck.TVGPlus.aS_sq_sub_four_cS' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusSizes.lean:193:0: 'LeanCheck.TVGPlus.xS_lt_aS_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusSizes.lean:194:0: 'LeanCheck.TVGPlus.order_singleton_limit' depends on axioms: [propext, Classical.choice, Quot.sound]

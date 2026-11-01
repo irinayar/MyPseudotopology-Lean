@@ -247,4 +247,6 @@ import LeanCheck.TVGPlusOrderE
 
 import LeanCheck.TVGPlusPairGcd
 
+import LeanCheck.TVGPlusSizes
+
 import LeanCheck.TVGPlusValuation

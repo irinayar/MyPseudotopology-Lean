@@ -78,7 +78,7 @@ lake env lean LeanCheck/JAWeilE.lean               # prints the axioms of JA_of_
 ## TVGplus modules
 
 `LeanCheck/TVGPlus*.lean` (`TVGPlusValuation`, `TVGPlusCount`, `TVGPlusCert`, `TVGPlusCertData`, `TVGPlusCertRows`,
-`TVGPlusCertRowsData`, `TVGPlusPair`, `TVGPlusDD`, `TVGPlusSizes`, `TVGPlusDual`, `TVGPlusPairDual`, `TVGPlusGcd`, `TVGPlusOrderA`-`E`, `TVGPlusOrder`, `TVGPlusPairGcd`) formalize the elementary results of the article *Quantitative Bounds for Prime
+`TVGPlusCertRowsData`, `TVGPlusPair`, `TVGPlusDD`, `TVGPlusSizes`, `TVGPlusDual`, `TVGPlusPairDual`, `TVGPlusEffective`, `TVGPlusGcd`, `TVGPlusOrderA`-`E`, `TVGPlusOrder`, `TVGPlusPairGcd`) formalize the elementary results of the article *Quantitative Bounds for Prime
 Square Metrics*: valuation thresholds and the universal divisor, the pigeonhole upper bound, exact finite certificates,
 and, under the hypothesis `DD S` of diagonal density, residue independence and the valuation vectors of the ball.
 `TVGPlusPair.lean` derives `DD {2, 3}` from `JAProp`, so these results hold for the pair `{2, 3}` conditionally on
@@ -92,4 +92,6 @@ for a finite set of primes is equivalent to a chain of block approximations, and
 `TVGPlusDual` proves the dual-group lemma: under `DD S`, a parameter is continuous for the `P_S`-topology exactly when `M alpha` is an
 integer for some `M` whose prime factors lie in `S` (`dual_of_DD`, with the converse `contAt_of_denominator`); `TVGPlusPairDual` gives the dual
 `Z[1/6]/Z` of the `{2,3}` join from `JAProp`, from the Matveev separation and from the weak separation.
+`TVGPlusEffective` proves the description of sequences converging to zero (`seq_lower_liminf`, `seq_upper`) and the effective transfer
+from unit-target block bounds to all targets (`effective_transfer`, for `0 < eps <= 1/2`).
 Not formalized: the exact searches for the least witnesses. Axiom report: `verification/tvgplus-check.txt`.

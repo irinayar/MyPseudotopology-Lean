@@ -1,5 +1,5 @@
-Axiom report for the TVGplus Lean modules, 1 November 2026 (fifth part).
-Lean 4.35.0 + pinned Mathlib. 'lake build' of all LeanCheck/TVGPlus*.lean modules (twenty) completed successfully; no sorry.
+Axiom report for the TVGplus Lean modules, 1 November 2026 (sixth part).
+Lean 4.35.0 + pinned Mathlib. 'lake build' of all LeanCheck/TVGPlus*.lean modules (twenty-one) completed successfully; no sorry.
 
 LeanCheck/TVGPlusValuation.lean:314:0: 'LeanCheck.TVGPlus.forced_prime' depends on axioms: [propext, Classical.choice, Quot.sound]
 LeanCheck/TVGPlusValuation.lean:315:0: 'LeanCheck.TVGPlus.forced' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -60,3 +60,6 @@ LeanCheck/TVGPlusDual.lean:83:0: 'LeanCheck.TVGPlus.contAt_of_denominator' depen
 LeanCheck/TVGPlusDual.lean:262:0: 'LeanCheck.TVGPlus.dual_of_DD' depends on axioms: [propext, Classical.choice, Quot.sound]
 LeanCheck/TVGPlusPairDual.lean:40:0: 'LeanCheck.TVGPlus.pair_dual_iff_of_JA' depends on axioms: [propext, Classical.choice, Quot.sound]
 LeanCheck/TVGPlusPairDual.lean:41:0: 'LeanCheck.TVGPlus.pair_dual_iff_of_weak_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusEffective.lean:350:0: 'LeanCheck.TVGPlus.effective_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusEffective.lean:352:0: 'LeanCheck.TVGPlus.seq_lower_liminf' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGPlusEffective.lean:353:0: 'LeanCheck.TVGPlus.seq_upper' depends on axioms: [propext, Classical.choice, Quot.sound]

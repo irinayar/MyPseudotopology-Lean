@@ -231,6 +231,8 @@ import LeanCheck.TVGPlusDD
 
 import LeanCheck.TVGPlusDual
 
+import LeanCheck.TVGPlusEffective
+
 import LeanCheck.TVGPlusPairDual
 
 import LeanCheck.TVGPlusPair

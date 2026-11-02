@@ -8,6 +8,7 @@
     "LeanCheck/TVGPlusCount.lean": "2fb379f4705bbc7b2e954f674e70b5cab749f2159b47cc68948d6b83a6f3a56b",
     "LeanCheck/TVGPlusDD.lean": "eb4d72cc07b1fcc4988a2022db787e064cfbedd3ed79e89acc245e724cf90092",
     "LeanCheck/TVGPlusDual.lean": "d8d7988e4049633b4fce2c344c03c8b49e621d403c56e798312b1197736006ba",
+    "LeanCheck/TVGPlusEffective.lean": "16ab187043a3ccc96458e749bbee7666f0078a078867e0dae32ae6cf2a4949ea",
     "LeanCheck/TVGPlusGcd.lean": "570a6da4422f7547c3d16c94b8384c218aac0bc611d8076d60640a1d602a11b4",
     "LeanCheck/TVGPlusOrder.lean": "c7dd26f4db8e44602486fa80a982431057725d4ceb7cd549b34595f20c365d27",
     "LeanCheck/TVGPlusOrderA.lean": "adb32cb063cbd0ea6b50ef48ca002b582b5e16a324a6dcaf348460b505142ae0",

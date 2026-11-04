@@ -95,3 +95,19 @@ integer for some `M` whose prime factors lie in `S` (`dual_of_DD`, with the conv
 `TVGPlusEffective` proves the description of sequences converging to zero (`seq_lower_liminf`, `seq_upper`) and the effective transfer
 from unit-target block bounds to all targets (`effective_transfer`, for `0 < eps <= 1/2`).
 Not formalized: the exact searches for the least witnesses. Axiom report: `verification/tvgplus-check.txt`.
+
+## TVGplus: verified exhaustive searches, the model, and the close chain (2026-11-04)
+
+`TVGSearchDef`, `TVGPlusSearch` and `TVGPlusSearchLeast` prove the soundness of a Chinese-remainder search on residue
+trees: if every candidate assembled from the residues of two prime-square chains fails at an explicit coordinate, then
+no integer in `[1, X]` lies in the shifted ball `{k : P_p(k - s_p) < 1/m for the listed (p, s_p)}`; with a membership
+certificate this gives the least positive element (`least_of_search`, `none_of_search`).  The instances are checked by
+`decide +kernel` (no `native_decide`): `TVGSearchNull23` (the least element of the ball of `{2, 3}` for
+`35 <= m <= 78`, and no element up to `4 * 10^16` for `79 <= m <= 100`), `TVGSearchShA` and `TVGSearchShB` (the two
+shifted problems, `3 <= m <= 66` and `3 <= m <= 53`), `TVGSearchTriA`, `TVGSearchTri0`, `TVGSearchTri0Hi` (least
+elements for `{2, 3, 5}`), `TVGSearchTriAMem` (witnesses for `21 <= m <= 26`), `TVGSearchGcd235` (the gcd of the ball
+for `5 <= m <= 12`), with the heaviest chunks split into the `TVGSearchPart_*` modules to bound kernel memory.
+`TVGPlusModel` formalizes the independent-window model (density, the sum `Lam`, and its exact evaluation as a sum over
+blocks, `lam_blocks`); `TVGPlusModelData_*` bracket `N*` for `m = 10^2, 10^4`.  `TVGSearchChain` proves that the
+levels `5^(19^2) < 3^(23^2) < 2^(29^2)` form a chain with consecutive ratios below `sqrt(log Q)`.
+`TVGSearchCheck` prints the axioms of every final statement (propext, Classical.choice, Quot.sound only).

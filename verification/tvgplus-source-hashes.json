@@ -28,6 +28,7 @@
     "LeanCheck/TVGPlusSearchLeast.lean": "c3e16b1ba9f375d606d4fcb4ca22199c3eb178d69a44b7b1bdf50a1fc77cba1b",
     "LeanCheck/TVGPlusSizes.lean": "07a7c92fe49506b14935b5bd4ee552fdc600edbe5038274512e25d5bac950489",
     "LeanCheck/TVGPlusValuation.lean": "2906f57d81705715ac446d56676435ad412f6f9654e0e1292de686e1cb2353dc",
+    "LeanCheck/TVGPlusWindow.lean": "dfbad2ed96064f988ad32affcee3f17eba3572812b0f1972b101f70160ecdd9f",
     "LeanCheck/TVGSearchChain.lean": "be14843ff6e05a0915ec03a7ecd992b2cbaa3c96803eccd85b1fb8f9b287d3c0",
     "LeanCheck/TVGSearchCheck.lean": "61a9980c91a69efbd2787d232e65006b37477e40613c3aa4ecb2fa6bb6a713ed",
     "LeanCheck/TVGSearchDef.lean": "c6f3b27c675c78f2cf5c7479985b3f1bd7ff7624b979185222ecd0c6abc23dd3",
@@ -56,6 +57,9 @@
     "LeanCheck/TVGSearchTri0.lean": "4ccc3d4964316a91642f948d674f3195591b0248c1d25478308405f47952f116",
     "LeanCheck/TVGSearchTri0Hi.lean": "11a7226ac3bce9dc3a2c551478d85e1af858bd9086369b13f9ff0ffe02198380",
     "LeanCheck/TVGSearchTriA.lean": "2694d4c825a740ef64c64e727b0161cfcc6290938bf213a7e9bbf8cf1e083796",
-    "LeanCheck/TVGSearchTriAMem.lean": "fa690bc70f43b3aeee60d333554d2193d678a9c4c6983ef6433f13ef0aaf3a31"
+    "LeanCheck/TVGSearchTriAMem.lean": "fa690bc70f43b3aeee60d333554d2193d678a9c4c6983ef6433f13ef0aaf3a31",
+    "LeanCheck/TVGSearchWindowCheck.lean": "648c5182cc39a2349a5b1b248ae4d8044b1f07199309f2ee0b060778e50db9cb",
+    "LeanCheck/TVGWindowDef.lean": "135f4c4082dd27682e08a1bbf6109895fd2ff387e88ec88faa98eac3201236b3",
+    "LeanCheck/TVGWindowLit.lean": "30bd0d6c1074df39cb7eded576121f8aa1758dc7116f58b7f0f4bb8842489c11"
   }
 }

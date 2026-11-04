@@ -329,3 +329,11 @@ import LeanCheck.TVGSearchPart_tri0_23_26_6
 
 import LeanCheck.TVGSearchPart_tri0_23_26_7
 
+import LeanCheck.TVGWindowDef
+
+import LeanCheck.TVGPlusWindow
+
+import LeanCheck.TVGWindowLit
+
+import LeanCheck.TVGSearchWindowCheck
+

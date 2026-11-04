@@ -111,3 +111,14 @@ for `5 <= m <= 12`), with the heaviest chunks split into the `TVGSearchPart_*` m
 blocks, `lam_blocks`); `TVGPlusModelData_*` bracket `N*` for `m = 10^2, 10^4`.  `TVGSearchChain` proves that the
 levels `5^(19^2) < 3^(23^2) < 2^(29^2)` form a chain with consecutive ratios below `sqrt(log Q)`.
 `TVGSearchCheck` prints the axioms of every final statement (propext, Classical.choice, Quot.sound only).
+
+## TVGplus: sorted CRT window search (2026-11-04)
+
+`TVGWindowDef`, `TVGPlusWindow` and `TVGWindowLit` formalize the matching step of a search for the least shifted witness
+(the method of Codex's `shifted_window_search.py`): with `k = r + P t`, `v = r * Pinv mod Q`, `u = rho * Pinv mod Q`
+one has `u = v + t (mod Q)`, so the candidates are the pairs with `u` in the window `[v, v + (X - r) / P]` of the doubled
+sorted `u`-list, found by a monotone sweep (`sweep_complete`, `window_complete`, `window_none`, `slice_none`,
+`least_of_window`, `least_of_slices`; the sorting is a fuel-bounded merge sort whose output sortedness is checked by the
+kernel, and only element preservation is proved).  `TVGSearchWindowCheck` reproduces by this method the shifted pair at
+radius `1/12` and the shifted triple at radius `1/20`.  The rows `21 <= m <= 26` of the shifted triple exceed the memory
+of the kernel on the machine used (more than 6 GB for one sorted 3-adic list) and are not covered.

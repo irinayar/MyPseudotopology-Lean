@@ -141,3 +141,12 @@ LeanCheck/TVGPlusEffective.lean:353:0: 'LeanCheck.TVGPlus.seq_upper' depends on 
 LeanCheck/TVGPlusSearch.lean:268:0: 'LeanCheck.TVGSearch.search_none' depends on axioms: [propext, Classical.choice, Quot.sound]
 LeanCheck/TVGPlusSearchLeast.lean:95:0: 'LeanCheck.TVGSearch.least_of_search' depends on axioms: [propext, Classical.choice, Quot.sound]
 LeanCheck/TVGPlusSearchLeast.lean:96:0: 'LeanCheck.TVGSearch.none_of_search' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+## 2026-11-04: sorted CRT window search
+'LeanCheck.TVGSearch.slice_none' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.TVGSearch.least_of_slices' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.TVGSearch.window_none' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.TVGSearch.least_of_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGWindowLit.lean:34:0: 'LeanCheck.TVGSearch.slice_none_lit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.TVGSearch.window_pair_12_none' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.TVGSearch.window_triple_20_none' depends on axioms: [propext, Classical.choice, Quot.sound]

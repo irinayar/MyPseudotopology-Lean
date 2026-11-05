@@ -150,3 +150,16 @@ LeanCheck/TVGPlusSearchLeast.lean:96:0: 'LeanCheck.TVGSearch.none_of_search' dep
 LeanCheck/TVGWindowLit.lean:34:0: 'LeanCheck.TVGSearch.slice_none_lit' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LeanCheck.TVGSearch.window_pair_12_none' depends on axioms: [propext, Classical.choice, Quot.sound]
 'LeanCheck.TVGSearch.window_triple_20_none' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+## 2026-11-04: shifted triple, rows 21 <= m <= 26 (native evaluation)
+Statements whose axiom list contains <check>._native.decide.ax_... additionally rely on Lean's native evaluation of one Boolean certificate (decide +native); they are not kernel-only.
+LeanCheck/TVGWindow21Real.lean:31:0: 'LeanCheck.TVGSearch.triple21_real_minimum' depends on axioms: [propext, Classical.choice, Quot.sound, LeanCheck.TVGSearch.WindowCore.full_check._native.decide.ax_1_1✝]
+LeanCheck/TVGWindow22Real.lean:22:0: 'LeanCheck.TVGSearch.triple22_23_real_minimum' depends on axioms: [propext, Classical.choice, Quot.sound, LeanCheck.TVGSearch.WindowCore22.full_check._native.decide.ax_1_1✝]
+LeanCheck/TVGWindow22Real.lean:24:0: 'LeanCheck.TVGSearch.triple22_23_real_minimum' depends on axioms: [propext, Classical.choice, Quot.sound, LeanCheck.TVGSearch.WindowCore22.full_check._native.decide.ax_1_1✝]
+LeanCheck/TVGWindow24Real.lean:22:0: 'LeanCheck.TVGSearch.triple24_26_real_minimum' depends on axioms: [propext, Classical.choice, Quot.sound, LeanCheck.TVGSearch.WindowCore24.full_check._native.decide.ax_1_1✝, LeanCheck.TVGSearch.WindowCore24.second_check._native.decide.ax_1_1✝]
+LeanCheck/TVGWindowBridge.lean:84:0: 'LeanCheck.TVGSearch.good_all_iff_pseudonorm' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGWindowCore22.lean:362:0: 'LeanCheck.TVGSearch.WindowCore22.triple22_no_smaller_integer' depends on axioms: [propext, Classical.choice, Quot.sound, full_check._native.decide.ax_1_1]
+LeanCheck/TVGWindowCore24.lean:124:0: 'LeanCheck.TVGSearch.WindowCore24.triple24_no_smaller' depends on axioms: [propext, Classical.choice, Quot.sound, full_check._native.decide.ax_1_1, second_check._native.decide.ax_1_1]
+LeanCheck/TVGWindowCore24.lean:59:0: 'LeanCheck.TVGSearch.WindowCore24.triple24_no_smaller_integer' depends on axioms: [propext, Classical.choice, Quot.sound, full_check._native.decide.ax_1_1]
+LeanCheck/TVGWindowCoreIsolated.lean:401:0: 'LeanCheck.TVGSearch.WindowCore.triple21_all_good' depends on axioms: [propext, Quot.sound]
+LeanCheck/TVGWindowCoreIsolated.lean:402:0: 'LeanCheck.TVGSearch.WindowCore.triple21_no_smaller_integer' depends on axioms: [propext, Classical.choice, Quot.sound, full_check._native.decide.ax_1_1]

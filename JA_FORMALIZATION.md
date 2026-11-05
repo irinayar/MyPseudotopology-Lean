@@ -122,3 +122,18 @@ sorted `u`-list, found by a monotone sweep (`sweep_complete`, `window_complete`,
 kernel, and only element preservation is proved).  `TVGSearchWindowCheck` reproduces by this method the shifted pair at
 radius `1/12` and the shifted triple at radius `1/20`.  The rows `21 <= m <= 26` of the shifted triple exceed the memory
 of the kernel on the machine used (more than 6 GB for one sorted 3-adic list) and are not covered.
+
+## TVGplus: minimum of the shifted triple for 21 <= m <= 26 (2026-11-04, native evaluation)
+
+`TVGWindowCoreIsolated`, `TVGWindowCore22` and `TVGWindowCore24` (core Lean only, no Mathlib) prove, for the shifted triple
+`P_2(k - 1), P_3(k), P_5(k) < 1/m`, that no positive integer below the witness passes all square-power coordinates:
+`triple21_no_smaller_integer` (m = 21, witness 566864750054385), `triple22_no_smaller_integer` (m = 22, 23, witness
+1111607529308145) and `triple24_no_smaller` (m = 24, 25, 26, witness 1667477197289985; the range above `2^25 * 3^16` is
+handled by shifting `k = j + 2^25 * 3^16`, which keeps the residues).  They reuse the sorted Chinese-remainder sweep
+completeness argument of `TVGPlusWindow` and evaluate one Boolean certificate per range with `decide +native`; the
+statements therefore depend, besides propext, Classical.choice and Quot.sound, on generated axioms
+`<check>._native.decide.ax_...` (one for rows 21 and 22-23, two for rows 24-26).  `TVGWindowBridge` proves
+`good_all_iff_pseudonorm` (standard axioms only), and `TVGWindow21Real`, `TVGWindow22Real`, `TVGWindow24Real` assemble
+`triple21_real_minimum`, `triple22_23_real_minimum` and `triple24_26_real_minimum` for the article pseudonorm.  The
+Lean sources of the cores and of the real-valued row 21 and 22-23 files were written by Codex; the row 24-26 bridge was
+added and a proof step of `TVGWindowCore24` (a Mathlib-only tactic) was replaced to compile with core imports.

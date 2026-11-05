@@ -337,3 +337,17 @@ import LeanCheck.TVGWindowLit
 
 import LeanCheck.TVGSearchWindowCheck
 
+import LeanCheck.TVGWindowCoreIsolated
+
+import LeanCheck.TVGWindowCore22
+
+import LeanCheck.TVGWindowCore24
+
+import LeanCheck.TVGWindowBridge
+
+import LeanCheck.TVGWindow21Real
+
+import LeanCheck.TVGWindow22Real
+
+import LeanCheck.TVGWindow24Real
+

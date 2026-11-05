@@ -137,3 +137,15 @@ statements therefore depend, besides propext, Classical.choice and Quot.sound, o
 `triple21_real_minimum`, `triple22_23_real_minimum` and `triple24_26_real_minimum` for the article pseudonorm.  The
 Lean sources of the cores and of the real-valued row 21 and 22-23 files were written by Codex; the row 24-26 bridge was
 added and a proof step of `TVGWindowCore24` (a Mathlib-only tactic) was replaced to compile with core imports.
+
+## TVGplus: shifted targets, signed to positive witnesses, full-period obstruction (2026-11-05)
+
+`TVGShiftedLongNull` proves `explicit_long_null`: for finitely many integer bases `>= 2`, `R <= 2^L`, `m * delta >= 2` and
+`m <= 2^h`, there is an integer `k` with `R <= k <= 2^(2L + 4 s^2 h^2)` whose pseudonorms are all below `delta`; it is the
+pigeonhole argument of `TVGPlusCount` with one additional residue class modulo `R`.  `TVGShiftedPositive` proves
+`positive_from_signed_long`: a signed witness `k0` with `|k0| <= H`, `P_p(k0 - 1) < eps/2` and `P_q(k0) < eps/2` yields a
+positive witness `k <= H + 2^(2L + 16 h^2)` with `P_p(k - 1) < eps` and `P_q(k) < eps` (`H + 1 <= 2^L`, `4 <= 2^h eps`), so the
+exponent of `log (1/eps)` in a signed height bound is preserved.  `TVGShiftedObstruction` proves
+`full_period_tail_obstruction`: if `m P Q < p^((n+1)^2)` and `m P Q < q^((j+1)^2)` for `P = p^(n^2)`, `Q = q^(j^2)`, then
+`m < p q`.  All three statements depend only on propext, Classical.choice and Quot.sound.  No upper bound for a nonzero shifted
+target is proved.  The sources of the long null witness and of the obstruction were drafted by Codex and completed by Claude.

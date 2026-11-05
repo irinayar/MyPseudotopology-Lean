@@ -351,3 +351,9 @@ import LeanCheck.TVGWindow22Real
 
 import LeanCheck.TVGWindow24Real
 
+import LeanCheck.TVGShiftedLongNull
+
+import LeanCheck.TVGShiftedPositive
+
+import LeanCheck.TVGShiftedObstruction
+

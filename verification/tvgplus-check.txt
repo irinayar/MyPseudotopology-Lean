@@ -163,3 +163,8 @@ LeanCheck/TVGWindowCore24.lean:124:0: 'LeanCheck.TVGSearch.WindowCore24.triple24
 LeanCheck/TVGWindowCore24.lean:59:0: 'LeanCheck.TVGSearch.WindowCore24.triple24_no_smaller_integer' depends on axioms: [propext, Classical.choice, Quot.sound, full_check._native.decide.ax_1_1]
 LeanCheck/TVGWindowCoreIsolated.lean:401:0: 'LeanCheck.TVGSearch.WindowCore.triple21_all_good' depends on axioms: [propext, Quot.sound]
 LeanCheck/TVGWindowCoreIsolated.lean:402:0: 'LeanCheck.TVGSearch.WindowCore.triple21_no_smaller_integer' depends on axioms: [propext, Classical.choice, Quot.sound, full_check._native.decide.ax_1_1]
+
+## 2026-11-05: shifted targets, signed-to-positive conversion and full-period tail obstruction (standard axioms only)
+LeanCheck/TVGShiftedLongNull.lean:176:0: 'LeanCheck.ShiftedHeight.explicit_long_null' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGShiftedObstruction.lean:55:0: 'LeanCheck.ShiftedHeight.full_period_tail_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+LeanCheck/TVGShiftedPositive.lean:53:0: 'LeanCheck.ShiftedHeight.positive_from_signed_long' depends on axioms: [propext, Classical.choice, Quot.sound]

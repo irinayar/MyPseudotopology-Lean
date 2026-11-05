@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "source_files": {
     "LeanCheck/TVGPlusCert.lean": "9a78c50f4e05ae9b9038ec3bb2e34fe7fb6eee0fb8f1057ba7bad99f12b97e73",
     "LeanCheck/TVGPlusCertData.lean": "7a1c811ce9b194b5cf647ab21443740de97380fe1b3e71b0a8675bb08460dc1c",
@@ -59,6 +59,9 @@
     "LeanCheck/TVGSearchTriA.lean": "2694d4c825a740ef64c64e727b0161cfcc6290938bf213a7e9bbf8cf1e083796",
     "LeanCheck/TVGSearchTriAMem.lean": "fa690bc70f43b3aeee60d333554d2193d678a9c4c6983ef6433f13ef0aaf3a31",
     "LeanCheck/TVGSearchWindowCheck.lean": "648c5182cc39a2349a5b1b248ae4d8044b1f07199309f2ee0b060778e50db9cb",
+    "LeanCheck/TVGShiftedLongNull.lean": "a35060bd3ee64429166ffa961d727746f0c84df16ba0c77e054b1d559e5abd76",
+    "LeanCheck/TVGShiftedObstruction.lean": "ceac68940688d6312c45e8e8791ad1904c6aab779c5c6f6555f72ff89e5b5e3e",
+    "LeanCheck/TVGShiftedPositive.lean": "51681d180fe4a3b5b0bc854d0b5ae20d96313fa9e3689fdc9035030fb0310cdb",
     "LeanCheck/TVGWindow21Real.lean": "d8a1ef09b5cbce9615bf57dab76671fcb859f562bce5268be223a96a4c03fb51",
     "LeanCheck/TVGWindow22Real.lean": "b846860466f879570c7ebc2a421dbecb52235a89376d41134ec7070154952258",
     "LeanCheck/TVGWindow24Real.lean": "6b9d020835846c20f30c30532578d9d66734e17e4f1c11ecccfe75ae971d2e61",

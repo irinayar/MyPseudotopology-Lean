@@ -1,0 +1,17 @@
+Axiom report for the PVG Lean modules, 6 November 2026.
+Lean 4.35.0 with the pinned Mathlib. LeanCheck/PVGAlgebra.lean, LeanCheck/PVGInterpolation.lean and LeanCheck/PVGCharacters.lean were each typechecked with `lean` (LEAN_PATH set to the Mathlib build directories; `lake build` of the aggregate was not run for this report); no errors, no warnings, no sorry. LeanCheck/PVGAxioms.lean was then run against the compiled modules.
+
+'PVG.maximal_admissible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.exists_maximal_admissible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.no_common_admissible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.ker_isCompl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.retraction_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.retractionEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.rank_eq_of_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.card_retractions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.interpolation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.interpolation_round' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.limits_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.distinct_limits' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.bounded_conv_euclid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.trivial_intersection' depends on axioms: [propext, Classical.choice, Quot.sound]

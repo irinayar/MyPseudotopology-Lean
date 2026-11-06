@@ -357,3 +357,9 @@ import LeanCheck.TVGShiftedPositive
 
 import LeanCheck.TVGShiftedObstruction
 
+import LeanCheck.PVGAlgebra
+
+import LeanCheck.PVGInterpolation
+
+import LeanCheck.PVGCharacters
+

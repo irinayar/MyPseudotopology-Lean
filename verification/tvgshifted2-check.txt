@@ -1,0 +1,14 @@
+Axiom report for the TVGShiftedCert2 and TVGIncomparable Lean modules, 7 November 2026.
+Lean 4.35.0 with the pinned Mathlib and the existing LeanCheck build. LeanCheck/TVGShiftedCert2.lean and LeanCheck/TVGIncomparable.lean were compiled with `lean` (LEAN_PATH set to the Mathlib and LeanCheck build directories; `lake build` of the aggregate was not run for this report); no errors, no warnings, no sorry, no native_decide. The certificates use `decide +kernel`. LeanCheck/TVGShifted2Axioms.lean was then run against the compiled modules.
+
+'LeanCheck.ShiftedCert.wit990_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedCert.wit1100_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedCert.wit2114_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedCert.wit2790_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedCert.wit5272_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.Incomparable.exists_centered' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.Incomparable.reverse_direction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.Incomparable.dvd_of_nrm_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.Incomparable.nrm_lower_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.Incomparable.Pn_pow_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.Incomparable.first_direction' depends on axioms: [propext, Classical.choice, Quot.sound]

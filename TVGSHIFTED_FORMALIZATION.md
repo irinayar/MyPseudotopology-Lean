@@ -45,3 +45,16 @@ These are **membership statements only**. The minimality of the witnesses (exclu
 ## Not covered
 
 The abc-conditional lower bound of `TVGplus_v23`; minimality of the witnesses; the energy certificate at `r = 1/20`, `X = 10^12`; a new proof of the universal-divisor theorem (the existing `forced` is used).
+
+## Lattice-reduction witnesses and incomparable topologies (`TVGShiftedCert2`, `TVGIncomparable`, 7 November 2026)
+
+Modules `LeanCheck/TVGShiftedCert2.lean` and `LeanCheck/TVGIncomparable.lean` (imported by `LeanCheck.lean`), axiom report in `LeanCheck/TVGShifted2Axioms.lean` and `verification/tvgshifted2-check.txt`. As in `TVGShiftedCert`, `P_c = Pn (sqScales c)` and `Wsh {2} {3} δ = {k | P_2(k-1) < δ ∧ P_3(k) < δ}`.
+
+| Declaration | Statement |
+|---|---|
+| `wit990_mem`, `wit1100_mem`, `wit2114_mem`, `wit2790_mem`, `wit5272_mem` | The signed witnesses of the exact-rational lattice reduction (52, 54, 64, 73 and 94 digits) lie in `Wsh {2} {3} (1/m)` for all `1 ≤ m ≤ 990, 1100, 2114, 2790, 5272` respectively. Membership only; no minimality is claimed. |
+| `reverse_direction` | For primes `p ≠ q`, `p` odd: integers `h n` with `P_{pq}(h n) ≤ 1/(2 q^(2n-1))` and `P_p(h n) ≥ (p^(2n-1) - 1)/(2 p^(2n-1))`; so `h n → 0` for the topology of `P_{pq}` but not for that of `max (P_p, P_q)`. Unconditional. |
+| `first_direction` | Under the hypothesis `DD {p, q}` (diagonal density for the pair): integers `k d` with `P_p (k d) → 0`, `P_q (k d) → 0` and `P_{pq} (k d) ≥ 1/(2q)`; so `k d → 0` for `max (P_p, P_q)` but not for `P_{pq}`. |
+| `exists_centered`, `dvd_of_nrm_lt`, `nrm_lower_inv`, `Pn_pow_le` | Helpers (centered solution of a congruence modulo an odd number; divisibility from a small norm; the bound `(1 - p^(-D))/q ≥ 1/(2q)`; `P_p(p^(n²-D)) ≤ p^(-D)`). |
+
+Together the two directions say that the topologies of `P_{pq}` and of `max (P_p, P_q)` on `ℤ` are incomparable (given `DD {p, q}`). Not formalized: the common dual `ℤ[1/b]/ℤ`, the nondiscreteness of the join, the proof of `DD {p, q}`, minimality of the witnesses and the lattice search.

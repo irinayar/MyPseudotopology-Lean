@@ -371,3 +371,7 @@ import LeanCheck.TVGShiftedCert
 
 import LeanCheck.PVGSequences
 
+import LeanCheck.TVGShiftedCert2
+
+import LeanCheck.TVGIncomparable
+

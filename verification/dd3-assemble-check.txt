@@ -1,0 +1,9 @@
+Axiom report for the DD3Assemble Lean module, 7 November 2026.
+Lean 4.35.0 with the pinned Mathlib and the existing LeanCheck build. LeanCheck/DD3Assemble.lean was compiled with `lean` (LEAN_PATH set to the Mathlib and LeanCheck build directories; `lake build` of the aggregate was not run for this report); no errors, no sorry, no native_decide (the linter prints a few warnings from proofs copied from JAAssemble and JANonDeep). LeanCheck/DD3AssembleAxioms.lean was then run against the compiled module.
+
+'LeanCheck.DD3Assemble.htop3_of_large' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Assemble.bases_differ3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Assemble.level_sep3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Assemble.level_close3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Assemble.non_deep_card_le_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Assemble.prod_f_bound3' depends on axioms: [propext, Classical.choice, Quot.sound]

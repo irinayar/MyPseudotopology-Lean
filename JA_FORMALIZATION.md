@@ -182,3 +182,17 @@ Modules `LeanCheck/DD3Cluster.lean` (imports `JAClose`, `JAProductFinal`, `DD3Re
 `DD3Product` generalizes the final product bound: `sum_inv_cube_gen` (`∑ (√(lp b n))⁻³ ≤ 2 ∑_{b∈ℬ} (√log b)⁻³` over distinct periods with bases in a finite set `ℬ`), `product_final_gen` (`∏ f_i ≤ B^(K + |ℬ|⌊2T⌋) exp(Cf · 2 ∑_{b∈ℬ} (√log b)⁻³)`) and `product_final3` (`ℬ = {2,3,5}`).
 
 Not formalized: the classification of the levels of the sorted list and the verification of the per-level hypothesis, the assembly of the central bound and the Fourier step for three weights, the compact-quotient step for `ℤ²`, the two-term separation for the pairs `(2,5)` and `(3,5)`, the hypothesis `H(2,3,5)` and the final theorem `DD {2,3,5}`. `DD3Cluster` copies parts of `JASep` and `JAClose`; the linter prints deprecation and unused-argument warnings for these copies.
+
+### Phase 4: classification of the levels (`DD3Assemble`, 7 November 2026)
+
+Module `LeanCheck/DD3Assemble.lean` (imports `JACentral`, `DD3Cluster`, `DD3Product`), imported by `LeanCheck.lean`; axiom report in `LeanCheck/DD3AssembleAxioms.lean` and `verification/dd3-assemble-check.txt`. It is the three-base counterpart of `JAAssemble` and `JACentral.prod_f_bound`: the product `∏_{i<L} f_i` of the factors `f_i = H_i(0)/H_{i+1}(0)` of the product identity for the sorted list of prime-square scales of the bases 2, 3, 5 is bounded independently of `L`, `N`, `m`, `X`.
+
+| Declaration | Statement |
+|---|---|
+| `HTT3`, `BadTriple`, `HFin` (definitions) | The two-term separation for ordered pairs of distinct bases in `{2,3,5}` (hypothesis); a bad triple (three levels, the second a close pair with the first, the third inside the window `Q exp(a(t) + log t)`); `HFin a K₁`: at most `K₁` bad triples (hypothesis `H(2,3,5)`). |
+| `htop3_of_large`, `bases_differ3` | `(8B)³ e^{-3t} ≤ 1/2` for large `t`; a close pair has different bases. |
+| `level_sep3`, `level_close3` | `f_p ≤ 1 + Cs t⁻³` for a separated level; `f_p ≤ 1 + Cc t⁻³` for a close pair whose third level lies outside the window (through `separated_factor3`, `close_factor3`). |
+| `non_deep_card_le_three` | At most three non-deep levels. |
+| `prod_f_bound3` | Under `HTT3` and `HFin`: for large `X`, `∏_{i<L} f_i ≤ Cp`, `Cp` independent of `L, N, m, X`. |
+
+Not formalized: the assembly of the central bound for three chains (random translations, three-fold energy, the Fourier step), the compact-quotient step for `ℤ²`, the two-term separation for the pairs `(2,5)` and `(3,5)` (assumed in `HTT3`), the derivation of `HFin` from `H(2,3,5)`, and the final theorem `DD {2,3,5}`. `H(2,3,5)` is a conjecture; it is not proved. The linter prints warnings for proofs copied from `JAAssemble` and `JANonDeep`.

@@ -383,3 +383,5 @@ import LeanCheck.DD3Cluster
 
 import LeanCheck.DD3Product
 
+import LeanCheck.DD3Assemble
+

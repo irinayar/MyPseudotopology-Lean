@@ -385,3 +385,5 @@ import LeanCheck.DD3Product
 
 import LeanCheck.DD3Assemble
 
+import LeanCheck.DD3Dense
+

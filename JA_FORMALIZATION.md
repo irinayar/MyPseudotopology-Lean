@@ -196,3 +196,18 @@ Module `LeanCheck/DD3Assemble.lean` (imports `JACentral`, `DD3Cluster`, `DD3Prod
 | `prod_f_bound3` | Under `HTT3` and `HFin`: for large `X`, `∏_{i<L} f_i ≤ Cp`, `Cp` independent of `L, N, m, X`. |
 
 Not formalized: the assembly of the central bound for three chains (random translations, three-fold energy, the Fourier step), the compact-quotient step for `ℤ²`, the two-term separation for the pairs `(2,5)` and `(3,5)` (assumed in `HTT3`), the derivation of `HFin` from `H(2,3,5)`, and the final theorem `DD {2,3,5}`. `H(2,3,5)` is a conjecture; it is not proved. The linter prints warnings for proofs copied from `JAAssemble` and `JANonDeep`.
+
+### Phase 5a: from the energy bound to `DD {2,3,5}` (`DD3Dense`, 7 November 2026)
+
+Module `LeanCheck/DD3Dense.lean` (imports `JAAssembly`, `TVGPlusValuation`, `DD3Reduction`), imported by `LeanCheck.lean`; axiom report in `LeanCheck/DD3DenseAxioms.lean` and `verification/dd3-dense-check.txt`. It is the three-prime counterpart of the part of `JAAssembly` that comes after the energy estimate.
+
+| Declaration | Statement |
+|---|---|
+| `W3 r`, `JA3Prop` (definitions) | `W3 r = {(x - y, y - z) : P_2(x), P_3(y), P_5(z) < r}`; `JA3Prop`: `W3 ε = ℤ²` for every `ε > 0`. |
+| `SyndeticW3`, `CompactQuotientCriterion3` (definitions) | `W3 ε` syndetic in `ℤ²` for all `ε`; the **hypothesis** `SyndeticW3 → JA3Prop` (compact-quotient step for `ℤ²`). |
+| `DenseDifferences3`, `syndeticW3_of_dense` | Large `V ⊆ [-X,X]²` with `V - V ⊆ W3 ε` at arbitrarily large `X` (for every `ε`) gives `SyndeticW3`. |
+| `dense_step3` | Finite `A, B, C ⊆ [0,X]` with small self-differences in `P_2`, `P_3`, `P_5`, weights `f, g, h` with nonzero total mass and three-fold collision energy `≤ K (∑f ∑g ∑h)²/(2X+1)²` give `V ⊆ [-X,X]²`, `V - V ⊆ W3 ε`, `|V| ≥ (2X+1)²/K`. |
+| `EnergyInput3` (definition), `denseDifferences3_of_energy`, `JA3_of_energy` | The energy input at arbitrarily large heights and every precision, with `CompactQuotientCriterion3`, gives `JA3Prop`. |
+| `DD_of_JA3`, `DD235_of_energy` | `JA3Prop` gives `TVGPlus.DD {2,3,5}`; so `DD {2,3,5}` follows from `CompactQuotientCriterion3` and `EnergyInput3 ε` for all `ε > 0`. |
+
+Not formalized: `EnergyInput3` itself (the three-weight random translations, the expected spectral measure, the Fourier step `∑ (L-|h|)³ Γ_2Γ_3Γ_5 ≤ 3 L⁴ ν{‖t‖ ≤ 1/L}`, the sorted enumeration of three chains, buffered heights, and `CentralBound3` from `prod_f_bound3` with `HTT3` and `HFin`), `CompactQuotientCriterion3`, the two-term separation for the pairs `(2,5)` and `(3,5)`, and the derivation of `HFin` from `H(2,3,5)`. `DD {2,3,5}` is therefore **not** proved in Lean: it is reduced to the two named inputs above.

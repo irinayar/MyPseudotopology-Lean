@@ -1,0 +1,9 @@
+Axiom report for the DD3Dense Lean module, 7 November 2026.
+Lean 4.35.0 with the pinned Mathlib and the existing LeanCheck build. LeanCheck/DD3Dense.lean was compiled with `lean` (LEAN_PATH set to the Mathlib and LeanCheck build directories; `lake build` of the aggregate was not run for this report); no errors, no warnings, no sorry, no native_decide. LeanCheck/DD3DenseAxioms.lean was then run against the compiled module.
+
+'LeanCheck.DD3Dense.syndeticW3_of_dense' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Dense.dense_step3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Dense.denseDifferences3_of_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Dense.JA3_of_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Dense.DD_of_JA3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Dense.DD235_of_energy' depends on axioms: [propext, Classical.choice, Quot.sound]

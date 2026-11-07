@@ -33,3 +33,16 @@ Module `LeanCheck/PVGSequences.lean` (imported by `LeanCheck.lean`), axiom repor
 | `R4`, `R1_R4` (R4) | A linear `π` with `π e1 = 1` satisfying the constancy criterion for all sequences of a set `Lac` exists iff there is a choice `y ↦ B_y` (infinite sets) such that the real span of all differences `Lf y U - Lf y V` (`U, V` free, containing `B_y`) meets `ℝ e1` only in `0`; concrete form `R1_R4` for `K` and the lacunary sequences. |
 
 Not formalized: the pseudotopology `η_π` itself (so "sequentially compact" is replaced by the criterion `SC` of Question 9.5, whose equivalence with sequential compactness of `η_π` is argued in the text of `PVG_v10`), and the answer to Question 9.5, which remains open.
+
+## Question 9.5: independence of the limits of a sparse sequence (`PVGIndependence`, 7 November 2026)
+
+Module `LeanCheck/PVGIndependence.lean` (imported by `LeanCheck.lean`; it imports `PVGSequences`), axiom report in `LeanCheck/PVGIndependenceAxioms.lean` and `verification/pvg-independence-check.txt`. It checks Lemma G and Theorem A of the research note `PVG_Q95_independence_2026-11-07.md` in the setting of `PVGSequences`.
+
+| Declaration | Statement |
+|---|---|
+| `arcs`, `arcs_signed` (Lemma G) | For `a k > 0`, `0 < α ≤ 1`, `1 + α ≤ R α`, `R a k ≤ a (k+1)` and any real centres `c k` there is `b` with `0 ≤ b ≤ 2 / a 0` and, for every `k`, an integer `n` with `|b a k - c k - n| ≤ α/2` (signed version for `R \|z k\| ≤ \|z (k+1)\|`). |
+| `exists_disjoint_family` | Pairwise distinct ultrafilters `W : Fin n → Ultrafilter ℕ` have pairwise disjoint members `S i ∈ W i`. |
+| `independence` (Theorem A) | If all `y k ≠ 0` and `\|y (k+1)\| / \|y k\| → ∞`, `W : Fin n → Ultrafilter ℕ` is injective with all `W i` free and `γ : Fin n → ℝ` has some `γ i ≠ 0`, then `∑ γ i • L y (W i) ≠ e x` for every real `x`. |
+| `independence_finset`, `linearIndependent_L` | The same for a finite set of free ultrafilters; the vectors `L y U` (`U` free) are linearly independent over `ℝ`, and their real span meets `e(ℝ)` only in `0`. |
+
+Not formalized: Theorem B (finitely many jointly lacunary sequences), the density property of good retractions, the consequences for the retraction `π`, and the answer to Question 9.5, which remains open (dependent sequences and `c` many sequences).

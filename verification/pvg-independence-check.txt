@@ -1,0 +1,9 @@
+Axiom report for the PVGIndependence Lean module, 7 November 2026.
+Lean 4.35.0 with the pinned Mathlib and the existing LeanCheck build. LeanCheck/PVGIndependence.lean was compiled with `lean` (LEAN_PATH set to the Mathlib and LeanCheck build directories; `lake build` of the aggregate was not run for this report); no errors, no warnings, no sorry, no native_decide. LeanCheck/PVGIndependenceAxioms.lean was then run against the compiled module.
+
+'PVG.Q95.arcs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.arcs_signed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.exists_disjoint_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.independence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.independence_finset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.linearIndependent_L' depends on axioms: [propext, Classical.choice, Quot.sound]

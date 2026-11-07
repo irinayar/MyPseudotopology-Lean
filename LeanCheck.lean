@@ -375,3 +375,5 @@ import LeanCheck.TVGShiftedCert2
 
 import LeanCheck.TVGIncomparable
 
+import LeanCheck.PVGIndependence
+

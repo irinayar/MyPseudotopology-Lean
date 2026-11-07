@@ -1,0 +1,14 @@
+Axiom report for the DD3Reduction Lean module, 7 November 2026.
+Lean 4.35.0 with the pinned Mathlib and the existing LeanCheck build. LeanCheck/DD3Reduction.lean was compiled with `lean` (LEAN_PATH set to the Mathlib and LeanCheck build directories; `lake build` of the aggregate was not run for this report); no errors, no warnings, no sorry, no native_decide. LeanCheck/DD3ReductionAxioms.lean was then run against the compiled module.
+
+'LeanCheck.DD3.three_parts_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3.sum_rep3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3.card_V3_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3.sum_sq_rep3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3.energy3_eq_acf' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3.syndetic_of_dense_difference3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3.merged_gap4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3.merged_gap_seq3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3.merged_gap_seq_odd3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3.merged_growth_exp3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3.window_card_le_three' depends on axioms: [propext, Classical.choice, Quot.sound]

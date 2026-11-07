@@ -377,3 +377,5 @@ import LeanCheck.TVGIncomparable
 
 import LeanCheck.PVGIndependence
 
+import LeanCheck.DD3Reduction
+

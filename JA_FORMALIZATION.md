@@ -149,3 +149,17 @@ exponent of `log (1/eps)` in a signed height bound is preserved.  `TVGShiftedObs
 `full_period_tail_obstruction`: if `m P Q < p^((n+1)^2)` and `m P Q < q^((j+1)^2)` for `P = p^(n^2)`, `Q = q^(j^2)`, then
 `m < p q`.  All three statements depend only on propext, Classical.choice and Quot.sound.  No upper bound for a nonzero shifted
 target is proved.  The sources of the long null witness and of the obstruction were drafted by Codex and completed by Claude.
+
+## Diagonal density for three primes: reduction layer (`DD3Reduction`, 7 November 2026)
+
+Module `LeanCheck/DD3Reduction.lean` (imported by `LeanCheck.lean`; it imports `MixedPrimeAnalytic`, `JAMerged`, `JAEnergyIdentity`), axiom report in `LeanCheck/DD3ReductionAxioms.lean` and `verification/dd3-reduction-check.txt`. It is the first phase of a Lean version of the conditional proof of `DD({2,3,5})` (research note `TVGplus_conditional_DD235_2026-11-07.md`): the steps that change when a third chain of prime squares is added and that do not involve the pseudonorms `P_p`.
+
+| Declaration | Statement |
+|---|---|
+| `three_parts_zero` | In an abelian group, if `m_i • a_i = 0` for pairwise coprime `m_2, m_3, m_5` and `a_2 + a_3 + a_5 = 0`, then all `a_i = 0`. |
+| `sum_rep3`, `card_V3_ge`, `sum_sq_rep3` | For finite `A, B, C ⊆ ℤ`, weights `f, g, h` and `R(u,v) = ∑_{x-y=u, y-z=v} f(x) g(y) h(z)`: `∑_w R(w) = ∑f ∑g ∑h`, `(∑f ∑g ∑h)² ≤ |T| ∑_{w ∈ T} R(w)²`, and `∑_w R(w)²` is the collision sum over pairs of triples. |
+| `energy3_eq_acf` | The collision sum equals `∑_{d ∈ D} acf_A f(d) acf_B g(d) acf_C h(d)` for any finite `D ⊇ A - A`. |
+| `syndetic_of_dense_difference3` | A symmetric `W ⊆ ℤ²` containing `0` with finite `V ⊆ [-X,X]²`, `|V| ≥ c (2X+1)²`, `V - V ⊆ W` for arbitrarily large `X` is syndetic. |
+| `merged_gap4`, `merged_gap_seq3`, `merged_gap_seq_odd3`, `merged_growth_exp3`, `window_card_le_three` | Among four increasing periods `b^(n²)`, `b ∈ {2,3,5}`, two share a base: `log Q_{i+3j} - log Q_i ≥ j sqrt(log Q_i)`, `Q_{i+m} ≥ Q_i exp(t_i ⌊m/3⌋)`; a logarithmic window of width at most `sqrt u` contains at most three periods. |
+
+Not formalized: the cluster estimate with a third level and the hypothesis `H(2,3,5)` (finitely many triples of levels `2^(a²), 3^(b²), 5^(c²)` in a window of length `A log²(2+t)`), the central bound for three chains and the Fourier step, the compact-quotient step for `ℤ²`, the Matveev-type separation for the pairs `(2,5)` and `(3,5)`, and the final theorem. `H(2,3,5)` is a conjecture (a Borel-Cantelli prediction); it is not proved.

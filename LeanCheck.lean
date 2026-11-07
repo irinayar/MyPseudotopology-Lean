@@ -363,3 +363,9 @@ import LeanCheck.PVGInterpolation
 
 import LeanCheck.PVGCharacters
 
+import LeanCheck.TVGShiftedJump
+
+import LeanCheck.TVGShiftedEnergy
+
+import LeanCheck.TVGShiftedCert
+

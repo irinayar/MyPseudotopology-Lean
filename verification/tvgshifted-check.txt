@@ -1,0 +1,22 @@
+Axiom report for the TVGplus shifted-height Lean modules, 6 November 2026.
+Lean 4.35.0 with the pinned Mathlib and the existing LeanCheck build. LeanCheck/TVGShiftedJump.lean, TVGShiftedEnergy.lean and TVGShiftedCert.lean were compiled with `lean` (LEAN_PATH set to the Mathlib and LeanCheck build directories; `lake build` of the aggregate was not run for this report); no errors, no warnings, no sorry, no native_decide. LeanCheck/TVGShiftedAxioms.lean was then run against the compiled modules. The certificates in TVGShiftedCert.lean use `decide +kernel`. A negative test confirmed that the certificate check rejects a too-small bound (`CertOK 3 k 1 730 9` for the m = 683 witness is false).
+
+'LeanCheck.ShiftedJump.exists_jump' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedJump.jump_abstract' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedJump.Dvis_unbounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedJump.shifted_jump' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedJump.shifted_limsup_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedEnergy.cs_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedEnergy.Lbound_le_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedEnergy.energy_criterion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedEnergy.energy_criterion_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedEnergy.energy_arithmetic' depends on axioms: [propext]
+'LeanCheck.ShiftedEnergy.unit_target_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedCert.Pn_sq_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedCert.mem_Wsh_of_cert' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedCert.fwd627_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedCert.fwd665_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedCert.rev665_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedCert.fwd683_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedCert.rev683_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.ShiftedCert.sgn715_mem' depends on axioms: [propext, Classical.choice, Quot.sound]

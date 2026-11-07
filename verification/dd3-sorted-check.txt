@@ -1,0 +1,9 @@
+Axiom report for the DD3Sorted Lean module, 7 November 2026.
+Lean 4.35.0 with the pinned Mathlib and the existing LeanCheck build. LeanCheck/DD3Sorted.lean was compiled with `lean` (LEAN_PATH set to the Mathlib and LeanCheck build directories; `lake build` of the aggregate was not run for this report); no errors, no sorry, no native_decide (two cosmetic linter warnings). LeanCheck/DD3SortedAxioms.lean was then run against the compiled module.
+
+'LeanCheck.DD3Sorted.key_inj3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Sorted.pairs3Of_nodup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Sorted.sorted_strict3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Sorted.exists_sorted3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Sorted.arc_mass_product3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Sorted.arc_mass_sorted3' depends on axioms: [propext, Classical.choice, Quot.sound]

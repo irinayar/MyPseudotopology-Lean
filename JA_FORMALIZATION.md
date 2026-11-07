@@ -211,3 +211,16 @@ Module `LeanCheck/DD3Dense.lean` (imports `JAAssembly`, `TVGPlusValuation`, `DD3
 | `DD_of_JA3`, `DD235_of_energy` | `JA3Prop` gives `TVGPlus.DD {2,3,5}`; so `DD {2,3,5}` follows from `CompactQuotientCriterion3` and `EnergyInput3 ε` for all `ε > 0`. |
 
 Not formalized: `EnergyInput3` itself (the three-weight random translations, the expected spectral measure, the Fourier step `∑ (L-|h|)³ Γ_2Γ_3Γ_5 ≤ 3 L⁴ ν{‖t‖ ≤ 1/L}`, the sorted enumeration of three chains, buffered heights, and `CentralBound3` from `prod_f_bound3` with `HTT3` and `HFin`), `CompactQuotientCriterion3`, the two-term separation for the pairs `(2,5)` and `(3,5)`, and the derivation of `HFin` from `H(2,3,5)`. `DD {2,3,5}` is therefore **not** proved in Lean: it is reduced to the two named inputs above.
+
+### Phase 5b: the sorted enumeration of three chains (`DD3Sorted`, 7 November 2026)
+
+Module `LeanCheck/DD3Sorted.lean` (imports `JASorted`, `JAProduct2`, `JAFinal2`), imported by `LeanCheck.lean`; axiom report in `LeanCheck/DD3SortedAxioms.lean` and `verification/dd3-sorted-check.txt`. It is the three-chain counterpart of `JASorted` and `JAProduct2.arc_mass_product`.
+
+| Declaration | Statement |
+|---|---|
+| `pairs3Of`, `key_ne`, `key_inj3`, `pairs3Of_nodup` | The pairs `(base, exponent)` of the chains of 2, 3, 5; `b^e ≠ b'^f` for a prime `b ∤ b'`, `e ≠ 0`; the scales `base^(exponent²)` are pairwise distinct; no repetition in the list. |
+| `sortedPairs3`, `sorted_strict3` | The list sorted by the scale is a permutation of length `na + nb + nc`, strictly increasing in the scale. |
+| `exists_sorted3` | Sequences `b, n` with `b i ∈ {2,3,5}`, `lp (b i) (n i)` strictly increasing, each `(b j, n j)` a level of one of the chains, and the list of normalized kernels a permutation of the merged lists of the three chains. |
+| `arc_mass_product3`, `arc_mass_sorted3` | For nonnegative seeds `A, B, C`, `2m ≤ N` and any order of the merged kernel list (in particular the sorted one): the arc mass of `Mavg_a A ∗ (Mavg_b B ∗ Mavg_c C)` is at most `2 · Sa Sb Sc · S_0 · ∏ f_i`. |
+
+Not formalized: the expected three-fold collision energy of three independently translated weights and its link with `Mavg`, the Fejér step, buffered heights for three chains, `CentralBound3` (which needs `HTT3` and `HFin`), `CompactQuotientCriterion3`, the two-term separation for the pairs `(2,5)` and `(3,5)`, and the derivation of `HFin` from `H(2,3,5)`. `DD {2,3,5}` is not proved in Lean.

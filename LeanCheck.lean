@@ -387,3 +387,5 @@ import LeanCheck.DD3Assemble
 
 import LeanCheck.DD3Dense
 
+import LeanCheck.DD3Sorted
+

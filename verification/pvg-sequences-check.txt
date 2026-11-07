@@ -1,0 +1,14 @@
+Axiom report for the PVGSequences Lean module, 7 November 2026.
+Lean 4.35.0 with the pinned Mathlib and the existing LeanCheck build. LeanCheck/PVGSequences.lean was compiled with `lean` (LEAN_PATH set to the Mathlib and LeanCheck build directories; `lake build` of the aggregate was not run for this report); no errors, no warnings, no sorry, no native_decide. LeanCheck/PVGSequencesAxioms.lean was then run against the compiled module.
+
+'PVG.Q95.L_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.L_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.L_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.interpolation_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.L_sub_ne_e' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.exists_lacunary_subseq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.R1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.R1_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.R4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.R1_R4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVG.Q95.e_one_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

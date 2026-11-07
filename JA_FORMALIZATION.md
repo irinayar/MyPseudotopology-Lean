@@ -163,3 +163,22 @@ Module `LeanCheck/DD3Reduction.lean` (imported by `LeanCheck.lean`; it imports `
 | `merged_gap4`, `merged_gap_seq3`, `merged_gap_seq_odd3`, `merged_growth_exp3`, `window_card_le_three` | Among four increasing periods `b^(n²)`, `b ∈ {2,3,5}`, two share a base: `log Q_{i+3j} - log Q_i ≥ j sqrt(log Q_i)`, `Q_{i+m} ≥ Q_i exp(t_i ⌊m/3⌋)`; a logarithmic window of width at most `sqrt u` contains at most three periods. |
 
 Not formalized: the cluster estimate with a third level and the hypothesis `H(2,3,5)` (finitely many triples of levels `2^(a²), 3^(b²), 5^(c²)` in a window of length `A log²(2+t)`), the central bound for three chains and the Fourier step, the compact-quotient step for `ℤ²`, the Matveev-type separation for the pairs `(2,5)` and `(3,5)`, and the final theorem. `H(2,3,5)` is a conjecture (a Borel-Cantelli prediction); it is not proved.
+
+### Phases 2 and 3: cluster estimates and the final product bound (`DD3Cluster`, `DD3Product`, 7 November 2026)
+
+Modules `LeanCheck/DD3Cluster.lean` (imports `JAClose`, `JAProductFinal`, `DD3Reduction`) and `LeanCheck/DD3Product.lean` (imports `JAProductFinal`, `JAMerged`, `MixedPrimeAnalytic`), both imported by `LeanCheck.lean`; axiom reports in `LeanCheck/DD3ClusterAxioms.lean`, `LeanCheck/DD3ProductAxioms.lean` and `verification/dd3-cluster-product-check.txt`.
+
+`DD3Cluster` re-proves the factor estimates of the normalized product argument for scales `b_p^(n_p²)` from three chains (bases 2, 3, 5), where only the growth `Q_{p+k} ≥ Q_p exp(t_p ⌊k/3⌋)` is available:
+
+| Declaration | Statement |
+|---|---|
+| `geom_three`, `sum_tau3`, `sum_tau3b` | `∑_{j<M} q^⌊j/3⌋ ≤ 6`; summation of the far-field terms with period-three growth. |
+| `far_separated3`, `far_beyond3` | Far-field bound after one level (monotone scales) and after two levels (third level `Q_{p+2} ≥ Q_p exp c`). |
+| `separated_factor_abs`, `close_factor_abs` | Copies of `JASep.separated_factor` and `JAClose.close_factor` with the far-field bound as a hypothesis. |
+| `separated_factor3`, `close_factor3` | `f_p - 1` for a separated level, and for a close pair with the two-term separation as a hypothesis and the third level beyond `Q_p exp(a(t) + log t)`. |
+| `sep_cube3`, `close_cube3_G` | Both bounds are at most a constant times `t⁻³`. |
+| `merged_gap_fin3`, `hgrow3_of_merged`, `hmon_of_merged` | The growth and monotonicity hypotheses hold for a finite increasing selection of periods of the bases 2, 3, 5. |
+
+`DD3Product` generalizes the final product bound: `sum_inv_cube_gen` (`∑ (√(lp b n))⁻³ ≤ 2 ∑_{b∈ℬ} (√log b)⁻³` over distinct periods with bases in a finite set `ℬ`), `product_final_gen` (`∏ f_i ≤ B^(K + |ℬ|⌊2T⌋) exp(Cf · 2 ∑_{b∈ℬ} (√log b)⁻³)`) and `product_final3` (`ℬ = {2,3,5}`).
+
+Not formalized: the classification of the levels of the sorted list and the verification of the per-level hypothesis, the assembly of the central bound and the Fourier step for three weights, the compact-quotient step for `ℤ²`, the two-term separation for the pairs `(2,5)` and `(3,5)`, the hypothesis `H(2,3,5)` and the final theorem `DD {2,3,5}`. `DD3Cluster` copies parts of `JASep` and `JAClose`; the linter prints deprecation and unused-argument warnings for these copies.

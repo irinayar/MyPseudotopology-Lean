@@ -379,3 +379,7 @@ import LeanCheck.PVGIndependence
 
 import LeanCheck.DD3Reduction
 
+import LeanCheck.DD3Cluster
+
+import LeanCheck.DD3Product
+

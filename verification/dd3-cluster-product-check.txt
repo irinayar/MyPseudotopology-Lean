@@ -1,0 +1,20 @@
+Axiom report for the DD3Cluster and DD3Product Lean modules, 7 November 2026.
+Lean 4.35.0 with the pinned Mathlib and the existing LeanCheck build. LeanCheck/DD3Cluster.lean and LeanCheck/DD3Product.lean were compiled with `lean` (LEAN_PATH set to the Mathlib and LeanCheck build directories; `lake build` of the aggregate was not run for this report); no errors, no sorry, no native_decide (DD3Cluster prints deprecation and unused-argument warnings from proofs copied from JASep and JAClose; DD3Product prints none). LeanCheck/DD3ClusterAxioms.lean and LeanCheck/DD3ProductAxioms.lean were then run against the compiled modules.
+
+'LeanCheck.DD3Cluster.geom_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.sum_tau3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.sum_tau3b' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.far_separated3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.far_beyond3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.separated_factor_abs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.close_factor_abs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.separated_factor3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.close_factor3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.sep_cube3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.close_cube3_G' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.merged_gap_fin3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.hgrow3_of_merged' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Cluster.hmon_of_merged' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Product.sum_inv_cube_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Product.product_final_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'LeanCheck.DD3Product.product_final3' depends on axioms: [propext, Classical.choice, Quot.sound]

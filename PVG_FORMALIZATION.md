@@ -60,3 +60,18 @@ Modules `LeanCheck/PVGMerged.lean` and `LeanCheck/PVGUncountable.lean` (imported
 | `exists_retraction_of_family` | Corollary 8.39: if the sets `B i` are infinite there is a real linear `π` with `π e1 = 1` and `SC π (y i)` for every `i` (via `R4`). |
 
 Not formalized: the sorted merged enumeration, the jointly lacunary family version of Proposition 8.38 (discharge of the base-span hypothesis from joint lacunarity), Lemma 8.40, Proposition 8.41, Proposition 8.37, and the answer to Question 9.5, which remains open.
+
+## Question 9.5: sorted merge, families, Lemma 8.40, Proposition 8.41 (`PVGSorted`, 8 November 2026)
+
+Module `LeanCheck/PVGSorted.lean` (imported by `LeanCheck.lean`; it imports `PVGMerged` and `PVGUncountable`), axiom report in `LeanCheck/PVGSortedAxioms.lean`. Same concrete setting as `PVGSequences`. Lean 4.35.0 and the same Mathlib build: no `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only.
+
+| Declaration | Statement |
+|---|---|
+| `exists_sort` | An injective `f : α → β` with finite initial segments on an infinite `α` has an enumeration `σ : ℕ ≃ α` with `f ∘ σ` strictly increasing (rank). |
+| `independence_listing`, `PairSep`, `listing_of_sep`, `independence_sep` | Theorem 8.36 with the paper's hypothesis (a listing of all terms with consecutive ratios tending to infinity), and in the pairwise form (for every `R` all but finitely many pairs of distinct terms have ratio at least `R`) from which the sorted listing is built. |
+| `JointSep`, `disjoint_span_L_family`, `prop_uncountable_family`, `exists_retraction_of_joint_family` | Proposition 8.38 and Corollary 8.39 for a family of base sequences every finite subfamily of which satisfies the hypothesis of Theorem 8.36. |
+| `corollary_indepB` | Corollary 8.35: thinning a lacunary sequence to a sparse set. |
+| `lemma_separation` | Lemma 8.40 (separation), with the recursive choice of the proof. |
+| `Depth`, `depth_admissible` | Proposition 8.41 (sequences of finite depth), by induction on the depth, with thinnings and finite-to-one maps into `B`. |
+
+Not formalized: Proposition 8.37 (finitely and countably many sequences), infinite depth and the simultaneous choice, everything that needs the convergence `η_π`.

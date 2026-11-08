@@ -393,3 +393,5 @@ import LeanCheck.PVGMerged
 
 import LeanCheck.PVGUncountable
 
+import LeanCheck.PVGSorted
+

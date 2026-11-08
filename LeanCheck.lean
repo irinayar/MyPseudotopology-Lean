@@ -395,3 +395,5 @@ import LeanCheck.PVGUncountable
 
 import LeanCheck.PVGSorted
 
+import LeanCheck.PVGFinite
+

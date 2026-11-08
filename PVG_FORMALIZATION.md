@@ -75,3 +75,16 @@ Module `LeanCheck/PVGSorted.lean` (imported by `LeanCheck.lean`; it imports `PVG
 | `Depth`, `depth_admissible` | Proposition 8.41 (sequences of finite depth), by induction on the depth, with thinnings and finite-to-one maps into `B`. |
 
 Not formalized: Proposition 8.37 (finitely and countably many sequences), infinite depth and the simultaneous choice, everything that needs the convergence `η_π`.
+
+## Question 9.5: Proposition 8.37, finitely and countably many sequences (`PVGFinite`, 8 November 2026)
+
+Module `LeanCheck/PVGFinite.lean` (imported by `LeanCheck.lean`; it imports `PVGSorted`), axiom report in `LeanCheck/PVGFiniteAxioms.lean`. Same concrete setting as `PVGSequences`. Lean 4.35.0 and the same Mathlib build: no `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only.
+
+| Declaration | Statement |
+|---|---|
+| `decomp` | A sequence in a finite-dimensional real inner product space has a subsequence `∑ i, f i • v i + ρ` with unit vectors `v i`, `ρ` convergent, `\|f i\| → ∞` and `\|f i'\|/\|f i\| → 0` for `i < i'` (strong induction on the dimension of a subspace containing the sequence). |
+| `jointSep_fin`, `thin_joint` | Thinning to a subsequence along which all `\|f i (b t)\|` are jointly separated (the hypothesis of Theorem 8.36). |
+| `finite_family` | Proposition 8.37, finite case: an infinite `B ⊆ C` such that the span of the differences `L (y j) U - L (y j) V` (`U, V` free containing `B`) meets `ℝ e1` only in `0`. |
+| `countable_family` | Proposition 8.37, countable case (diagonal argument). |
+
+Not formalized: the simultaneous choice for all lacunary sequences, infinite depth, everything that needs the convergence `η_π`.

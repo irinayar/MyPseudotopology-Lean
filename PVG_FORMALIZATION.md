@@ -107,3 +107,16 @@ Modules `LeanCheck/PVGPseudo.lean`, `PVGClassify.lean`, `PVGMinimal.lean`, `PVGC
 | | `block_sum_inverse` | The identity of Remark 8.42. |
 
 Not formalized: Corollary 8.24 (pretopological iff `G` closed; it uses the cited minimality of the Bohr topology), the "not pretopological, not Fréchet–Urysohn" parts of Corollary 8.29, Proposition 2.5 and Sections 3 to 7.
+
+## Section 2 and Corollary 8.29: null filters and non-Fréchet–Urysohn examples (`PVGNull`, `PVGNonzero`, 8 November 2026)
+
+Modules `LeanCheck/PVGNull.lean` and `LeanCheck/PVGNonzero.lean` (imported by `LeanCheck.lean`), axiom reports in the matching `*Axioms.lean` files. No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only.
+
+| Module | Declaration | Statement |
+|---|---|---|
+| `PVGNull` | `IsNullFamily`, `convOf`, `convOf_isPVG`, `convOf_hausdorff_iff` | Proposition 2.5 (first half) for an arbitrary real vector space: a family of filters with (i) to (iv) defines a PVG pseudotopology whose null filters are the members of the family; Hausdorff iff no nonempty filter `F` and `z ≠ 0` with `F` and `F - z` in the family. |
+| | `nullFamily_of_pvg`, `conv_iff_translate`, `conv_eq_convOf` | Proposition 2.5 (second half): the null filters of a PVG form such a family and `F → x` iff `F - x → 0`. |
+| `PVGNonzero` | `IsFU`, `euclid_coarser`, `exists_nonzero_admissible` | Fréchet–Urysohn property; `η_G` is coarser than the Euclidean convergence; `H_0` is a nonzero admissible subspace. |
+| | `not_FU` | Corollary 8.29, last assertion (with `hdense : DenseRange e`): for an admissible `G` with `0 < dim G < 2^𝔠`, `η_G` is not Fréchet–Urysohn. |
+
+Not formalized: that `η_G` is not pretopological for `G ≠ 0` (Corollary 8.24 and the cited minimality of the Bohr topology).

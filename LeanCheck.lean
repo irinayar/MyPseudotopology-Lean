@@ -415,3 +415,19 @@ import LeanCheck.DD3GenOnePrime
 import LeanCheck.DD3GenQuotient
 
 import LeanCheck.DD3GenSep
+
+import LeanCheck.PVGIdeal
+
+import LeanCheck.PVGExamples
+
+import LeanCheck.PVGBohr
+
+import LeanCheck.PVGLacCount
+
+import LeanCheck.PVGLacIdeal
+
+import LeanCheck.PVGLacDilation
+
+import LeanCheck.PVGLacMain
+
+import LeanCheck.PVGClosed

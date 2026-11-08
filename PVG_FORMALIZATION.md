@@ -120,3 +120,29 @@ Modules `LeanCheck/PVGNull.lean` and `LeanCheck/PVGNonzero.lean` (imported by `L
 | | `not_FU` | Corollary 8.29, last assertion (with `hdense : DenseRange e`): for an admissible `G` with `0 < dim G < 2^𝔠`, `η_G` is not Fréchet–Urysohn. |
 
 Not formalized: that `η_G` is not pretopological for `G ≠ 0` (Corollary 8.24 and the cited minimality of the Bohr topology).
+
+## Sections 3 to 7 and Corollary 8.24 (`PVGIdeal`, `PVGExamples`, `PVGBohr`, `PVGLacCount`, `PVGLacIdeal`, `PVGLacDilation`, `PVGLacMain`, `PVGClosed`, 8 November 2026)
+
+Eight modules in `LeanCheck/` (imported by `LeanCheck.lean`), axiom reports in the matching `*Axioms.lean` files. No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only. Convergence relations are `Filter ℝ → ℝ → Prop`; "Euclidean convergence of `F` to `x`" is `F ≤ 𝓝 x`. The Bohr topology `bohrTop` is the topology induced by `e : ℝ → K`.
+
+| Module | Declaration | Statement |
+|---|---|---|
+| `PVGIdeal` | `IsIdeal`, `xi_isPVG`, `xi_hausdorff` | Definition 6.1 (I1)–(I5) and Proposition 6.2 (first part), for a real vector space with a group topology with continuous dilations. |
+| | `isPretop_iff_zero`, `xi_pretop_iff`, `xi_not_pretop`, `xi_not_topological` | Lemma 6.3, Theorem 6.4 (pretopology criterion), Corollary 6.5. |
+| | `modTop`, `mem_modTop_iff` | Proposition 6.6 (topological modification and its description by closures). |
+| `PVGExamples` | `discrete_isPVG`, `discrete_not_coarser` | Example 3.1. |
+| | `countable_isPVG`, `countable_not_pretop`, `countable_not_topological` | Example 3.2 (the ideal of countable sets). |
+| | `coarser_of_continuous_one`, `joint_euclid` | Proposition 3.3; Theorem 4.1 (joint continuity forces the Euclidean convergence). |
+| `PVGBohr` | `bohr_isTopologicalAddGroup`, `bohr_t2`, `bohr_constSMul`, `bohr_coarser_euclid`, `bohr_unbounded` | Proposition 5.1 (a)–(d). |
+| | `bohrConv_isPVG`, `bohr_not_euclid`, `bohr_not_jointCont` | Corollary 5.2. |
+| `PVGLacCount` | `rep_of_mem_sumSet`, `lower_bound`, `count_bound` | Lemma 7.1 in a weaker form: for `ρ > 0` and every `L`, `Σ ∩ [-ρ s_L, ρ s_L]` is finite and `ncard² ≤ K s_L`, where the article states `K (log r)^k`. The power saving is what Lemmas 7.2 and 7.3 use. |
+| `PVGLacIdeal` | `univ_not_mem_IS`, `IS_isIdeal` | Lemma 7.2 (`I_S` satisfies (I1)–(I5)). |
+| `PVGLacDilation` | `exists_dilation` | Lemma 7.3 (Borel–Cantelli). |
+| `PVGLacMain` | `lacConv_isPVG`, `lacConv_hausdorff`, `lac_coarser_euclid`, `lac_finer_bohr`, `lac_not_pretop`, `lac_not_topological`, `lac_not_euclid` | Theorem 7.4. |
+| | `lac_modTop_le_euclid`, `bohr_le_lac_modTop`, `lac_ball_not_open` | Remark 7.6 (`τ_B ⊆ τ_ξ ⊆ τ_E`, `(-1,1)` not `τ_ξ`-open). |
+| `PVGClosed` | `BohrMinimal` | The cited minimality of the Bohr topology among Hausdorff TVG topologies (Y1981), as an explicit hypothesis. |
+| | `etaConv_pretop_closed` (with `DenseRange e`), `etaConv_topological_of_closed` | Corollary 8.24, two unconditional halves: `η_G` pretopological implies `G` closed; `G` closed implies `η_G` is the convergence of the topology induced by `ℝ → K/G`. |
+| | `closed_eq_bot`, `closedPVG`, `closedPVG_bot` | Corollary 8.24 with `BohrMinimal`: pretopological iff closed iff `G = 0`. |
+| | `nonzeroG_not_pretop`, `nonzeroG_not_topological`, `complement_ne_bot`, `minimal_not_pretop`, `minimal_not_topological` | The non-pretopological parts of Corollaries 8.29 and 8.27(c), with `BohrMinimal`. |
+
+Not formalized: Section 8 results outside these (for example Propositions `bohrseq`, `finite`, `clusters`, `relaxed`, `ctblFU`, Theorems `notFU`, `clusterbound`, `extendFU`, `precompact` and the structure of `τ_ξ`), the sharper polylogarithmic bound in Lemma 7.1, the cited minimality of the Bohr topology, the simultaneous choice of the sets `B_y` (Question `compactFU`) and infinite depth, which are open questions.

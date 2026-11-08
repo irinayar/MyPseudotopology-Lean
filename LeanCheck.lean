@@ -389,3 +389,7 @@ import LeanCheck.DD3Dense
 
 import LeanCheck.DD3Sorted
 
+import LeanCheck.PVGMerged
+
+import LeanCheck.PVGUncountable
+

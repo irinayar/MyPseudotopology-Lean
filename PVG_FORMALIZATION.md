@@ -46,3 +46,17 @@ Module `LeanCheck/PVGIndependence.lean` (imported by `LeanCheck.lean`; it import
 | `independence_finset`, `linearIndependent_L` | The same for a finite set of free ultrafilters; the vectors `L y U` (`U` free) are linearly independent over `ℝ`, and their real span meets `e(ℝ)` only in `0`. |
 
 Not formalized: Theorem B (finitely many jointly lacunary sequences), the density property of good retractions, the consequences for the retraction `π`, and the answer to Question 9.5, which remains open (dependent sequences and `c` many sequences).
+
+## Question 9.5: merged independence, Proposition 8.38 and Corollary 8.39 (`PVGMerged`, `PVGUncountable`, 8 November 2026)
+
+Modules `LeanCheck/PVGMerged.lean` and `LeanCheck/PVGUncountable.lean` (imported by `LeanCheck.lean`; they import `PVGIndependence`), axiom reports in `LeanCheck/PVGMergedAxioms.lean` and `LeanCheck/PVGUncountableAxioms.lean`. Same concrete setting as `PVGSequences` (`K = ℝ →+ AddCircle 1`, `e`, `L y U`). Checked with Lean 4.35.0 and the same Mathlib build: no `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only.
+
+| Declaration | Statement |
+|---|---|
+| `free_map`, `L_comp` | The image of a free ultrafilter under an injective map is free; `L (y ∘ f) U = L y (f_* U)`. |
+| `independence_merged` | Theorem 8.36 in merged form: if all terms of `y¹, …, yᵐ` occur in one sequence `z` with nonzero terms and `|z (k+1)| / |z k| → ∞` (injective `ι j` with pairwise disjoint ranges, `y j k = z (ι j k)`), `W_1, …, W_n` are pairwise distinct free ultrafilters and the real `γ j l` are not all zero, then `∑ γ j l • L (y j) (W l) ≠ e x`. Reduction to `independence`. The sorted enumeration that produces `z` is not formalized. |
+| `FiniteToOne`, `free_map_fto`, `L_rep` | Finite-to-one maps send free ultrafilters to free ultrafilters; if `y k = ∑ r j • y0 (c j) (σ j k) + z k` with `z → a` along `B`, then `L y U = ∑ r j • L (y0 (c j)) (σ j ⁎ U) + e a` for free `U ∋ B`. |
+| `prop_uncountable_gen`, `disjoint_span_L`, `prop_uncountable` | Proposition 8.38: for a base family whose limits span a subspace meeting `ℝ e1` only in `0`, the span of the differences `L (y i) U - L (y i) V` (`U, V` free, containing `B i`) of finite combinations of finite-to-one re-indexings plus a convergent remainder meets `ℝ e1` only in `0`; the one-base case. |
+| `exists_retraction_of_family` | Corollary 8.39: if the sets `B i` are infinite there is a real linear `π` with `π e1 = 1` and `SC π (y i)` for every `i` (via `R4`). |
+
+Not formalized: the sorted merged enumeration, the jointly lacunary family version of Proposition 8.38 (discharge of the base-span hypothesis from joint lacunarity), Lemma 8.40, Proposition 8.41, Proposition 8.37, and the answer to Question 9.5, which remains open.

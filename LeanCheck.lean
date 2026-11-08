@@ -397,3 +397,11 @@ import LeanCheck.PVGSorted
 
 import LeanCheck.PVGFinite
 
+import LeanCheck.PVGPseudo
+
+import LeanCheck.PVGClassify
+
+import LeanCheck.PVGMinimal
+
+import LeanCheck.PVGCard
+

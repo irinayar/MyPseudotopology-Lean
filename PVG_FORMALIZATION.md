@@ -88,3 +88,22 @@ Module `LeanCheck/PVGFinite.lean` (imported by `LeanCheck.lean`; it imports `PVG
 | `countable_family` | Proposition 8.37, countable case (diagonal argument). |
 
 Not formalized: the simultaneous choice for all lacunary sequences, infinite depth, everything that needs the convergence `η_π`.
+
+## Section 8: pseudotopologies, `η_G`, the classification and the convergence statements (`PVGPseudo`, `PVGClassify`, `PVGMinimal`, `PVGCard`, 8 November 2026)
+
+Modules `LeanCheck/PVGPseudo.lean`, `PVGClassify.lean`, `PVGMinimal.lean`, `PVGCard.lean` (imported by `LeanCheck.lean`), axiom reports in the matching `*Axioms.lean` files. Same concrete setting as `PVGSequences`. Lean 4.35.0 and the same Mathlib build: no `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only. The density of `e(ℝ)` in `K` (cited in the article) is the hypothesis `hdense : DenseRange e` where it is used (uniqueness of `G`, order reversal).
+
+| Module | Declaration | Statement |
+|---|---|---|
+| `PVGPseudo` | `IsPseudoTop`, `PHausdorff`, `IsPVG`, `etaConv`, `bohrConv`, `Lr` | Definitions 2.1 to 2.3 (addition in the form of Lemma 2.4), the convergence `η_G` and the Bohr limit of an ultrafilter on `ℝ`. |
+| | `exists_ultra_map`, `lr_add_decomp`, `etaConv_pvg` | Proposition 8.18 in general form: for an admissible `G`, `η_G` is a Hausdorff PVG coarser than the Bohr topology. |
+| `PVGClassify` | `classify`, `etaConv_le_iff`, `etaConv_inj`, `classifyPVG` | Theorem 8.23: the Hausdorff PVGs coarser than the Bohr topology are exactly the `η_G`, `G` is unique, and `η_G` is coarser than `η_{G'}` iff `G' ≤ G`. |
+| `PVGMinimal` | `etaConv_ker_iff`, `ultra_converges`, `minimal_ker` | Corollary 8.27(b), the convergence parts. |
+| | `seqConv_iff`, `seqCompact_iff`, `lacred`, `admref` | Propositions 8.30 and 8.32. |
+| | `noCoarsestPVG` | Corollary 8.25. |
+| `PVGCard` | `card_free_ultra`, `card_K`, `rank_K` | `2^𝔠` free ultrafilters; `#K = 2^𝔠`, `dim_ℝ K = 2^𝔠` (Lemma 8.26(c)). |
+| | `seqG_bounded`, `seqG_unbounded` | Proposition 8.28. |
+| | `card_retractions_K`, `card_minimal`, `minimal_antichain` | Corollary 8.27(c). |
+| | `block_sum_inverse` | The identity of Remark 8.42. |
+
+Not formalized: Corollary 8.24 (pretopological iff `G` closed; it uses the cited minimality of the Bohr topology), the "not pretopological, not Fréchet–Urysohn" parts of Corollary 8.29, Proposition 2.5 and Sections 3 to 7.

@@ -10,6 +10,7 @@ the limits `L y U`). The proof of the article is formalized in three stages:
   `∑ i, f i • v i + ρ` with unit vectors `v i`, `ρ` convergent, `|f i| → ∞` and `|f i'| / |f i| → 0` for `i < i'` (the orthonormal
   decomposition of the article; the induction is on the dimension of the subspace containing the sequence, the termination
   uses only that the orthogonal part lies in a strictly smaller subspace);
+* `exists_retraction_countable`, `exists_retraction_finite`: Corollary 8.39 for finitely and countably many sequences (`countable_family`, `finite_family` with the retraction construction `R4`);
 * thinning (stage B): the coefficient sequences can be thinned to a sequence `b` along which the numbers `|f i (b t)|` are
   jointly separated (`JointSep`, so Theorem 8.36 applies);
 * stage C: the finite case, stage D: the countable case by the diagonal argument.
@@ -481,10 +482,45 @@ theorem countable_family (y : ℕ → ℕ → ℝ) (C : Set ℕ) (hC : C.Infinit
   obtain ⟨n, hn⟩ := (Submodule.mem_iSup_of_directed _ hdir.directed_le).1 (hle hw)
   exact (Submodule.disjoint_def.1 (hSn n)) w hn hw1
 
+/-! ### Corollary 8.39 for finitely and countably many sequences -/
+
+/-- **Corollary 8.39 for a countable family of real sequences**: one real linear `π` with `π (e 1) = 1` is good for every member
+(the combination of `countable_family` with the retraction construction `R4`). -/
+theorem exists_retraction_countable (y : ℕ → ℕ → ℝ) :
+    ∃ π : K →ₗ[ℝ] ℝ, π (e 1) = 1 ∧ ∀ n, SC π (y n) := by
+  classical
+  obtain ⟨B, -, hBinf, hdis⟩ := countable_family y Set.univ Set.infinite_univ
+  let Lac : Set (ℕ → ℝ) := Set.range y
+  have hR4 := (R4 (e 1) e_one_ne_zero Lac L Free).2 ⟨fun _ => B, ?_, ?_⟩
+  · obtain ⟨π, h1, hπ⟩ := hR4
+    exact ⟨π, h1, fun n => hπ (y n) ⟨n, rfl⟩⟩
+  · intro w _; exact hBinf
+  · refine Disjoint.mono_left ?_ hdis
+    apply Submodule.span_mono
+    rintro v ⟨w, ⟨n, rfl⟩, U, V, hU, hV, hBU, hBV, rfl⟩
+    exact Set.mem_iUnion.2 ⟨n, U, V, hU, hV, hBU, hBV, rfl⟩
+
+/-- **Corollary 8.39 for finitely many real sequences.** -/
+theorem exists_retraction_finite {m : ℕ} (y : Fin m → ℕ → ℝ) :
+    ∃ π : K →ₗ[ℝ] ℝ, π (e 1) = 1 ∧ ∀ j, SC π (y j) := by
+  classical
+  obtain ⟨B, -, hBinf, hdis⟩ := finite_family y Set.univ Set.infinite_univ
+  let Lac : Set (ℕ → ℝ) := Set.range y
+  have hR4 := (R4 (e 1) e_one_ne_zero Lac L Free).2 ⟨fun _ => B, ?_, ?_⟩
+  · obtain ⟨π, h1, hπ⟩ := hR4
+    exact ⟨π, h1, fun j => hπ (y j) ⟨j, rfl⟩⟩
+  · intro w _; exact hBinf
+  · refine Disjoint.mono_left ?_ hdis
+    apply Submodule.span_mono
+    rintro v ⟨w, ⟨j, rfl⟩, U, V, hU, hV, hBU, hBV, rfl⟩
+    exact Set.mem_iUnion.2 ⟨j, U, V, hU, hV, hBU, hBV, rfl⟩
+
 #print axioms decomp
 #print axioms thin_joint
 #print axioms finite_family
 #print axioms countable_family
+#print axioms exists_retraction_countable
+#print axioms exists_retraction_finite
 
 end Q95
 end PVG

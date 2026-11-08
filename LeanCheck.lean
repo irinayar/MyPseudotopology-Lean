@@ -409,3 +409,9 @@ import LeanCheck.PVGNull
 
 import LeanCheck.PVGNonzero
 
+
+import LeanCheck.DD3GenOnePrime
+
+import LeanCheck.DD3GenQuotient
+
+import LeanCheck.DD3GenSep

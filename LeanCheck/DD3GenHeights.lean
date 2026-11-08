@@ -24,11 +24,14 @@ namespace DD3Gen
 
 open Finset JAHeights
 
+/-- The start level: at least `⌈D⌉` and at least `30` (so that the ratios `α_k` of the chains are large, see `DD3GenScalar`). -/
+noncomputable def sE (D : ℝ) : ℕ := max (sD D) 30
+
 /-- `X` is a buffered height for the three chains with exponents `E` and depths `na, nb, nc` (start level `⌈D⌉`). -/
 def Buffered3E (E : ℕ → ℕ → ℕ) (D : ℝ) (X na nb nc : ℕ) : Prop :=
-  D * X < (2 : ℝ) ^ (E 2 (sD D + na + 1)) ∧ D * X < (3 : ℝ) ^ (E 3 (sD D + nb + 1)) ∧
-  D * X < (5 : ℝ) ^ (E 5 (sD D + nc + 1)) ∧
-  4 * 2 ^ (E 2 (sD D + na)) ≤ X ∧ 4 * 3 ^ (E 3 (sD D + nb)) ≤ X ∧ 4 * 5 ^ (E 5 (sD D + nc)) ≤ X
+  D * X < (2 : ℝ) ^ (E 2 (sE D + na + 1)) ∧ D * X < (3 : ℝ) ^ (E 3 (sE D + nb + 1)) ∧
+  D * X < (5 : ℝ) ^ (E 5 (sE D + nc + 1)) ∧
+  4 * 2 ^ (E 2 (sE D + na)) ≤ X ∧ 4 * 3 ^ (E 3 (sE D + nb)) ≤ X ∧ 4 * 5 ^ (E 5 (sE D + nc)) ≤ X
 
 /-- The ratios of consecutive scales tend to infinity. -/
 lemma ratio_to_infty {E : ℕ → ℕ → ℕ} {b : ℕ} (hb : 2 ≤ b) (he : StrictMono (E b)) (hg : GapE b (E b)) (K : ℕ) :
@@ -131,8 +134,9 @@ theorem exists_buffered3E {E : ℕ → ℕ → ℕ} (hE : OK3 E) (D : ℝ) (hD :
   classical
   have hD0 : 0 < D := by linarith
   have hmono : ∀ p, (p = 2 ∨ p = 3 ∨ p = 5) → StrictMono (E p) := fun p hp => (hE p hp).1
-  obtain ⟨s, hs⟩ : ∃ s, s = sD D := ⟨_, rfl⟩
-  have hsD : D ≤ (s : ℝ) := by rw [hs]; exact Nat.le_ceil D
+  obtain ⟨s, hs⟩ : ∃ s, s = sE D := ⟨_, rfl⟩
+  have hsD : D ≤ (s : ℝ) := by
+    rw [hs]; exact le_trans (Nat.le_ceil D) (Nat.cast_le.2 (le_max_left _ _))
   have hs3 : 3 ≤ s := by
     have : (3 : ℝ) ≤ (s : ℝ) := le_trans hD hsD
     exact_mod_cast this
@@ -253,9 +257,9 @@ theorem exists_buffered3E {E : ℕ → ℕ → ℕ} (hE : OK3 E) (D : ℝ) (hD :
     calc M ≤ X₀ := hX₀M
       _ = X₀ * 1 := by ring
       _ ≤ X₀ * E' ^ i := Nat.mul_le_mul_left _ h2
-  · have e2 : sD D + (j2 - s) = j2 := by omega
-    have e3 : sD D + (j3 - s) = j3 := by omega
-    have e5 : sD D + (j5 - s) = j5 := by omega
+  · have e2 : sE D + (j2 - s) = j2 := by omega
+    have e3 : sE D + (j3 - s) = j3 := by omega
+    have e5 : sE D + (j5 - s) = j5 := by omega
     unfold Buffered3E
     rw [e2, e3, e5]
     exact ⟨key 2 j2 h2b, key 3 j3 h3b, key 5 j5 h5b, h2a, h3a, h5a⟩

@@ -186,11 +186,11 @@ lemma FkerE_eq (E : ℕ → ℕ → ℕ) (D : ℝ) (p : ℕ × ℕ) (hp : 0 < p.
   unfold FkerE
   rw [dif_pos hp]
 
-lemma pairs3_map_FkerE {e2 e3 e5 : ℕ → ℕ} (h2 : Monotone e2) (h3 : Monotone e3) (h5 : Monotone e5) (D : ℝ)
+lemma pairs3_map_FkerE {E : ℕ → ℕ → ℕ} (h2 : Monotone (E 2)) (h3 : Monotone (E 3)) (h5 : Monotone (E 5)) (D : ℝ)
     (sa na sb nb sc nc : ℕ) :
-    (pairs3Of sa na sb nb sc nc).map (FkerE (E3 e2 e3 e5) N D) =
-      normKernList N (chainE 2 e2 h2 sa D) na ++
-        (normKernList N (chainE 3 e3 h3 sb D) nb ++ normKernList N (chainE 5 e5 h5 sc D) nc) := by
+    (pairs3Of sa na sb nb sc nc).map (FkerE E N D) =
+      normKernList N (chainE 2 (E 2) h2 sa D) na ++
+        (normKernList N (chainE 3 (E 3) h3 sb D) nb ++ normKernList N (chainE 5 (E 5) h5 sc D) nc) := by
   unfold pairs3Of pairsOf normKernList
   simp only [List.map_append, List.map_map, List.append_assoc]
   congr 1
@@ -200,22 +200,22 @@ end kerns
 /-! ### The sorted enumeration -/
 
 /-- **The sorted enumeration of the scales of the three chains with general exponents.** -/
-theorem exists_sorted3E {e2 e3 e5 : ℕ → ℕ} (h2 : StrictMono e2) (h3 : StrictMono e3) (h5 : StrictMono e5)
+theorem exists_sorted3E {E : ℕ → ℕ → ℕ} (h2 : StrictMono (E 2)) (h3 : StrictMono (E 3)) (h5 : StrictMono (E 5))
     (N : ℕ) [NeZero N] (D : ℝ) (sa na sb nb sc nc : ℕ) :
     ∃ b n : ℕ → ℕ, (∀ i, b i = 2 ∨ b i = 3 ∨ b i = 5) ∧
       (∀ a c, a < c → c < na + nb + nc →
-        lpE (E3 e2 e3 e5) (b a) (n a) < lpE (E3 e2 e3 e5) (b c) (n c)) ∧
+        lpE E (b a) (n a) < lpE E (b c) (n c)) ∧
       (∀ j, j < na + nb + nc → (b j = 2 ∧ sa < n j ∧ n j ≤ sa + na) ∨ (b j = 3 ∧ sb < n j ∧ n j ≤ sb + nb) ∨
         (b j = 5 ∧ sc < n j ∧ n j ≤ sc + nc)) ∧
-      ∀ [inst : ∀ j, NeZero ((b j) ^ (E3 e2 e3 e5 (b j) (n j)))],
-        ((List.range (na + nb + nc)).map (fun j => normK N ((b j) ^ (E3 e2 e3 e5 (b j) (n j)))
-          (wQ D ((b j) ^ (E3 e2 e3 e5 (b j) (n j)))))).Perm
-          (normKernList N (chainE 2 e2 h2.monotone sa D) na ++
-            (normKernList N (chainE 3 e3 h3.monotone sb D) nb ++
-              normKernList N (chainE 5 e5 h5.monotone sc D) nc)) := by
+      ∀ [inst : ∀ j, NeZero ((b j) ^ (E (b j) (n j)))],
+        ((List.range (na + nb + nc)).map (fun j => normK N ((b j) ^ (E (b j) (n j)))
+          (wQ D ((b j) ^ (E (b j) (n j)))))).Perm
+          (normKernList N (chainE 2 (E 2) h2.monotone sa D) na ++
+            (normKernList N (chainE 3 (E 3) h3.monotone sb D) nb ++
+              normKernList N (chainE 5 (E 5) h5.monotone sc D) nc)) := by
   classical
-  set E := E3 e2 e3 e5 with hEdef
-  have hE : ∀ b, (b = 2 ∨ b = 3 ∨ b = 5) → StrictMono (E b) := E3_strictMono h2 h3 h5
+  have hE : ∀ b, (b = 2 ∨ b = 3 ∨ b = 5) → StrictMono (E b) := fun b hb => by
+    rcases hb with rfl | rfl | rfl <;> assumption
   set S := sortedPairs3E E sa na sb nb sc nc with hS
   have hlen : S.length = na + nb + nc := sortedPairs3E_length E sa na sb nb sc nc
   have hb2 : ∀ j, j < na + nb + nc → 2 ≤ (S.getD j (2, 0)).1 := by
@@ -290,40 +290,40 @@ variable {N : ℕ} [NeZero N]
 
 /-- **The arc mass along the sorted list of the scales of the three chains with general exponents**
 (counterpart of `DD3Sorted.arc_mass_sorted3`). -/
-theorem arc_mass_sorted3E {e2 e3 e5 : ℕ → ℕ} (h2 : StrictMono e2) (h3 : StrictMono e3) (h5 : StrictMono e5)
+theorem arc_mass_sorted3E {E : ℕ → ℕ → ℕ} (h2 : StrictMono (E 2)) (h3 : StrictMono (E 3)) (h5 : StrictMono (E 5))
     (D : ℝ) (sa na sb nb sc nc : ℕ) (A B C : ZMod N → ℝ)
     (hA : ∀ x, 0 ≤ A x) (hB : ∀ x, 0 ≤ B x) (hC : ∀ x, 0 ≤ C x) (m : ℕ) (hm : 1 ≤ m) (h2m : 2 * m ≤ N) :
     ∃ b n : ℕ → ℕ, (∀ i, b i = 2 ∨ b i = 3 ∨ b i = 5) ∧
       (∀ a c, a < c → c < na + nb + nc →
-        lpE (E3 e2 e3 e5) (b a) (n a) < lpE (E3 e2 e3 e5) (b c) (n c)) ∧
+        lpE E (b a) (n a) < lpE E (b c) (n c)) ∧
       (∀ j, j < na + nb + nc → (b j = 2 ∧ sa < n j ∧ n j ≤ sa + na) ∨ (b j = 3 ∧ sb < n j ∧ n j ≤ sb + nb) ∨
         (b j = 5 ∧ sc < n j ∧ n j ≤ sc + nc)) ∧
-      ∀ [inst : ∀ j, NeZero ((b j) ^ (E3 e2 e3 e5 (b j) (n j)))],
-        ∑ t ∈ arc N (m - 1), conv (Mavg N na (chainE 2 e2 h2.monotone sa D) A)
-            (conv (Mavg N nb (chainE 3 e3 h3.monotone sb D) B) (Mavg N nc (chainE 5 e5 h5.monotone sc D) C)) t ≤
-          2 * ((∏ k ∈ range na, ((∑ y, (chainE 2 e2 h2.monotone sa D).w (k + 1) y) ^ 2 /
-                  (((chainE 2 e2 h2.monotone sa D).q k : ℕ) : ℝ) ^ 2)) *
-              (∏ k ∈ range nb, ((∑ y, (chainE 3 e3 h3.monotone sb D).w (k + 1) y) ^ 2 /
-                  (((chainE 3 e3 h3.monotone sb D).q k : ℕ) : ℝ) ^ 2)) *
-              (∏ k ∈ range nc, ((∑ y, (chainE 5 e5 h5.monotone sc D).w (k + 1) y) ^ 2 /
-                  (((chainE 5 e5 h5.monotone sc D).q k : ℕ) : ℝ) ^ 2))) *
+      ∀ [inst : ∀ j, NeZero ((b j) ^ (E (b j) (n j)))],
+        ∑ t ∈ arc N (m - 1), conv (Mavg N na (chainE 2 (E 2) h2.monotone sa D) A)
+            (conv (Mavg N nb (chainE 3 (E 3) h3.monotone sb D) B) (Mavg N nc (chainE 5 (E 5) h5.monotone sc D) C)) t ≤
+          2 * ((∏ k ∈ range na, ((∑ y, (chainE 2 (E 2) h2.monotone sa D).w (k + 1) y) ^ 2 /
+                  (((chainE 2 (E 2) h2.monotone sa D).q k : ℕ) : ℝ) ^ 2)) *
+              (∏ k ∈ range nb, ((∑ y, (chainE 3 (E 3) h3.monotone sb D).w (k + 1) y) ^ 2 /
+                  (((chainE 3 (E 3) h3.monotone sb D).q k : ℕ) : ℝ) ^ 2)) *
+              (∏ k ∈ range nc, ((∑ y, (chainE 5 (E 5) h5.monotone sc D).w (k + 1) y) ^ 2 /
+                  (((chainE 5 (E 5) h5.monotone sc D).q k : ℕ) : ℝ) ^ 2))) *
             ((conv (conv A (conv B C)) (Hs (Ftri N m)
-                  ((List.range (na + nb + nc)).map (fun j => normK N ((b j) ^ (E3 e2 e3 e5 (b j) (n j)))
-                    (wQ D ((b j) ^ (E3 e2 e3 e5 (b j) (n j))))))) 0 /
-                Hs (Ftri N m) ((List.range (na + nb + nc)).map (fun j => normK N ((b j) ^ (E3 e2 e3 e5 (b j) (n j)))
-                    (wQ D ((b j) ^ (E3 e2 e3 e5 (b j) (n j)))))) 0) *
+                  ((List.range (na + nb + nc)).map (fun j => normK N ((b j) ^ (E (b j) (n j)))
+                    (wQ D ((b j) ^ (E (b j) (n j))))))) 0 /
+                Hs (Ftri N m) ((List.range (na + nb + nc)).map (fun j => normK N ((b j) ^ (E (b j) (n j)))
+                    (wQ D ((b j) ^ (E (b j) (n j)))))) 0) *
               ∏ i ∈ range (na + nb + nc),
-                (Hs (Ftri N m) (((List.range (na + nb + nc)).map (fun j => normK N ((b j) ^ (E3 e2 e3 e5 (b j) (n j)))
-                    (wQ D ((b j) ^ (E3 e2 e3 e5 (b j) (n j)))))).drop i) 0 /
-                  Hs (Ftri N m) (((List.range (na + nb + nc)).map (fun j => normK N ((b j) ^ (E3 e2 e3 e5 (b j) (n j)))
-                    (wQ D ((b j) ^ (E3 e2 e3 e5 (b j) (n j)))))).drop (i + 1)) 0)) := by
+                (Hs (Ftri N m) (((List.range (na + nb + nc)).map (fun j => normK N ((b j) ^ (E (b j) (n j)))
+                    (wQ D ((b j) ^ (E (b j) (n j)))))).drop i) 0 /
+                  Hs (Ftri N m) (((List.range (na + nb + nc)).map (fun j => normK N ((b j) ^ (E (b j) (n j)))
+                    (wQ D ((b j) ^ (E (b j) (n j)))))).drop (i + 1)) 0)) := by
   obtain ⟨b, n, hb, hmono, hmem, hperm⟩ := exists_sorted3E h2 h3 h5 N D sa na sb nb sc nc
   refine ⟨b, n, hb, hmono, hmem, fun {inst} => ?_⟩
-  have hZa : ∀ k, 0 < ∑ y, (chainE 2 e2 h2.monotone sa D).w (k + 1) y := fun k => JAFinal.sum_wQ_pos D
-  have hZb : ∀ k, 0 < ∑ y, (chainE 3 e3 h3.monotone sb D).w (k + 1) y := fun k => JAFinal.sum_wQ_pos D
-  have hZc : ∀ k, 0 < ∑ y, (chainE 5 e5 h5.monotone sc D).w (k + 1) y := fun k => JAFinal.sum_wQ_pos D
-  have h := arc_mass_product3 (chainE 2 e2 h2.monotone sa D) (chainE 3 e3 h3.monotone sb D)
-    (chainE 5 e5 h5.monotone sc D) na nb nc hZa hZb hZc A B C hA hB hC m hm h2m _ (hperm (inst := inst))
+  have hZa : ∀ k, 0 < ∑ y, (chainE 2 (E 2) h2.monotone sa D).w (k + 1) y := fun k => JAFinal.sum_wQ_pos D
+  have hZb : ∀ k, 0 < ∑ y, (chainE 3 (E 3) h3.monotone sb D).w (k + 1) y := fun k => JAFinal.sum_wQ_pos D
+  have hZc : ∀ k, 0 < ∑ y, (chainE 5 (E 5) h5.monotone sc D).w (k + 1) y := fun k => JAFinal.sum_wQ_pos D
+  have h := arc_mass_product3 (chainE 2 (E 2) h2.monotone sa D) (chainE 3 (E 3) h3.monotone sb D)
+    (chainE 5 (E 5) h5.monotone sc D) na nb nc hZa hZb hZc A B C hA hB hC m hm h2m _ (hperm (inst := inst))
   simpa only [List.length_map, List.length_range] using h
 
 end arcmass

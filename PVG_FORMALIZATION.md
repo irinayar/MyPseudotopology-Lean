@@ -267,3 +267,22 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `seq_euclid_of_group_topology` | For a Hausdorff group topology `β` on `ℝ` with continuous dilations, inside the Euclidean topology, a `β`-convergent sequence is Euclidean convergent (`PVG.Gen.seq_conv_euclid` for `X = (ℝ, β)`, `ι = id`). |
 | `noFU_xi_of_seq` | The Fréchet–Urysohn argument for an abstract `β` whose convergent sequences are Euclidean convergent: a `ξ_{β,I}`-convergent filter that does not contain a Euclidean neighbourhood is refined by the complement of that neighbourhood, and the Fréchet–Urysohn property gives a sequence in the complement converging to the point. |
 | `noFU_xi` | **The proposition.** For a Hausdorff group topology `β` with continuous dilations, an ideal `I` and `ξ = ξ_{β,I}`: if `ξ` is coarser than the Euclidean convergence and Fréchet–Urysohn (`IsFU`), then `ξ`-convergence of a filter is equivalent to Euclidean convergence. |
+
+## The existence theorem assembled from a measure with the stage property (`PVGBetaTop`, `PVGBetaRho`, `PVGBetaStage`, `PVGBetaMain`, 9 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom reports in `PVGBetaTopAxioms.lean`, `PVGBetaRhoAxioms.lean`, `PVGBetaStageAxioms.lean`, `PVGBetaMainAxioms.lean`. Theorem `thm:betaexists` of PVG_v22. **Not formalized:** the Cantor-type construction (nested intervals around algebraically independent centers, with the radii chosen after the finite families of witnesses) and the construction of the measure; its output enters `PVGBetaMain` as the hypothesis `StageProperty μ`. Kronecker's density theorem enters `PVGBetaStage` as the hypothesis `KroneckerDensity` of `PVGBetaHalf`.
+
+`PVGBetaTop` (abstract pseudonorm `ρ`, `IsPseudoNorm ρ K`: `ρ 0 = 0`, `ρ ≥ 0`, even, subadditive, `ρ t ≤ K|t|`, `ρ t > 0` for `t ≠ 0`): `betaTop` is the topology with base `V(F,δ) = {t : ρ(ct) < δ for all c ∈ F}` at `0` (`AddGroupFilterBasis`).
+
+| Declaration | Statement |
+|---|---|
+| `betaTop_isTopologicalAddGroup`, `betaTop_t2`, `eT_le_betaTop`, `betaTop_constSMul` | Part (a): a Hausdorff group topology, inside the Euclidean topology, with all dilations continuous. |
+| `half_in_nhds` | If `HalfInt ρ` (every basic set contains a half-integer), every neighbourhood of `0` contains one. |
+| `chi_one_not_continuous`, `chi_not_continuous` | Part (c): the characters `t ↦ bt + ℤ`, `b ≠ 0`, are not continuous (`chi b`). |
+| `int_dense` | `ℤ` is dense (through `PVG.Gen.range_subset_closure`). |
+
+`PVGBetaRho`: `gf θ = min 1 (2π‖θ‖)`, `rho μ t = ∫ gf(tλ) dμ`. `isPseudoNorm_rho`: for a probability measure carried by `[1,2]` without atoms, `rho μ` is a pseudonorm with `K = 4π` (`gf_add_le`, `gf_le_lin`, `gf_eq_zero`, `rho_pos` from the absence of atoms). `rho_le_of_good`: if `‖aλ‖ < ε` on a measurable set `G` then `rho μ a ≤ 2πε + μ(Gᶜ)`.
+
+`PVGBetaStage` (Claim A): `witness_pointwise` (for one `c` in `ℝⁿ`: an integer `k` and at most `n` excluded indices with `‖c_i (k + 1/2) x_j‖ < ε` for the others; from `deletion` and `half_integer_witness`), `finite_witnesses` (a finite family of witnesses serves every `c` of the box `[-n,n]ⁿ`; compactness).
+
+`PVGBetaMain`: `halfInt_of_stages` (a probability measure with `StageProperty` gives `HalfInt (rho μ)`: pad a finite set of dilations to a vector of the box), `exists_beta_of_stage_measure` (for an atomless probability measure `μ` carried by `[1,2]` with `StageProperty μ`: `betaTop` is a Hausdorff group topology inside the Euclidean one with continuous dilations, every neighbourhood of `0` contains a half-integer, no character `t ↦ bt + ℤ`, `b ≠ 0`, is continuous, and `ℤ` is dense).

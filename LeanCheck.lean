@@ -456,3 +456,7 @@ import LeanCheck.PVGBetaHalf
 import LeanCheck.PVGBetaDelete
 
 import LeanCheck.PVGNoFU
+import LeanCheck.PVGBetaTop
+import LeanCheck.PVGBetaRho
+import LeanCheck.PVGBetaStage
+import LeanCheck.PVGBetaMain

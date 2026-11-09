@@ -325,3 +325,30 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `kronecker_density` | `KroneckerDensity`: the orbit `(kβ₁, …, kβ_w)` is dense modulo `1` (a bump function around the target, a finite family of translates covering the torus, and the averages of the translates tending to `0` against a lower bound `c > 0`). |
 
 `PVGBetaFinal`: `exists_beta_unconditional`, the existence theorem of `PVGBetaChoose` (`exists_beta`) applied to `kronecker_density`: there is a Hausdorff group topology on `ℝ` inside the Euclidean topology with all dilations continuous, every neighbourhood of `0` contains a half-integer, no character `t ↦ bt + ℤ` (`b ≠ 0`) is continuous, and `ℤ` is dense.
+
+## The variant with the recurrence property and the admissible pair `(β, I_S)` (`PVGBetaQStage`, `PVGBetaQCantor`, `PVGBetaQChoose`, `PVGBetaQMain`, 9 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom reports in `PVGBetaQStageAxioms.lean`, `PVGBetaQCantorAxioms.lean`, `PVGBetaQChooseAxioms.lean`, `PVGBetaQMainAxioms.lean`. No hypothesis (Kronecker's theorem is `kronecker_density`); the minimality of the Bohr topology enters only in `not_le_bohr`, as the explicit hypothesis `BohrMinimal` of `PVGClosed`.
+
+`PVGBetaQStage` (property `(Q_n)`, no algebraic independence needed):
+
+| Declaration | Statement |
+|---|---|
+| `Qprop` | For every vector `c` of the box `[-n,n]^n` there are `p > q ≥ n` with `‖c_i (s_p − s_q) λ‖ < 1/n` for all `i ≤ n` and all `λ` in all intervals of level `n` (`s_n = 2^(n²)`). |
+| `witness_Q_pointwise` | Pigeonhole in the compact torus: for one `c` and finitely many centers there are `p > q ≥ n` with all `‖c_i (s_p − s_q) x_j‖ < ε`. |
+| `finite_witnesses_Q` | A finite family of such pairs serves the whole box (open neighbourhoods, compactness). |
+| `exists_Q_radius` | After the choice of the centers, a radius `r'' ≤ r'` can be chosen so that the stage has `Qprop` (`n T r'' < 1/(2n)`). |
+
+`PVGBetaQCantor`: `StagesQ` (the stage system `Stages` with the extra field `Q`), `StagesQ.recurProp` (the Cantor-type measure is carried by the intervals of every level, so `Qprop` gives the recurrence on a set of full measure), `recur_rho` (property `(Q)` for `ρ_μ`: for every finite `F`, `δ > 0`, `N` there are `p > q ≥ N` with `ρ_μ(c (s_p − s_q)) < δ` for all `c ∈ F`).
+
+`PVGBetaQChoose`: `Pprop_mono`, `exists_nextQ` (one step: `exists_next` followed by `exists_Q_radius`), `exists_stagesQ`, `exists_Q_measure` (a probability measure without atoms, carried by `[1,2]`, with the stage property and the recurrence property).
+
+`PVGBetaQMain`:
+
+| Declaration | Statement |
+|---|---|
+| `RecurTop`, `recur_betaTop` | The recurrence property for the neighbourhoods of `0`: `c (s_p − s_q) ∈ W` with `p > q ≥ N`; it holds for `betaTop` of `ρ_μ` when `μ` has `RecurProp`. |
+| `zero_mem_closure_D_beta` | If `β` has `RecurTop`, `c t ∈ A` for only finitely many `t ∈ T`, then `0 ∈ closure_β (Dset c A)`. |
+| `xiIS_main` | For a Hausdorff group topology `β` inside the Euclidean topology with continuous dilations and `RecurTop`, `ξ_{β,I_S}` is a Hausdorff PVG, coarser than the Euclidean convergence, **not pretopological**, not Euclidean, and not Fréchet–Urysohn (with `noFU_xi`). |
+| `exists_beta_Q` | There is a `β` with all the properties of `exists_beta_unconditional` and `RecurTop`. |
+| `chi_continuous_bohr`, `ne_bohr`, `not_le_bohr` | The characters are `τ_B`-continuous, so `β ≠ τ_B`; with `BohrMinimal`, `¬ (τ_B ≤ β)` in Lean's order, that is, `β` is not contained in `τ_B`. |

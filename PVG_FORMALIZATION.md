@@ -177,3 +177,17 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | | `modstrict` | Corollary `modstrict`: `τ_B ⊆ τ_ξ ⊆ τ_E`, `τ_ξ ⊄ τ_B` (a set closed in `τ_ξ` but not in `τ_B`), `τ_E ⊄ τ_ξ` (the interval `(-1,1)`). |
 
 Still not formalized in Section 8: Lemma `lacchar` (replaced by `interpolation_bounded`), Proposition `precompact`, Corollary `notxiform`, Proposition `taustructure`, Remark `coherentproduct`.
+
+## Corollary `notxiform`, structure of the modification, coherent product (`PVGSec8Rest`, 8 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGSec8RestAxioms.lean`.
+
+| Declaration | Statement |
+|---|---|
+| `AdmPair`, `notxiform` | Corollary `notxiform`, with the cited minimality of the Bohr topology (`BohrMinimal`) as a hypothesis: `η_G` for an admissible `G ≠ 0` is a Hausdorff PVG, coarser than the Euclidean convergence, and is not `ξ_{β,I}` for any admissible pair. |
+| `tau_open_iff` | Proposition `taustructure` (a), for any ideal `I` and group topology `β`: `U` is open in the modification iff for every `J ∈ I` and `x ∈ U ∩ J` some neighbourhood `W` of `x` has `W ∩ J ⊆ U`. |
+| `tau_unbounded` | Proposition `taustructure` (b) for the lacunary PVG: every nonempty open set of the modification is Euclidean-unbounded. |
+| `tau_seq_iff` | Proposition `taustructure` (c), sequences: convergent sequences of the modification are the Euclidean convergent ones. |
+| `cohTop`, `prod_le_coh`, `add_continuous_coh` | Remark `coherentproduct`: the coherent topology on `ℝ × ℝ` contains the product of the modification with itself, and addition is continuous from it into the modification. |
+
+Not formalized: the statement on compact sets in Proposition `taustructure` (c) (uses Glicksberg's theorem), Proposition `precompact` (uses the structure of precompact group topologies and the classification of continuous characters of `ℝ`), Lemma `lacchar` (replaced by the interpolation lemma).

@@ -449,3 +449,6 @@ import LeanCheck.PVGWeak
 import LeanCheck.PVGSeqGen
 
 import LeanCheck.PVGSeqGen2
+
+import LeanCheck.PVGBetaDense
+import LeanCheck.PVGBetaHalf

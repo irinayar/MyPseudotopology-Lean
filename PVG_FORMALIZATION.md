@@ -226,3 +226,23 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `isEmbedding_of_sequential` | If the subspace `ι(ℝ)` of `X` is a sequential space, then `ι` is a topological embedding. |
 
 For `X = (ℝ, β)` and `ι = id` these are parts (b) and (c) of Proposition 8.44 of PVG_v21: the `β`-convergent sequences are the Euclidean convergent ones, and a sequential `β` equals the Euclidean topology. The instance `X = (ℝ, β)` is not stated separately in Lean.
+
+## Existence of a monothetic topology below the Euclidean one: parts of the proof (`PVGBetaDense`, `PVGBetaHalf`, 9 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom reports in `PVGBetaDenseAxioms.lean` and `PVGBetaHalfAxioms.lean`. These cover two steps of the proof of Theorem `thm:betaexists` of PVG_v22; the other steps are not formalized.
+
+`PVGBetaDense` (abstract setting of `PVGSeqGen`: `X` a real vector space with a group topology and continuous fixed dilations, `ι : ℝ →ₗ[ℝ] X` Euclidean-continuous; for `X = (ℝ, β)`, `ι = id` this is a group topology `β` inside the Euclidean topology with continuous dilations):
+
+| Declaration | Statement |
+|---|---|
+| `half_mem_closure` | If every neighbourhood of `0` contains some `ι(k + 1/2)`, then `ι(1/2)` lies in the closure of `ι(ℤ)`. |
+| `dyadic_mem_closure` | Then `ι(j/2^n)` lies in the closure of `ι(ℤ)` for all integers `j` and `n ∈ ℕ` (dilation by `1/2` maps the closure into itself). |
+| `range_subset_closure` | Then `ι(x)` lies in the closure of `ι(ℤ)` for every real `x` (dyadic rationals are dense and `ι` is continuous): `ι(ℤ)` is dense in `ι(ℝ)`. |
+
+`PVGBetaHalf` (Lemma `lem:halfint`): `KroneckerDensity` (Kronecker's density theorem: `1, β₁, …, β_w` linearly independent over `ℚ` implies that for every target `θ` and `ε > 0` some integer `k` has `‖kβ_s − θ_s‖ < ε` for all `s`) is an explicit hypothesis, not proved; Mathlib has only the one-dimensional case.
+
+| Declaration | Statement |
+|---|---|
+| `half_integer_witness` | Assume `KroneckerDensity`. If `y₁, …, y_M` are reals and `1` is not in their rational linear span, then for every `ε > 0` there is an integer `k` with `‖(k + 1/2) y_l‖ < ε` for all `l` (rational basis of the span, common denominator, Kronecker with target `−β/2`). |
+
+Not formalized: Lemma `lem:deletion` (deletion of centers, which uses the additivity of transcendence degree; Mathlib has `Algebra.trdeg_add_eq` and `AlgebraicIndependent.extendScalars`), the Cantor-type construction of the measure and the estimate of `ρ`, and Proposition `prop:noFUxi`.

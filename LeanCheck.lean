@@ -462,3 +462,5 @@ import LeanCheck.PVGBetaStage
 import LeanCheck.PVGBetaMain
 import LeanCheck.PVGBetaCantor
 import LeanCheck.PVGBetaChoose
+import LeanCheck.PVGKronecker
+import LeanCheck.PVGBetaFinal

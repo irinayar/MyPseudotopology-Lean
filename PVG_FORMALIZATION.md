@@ -308,3 +308,20 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `exists_next` | From a stage of positive radius: new centers in the parent intervals, algebraically independent; radius chosen after the finite family of witnesses of `PVGBetaStage`, so that nesting, separation of siblings and the witness property hold. |
 | `exists_stages`, `exists_stage_measure` | A stage system exists (recursion), hence a measure with the stage property. |
 | `exists_beta` | **Theorem `thm:betaexists`**: for `KroneckerDensity`, there is a topology `β` on `ℝ` that is a Hausdorff group topology, inside the Euclidean topology, with all dilations continuous, every neighbourhood of `0` contains a half-integer, no character `t ↦ bt + ℤ` (`b ≠ 0`) is continuous, and `ℤ` is dense. |
+
+## Kronecker's density theorem and the existence theorem without hypotheses (`PVGKronecker`, `PVGBetaFinal`, 9 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom reports in `PVGKroneckerAxioms.lean` and `PVGBetaFinalAxioms.lean`. This removes the hypothesis `KroneckerDensity` of the earlier modules.
+
+`PVGKronecker` (Weyl's proof, using Mathlib's `UnitAddTorus`, the exponential monomials `mFourier`, and `span_mFourier_closure_eq_top`):
+
+| Declaration | Statement |
+|---|---|
+| `avg`, `trans`, `avg_norm_le`, `mFourier_nsmul` | The averages `(1/K) Σ_{k<K} g(kb)` along an orbit of the torus, their norm bound, and `mFourier n (k b) = (mFourier n b)^k`. |
+| `z_ne_one` | If `1, β₁, …, β_w` are linearly independent over `ℚ` and `n ≠ 0`, then `mFourier n (β) ≠ 1`. |
+| `avg_char_tendsto` | For `n ≠ 0` the averages of `mFourier n` tend to `0` (geometric series bound `2/(K ‖z − 1‖)`). |
+| `hasLim_char`, `hasLim_span` | The averages of a trigonometric polynomial and of all its translates have a common limit (induction on the span). |
+| `trans_asymp` | For every continuous `g` and every translation `a`, `avg(g(· + a)) − avg(g) → 0` (density of trigonometric polynomials, `ε/4` argument). |
+| `kronecker_density` | `KroneckerDensity`: the orbit `(kβ₁, …, kβ_w)` is dense modulo `1` (a bump function around the target, a finite family of translates covering the torus, and the averages of the translates tending to `0` against a lower bound `c > 0`). |
+
+`PVGBetaFinal`: `exists_beta_unconditional`, the existence theorem of `PVGBetaChoose` (`exists_beta`) applied to `kronecker_density`: there is a Hausdorff group topology on `ℝ` inside the Euclidean topology with all dilations continuous, every neighbourhood of `0` contains a half-integer, no character `t ↦ bt + ℤ` (`b ≠ 0`) is continuous, and `ℤ` is dense.

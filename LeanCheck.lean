@@ -431,3 +431,9 @@ import LeanCheck.PVGLacDilation
 import LeanCheck.PVGLacMain
 
 import LeanCheck.PVGClosed
+
+import LeanCheck.PVGSeqFU
+
+import LeanCheck.PVGSeqFU2
+
+import LeanCheck.PVGClusters

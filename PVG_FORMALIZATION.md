@@ -146,3 +146,21 @@ Eight modules in `LeanCheck/` (imported by `LeanCheck.lean`), axiom reports in t
 | | `nonzeroG_not_pretop`, `nonzeroG_not_topological`, `complement_ne_bot`, `minimal_not_pretop`, `minimal_not_topological` | The non-pretopological parts of Corollaries 8.29 and 8.27(c), with `BohrMinimal`. |
 
 Not formalized: Section 8 results outside these (for example Propositions `bohrseq`, `finite`, `clusters`, `relaxed`, `ctblFU`, Theorems `notFU`, `clusterbound`, `extendFU`, `precompact` and the structure of `τ_ξ`), the sharper polylogarithmic bound in Lemma 7.1, the cited minimality of the Bohr topology, the simultaneous choice of the sets `B_y` (Question `compactFU`) and infinite depth, which are open questions.
+
+## Section 8, sequences and the Fréchet–Urysohn property (`PVGSeqFU`, `PVGSeqFU2`, `PVGClusters`, 8 November 2026)
+
+Three modules in `LeanCheck/` (imported by `LeanCheck.lean`), axiom reports in the matching `*Axioms.lean` files. No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only. Statements are cited by the labels of `PVG_v19.tex`.
+
+| Module | Declaration | Statement |
+|---|---|---|
+| `PVGSeqFU` | `bohrseq` | Proposition `bohrseq`: a real sequence converges in the Bohr topology iff in the Euclidean topology (from Proposition `seqG` for `G = 0`). |
+| | `xiB_seq`, `xiB_euclid_of_FU`, `xiB_eq_euclid_of_FU` | Theorem `notFU` (a), (b), (c) for an ideal `I` and `ξ = ξ_{τ_B, I}`. |
+| | `lac_not_FU`, `lac_seq_iff` | Corollary `notFU` (a), (b) for the PVG of Theorem `main` (the sequential modification is not formalized). |
+| | `beta_open_mod`, `relaxed_closed`, `relaxed_strict`, `finite_closed` | Propositions `finite` and `relaxed`, for an arbitrary real vector space with a group topology with continuous dilations. |
+| | `countable_isFU` | Proposition `ctblFU`, first assertion. |
+| `PVGSeqFU2` | `xiN`, `extend_seq`, `extend_euclid_of_FU`, `extend_eq_euclid` | Theorem `extendFU` (a), (b), (c), for a neighbourhood system `N` with `N x ≤ 𝓝_B x`. |
+| | `countable_modTop` | Proposition `ctblFU`, last assertion: the topological modification of the countable PVG is the Euclidean topology. |
+| | `lacclosed` | Proposition `lacclosed`: `{t_k}` with `|t_{k+1}| ≥ 5|t_k|` is closed in the Bohr topology (interpolation lemma). |
+| `PVGClusters` | `K_nhds_zero_basic`, `exists_small_multiple`, `mem_closure_bohr`, `clusters` | Proposition `clusters`: `0 ∉ C` and `0 ∈ cl_{τ_B} C` for `C = ⋃_i {M_i h : 1 ≤ h ≤ H_i}` (pigeonhole in the torus). |
+
+Not formalized in Section 8 (besides the items in the earlier sections of this file): Lemma `lacchar` (replaced by `interpolation_bounded`, which gives the same neighbourhood), Theorem `clusterbound` and Corollary `modstrict` (`τ_B ⊊ τ_ξ ⊊ τ_E`; the ingredients `lacclosed`, `clusters`, `relaxed_strict` and `lac_ball_not_open` are here), Proposition `precompact` (uses the structure of precompact group topologies), Corollary `notxiform`, Proposition `taustructure`, Remark `coherentproduct`.

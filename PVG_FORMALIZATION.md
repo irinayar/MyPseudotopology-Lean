@@ -204,3 +204,14 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `weakTop_le_bohr` | It contains the Bohr topology if `e(b) ∈ D` for all `b`. |
 
 For `D = e(ℝ) ⊕ G`, `G` admissible, this is the TVG-side counterpart of `η_G` (same `G`, finer than `τ_B` instead of coarser). That its dual is `D`, and that it is strictly finer than `τ_B` for `G ≠ 0`, use Pontryagin duality and the classification of continuous characters of `ℝ`; they are not formalized.
+
+## No unbounded null sequences for group topologies inside the Euclidean one (`PVGSeqGen`, 9 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGSeqGenAxioms.lean`.
+
+| Declaration | Statement |
+|---|---|
+| `exists_closed_nhds_sub` | In a Hausdorff topological additive group every neighbourhood `W` of `0` contains `V - V` for a closed neighbourhood `V` of `0`. |
+| `no_unbounded_null_seq` | Let `X` be a real vector space with a Hausdorff group topology in which every fixed dilation is continuous, and `ι : ℝ →ₗ[ℝ] X` a continuous (Euclidean) linear injection. If `\|x_k\| → ∞` then `ι(x_k)` does not tend to `0`. Proof by Baire category. |
+
+For `X = (ℝ, β)` and `ι = id` the hypotheses say that `β` is a Hausdorff group topology inside the Euclidean topology with continuous dilations. The consequences that such a `β` has the same convergent sequences as the Euclidean topology and is therefore not sequential (otherwise it would equal the Euclidean topology and contain the Bohr topology) are hand-checked and not formalized.

@@ -164,3 +164,16 @@ Three modules in `LeanCheck/` (imported by `LeanCheck.lean`), axiom reports in t
 | `PVGClusters` | `K_nhds_zero_basic`, `exists_small_multiple`, `mem_closure_bohr`, `clusters` | Proposition `clusters`: `0 ∉ C` and `0 ∈ cl_{τ_B} C` for `C = ⋃_i {M_i h : 1 ≤ h ≤ H_i}` (pigeonhole in the torus). |
 
 Not formalized in Section 8 (besides the items in the earlier sections of this file): Lemma `lacchar` (replaced by `interpolation_bounded`, which gives the same neighbourhood), Theorem `clusterbound` and Corollary `modstrict` (`τ_B ⊊ τ_ξ ⊊ τ_E`; the ingredients `lacclosed`, `clusters`, `relaxed_strict` and `lac_ball_not_open` are here), Proposition `precompact` (uses the structure of precompact group topologies), Corollary `notxiform`, Proposition `taustructure`, Remark `coherentproduct`.
+
+## Cluster bound and strict modification (`PVGClusterBound`, `PVGModStrict`, 8 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom reports in the matching `*Axioms.lean` files.
+
+| Module | Declaration | Statement |
+|---|---|---|
+| `PVGClusterBound` | `exists_clrep`, `clrep_inj`, `cluster_label` | The steps of the proof of Theorem `clusterbound`: representation `σ = ∑ d_n s_n` of an element of `[-m,m] + Σ`, admissible top index `T` (`4i² ≤ T² + a`, `T² ≤ 4i² + b + i`), uniqueness of `T`, and injectivity of the top coefficient on each layer. |
+| | `clusterbound` | Theorem `clusterbound`: for `J ∈ I_S` there is `q` with `#(J ∩ {M_i h : 1 ≤ h ≤ i}) ≤ q` for all `i` (`M_i = 2^(4i²)`). |
+| `PVGModStrict` | `Tc_closed`, `trace_closed` | For every `J ∈ I_S` the trace `J ∩ ⋃_i {M_i h}` is `τ_B`-closed (finite part plus finitely many ratio-5 sequences, `lacclosed`). |
+| | `modstrict` | Corollary `modstrict`: `τ_B ⊆ τ_ξ ⊆ τ_E`, `τ_ξ ⊄ τ_B` (a set closed in `τ_ξ` but not in `τ_B`), `τ_E ⊄ τ_ξ` (the interval `(-1,1)`). |
+
+Still not formalized in Section 8: Lemma `lacchar` (replaced by `interpolation_bounded`), Proposition `precompact`, Corollary `notxiform`, Proposition `taustructure`, Remark `coherentproduct`.

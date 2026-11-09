@@ -437,3 +437,7 @@ import LeanCheck.PVGSeqFU
 import LeanCheck.PVGSeqFU2
 
 import LeanCheck.PVGClusters
+
+import LeanCheck.PVGClusterBound
+
+import LeanCheck.PVGModStrict

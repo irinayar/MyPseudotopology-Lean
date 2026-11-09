@@ -191,3 +191,16 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `cohTop`, `prod_le_coh`, `add_continuous_coh` | Remark `coherentproduct`: the coherent topology on `ℝ × ℝ` contains the product of the modification with itself, and addition is continuous from it into the modification. |
 
 Not formalized: the statement on compact sets in Proposition `taustructure` (c) (uses Glicksberg's theorem), Proposition `precompact` (uses the structure of precompact group topologies and the classification of continuous characters of `ℝ`), Lemma `lacchar` (replaced by the interpolation lemma).
+
+## Weak topologies of dilation-invariant character subgroups (`PVGWeak`, 8 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGWeakAxioms.lean`. For a real subspace `D ≤ K` (invariant under the dilation operators `D_c`), `weakTop D` is the initial topology on `ℝ` of the characters in `D`; `WD D` is `ℝ` with this topology as a type synonym.
+
+| Declaration | Statement |
+|---|---|
+| `weakW_inducing`, instances | `weakTop D` is a group topology and every dilation is continuous (because `D` is a subspace). |
+| `weakW_continuous_char` | Every `d ∈ D` is continuous. |
+| `weakW_t2` | Hausdorff if `e(b) ∈ D` for all `b`. |
+| `weakTop_le_bohr` | It contains the Bohr topology if `e(b) ∈ D` for all `b`. |
+
+For `D = e(ℝ) ⊕ G`, `G` admissible, this is the TVG-side counterpart of `η_G` (same `G`, finer than `τ_B` instead of coarser). That its dual is `D`, and that it is strictly finer than `τ_B` for `G ≠ 0`, use Pontryagin duality and the classification of continuous characters of `ℝ`; they are not formalized.

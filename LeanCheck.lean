@@ -460,3 +460,5 @@ import LeanCheck.PVGBetaTop
 import LeanCheck.PVGBetaRho
 import LeanCheck.PVGBetaStage
 import LeanCheck.PVGBetaMain
+import LeanCheck.PVGBetaCantor
+import LeanCheck.PVGBetaChoose

@@ -215,3 +215,14 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `no_unbounded_null_seq` | Let `X` be a real vector space with a Hausdorff group topology in which every fixed dilation is continuous, and `ι : ℝ →ₗ[ℝ] X` a continuous (Euclidean) linear injection. If `\|x_k\| → ∞` then `ι(x_k)` does not tend to `0`. Proof by Baire category. |
 
 For `X = (ℝ, β)` and `ι = id` the hypotheses say that `β` is a Hausdorff group topology inside the Euclidean topology with continuous dilations. The consequences that such a `β` has the same convergent sequences as the Euclidean topology and is therefore not sequential (otherwise it would equal the Euclidean topology and contain the Bohr topology) are hand-checked and not formalized.
+
+## Convergent sequences for group topologies inside the Euclidean one (`PVGSeqGen2`, 9 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGSeqGen2Axioms.lean`. Same abstract setting as `PVGSeqGen`: `X` a real vector space with a Hausdorff group topology in which every fixed dilation is continuous, `ι : ℝ →ₗ[ℝ] X` a Euclidean-continuous linear injection.
+
+| Declaration | Statement |
+|---|---|
+| `seq_conv_euclid` | If `ι(x_k) → ι(a)` in `X`, then `x_k → a` in `ℝ` (parts: Baire lemma `no_unbounded_null_seq`, Bolzano–Weierstrass, uniqueness of limits). |
+| `isEmbedding_of_sequential` | If the subspace `ι(ℝ)` of `X` is a sequential space, then `ι` is a topological embedding. |
+
+For `X = (ℝ, β)` and `ι = id` these are parts (b) and (c) of Proposition 8.44 of PVG_v21: the `β`-convergent sequences are the Euclidean convergent ones, and a sequential `β` equals the Euclidean topology. The instance `X = (ℝ, β)` is not stated separately in Lean.

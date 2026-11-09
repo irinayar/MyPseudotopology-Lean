@@ -246,3 +246,13 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `half_integer_witness` | Assume `KroneckerDensity`. If `y₁, …, y_M` are reals and `1` is not in their rational linear span, then for every `ε > 0` there is an integer `k` with `‖(k + 1/2) y_l‖ < ε` for all `l` (rational basis of the span, common denominator, Kronecker with target `−β/2`). |
 
 Not formalized: Lemma `lem:deletion` (deletion of centers, which uses the additivity of transcendence degree; Mathlib has `Algebra.trdeg_add_eq` and `AlgebraicIndependent.extendScalars`), the Cantor-type construction of the measure and the estimate of `ρ`, and Proposition `prop:noFUxi`.
+
+## Deleting centers (`PVGBetaDelete`, 9 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGBetaDeleteAxioms.lean`. Lemma `lem:deletion` of PVG_v22 (this replaces the sentence above that said it was not formalized).
+
+| Declaration | Statement |
+|---|---|
+| `one_not_mem_span` | If the numbers `x_j`, `j ∈ T`, are algebraically independent over the subring `ℚ[c₁, …, c_m]` of `ℝ`, then `1` is not in the rational linear span of the products `c_i x_j`, `j ∈ T` (a nonzero polynomial `Σ a_j Y_j − 1` over `ℚ[c]` would vanish). |
+| `exists_indep_subfamily` | If `x₁, …, x_N` are algebraically independent over `ℚ`, there is a set `T` of indices with `N ≤ m + |T|` such that `x_j`, `j ∈ T`, are algebraically independent over `ℚ[c₁, …, c_m]`. Proof: the transcendence degree of `ℚ[c]` over `ℚ` is at most `m` (surjection from `ℚ[Y₁, …, Y_m]`), the tower law `trdeg_add_eq`, a transcendence basis of `ℚ[c][x]` over `ℚ[c]` among the `x_j`. |
+| `deletion` | The lemma: there is `T` with `N ≤ m + |T|` and `1 ∉ span_ℚ {c_i x_j : i ≤ m, j ∈ T}`; the complement of `T` has at most `m` elements. |

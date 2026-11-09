@@ -452,3 +452,5 @@ import LeanCheck.PVGSeqGen2
 
 import LeanCheck.PVGBetaDense
 import LeanCheck.PVGBetaHalf
+
+import LeanCheck.PVGBetaDelete

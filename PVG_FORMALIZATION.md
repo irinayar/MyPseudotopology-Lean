@@ -256,3 +256,14 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `one_not_mem_span` | If the numbers `x_j`, `j ∈ T`, are algebraically independent over the subring `ℚ[c₁, …, c_m]` of `ℝ`, then `1` is not in the rational linear span of the products `c_i x_j`, `j ∈ T` (a nonzero polynomial `Σ a_j Y_j − 1` over `ℚ[c]` would vanish). |
 | `exists_indep_subfamily` | If `x₁, …, x_N` are algebraically independent over `ℚ`, there is a set `T` of indices with `N ≤ m + |T|` such that `x_j`, `j ∈ T`, are algebraically independent over `ℚ[c₁, …, c_m]`. Proof: the transcendence degree of `ℚ[c]` over `ℚ` is at most `m` (surjection from `ℚ[Y₁, …, Y_m]`), the tower law `trdeg_add_eq`, a transcendence basis of `ℚ[c][x]` over `ℚ[c]` among the `x_j`. |
 | `deletion` | The lemma: there is `T` with `N ≤ m + |T|` and `1 ∉ span_ℚ {c_i x_j : i ≤ m, j ∈ T}`; the complement of `T` has at most `m` elements. |
+
+## Admissible pairs below the Euclidean convergence (`PVGNoFU`, 9 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGNoFUAxioms.lean`. Proposition `prop:noFUxi` of PVG_v22. The Euclidean topology is written `eT` so that a variable topology `β` on `ℝ` does not capture the default instance.
+
+| Declaration | Statement |
+|---|---|
+| `euclid_le_of_coarse` | If every Euclidean convergent filter converges for `ξ_{β,I}`, then every `β`-open set is Euclidean open (apply coarseness to the neighbourhood filter `𝓝 x`). |
+| `seq_euclid_of_group_topology` | For a Hausdorff group topology `β` on `ℝ` with continuous dilations, inside the Euclidean topology, a `β`-convergent sequence is Euclidean convergent (`PVG.Gen.seq_conv_euclid` for `X = (ℝ, β)`, `ι = id`). |
+| `noFU_xi_of_seq` | The Fréchet–Urysohn argument for an abstract `β` whose convergent sequences are Euclidean convergent: a `ξ_{β,I}`-convergent filter that does not contain a Euclidean neighbourhood is refined by the complement of that neighbourhood, and the Fréchet–Urysohn property gives a sequence in the complement converging to the point. |
+| `noFU_xi` | **The proposition.** For a Hausdorff group topology `β` with continuous dilations, an ideal `I` and `ξ = ξ_{β,I}`: if `ξ` is coarser than the Euclidean convergence and Fréchet–Urysohn (`IsFU`), then `ξ`-convergence of a filter is equivalent to Euclidean convergence. |

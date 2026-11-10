@@ -352,3 +352,14 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `xiIS_main` | For a Hausdorff group topology `β` inside the Euclidean topology with continuous dilations and `RecurTop`, `ξ_{β,I_S}` is a Hausdorff PVG, coarser than the Euclidean convergence, **not pretopological**, not Euclidean, and not Fréchet–Urysohn (with `noFU_xi`). |
 | `exists_beta_Q` | There is a `β` with all the properties of `exists_beta_unconditional` and `RecurTop`. |
 | `chi_continuous_bohr`, `ne_bohr`, `not_le_bohr` | The characters are `τ_B`-continuous, so `β ≠ τ_B`; with `BohrMinimal`, `¬ (τ_B ≤ β)` in Lean's order, that is, `β` is not contained in `τ_B`. |
+
+## An `I_S`-thin cluster set (`PVGThinSet`, 9 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGThinSetAxioms.lean`. Formal counterpart of Proposition `thinset` of `PVG_v24`.
+
+| Declaration | Statement |
+|---|---|
+| `Mt`, `Ct` | `M_i = (i+1) s_{i+1}` and `Ct = ⋃_i {M_i h : 1 ≤ h ≤ i}` (`s_n = 2^(n²)`). |
+| `not_mem_of_large` | If `j` is large, no element `z` with `j s_j ≤ |z| ≤ j² s_j` lies in `[-m,m] + ∑ d_n s_n` with coefficients `d_n` in a finite set (case analysis on the largest nonzero index: `≤ j` gives `|z| ≤ m + 2 c₁ s_j < j s_j`; `≥ j+1` gives `|z| ≥ c₀ 2^{2j} s_j − m > j² s_j`), using `lower_bound` and `geom_sS` of `PVGLacCount`. |
+| `thin_Ct` | `Ct ∩ J` is finite for every `J ∈ I_S`. |
+| `thin_cluster_modstrict` | `0 ∉ Ct`, `0 ∈ cl_{τ_B} Ct` (`clusters`), `ℝ ∖ Ct` is `τ_ξ`-open (`finite_closed`) and not `τ_B`-open; so `τ_B ⊊ τ_ξ` is witnessed by a set meeting every member of `I_S` in a finite set. |

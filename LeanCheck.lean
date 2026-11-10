@@ -468,3 +468,4 @@ import LeanCheck.PVGBetaQStage
 import LeanCheck.PVGBetaQCantor
 import LeanCheck.PVGBetaQChoose
 import LeanCheck.PVGBetaQMain
+import LeanCheck.PVGThinSet

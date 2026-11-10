@@ -414,3 +414,16 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `subConv_eq_euclid_of_finite` | `ξ_A` is the Euclidean convergence for finite `A` (`bohr_nhds_trace`). |
 | `subConv_not_pretop`, `subConv_not_topological`, `subConv_not_FU` | For infinite `A`, `ξ_A` is not pretopological, not topological and not Fréchet–Urysohn. |
 | `modTop_sub_iff` | Every open set of `modTop (ξ_B)` is open in `modTop (ξ_A)` iff `A \ B` is finite (`ℝ \ D_C` for `C = A \ B`). |
+
+## Joins in the Boolean algebra of lacunary PVGs (`PVGJoinLr`, `PVGJoinMain`, 10 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGJoinAxioms.lean`. For `A, B ⊆ ℕ`, `subConv A = ξ_{τ_B, I_A}` as in `PVGSubMain`. The proof uses the independence theorem for jointly lacunary sequences (`independence_sep` of `PVGSorted`) for the two enumerations `y^A`, `y^B` (`ys_joint`, `lam_indep`). Not formalized: the identity `I_A ∩ I_B = I_{A ∩ B}` (meets).
+
+| Declaration | Statement |
+|---|---|
+| `exists_lift`, `exists_split` | An ultrafilter containing a sum set `X + Y` is the image of an ultrafilter on `ℝ × ℝ`; it is finer than the sum filter of the projections and its Bohr limit is the sum of the Bohr limits. |
+| `Esub`, `LamA`, `Lr_SsetA_mem`, `Lr_sumSetA_mem` | For infinite `A`, the Bohr limit of an ultrafilter containing `a₁S_A + … + a_kS_A` lies in `e(ℝ) + Λ_A`, `Λ_A` the real span of the limits `L_{y^A}(W)`, `W` free. |
+| `sumSetA_union_sub` | `a₁S_{A ∪ B} + … ⊆ (a₁S_A + …) + (a₁S_B + …)`. |
+| `ys_joint`, `lam_indep` | For disjoint infinite `A`, `B`: `y^A`, `y^B` satisfy the hypothesis of the independence theorem, and `λ₁ ∈ Λ_A`, `λ₂ ∈ Λ_B`, `λ₁ + λ₂ ∈ e(ℝ)` imply `λ₁ = λ₂ = 0`. |
+| `join_ultra`, `join_core`, `join_least` | **Theorem (joins).** If `conv` is a PVG (`IsPVG`) in which every `ξ_A`-convergent and every `ξ_B`-convergent filter converges, then every `ξ_{A ∪ B}`-convergent filter converges (disjoint case, then general). |
+| `subConv_union_isLeast` | `ξ_{A ∪ B}` is a PVG containing `ξ_A` and `ξ_B`, and the least such. |

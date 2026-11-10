@@ -478,3 +478,5 @@ import LeanCheck.PVGSubGap
 import LeanCheck.PVGSubMain
 import LeanCheck.PVGSubFinite
 import LeanCheck.PVGSubTop
+import LeanCheck.PVGJoinLr
+import LeanCheck.PVGJoinMain

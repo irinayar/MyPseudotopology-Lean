@@ -469,3 +469,4 @@ import LeanCheck.PVGBetaQCantor
 import LeanCheck.PVGBetaQChoose
 import LeanCheck.PVGBetaQMain
 import LeanCheck.PVGThinSet
+import LeanCheck.PVGModXi

@@ -363,3 +363,12 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `not_mem_of_large` | If `j` is large, no element `z` with `j s_j ≤ |z| ≤ j² s_j` lies in `[-m,m] + ∑ d_n s_n` with coefficients `d_n` in a finite set (case analysis on the largest nonzero index: `≤ j` gives `|z| ≤ m + 2 c₁ s_j < j s_j`; `≥ j+1` gives `|z| ≥ c₀ 2^{2j} s_j − m > j² s_j`), using `lower_bound` and `geom_sS` of `PVGLacCount`. |
 | `thin_Ct` | `Ct ∩ J` is finite for every `J ∈ I_S`. |
 | `thin_cluster_modstrict` | `0 ∉ Ct`, `0 ∈ cl_{τ_B} Ct` (`clusters`), `ℝ ∖ Ct` is `τ_ξ`-open (`finite_closed`) and not `τ_B`-open; so `τ_B ⊊ τ_ξ` is witnessed by a set meeting every member of `I_S` in a finite set. |
+
+## The pair `(β, I)` and the topological modification (`PVGModXi`, 9 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGModXiAxioms.lean`. All topologies are written explicitly (`@IsOpen X β`, `@xiConv X γ I`) so that no local instance is captured.
+
+| Declaration | Statement |
+|---|---|
+| `xi_eq_of_between` | If every `β`-open set is `γ`-open and every `γ`-open set is open in the topological modification `modTop (ξ_{β,I})`, then `ξ_{γ,I} = ξ_{β,I}` (no group structure needed). |
+| `xi_modTop_eq` | `ξ_{τ_ξ, I} = ξ_{β,I}`: the pair `(β, I)` may be replaced by `(τ_ξ, I)`. |

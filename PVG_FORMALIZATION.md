@@ -427,3 +427,15 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `ys_joint`, `lam_indep` | For disjoint infinite `A`, `B`: `y^A`, `y^B` satisfy the hypothesis of the independence theorem, and `λ₁ ∈ Λ_A`, `λ₂ ∈ Λ_B`, `λ₁ + λ₂ ∈ e(ℝ)` imply `λ₁ = λ₂ = 0`. |
 | `join_ultra`, `join_core`, `join_least` | **Theorem (joins).** If `conv` is a PVG (`IsPVG`) in which every `ξ_A`-convergent and every `ξ_B`-convergent filter converges, then every `ξ_{A ∪ B}`-convergent filter converges (disjoint case, then general). |
 | `subConv_union_isLeast` | `ξ_{A ∪ B}` is a PVG containing `ξ_A` and `ξ_B`, and the least such. |
+
+## Meets in the Boolean algebra of lacunary PVGs (`PVGSubInter`, 10 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGSubInterAxioms.lean`. Formalizes Theorem 8.63 (d): `I_A ∩ I_B = I_{A ∩ B}`.
+
+| Declaration | Statement |
+|---|---|
+| `rep2_of_mem_sumSetA` | The representation `∑ d_n s_n` of the elements of `a₁S_A + … + a_kS_A`, with `d_n ≠ 0 → n ∈ A, n ≥ 1`, coefficients in `Cset l` and at most `k` nonzero terms. |
+| `agree_above` | Two such expansions (for `A`, `B`) with bounded difference have equal coefficients above a bound that depends only on the coefficient lists and on the bound (lower bound for the top coefficient). |
+| `finite_sum_mem` | A sum of at most `k` terms `d_n s_n`, `n ∈ A'`, `d_n` in a finite set `C`, lies in `sumSetA A'` of the fixed list `C.toList.flatMap (replicate k)`. |
+| `IA_inter`, `IA_inter_iff` | `J ∈ I_A ∩ I_B` implies `J ∈ I_{A ∩ B}`; `I_{A ∩ B} = I_A ∩ I_B`. |
+| `subConv_inter_iff`, `subConv_inter_coarsest` | A filter converges for `ξ_{A ∩ B}` iff it converges for `ξ_A` and `ξ_B`; `ξ_{A ∩ B}` is a PVG, finer than both, and the coarsest such. |

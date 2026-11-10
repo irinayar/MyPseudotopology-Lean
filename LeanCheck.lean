@@ -472,3 +472,9 @@ import LeanCheck.PVGThinSet
 import LeanCheck.PVGModXi
 import LeanCheck.PVGBaireHaus
 import LeanCheck.PVGBaireHaus2
+import LeanCheck.PVGPretopTop
+import LeanCheck.PVGSubIdeal
+import LeanCheck.PVGSubGap
+import LeanCheck.PVGSubMain
+import LeanCheck.PVGSubFinite
+import LeanCheck.PVGSubTop

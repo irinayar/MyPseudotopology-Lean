@@ -386,3 +386,31 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `seq_euclid_of_hausdorff` | If, in addition, any two different points have disjoint `conv`-open neighbourhoods, every `conv`-convergent sequence converges in the Euclidean topology (Theorem A for unbounded translates; a Euclidean limit different from the `conv`-limit for bounded ones). |
 | `noFU_xi_of_xiseq` | The argument of `noFU_xi_of_seq` with the hypothesis on `ξ`-convergent sequences. |
 | `noFU_of_hausdorff_topology` | For an arbitrary Hausdorff topology `γ` on `ℝ` (no group structure) and an ideal `I` such that `ξ_{γ,I}` is a PVG: if `ξ_{γ,I}` is coarser than the Euclidean convergence and Fréchet–Urysohn, it is the Euclidean convergence. |
+
+## Pretopological and topological PVGs coincide (`PVGPretopTop`, 10 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGPretopTopAxioms.lean`. For a PVG on a real vector space, `V(0) → 0` gives a topology whose neighbourhood filters are the `V(x)`; only continuity of addition at `(0,0)` (`V(0) + V(0) ≥ V(0)`) and `p2` are used.
+
+| Declaration | Statement |
+|---|---|
+| `zero_mem_of_mem_Vfil` | Members of `V(0)` contain `0`. |
+| `Vfil_add_small` | For `U ∈ V(0)` there is `W ∈ V(0)` with `x + y ∈ U` for all `x, y ∈ W` (from `V(0) + V(0) → 0`). |
+| `pretop_isTopological` | A pretopological PVG is the convergence of a topology (`U` open iff `{z \| x + z ∈ U} ∈ V(0)` for all `x ∈ U`). |
+| `isPretop_iff_isTopological` | For a PVG, pretopological iff topological. |
+
+## A Boolean algebra of lacunary PVGs (`PVGSubIdeal`, `PVGSubGap`, `PVGSubMain`, `PVGSubFinite`, `PVGSubTop`, 10 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGSubAxioms.lean`. For `A ⊆ ℕ`: `SsetA A = {0} ∪ {±s_n : n ∈ A, n ≥ 1}`, `sumSetA A l`, `IA A` the sets contained in `[-m,m] + a₁S_A + … + a_kS_A`, `subConv A = ξ_{τ_B, I_A}`. Not formalized: `I_A ∩ I_B = I_{A ∩ B}` (hand proof only).
+
+| Declaration | Statement |
+|---|---|
+| `IA_isIdeal` | `I_A` satisfies (I1) to (I5) (`ne_univ` from `I_A ⊆ I_S`, `IA_sub_IS`). |
+| `IA_mono`, `IA_mono_of_diff_finite` | `A ⊆ B` or `A \ B` finite implies `I_A ⊆ I_B` (`sumSetA_approx`). |
+| `rep_of_mem_sumSetA`, `sigma_dichotomy` | Representation `∑ d_n s_n` of the elements of `a₁S_A + … + a_kS_A` with `d_n = 0` for `n ∉ A`; if `d_j = 0` then `\|σ\| ≤ 2 c₁ s_{j-1}` or `\|σ\| ≥ c₀ s_{j+1}/2`. |
+| `top_index` | **Lemma (top index).** If `n ∉ A` is large, no `z = e + σ` with `\|e\| ≤ m`, `σ ∈ a₁S_A + … + a_kS_A`, satisfies `γ₁ s_n ≤ \|z\| ≤ γ₂ s_n`. |
+| `subConv_isPVG`, `subConv_hausdorff`, `subConv_coarser_euclid`, `subConv_finer_bohr` | `ξ_A` is a Hausdorff PVG between the Bohr topology and the Euclidean convergence. |
+| `zero_mem_closure_DA`, `DsetA_inter_finite` | `0` is in the Bohr closure of `D = {c(s_n - s_l) : n, l ∈ A, l < n} \ J` (for `c` as in `exists_dilation`); if `C ∩ B = ∅` and `J ∈ I_B`, then `J ∩ {s_n - s_l : n, l ∈ C}` is finite. |
+| `conv_sub_iff` | Every `ξ_A`-convergent filter is `ξ_B`-convergent iff `A \ B` is finite. |
+| `subConv_eq_euclid_of_finite` | `ξ_A` is the Euclidean convergence for finite `A` (`bohr_nhds_trace`). |
+| `subConv_not_pretop`, `subConv_not_topological`, `subConv_not_FU` | For infinite `A`, `ξ_A` is not pretopological, not topological and not Fréchet–Urysohn. |
+| `modTop_sub_iff` | Every open set of `modTop (ξ_B)` is open in `modTop (ξ_A)` iff `A \ B` is finite (`ℝ \ D_C` for `C = A \ B`). |

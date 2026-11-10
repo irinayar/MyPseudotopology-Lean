@@ -470,3 +470,5 @@ import LeanCheck.PVGBetaQChoose
 import LeanCheck.PVGBetaQMain
 import LeanCheck.PVGThinSet
 import LeanCheck.PVGModXi
+import LeanCheck.PVGBaireHaus
+import LeanCheck.PVGBaireHaus2

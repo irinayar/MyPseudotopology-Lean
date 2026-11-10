@@ -372,3 +372,17 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 |---|---|
 | `xi_eq_of_between` | If every `β`-open set is `γ`-open and every `γ`-open set is open in the topological modification `modTop (ξ_{β,I})`, then `ξ_{γ,I} = ξ_{β,I}` (no group structure needed). |
 | `xi_modTop_eq` | `ξ_{τ_ξ, I} = ξ_{β,I}`: the pair `(β, I)` may be replaced by `(τ_ξ, I)`. |
+
+## An unbounded convergent sequence and the Hausdorff property of the modification (`PVGBaireHaus`, `PVGBaireHaus2`, 10 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGBaireHausAxioms.lean`. `ConvOpen conv U` means that `U` is open in the topological modification `modTop conv`. The proof of `theorem_A` uses only translations, dilations and Baire's theorem, not addition of neighbourhoods. The statements are for `X = ℝ`.
+
+| Declaration | Statement |
+|---|---|
+| `baire_step` | If `ℝ = ⋃ D N`, every nonempty open `V` meets `interior (closure (D N))` for some `N` (Baire's theorem for the closed sets `closure (D N)`). |
+| `convOpen_isOpen` | If `conv` is coarser than the Euclidean convergence, `conv`-open sets are Euclidean open. |
+| `convOpen_translate`, `convOpen_dilate` | `{w \| w + x ∈ U}` is `conv`-open if `U` is; if `U ∋ 0` is `conv`-open and `u → 0` for `conv`, then `a * u k ∈ U` eventually, for every real `a`. |
+| `theorem_A` | **Theorem A.** Let `conv` be a PVG on `ℝ` coarser than the Euclidean convergence and `u` a sequence with `conv (map u atTop) 0` and `∀ R N, ∃ n ≥ N, R < \|u n\|`. Then every `conv`-open neighbourhood of `0` meets every `conv`-open neighbourhood of every real `x`; in particular the modification is not Hausdorff. |
+| `seq_euclid_of_hausdorff` | If, in addition, any two different points have disjoint `conv`-open neighbourhoods, every `conv`-convergent sequence converges in the Euclidean topology (Theorem A for unbounded translates; a Euclidean limit different from the `conv`-limit for bounded ones). |
+| `noFU_xi_of_xiseq` | The argument of `noFU_xi_of_seq` with the hypothesis on `ξ`-convergent sequences. |
+| `noFU_of_hausdorff_topology` | For an arbitrary Hausdorff topology `γ` on `ℝ` (no group structure) and an ideal `I` such that `ξ_{γ,I}` is a PVG: if `ξ_{γ,I}` is coarser than the Euclidean convergence and Fréchet–Urysohn, it is the Euclidean convergence. |

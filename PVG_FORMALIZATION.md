@@ -454,3 +454,14 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `tauA_not_countablyGenerated` | Proposition 8.66 (b): the neighbourhood filter of `0` in `tauA A` is not countably generated. |
 | `infinite_closed_discrete_not_compact` | An infinite injective sequence all of whose subsets are closed does not lie in a compact set (generic topology). |
 | `tauA_not_locallyCompact`, `tauA_not_baire` | Proposition 8.70: `tauA A` is not locally compact and not a Baire space (ℝ is the union of the closed nowhere dense sets `[-n, n]`). |
+
+## The reduction behind condition (N) (`PVGNTrace`, 11 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGNTraceAxioms.lean`. Formalizes the reduction of Question 9.2 to condition (N) (research note, Addenda AC and AI; hand proof there). Inclusions of topologies are stated with open sets.
+
+| Declaration | Statement |
+|---|---|
+| `modTop_trace_eq` | For any family `I` of subsets of `ℝ`, the topological modification of `ξ_{τ_B, I}` induces on every `J ∈ I` exactly the Bohr trace (no group-topology hypothesis). |
+| `lac_trace_eq`, `sub_trace_eq` | The cases `I = I_S` and `I = I_A`. |
+| `bohr_open_lac`, `lac_open_euclid`, `lac_strict` | `τ_B ⊆ τ_ξ ⊆ τ_E`, and the complement of the thin set `C_t` is `τ_ξ`-open but not Bohr-open. |
+| `N_of_group` | If `τ_ξ = modTop lacConv` is a group topology (Question 9.2 positive for the lacunary ideal), then condition (N) holds with `γ = τ_ξ`: a group topology `γ` with `τ_B ⊊ γ ⊆ τ_E` and Bohr trace on every member of `I_S`. |

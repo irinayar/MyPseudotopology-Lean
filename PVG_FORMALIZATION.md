@@ -439,3 +439,18 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `finite_sum_mem` | A sum of at most `k` terms `d_n s_n`, `n ∈ A'`, `d_n` in a finite set `C`, lies in `sumSetA A'` of the fixed list `C.toList.flatMap (replicate k)`. |
 | `IA_inter`, `IA_inter_iff` | `J ∈ I_A ∩ I_B` implies `J ∈ I_{A ∩ B}`; `I_{A ∩ B} = I_A ∩ I_B`. |
 | `subConv_inter_iff`, `subConv_inter_coarsest` | A filter converges for `ξ_{A ∩ B}` iff it converges for `ξ_A` and `ξ_B`; `ξ_{A ∩ B}` is a PVG, finer than both, and the coarsest such. |
+
+## Semitopological structure, first countability, local compactness and the Baire property (`PVGSemiTop`, `PVGNotLC`, 11 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom reports in `PVGSemiTopAxioms.lean` and `PVGNotLCAxioms.lean`. Formalizes Propositions 8.66, 8.67 and 8.70 of PVG_v30 (hand proofs there; the Lean statements below are for `tauA A = modTop (subConv A)`, the topological modification of `ξ_{τ_B, I_A}`, `s_n = 2^(n^2)`).
+
+| Declaration | Statement |
+|---|---|
+| `modTop_translate_isOpen`, `modTop_continuous_add_const` | For a PVG `conv` on a real vector space, every translation is continuous for `modTop conv`. |
+| `closure_add_closure_subset_of_translations`, `closure_add_closure_modTop` | Proposition 8.67: `cl X + cl Y ⊆ cl (X + Y)` (abstract form for a topology with continuous translations; for `modTop conv`). |
+| `bohrOpen_isOpen_tauA`, `bohrClosed_isClosed_tauA`, `Icc_bohrClosed` | `τ_B ⊆ τ_{ξ_A}`; the intervals `[a, b]` are Bohr closed. |
+| `tauA_nhds_zero_unbounded`, `tauA_mem_nhds_zero_unbounded`, `tauA_unbounded_of_nonempty` | Proposition 8.66 (a): for `A` infinite every `tauA A`-neighbourhood of `0` contains arbitrarily large positive numbers; every nonempty open set is unbounded. |
+| `exists_five_seq`, `sub_range_bohrClosed` | Sequences with `5 z_j < z_{j+1}` in prescribed sets; every subset of `{z_j}` is Bohr closed (Proposition 8.7 applied to subsequences, `lacclosed`). |
+| `tauA_not_countablyGenerated` | Proposition 8.66 (b): the neighbourhood filter of `0` in `tauA A` is not countably generated. |
+| `infinite_closed_discrete_not_compact` | An infinite injective sequence all of whose subsets are closed does not lie in a compact set (generic topology). |
+| `tauA_not_locallyCompact`, `tauA_not_baire` | Proposition 8.70: `tauA A` is not locally compact and not a Baire space (ℝ is the union of the closed nowhere dense sets `[-n, n]`). |

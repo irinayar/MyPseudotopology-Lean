@@ -465,3 +465,14 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `lac_trace_eq`, `sub_trace_eq` | The cases `I = I_S` and `I = I_A`. |
 | `bohr_open_lac`, `lac_open_euclid`, `lac_strict` | `τ_B ⊆ τ_ξ ⊆ τ_E`, and the complement of the thin set `C_t` is `τ_ξ`-open but not Bohr-open. |
 | `N_of_group` | If `τ_ξ = modTop lacConv` is a group topology (Question 9.2 positive for the lacunary ideal), then condition (N) holds with `γ = τ_ξ`: a group topology `γ` with `τ_B ⊊ γ ⊆ τ_E` and Bohr trace on every member of `I_S`. |
+
+## A finiteness lemma for the sets `E_r` (`PVGDiffFinite`, 12 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGDiffFiniteAxioms.lean`. Formalizes Lemma AS1 of the research note (Lemma 8.74 of PVG_v32): with `s_n = 2^(n^2)`, `S = {0} ∪ {±s_n}` and `E_r = {r (s_n - s_l) : n > l ≥ 1}`.
+
+| Declaration | Statement |
+|---|---|
+| `Er_pairs_finite` | If neither `r` nor `-r` is a signed subset sum of the coefficients `l` (`Cset l`), only finitely many pairs `(n, l')`, `1 ≤ l' < n`, satisfy `r (s_n - s_l') ∈ [-m, m] + sumSet l`. (Largest-index argument with `lower_bound`.) |
+| `Er_inter_finite_of_sub` | `J ∩ E_r` is finite for every `J ⊆ [-m, m] + sumSet l` under the same hypothesis. |
+| `Er_inter_finite_of_subgroup` | The same for coefficients in an additive subgroup `A` of `ℝ` with `r ∉ A` (the statement of the lemma). |
+| `Er_inter_IS_finite` | The same for members of the lacunary ideal `IS` whose coefficient list avoids `±r`. |

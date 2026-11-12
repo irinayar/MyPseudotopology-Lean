@@ -484,3 +484,4 @@ import LeanCheck.PVGSubInter
 import LeanCheck.PVGSemiTop
 import LeanCheck.PVGNotLC
 import LeanCheck.PVGNTrace
+import LeanCheck.PVGDiffFinite

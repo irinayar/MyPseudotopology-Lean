@@ -476,3 +476,17 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `Er_inter_finite_of_sub` | `J ∩ E_r` is finite for every `J ⊆ [-m, m] + sumSet l` under the same hypothesis. |
 | `Er_inter_finite_of_subgroup` | The same for coefficients in an additive subgroup `A` of `ℝ` with `r ∉ A` (the statement of the lemma). |
 | `Er_inter_IS_finite` | The same for members of the lacunary ideal `IS` whose coefficient list avoids `±r`. |
+
+## The topological modification of the lacunary PVG is not a group topology (`PVGNotGroupArith`, `PVGNotGroupShift`, `PVGNotGroupClosure`, `PVGNotGroup`, 12 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGNotGroupAxioms.lean`. Formalizes Lemma 8.78 and Theorem 8.79 of PVG_v34 (research note, Addendum BU). With `s_n = 2^(n^2)` (`sS`), `c_i = 3^i` (`cc`), `M_i = 3i + 4` (`MM`), `E_i = {s_{n-k} - s_{m-l} + c_i (s_n - s_m) : 1 ≤ k, l ≤ i, k ≠ l, M_i ≤ n < m}` (`Ei`) and `E = ⋃_{i ≥ 2} E_i` (`Eall`).
+
+| Declaration | Statement |
+|---|---|
+| `Ei_ne_zero`, `zero_notMem_Eall` | `0 ∉ E_i`, `0 ∉ E` (Lemma 8.78(a)). |
+| `Ei_not_mem_piece` | For every piece `[-m₀, m₀] + sumSet l` there is `i₀` with no element of `E_i`, `i ≥ i₀`, in it (Lemma 8.78(b); largest-index argument with `lower_bound`). |
+| `shiftU_free`, `shiftU_ne`, `shiftU_inj` | The shift `n ↦ n - d` of a free ultrafilter on `ℕ` is free, does not fix it (`d ≥ 1`), and `shiftU k Z ≠ shiftU l Z` for `k ≠ l`. |
+| `indep4` | Independence (`PVGIndependence`) for four limits `a • L A + b • L B + c • L C + d • L D = e r` with possibly coinciding ultrafilters: the merged coefficients vanish. |
+| `closure_Ei` | The Bohr closure of `E_i` is `E_i` (`i ≥ 2`; Lemma 8.78(c); ultrafilters on the index set, cases `Z₂` principal, `Z₁` principal, `Z₁` free). |
+| `Eall_compl_open` | `ℝ \ E` is `τ_ξ = modTop lacConv`-open (Lemma 8.78(d)). |
+| `modTop_not_continuousAdd`, `modTop_not_topAddGroup` | **Theorem 8.79**: addition is not continuous at `(0,0)` for `τ_ξ`, so `τ_ξ` is not a group topology; hence the negative answer to Question 9.2 of PVG_v33. (Iterated choice of `n` and then `m` along a free ultrafilter `W₀` replaces the Fubini square; compactness of `K` gives `k ≠ l` with `L(W₀-k) - L(W₀-l)` in a given neighbourhood of `0`.) |

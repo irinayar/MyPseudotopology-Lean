@@ -485,3 +485,8 @@ import LeanCheck.PVGSemiTop
 import LeanCheck.PVGNotLC
 import LeanCheck.PVGNTrace
 import LeanCheck.PVGDiffFinite
+import LeanCheck.PVGNotGroupArith
+import LeanCheck.PVGNotGroupShift
+import LeanCheck.PVGNotGroupClosure
+import LeanCheck.PVGNotGroup
+import LeanCheck.PVGNotGroupAxioms

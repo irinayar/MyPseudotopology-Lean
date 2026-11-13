@@ -502,3 +502,17 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `EallA_compl_open` | `ℝ \ E^A` is `modTop (subConv A)`-open. |
 | `modTop_subConv_not_continuousAdd`, `modTop_subConv_not_topAddGroup` | For every infinite `A ⊆ ℕ`, addition is not continuous at `(0,0)` for `τ_{ξ_A} = modTop (subConv A)`; it is not a group topology. (`φ = Nat.nth (· ∈ A)`.) |
 | `topology_le_modTop`, `topology_le_modTop_lac` | A topology `γ` inducing the Bohr topology on every member of an ideal `I` is contained in `modTop (xiConv I)`; the case `I = I_S` (condition (N): `γ ⊆ τ_ξ`). |
+
+## The core of Part II of PVG_v43: Lemma 8.90, Propositions 8.91 and 8.92, the category form of Step 6, and Steps 2 to 6 of Proposition 8.88 and the proof of Proposition 8.97 conditional on Step 1 (`PVGProdLimit`, `PVGTotBdd`, `PVGDenseTrace`, `PVGBaireDigits`, `PVGNoLqcCore`, `PVGCyclicCore`, 13 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGPartIIAxioms.lean`. Numbers refer to PVG_v43 (research note, Addenda CE, CF, CH, CI, CJ). **Not formalized:** Step 1 of Proposition 8.88 (a locally quasi-convex `γ` between `τ_B` and `τ_E` gives a bounded infinite `γ`-equicontinuous set of characters; here it is the hypothesis `hV`, `hcE`, `hC`, `hinj`), the Lebesgue-null part of Step 6 (only the category form is proved), Proposition 8.94 (uses Glicksberg's theorem), Proposition 8.96, Theorem 8.86. **Note:** the hypothesis `0 ∈ D` of `denseTrace` is missing in the statement of Proposition 8.92 in PVG_v43 and is needed.
+
+| Declaration | Statement |
+|---|---|
+| `prodLimit_K`, `prodLimit_bohr`, `prodLimit_lt`, `prodLimit` | **Lemma 8.90**: for real `a` and a free ultrafilter `U`, for `U`-most `n` and `U`-most `m`, `e(a s_n - a s_m)` lies in a given neighbourhood of `0` in `K` (in `bohrTop` for the real points), and `n < m`. |
+| `Ja`, `Hyp`, `hyp_of_trace` | `J_a = aS + (-a)S`; if a topology `γ` induces the Bohr topology on `J_b`, then for every free `U` and `γ`-neighbourhood `W` of `0`, `U`-most `n`, `U`-most `m`: `n < m` and `b s_n - b s_m ∈ W`. |
+| `totbdd_seq`, `totbdd` | **Proposition 8.91**: if `γ` induces the Bohr topology on `J_a`, every `γ`-neighbourhood `W` of `0` has a finite `F` with `a s ∈ F + W` for all `s ∈ S` (no group structure on `γ` is used). |
+| `denseTrace_core`, `denseTrace` | **Proposition 8.92** (with `0 ∈ D`): a group topology coarser than the Euclidean topology whose trace on a Euclidean-dense `D ∋ 0` is coarser than the Bohr trace is coarser than the Bohr topology (`bohrTop ≤ γ`). |
+| `isClosed_FdigDil`, `interior_FdigDil`, `baire_digits`, `exists_not_mem_digits` | Step 6 of Proposition 8.88, category form: `F = {y : ‖2^{n²} y‖ ≤ 1/4 for all n ≥ 1}`; `δ⁻¹F` is closed with empty interior for `δ ≠ 0`; for any sequence `δ_K ≠ 0` the set of `a` with `δ_K a ∉ F` for all `K` is dense. |
+| `step5`, `digit_of_trace`, `nolqc_core` | Steps 2 to 6 of **Proposition 8.88**, conditional on Step 1: if `γ` induces the Bohr topology on `J_a`, then `(c_{K+1} - c_K) a ∈ F` for some `K`; arbitrarily close to every real number there is an `a` for which `γ` does not induce the Bohr topology on `J_a`. |
+| `bohr_precompact`, `int_of_dint`, `cyclic_core` | **Proposition 8.97**, conditional on Step 1: every subset of `ℝ` is totally bounded for the Bohr topology (compactness of `K`); `‖nθ‖ < 1/4` for all integers `n` implies `θ ∈ ℤ`; if `γ` induces the Bohr topology on the cyclic subgroup `xℤ`, then `(c_{K+1} - c_K) x ∈ ℤ` for some `K`. |

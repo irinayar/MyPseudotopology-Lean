@@ -495,3 +495,10 @@ import LeanCheck.PVGNotGroupAClosure
 import LeanCheck.PVGNotGroupA
 import LeanCheck.PVGGammaInXi
 import LeanCheck.PVGNotGroupAxioms2
+import LeanCheck.PVGProdLimit
+import LeanCheck.PVGTotBdd
+import LeanCheck.PVGDenseTrace
+import LeanCheck.PVGBaireDigits
+import LeanCheck.PVGNoLqcCore
+import LeanCheck.PVGCyclicCore
+import LeanCheck.PVGPartIIAxioms

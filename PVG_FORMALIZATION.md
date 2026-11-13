@@ -490,3 +490,15 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `closure_Ei` | The Bohr closure of `E_i` is `E_i` (`i ≥ 2`; Lemma 8.78(c); ultrafilters on the index set, cases `Z₂` principal, `Z₁` principal, `Z₁` free). |
 | `Eall_compl_open` | `ℝ \ E` is `τ_ξ = modTop lacConv`-open (Lemma 8.78(d)). |
 | `modTop_not_continuousAdd`, `modTop_not_topAddGroup` | **Theorem 8.79**: addition is not continuous at `(0,0)` for `τ_ξ`, so `τ_ξ` is not a group topology; hence the negative answer to Question 9.2 of PVG_v33. (Iterated choice of `n` and then `m` along a free ultrafilter `W₀` replaces the Fubini square; compactness of `K` gives `k ≠ l` with `L(W₀-k) - L(W₀-l)` in a given neighbourhood of `0`.) |
+
+## The modification of `ξ_A` is not a group topology for infinite `A`; a topology with the Bohr trace lies inside `τ_ξ` (`PVGNotGroupPos`, `PVGNotGroupAClosure`, `PVGNotGroupA`, `PVGGammaInXi`, 12 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGNotGroupAxioms2.lean`. Formalizes Theorem 8.81 and Proposition 8.83 of PVG_v35 (research note, Addenda BV and BW2).
+
+| Declaration | Statement |
+|---|---|
+| `pos_ne_zero`, `pos_not_mem_piece` | For four positions `p₁, p₂, p₃, p₄` with `p₁, p₂, p₃ < p₄`, `p₁ ≠ p₃`, `M_i ≤ p₃`: `s_{p₁} - s_{p₂} + c_i (s_{p₃} - s_{p₄}) ≠ 0`, and for `i` large it lies in no fixed piece `[-m₀, m₀] + sumSet l` (the four-position form of Lemma 8.78(a), (b)). |
+| `yA_ratio`, `indep4y`, `closure_EiA` | For the subsequence `y_j = s_{φ j}` (`φ` strictly increasing): `y_{j+1}/y_j → ∞`; independence for four limits with possibly coinciding ultrafilters for an arbitrary sequence `y`; the Bohr closure of `EiA φ i` is itself. |
+| `EallA_compl_open` | `ℝ \ E^A` is `modTop (subConv A)`-open. |
+| `modTop_subConv_not_continuousAdd`, `modTop_subConv_not_topAddGroup` | For every infinite `A ⊆ ℕ`, addition is not continuous at `(0,0)` for `τ_{ξ_A} = modTop (subConv A)`; it is not a group topology. (`φ = Nat.nth (· ∈ A)`.) |
+| `topology_le_modTop`, `topology_le_modTop_lac` | A topology `γ` inducing the Bohr topology on every member of an ideal `I` is contained in `modTop (xiConv I)`; the case `I = I_S` (condition (N): `γ ⊆ τ_ξ`). |

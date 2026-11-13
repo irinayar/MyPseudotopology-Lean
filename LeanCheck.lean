@@ -490,3 +490,8 @@ import LeanCheck.PVGNotGroupShift
 import LeanCheck.PVGNotGroupClosure
 import LeanCheck.PVGNotGroup
 import LeanCheck.PVGNotGroupAxioms
+import LeanCheck.PVGNotGroupPos
+import LeanCheck.PVGNotGroupAClosure
+import LeanCheck.PVGNotGroupA
+import LeanCheck.PVGGammaInXi
+import LeanCheck.PVGNotGroupAxioms2

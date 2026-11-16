@@ -502,3 +502,7 @@ import LeanCheck.PVGBaireDigits
 import LeanCheck.PVGNoLqcCore
 import LeanCheck.PVGCyclicCore
 import LeanCheck.PVGPartIIAxioms
+import LeanCheck.PVGNecessaryE
+import LeanCheck.PVGNormCriterion
+import LeanCheck.PVGAtomsInterval
+import LeanCheck.PVGPartIIIAxioms

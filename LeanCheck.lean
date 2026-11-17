@@ -506,3 +506,9 @@ import LeanCheck.PVGNecessaryE
 import LeanCheck.PVGNormCriterion
 import LeanCheck.PVGAtomsInterval
 import LeanCheck.PVGPartIIIAxioms
+import LeanCheck.TPPQuartic
+import LeanCheck.TPPFirstGap
+import LeanCheck.TPPConv
+import LeanCheck.TPPSep
+import LeanCheck.TPPElim
+import LeanCheck.TPPCross

@@ -1,0 +1,10 @@
+﻿vectors: 8379
+smallest products |h.v| ||h||^2 (printed; recomputed in 3412 digits):
+  0.000117  recomputed 0.000117  ||h|| = 10^38  J = 2.1020
+  0.000135  recomputed 0.000135  ||h|| = 10^56  J = 2.0680
+  0.000158  recomputed 0.000158  ||h|| = 10^472  J = 2.0080
+  0.000210  recomputed 0.000210  ||h|| = 10^792  J = 2.0046
+  0.000217  recomputed 0.000217  ||h|| = 10^867  J = 2.0042
+max exponent J over ||h|| >= 1e6: 2.2638
+min product over ||h|| >= 1e30: 0.000117
+largest norm: 10^903  (904 digits)

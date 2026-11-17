@@ -77,8 +77,16 @@ for k in range(KMIN, KMAX + 1):
     if k % 50 == 0 or k <= 3:
         print("k=%4d H=2^%d  lattice vectors enumerated: %7d   new exceptional h: %d   [%.0fs]" % (k, k, len(vecs), cnt, time.time() - t0)); sys.stdout.flush()
 rows = sorted(found.items(), key=lambda kv: kv[1][0])
-print("\nexceptional vectors (|h.v| <= H^-2 at their scale), sorted by norm:  ||h||_inf, |h.v|, |h.v| ||h||^2, J, h")
+import math as _m
+def log10_dec(x):
+    """log10 of a positive Decimal from its exponent and leading digits (relative error ~1e-15)."""
+    e = x.adjusted()
+    m = float(x.scaleb(-e))
+    return e + _m.log10(m)
+print("\nexceptional vectors (|h.v| <= H^-2 at their scale), sorted by norm:  ||h||_inf, log10|h.v|, |h.v| ||h||^2, J, h")
 for h, (hinf, hv) in rows:
-    prod = hv * hinf * hinf
-    J = float(-hv.ln() / Decimal(hinf).ln()) if hinf > 1 else float('nan')
-    print("%d  %.3e  %.4f  %.3f  %s" % (hinf, float(hv), float(prod), J, list(h)))
+    lh = log10_dec(Decimal(hinf))
+    lv = log10_dec(hv)
+    prod = 10 ** (lv + 2 * lh) if lv + 2 * lh > -300 else 0.0
+    J = (-lv / lh) if lh > 0 else float('nan')
+    print("%d  1e%.4f  %.6f  %.4f  %s" % (hinf, lv, prod, J, list(h)))

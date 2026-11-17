@@ -1,0 +1,6 @@
+﻿(1) Q=600 D=3: kappa(0)=1.000000  sum kappa=2.1429 (B_D=12.857)
+    pointwise bound kappa(r) <= V2^2/(64 I1^2 r^4): violations 0
+    tail sum_{|r|>u} kappa <= A_D u^-3: max ratio 0.0013 (A_D=112.500)
+    Fourier coefficients of K_Q (autocorrelation) min = 3.885e+00 (>= 0)
+(2) P=16 alpha=16 Q=256: max_j |E_tau|a_new(j)|^2 - sum_l kappa(j-alpha l)|a(l)|^2| = 2.533e-15 (scale 1.000e+00)
+    mass estimate: max_tau |S_new/(alpha m_Q S) - 1| = 0.0002  <=  4/(alpha m_Q) = 0.7031

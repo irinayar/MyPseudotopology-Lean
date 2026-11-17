@@ -60,3 +60,5 @@ All scripts are plain Python 3 (standard library only). They were run with the O
 | File | What it does | Output |
 |---|---|---|
 | `census_by_planes.py` | Exhaustive census of the close triples of the explicit window (and of window factor A: diameter <= A W(n)) by exact enumeration of plane normals h (|h.v| <= eta_k, ||h|| <= H_k) and of the lattice points of each plane near the line R v; no continued fractions. Usage `census_by_planes.py KMIN KMAX [A]` | `census_by_planes_out.txt` (A = 1, k = 5..53, 8 s: the 38 triples), `census_by_planes_A{1,2,5,10,100}.txt` (k = 5..60: 38, 161, 758, 2058, 39856 triples), `census_by_planes_A100_61_72.txt` (none) |
+
+| `tvgplus_lemma_checks.py` | Numerical checks of TVGplus_v42's window-kernel lemma (kappa bounds, Fourier positivity) and of the averaged-transfer lemma (exact identity to 2.5e-15, mass estimate) | `tvgplus_lemma_checks_out.txt` |

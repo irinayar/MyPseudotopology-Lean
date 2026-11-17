@@ -54,3 +54,9 @@ All scripts are plain Python 3 (standard library only). They were run with the O
 | `orthogonal_plane_test.py` | Elementary transference on 13 known triples: shortest h orthogonal to (n,m,l) has ||h|| <= 2 sqrt n and \|h.v\| <= 2 delta / sqrt n | `orthogonal_plane_test_out.txt` |
 | `diameter_scan.py` | Direct check for 10 <= n <= 4e5: minimum log-diameter of (n, m, l) over the neighbours of the nearest integers | min D/sqrt(n) = 0.358 at (29,23,19); no triple with D < 0.5 |
 | `transference_test.py`, `transference_triples.py` | Earlier (Minkowski II) version of the transference check | see v17 README rows |
+
+## Independent census by plane enumeration (v18)
+
+| File | What it does | Output |
+|---|---|---|
+| `census_by_planes.py` | Exhaustive census of the close triples of the explicit window (and of window factor A: diameter <= A W(n)) by exact enumeration of plane normals h (|h.v| <= eta_k, ||h|| <= H_k) and of the lattice points of each plane near the line R v; no continued fractions. Usage `census_by_planes.py KMIN KMAX [A]` | `census_by_planes_out.txt` (A = 1, k = 5..53, 8 s: the 38 triples), `census_by_planes_A{1,2,5,10,100}.txt` (k = 5..60: 38, 161, 758, 2058, 39856 triples), `census_by_planes_A100_61_72.txt` (none) |

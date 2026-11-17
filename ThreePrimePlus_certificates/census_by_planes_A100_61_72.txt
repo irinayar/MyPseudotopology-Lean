@@ -1,0 +1,14 @@
+﻿k=61 N=2^61  h-vectors:     0 (lattice vectors      1)  plane points:      0  triples with diameter <= W: 0  close triples: []   [0s]
+k=62 N=2^62  h-vectors:     0 (lattice vectors      1)  plane points:      0  triples with diameter <= W: 0  close triples: []   [0s]
+k=63 N=2^63  h-vectors:     0 (lattice vectors      1)  plane points:      0  triples with diameter <= W: 0  close triples: []   [0s]
+k=64 N=2^64  h-vectors:     0 (lattice vectors      1)  plane points:      0  triples with diameter <= W: 0  close triples: []   [0s]
+k=65 N=2^65  h-vectors:     0 (lattice vectors      1)  plane points:      0  triples with diameter <= W: 0  close triples: []   [0s]
+k=66 N=2^66  h-vectors:     0 (lattice vectors      1)  plane points:      0  triples with diameter <= W: 0  close triples: []   [0s]
+k=67 N=2^67  h-vectors:     0 (lattice vectors      1)  plane points:      0  triples with diameter <= W: 0  close triples: []   [0s]
+k=68 N=2^68  h-vectors:     0 (lattice vectors      1)  plane points:      0  triples with diameter <= W: 0  close triples: []   [0s]
+k=69 N=2^69  h-vectors:     0 (lattice vectors      1)  plane points:      0  triples with diameter <= W: 0  close triples: []   [0s]
+k=70 N=2^70  h-vectors:     0 (lattice vectors      1)  plane points:      0  triples with diameter <= W: 0  close triples: []   [0s]
+k=71 N=2^71  h-vectors:     0 (lattice vectors      1)  plane points:      0  triples with diameter <= W: 0  close triples: []   [0s]
+k=72 N=2^72  h-vectors:     0 (lattice vectors      1)  plane points:      0  triples with diameter <= W: 0  close triples: []   [0s]
+
+close triples found (n,m,l): []  count: 0

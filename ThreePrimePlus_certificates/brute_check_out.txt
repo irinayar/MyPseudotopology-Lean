@@ -1,0 +1,8 @@
+﻿n=   32  W=  13  eps=2.041e-06  near-resonant vectors with a!=0 and max<=W: none  [0.0s]
+n=   34  W=  21  eps=8.698e-07  near-resonant vectors with a!=0 and max<=W: none  [0.0s]
+n=   35  W=  29  eps=4.704e-07  near-resonant vectors with a!=0 and max<=W: none  [0.0s]
+n=   38  W=  51  eps=1.486e-07  near-resonant vectors with a!=0 and max<=W: none  [0.0s]
+n=   43  W= 143  eps=1.934e-08  near-resonant vectors with a!=0 and max<=W: none  [0.0s]
+n=   44  W= 189  eps=1.110e-08  near-resonant vectors with a!=0 and max<=W: none  [0.1s]
+n=   49  W= 511  eps=1.530e-09  near-resonant vectors with a!=0 and max<=W: none  [0.2s]
+n=   50  W= 661  eps=9.134e-10  near-resonant vectors with a!=0 and max<=W: none  [0.4s]

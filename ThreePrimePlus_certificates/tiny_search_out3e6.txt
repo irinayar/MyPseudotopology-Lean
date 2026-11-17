@@ -1,0 +1,2 @@
+﻿pairs (p,q,j) with x in [0,2.279]: 71
+number of screened candidates (res<1e-3): 0

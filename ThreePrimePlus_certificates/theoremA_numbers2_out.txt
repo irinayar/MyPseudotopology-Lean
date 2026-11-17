@@ -1,0 +1,13 @@
+﻿beta_0 = 3.01671, beta = 3.01972, 3 beta^2 = 27.356
+n=    32  t=  26.2037  W=2.7729e+09  mass bound=0.000e+00  truncation=2.608e-47
+n=    34  t=  27.9100  W=8.2766e+08  mass bound=0.000e+00  truncation=6.210e-52
+n=    35  t=  29.1394  W=6.4900e+02  mass bound=2.909e-47  truncation=5.723e-53
+n=    38  t=  31.4444  W=4.7438e+04  mass bound=0.000e+00  truncation=7.755e-59
+n=    43  t=  35.5218  W=2.5000e+03  mass bound=3.041e-97  truncation=3.359e-68
+n=    44  t=  36.6324  W=2.5000e+03  mass bound=3.041e-97  truncation=2.998e-69
+n=  3267  t=2719.9417  W=4.1204e+293  mass bound=0.000e+00  truncation=0.000e+00
+n=  5766  t=4800.5099  W=2.0285e+302  mass bound=0.000e+00  truncation=0.000e+00
+n= 39268  t=32692.7545  W=2.1367e+25  mass bound=0.000e+00  truncation=0.000e+00
+sum of mass bounds over the 38 triples: 2.909e-47
+sum of truncation terms:                2.608e-47
+max over triples of (mass + truncation): 2.909e-47

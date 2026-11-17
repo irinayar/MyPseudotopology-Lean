@@ -1,0 +1,2 @@
+﻿     n   result (kappa = 1/50): lattice has no vector with a != 0 in the box  [time]
+  5766   t=4800.5099  W0=inf   CERTIFIED   (1 lattice vectors in the region)  [138.7s]

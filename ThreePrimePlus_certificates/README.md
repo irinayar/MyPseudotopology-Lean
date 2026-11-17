@@ -36,3 +36,21 @@ All scripts are plain Python 3 (standard library only). They were run with the O
 |---|---|---|
 | `tail_bound2.py` | Independent rigorous tail bound for sum_{r>=4000} kappa(r) (c_w = 0.15): kappa(r) <= e^4 J^2 e^(-4J), J = floor(sqrt(2 pi c_w r)) (Stirling), counted over r; exact B(4000)^2 = 3.2e-102 | `tail_bound2_out.txt`: 2 * sum <= 5.9e-99 |
 | `lattice_count_test.py` | Numerical sanity check of Lemma "Lattice points in a convex set" (|S| <= 2A/covolume + 2 for non-collinear S) on random lattices and thin parallelograms | 177 non-collinear cases, no violation, max |S|/bound = 0.67 |
+
+## Transference scripts (v17)
+
+| File | What it does | Output |
+|---|---|---|
+| `transference_test.py` | Brute-force check of the transference lemma (|h1|,|h2| <= 15 sqrt(n), |h.v| <= 15 delta/sqrt(n)) on random (alpha, beta) | 23 cases, worst ratio 0.001 of the bound |
+| `transference_triples.py` | Same for the known close triples with n <= 413 (alpha = sqrt(log2/log3), beta = sqrt(log2/log5)) | `transference_triples_out.txt` |
+
+## Exhaustive exponent range and elementary transference (v18)
+
+| File | What it does | Output |
+|---|---|---|
+| `exhaustive_hv.py` | EXACT enumeration (LLL + Fincke-Pohst, rational arithmetic) at every dyadic scale H = 2^k of all integer h with ||h||_inf <= H and \|h.v\| <= H^-2, v = (1, sqrt(log2/log3), sqrt(log2/log5)); usage `exhaustive_hv.py KMIN KMAX` | `exhaustive_hv_out_200.txt` (k = 1..200, 43 s), `exhaustive_hv_out_201_600.txt` (k = 201..600, 1232 s; first line starts with a byte-order mark) |
+| `exhaustive_hv_summary.py` | Recomputes \|h.v\| ||h||^2 for every listed vector in 900 digits; prints the minimum product, the maximum exponent for ||h|| >= 10^6, the number of vectors | `exhaustive_hv_summary_600.txt`: 1735 vectors, min product 1.17e-4 at ||h|| = 3.3e38, max exponent 2.264 (||h|| >= 1e6), largest norm 10^180 |
+| `exhaustive_hv_crosscheck.py` | Brute-force check for ||h|| <= 2048 against the enumeration list | 13 = 13 vectors, identical |
+| `orthogonal_plane_test.py` | Elementary transference on 13 known triples: shortest h orthogonal to (n,m,l) has ||h|| <= 2 sqrt n and \|h.v\| <= 2 delta / sqrt n | `orthogonal_plane_test_out.txt` |
+| `diameter_scan.py` | Direct check for 10 <= n <= 4e5: minimum log-diameter of (n, m, l) over the neighbours of the nearest integers | min D/sqrt(n) = 0.358 at (29,23,19); no triple with D < 0.5 |
+| `transference_test.py`, `transference_triples.py` | Earlier (Minkowski II) version of the transference check | see v17 README rows |

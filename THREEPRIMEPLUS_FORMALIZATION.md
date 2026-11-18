@@ -37,3 +37,18 @@ The elimination argument: `elim_identity`, `elim_bound` (`|a'S - aS'| < 2Mδ`), 
 | `delta_lower` | If moreover `|b|,|c| ≤ M`, `n > 0` and `c₀ ≤ |a + b α + c β| M²`, then `c₀ n ≤ 2 M³ δ`. |
 
 These are the algebraic core of the transference lemma and of the proof that no close triples exist where the exponent-2 bound `|h·v| ‖h‖² ≥ c₀` is known (the bound itself is a computer-assisted enumeration, not part of the Lean files).
+
+## `TPPGeneral` (elementary steps for any three primes; ThreePrimeContinue, Section "Any three primes")
+
+| Declaration | Statement |
+|---|---|
+| `sq_diff_factor` | `m² L₂ − n² L₁ = L₂ (m − α n)(m + α n)` when `α² L₂ = L₁`. |
+| `near_of_sq_diff` | If `|m² L₂ − n² L₁| ≤ D`, `m, n ≥ 0`, `L₂, α > 0`, `α² L₂ = L₁`, then `|m − α n| · (L₂ α n) ≤ D`. |
+| `sq_diff_of_near` | If `|m − α n| ≤ ε` then `|m² L₂ − n² L₁| ≤ L₂ ε (2 α n + ε)`. |
+| `Qh`, `Qh_eq_prod` | `Q_h(x,y,z) = (h₀² y z − h₁² x z − h₂² x y)² − 4 h₁² h₂² x² y z` equals `y² z²` times the product of `h₀ ± h₁ α ± h₂ β` when `x = α² y = β² z`. |
+| `Qh_eq_zero_iff` | for `y, z ≠ 0`: `Q_h = 0` iff one of the four numbers `h₀ ± h₁ α ± h₂ β` vanishes. |
+| `sadic_reform`, `N_eq` | `(a Q₂ Q₃ + b Q₁ Q₃ + c Q₁ Q₂)/(Q₂ Q₃) = a + b Q₁/Q₂ + c Q₁/Q₃` and `N = (a Q₂ + b Q₁) Q₃ + c Q₁ Q₂`. |
+| `N_ne_zero` | `N ≠ 0` for `Q₁ = p^e` when `a ≠ 0`, `|a| < p^e` and `p ∤ Q₂ Q₃` (valuation argument for the nonvanishing of the linear form). |
+| `box_cond` | `3 Z ≤ M²` and `M ≥ 1` imply `3 M Z + 1 < (M+1)³`, the counting condition of `exists_orthogonal`. |
+
+Not formalized: the planar Dirichlet argument, the Borel--Cantelli step, Khintchine's transference, Matveev's theorem and the numerical computations.

@@ -1,0 +1,2 @@
+brute force (C#) with exact filter, ||h|| <= 65536, product <= 1/4: 17 vectors; lattice enumeration list (same range and filter): 17 vectors
+missing from the lattice list: []  extra in the lattice list: []

@@ -75,3 +75,5 @@ The fast implementation reproduces exactly the 1735 vectors of norm <= 2^600 of 
 ## Census with the pigeonhole transference box (v18)
 
 `census_by_planes.py` now uses the pigeonhole lemma of `TPPTransfer.lean` (H_k = ceil(sqrt(6N)), eta_k = 2 H_k delta_k / N). Outputs `census_pg_A{1,2,5,10,100}.txt` (blocks k = 5..60, 62, 64, 66, 76): the same lists of 38, 161, 758, 2058, 39856 close triples as before (the earlier outputs `census_by_planes_*.txt` used the Hermite box).
+
+| `bruteforce_hv.cs`, `bruteforce_hv_compare.py` | Independent check in C# (double precision, all (h1,h2) with norm <= 65536, 2.9e10 evaluations, 229 s) of the exhaustive enumeration, with exact post-filtering in Python | `bruteforce_hv_candidates_65536.txt`, `bruteforce_hv_compare_out.txt`: 17 = 17 vectors with product <= 1/4, identical |

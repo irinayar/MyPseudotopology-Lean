@@ -71,3 +71,7 @@ All scripts are plain Python 3 (standard library only). They were run with the O
 | `exhaustive_hv_summary2.py` | Summary of the listing (number of vectors, smallest products, maximum exponent, largest norm; recomputation of the five smallest products in 3 x digits + 700 digits) | `exhaustive_hv_summary_3000.txt`: 8379 vectors, min product 1.17e-4 at norm 3.3e38, max exponent 2.264 for norm >= 1e6, largest norm 10^903 |
 
 The fast implementation reproduces exactly the 1735 vectors of norm <= 2^600 of the first implementation (checked by set equality).
+
+## Census with the pigeonhole transference box (v18)
+
+`census_by_planes.py` now uses the pigeonhole lemma of `TPPTransfer.lean` (H_k = ceil(sqrt(6N)), eta_k = 2 H_k delta_k / N). Outputs `census_pg_A{1,2,5,10,100}.txt` (blocks k = 5..60, 62, 64, 66, 76): the same lists of 38, 161, 758, 2058, 39856 close triples as before (the earlier outputs `census_by_planes_*.txt` used the Hermite box).

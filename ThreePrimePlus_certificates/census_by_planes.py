@@ -2,8 +2,8 @@
 
 Block k: N = 2^k <= n < 2N (so floor(log2 n) = k and W(n) = Wk = (1+k)^2 log 2).  A triple (n,m,l) with diameter <= Wk has
 |m - alpha n|, |l - beta n| <= delta_k := 1.15 Wk / N <= 1   (diameter -> delta, see the proof of Theorem (b)).
-Transference lemma: the shortest nonzero integer vector h orthogonal to z = (n,m,l) is primitive, has ||h||_inf <= 1.4 sqrt(n) <= H_k := floor(1.4 sqrt(2N))
-and |h.v| <= 2 delta_k / sqrt(n) <= eta_k := 2 delta_k / sqrt(N).
+Transference lemma (pigeonhole version, TPPTransfer.lean): there is a nonzero integer h with h.z = 0, ||h||_inf <= M := ceil(sqrt(3n)) <= H_k := ceil(sqrt(6N)) (n >= 5, so that m, l <= n); its primitive part has the same properties
+and |h.v| <= 2 M delta_k / n <= eta_k := 2 H_k delta_k / N.
 Step A: enumerate EXACTLY all nonzero h in Z^3 with ||h||_inf <= H_k, |h.v| <= eta_k (rank-3 lattice in Z^4, LLL + Fincke-Pohst, rational arithmetic).
 Step B: for each primitive h (up to sign) enumerate EXACTLY the points z of the plane lattice h^perp ∩ Z^3 with Q(z) <= 3.0001, where
 Q(z) = (z_0/(2N))^2 + ((z_1 - alpha z_0)/delta_k)^2 + ((z_2 - beta z_0)/delta_k)^2   (every triple of the block has Q < 3).
@@ -163,8 +163,8 @@ for k in range(KMIN, KMAX + 1):
         results[k] = found
         print("k=%2d N=2^%d  [direct scan, delta_k > 1]  triples with diameter <= A W: %d  close triples: %s   [%.0fs]" % (k, k, len(found), [(f[0], f[1], f[2]) for f in found if f[3]], time.time() - t0)); sys.stdout.flush()
         continue
-    H = int(1.4 * math.sqrt(2 * N)) + 1   # one more than the floor, to be safe against floating-point rounding
-    eta = Fraction(2) * delta / Fraction(math.isqrt(N * 10 ** 6), 1000)  # 2 delta / sqrt(N) rounded up slightly (sqrt rounded down)
+    H = math.isqrt(6 * N) + 2             # >= ceil(sqrt(6N)) >= ceil(sqrt(3n)) = M for n < 2N (pigeonhole lemma, formalized in TPPTransfer.lean)
+    eta = Fraction(2 * H) * delta / N       # |h.v| <= 2 M delta / n <= 2 H delta_k / N
     eta_f = Decimal(eta.numerator) / Decimal(eta.denominator)
     hs, nv = step_A(H, eta_f)
     cands = set(); npts = 0

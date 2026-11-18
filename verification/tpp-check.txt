@@ -20,3 +20,6 @@
 'TPP.cross_decomp_2' depends on axioms: [propext, Classical.choice, Quot.sound]
 'TPP.cross_decomp_3' depends on axioms: [propext, Classical.choice, Quot.sound]
 'TPP.exponent_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TPP.exists_orthogonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TPP.hv_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TPP.delta_lower' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -512,3 +512,4 @@ import LeanCheck.TPPConv
 import LeanCheck.TPPSep
 import LeanCheck.TPPElim
 import LeanCheck.TPPCross
+import LeanCheck.TPPTransfer

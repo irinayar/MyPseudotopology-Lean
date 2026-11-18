@@ -27,3 +27,13 @@ The elimination argument: `elim_identity`, `elim_bound` (`|a'S - aS'| < 2Mδ`), 
 ## `TPPQuartic`, `TPPCross`
 
 `TPPQuartic`: the integer quartic `P_h(L₂,L₃,L₅)` equals `L₃²L₅²` times the product of `h₁ ± h₂α ± h₃β` (`quartic_eq_prod`), vanishes when `h·v = 0`, and satisfies `|P_h| ≤ 27 m³ L₃² L₅² |h·v|` (`quartic_bound`). `TPPCross`: the cross-product identities `dot_cross_eq`, `cross_decomp_1..3` of the ray theorem, and `exponent_pos`.
+
+## `TPPTransfer` (pigeonhole transference and the exclusion inequality)
+
+| Declaration | Statement |
+|---|---|
+| `exists_orthogonal` | If `z_i ≤ Z` (naturals) and `3 M Z + 1 < (M+1)^3`, there is a nonzero integer vector `(a,b,c)` with `|a|,|b|,|c| ≤ M` and `a z_0 + b z_1 + c z_2 = 0` (pigeonhole on the values of `x·z`, `x ∈ {0..M}^3`). |
+| `hv_bound` | If `a n + b m + c l = 0`, `|m - α n| ≤ δ`, `|l - β n| ≤ δ`, then `n |a + b α + c β| ≤ (|b| + |c|) δ`. |
+| `delta_lower` | If moreover `|b|,|c| ≤ M`, `n > 0` and `c₀ ≤ |a + b α + c β| M²`, then `c₀ n ≤ 2 M³ δ`. |
+
+These are the algebraic core of the transference lemma and of the proof that no close triples exist where the exponent-2 bound `|h·v| ‖h‖² ≥ c₀` is known (the bound itself is a computer-assisted enumeration, not part of the Lean files).

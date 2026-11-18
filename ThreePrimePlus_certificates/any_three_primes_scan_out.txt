@@ -1,0 +1,14 @@
+primes (2,3,5): alpha=0.794311 beta=0.656260; n<=1000000: triples with diameter <= W: 38; close triples (no other period inside): 38; largest n: (39268, 31191, 25770)
+first close triples: [(32, 25, 21), (34, 27, 22), (35, 28, 23), (38, 30, 25), (43, 34, 28), (44, 35, 29), (49, 39, 32), (50, 40, 33)]
+primes (2,3,7): alpha=0.794311 beta=0.596831; n<=1000000: triples with diameter <= W: 29; close triples (no other period inside): 29; largest n: (10477, 8322, 6253)
+first close triples: [(32, 25, 19), (34, 27, 20), (35, 28, 21), (40, 32, 24), (45, 36, 27), (50, 40, 30), (67, 53, 40), (72, 57, 43)]
+primes (2,5,7): alpha=0.656260 beta=0.596831; n<=1000000: triples with diameter <= W: 32; close triples (no other period inside): 32; largest n: (6310, 4141, 3766)
+first close triples: [(32, 21, 19), (33, 22, 20), (34, 22, 20), (35, 23, 21), (37, 24, 22), (47, 31, 28), (50, 33, 30), (52, 34, 31)]
+primes (3,5,7): alpha=0.826200 beta=0.751382; n<=1000000: triples with diameter <= W: 18; close triples (no other period inside): 18; largest n: (3435, 2838, 2581)
+first close triples: [(40, 33, 30), (41, 34, 31), (52, 43, 39), (68, 56, 51), (69, 57, 52), (80, 66, 60), (81, 67, 61), (121, 100, 91)]
+primes (2,3,11): alpha=0.794311 beta=0.537647; n<=1000000: triples with diameter <= W: 34; close triples (no other period inside): 34; largest n: (7278, 5781, 3913)
+first close triples: [(32, 25, 17), (34, 27, 18), (35, 28, 19), (39, 31, 21), (43, 34, 23), (50, 40, 27), (54, 43, 29), (67, 53, 36)]
+primes (5,7,11): alpha=0.909443 beta=0.819260; n<=1000000: triples with diameter <= W: 23; close triples (no other period inside): 23; largest n: (69614, 63310, 57032)
+first close triples: [(33, 30, 27), (34, 31, 28), (44, 40, 36), (45, 41, 37), (55, 50, 45), (66, 60, 54), (67, 61, 55), (77, 70, 63)]
+primes (101,103,107): alpha=0.997882 beta=0.993806; n<=1000000: triples with diameter <= W: 1; close triples (no other period inside): 1; largest n: (18889, 18849, 18772)
+first close triples: [(18889, 18849, 18772)]

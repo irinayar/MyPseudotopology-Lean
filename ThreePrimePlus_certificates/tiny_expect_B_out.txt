@@ -1,0 +1,18 @@
+B = 2  (|vectors| = 32, pairs with x <= log(2B+1) for 32 <= n <= 400000, ordered primes: 45)
+  expected number of B-small triples with n >= 32 : 3.461e-11
+  expected number of B-small triples with n >= 64 : 1.037e-24
+  expected number of B-small triples with n >= 128 : 3.795e-27
+  expected number of B-small triples with n >= 256 : 3.053e-84
+  expected number of B-small triples with n >= 1000 : 1.417e-250
+B = 4  (|vectors| = 256, pairs with x <= log(2B+1) for 32 <= n <= 400000, ordered primes: 57)
+  expected number of B-small triples with n >= 32 : 1.165e-07
+  expected number of B-small triples with n >= 64 : 1.889e-15
+  expected number of B-small triples with n >= 128 : 1.759e-26
+  expected number of B-small triples with n >= 256 : 9.564e-84
+  expected number of B-small triples with n >= 1000 : 8.641e-250
+B = 8  (|vectors| = 2048, pairs with x <= log(2B+1) for 32 <= n <= 400000, ordered primes: 70)
+  expected number of B-small triples with n >= 32 : 1.985e-06
+  expected number of B-small triples with n >= 64 : 1.575e-12
+  expected number of B-small triples with n >= 128 : 1.132e-25
+  expected number of B-small triples with n >= 256 : 8.413e-52
+  expected number of B-small triples with n >= 1000 : 6.809e-249

@@ -1,0 +1,6 @@
+A=  1  k0=57  last computed block=60  covered=True  smallest relative margin for k>=k0: 4.653e-01
+A=  2  k0=58  last computed block=62  covered=True  smallest relative margin for k>=k0: 1.274e-03
+A=  5  k0=61  last computed block=64  covered=True  smallest relative margin for k>=k0: 2.584e-02
+A= 10  k0=64  last computed block=66  covered=True  smallest relative margin for k>=k0: 3.199e-01
+A=100  k0=71  last computed block=76  covered=True  smallest relative margin for k>=k0: 2.171e-01
+all windows covered: True

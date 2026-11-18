@@ -1,0 +1,5 @@
+interval widths (bits of ulps):  ln2 13  ln3 14  ln5 15  alpha 14  beta 13
+sanity check against Decimal: ok
+slack check: |W v_i - r_i| <= 0.5001 for all scales k = 1..3000  (largest observed 0.499968)  -> enumeration radius 10 H^2 certified
+vectors checked: 8381; every interval for h.v excludes 0; rigorous lower bound of the smallest product |h.v| ||h||^2: 0.000117
+every listed vector has |h.v| ||h||^2 >= 1.1e-4 (certified); largest exponent J for ||h|| >= 10^6 (certified upper bound): 2.2638 at log10||h|| = 8.3

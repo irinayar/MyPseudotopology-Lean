@@ -32,12 +32,12 @@ python crt_collision_certificate.py 40 1000000000000000 5 4   # about 20 s
 
 For each example the two prefix choices give byte-identical output. The output of the repository copy of the script (D = 20, X = 10^12, prefix (5,3)) was checked to be identical to the saved file. Python 3.12 (standard library only).
 
-## SHA-256
+## SHA-256 (of the files as stored in this repository, LF line endings; the two output pairs are identical files)
 
 ```
 bde5732ec62a96b5e9d4875cbfde5076d39b12b9d6930aef0c59f68a0e182748  JA_pair_recursion.py
 8d4897f694ff3c381861ee565f245b1752787c5d5e9108794548a08c91bd9a23  crt_collision_certificate.py
 e9447ab3fd6e1cc1a44697e15fc6f8aa66340d6eac50e8928ed9835b193a9121  crt_collision_certificate.md
-8cd9298fa220013547cd5d3dbc732f771113ce609b638ce8f8b50d4004ec512f  TVGplusJoint_collision_example_r20_X1e12_prefix43.txt (= prefix53)
-dca4bfd2df42c9dab7a553f79c8a2b3fafc79c4b8c8abd5c5fb62e1165430842  TVGplusJoint_collision_example_r40_X1e15_prefix53.txt (= prefix54)
+206fe8f3d1d3b388a99ed25befd9af091e1fd16560da3609f87531c527e2f97f  TVGplusJoint_collision_example_r20_X1e12_prefix43.txt (= prefix53)
+69b6b882bcbbdc9bccb457c1670aec90a2c5225e61cb6a0fd7d64fd8b30b98b7  TVGplusJoint_collision_example_r40_X1e15_prefix53.txt (= prefix54)
 ```

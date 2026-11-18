@@ -52,3 +52,14 @@ These are the algebraic core of the transference lemma and of the proof that no 
 | `box_cond` | `3 Z ≤ M²` and `M ≥ 1` imply `3 M Z + 1 < (M+1)³`, the counting condition of `exists_orthogonal`. |
 
 Not formalized: the planar Dirichlet argument, the Borel--Cantelli step, Khintchine's transference, Matveev's theorem and the numerical computations.
+
+## `TPPTransferJ` (the arithmetic of the conditional finiteness theorem)
+
+| Declaration | Statement |
+|---|---|
+| `rpow_neg_mono` | `0 < m ≤ M`, `J ≥ 0` ⟹ `M^(-J) ≤ m^(-J)`. |
+| `delta_lower_J` | If `c > 0`, `J ≥ 0`, `n > 0`, `1 ≤ m ≤ M ≤ 4 √n`, the exponent bound `c m^(-J) ≤ |h·v|` (the hypothesis `(H_J)` for a vector of norm `m`) and the pigeonhole bound `n |h·v| ≤ 2 M δ`, then `c / (2 · 4^(J+1)) · n^((1-J)/2) ≤ δ`. |
+| `log_sq_lt_rpow` | for `C, c₁, s > 0` there is `N ≥ 1` with `C (log n)² < c₁ n^s` for all `n ≥ N`. |
+| `no_close_triple_large` | for `J < 3`, `c₁, C > 0` there is `N ≥ 1` such that for `n ≥ N` no `δ` satisfies both `δ ≥ c₁ n^((1-J)/2)` and `δ ≤ C (log n)² / n`. |
+
+Together with `TPPTransfer` (`exists_orthogonal`, `hv_bound`) and `TPPGeneral` (`box_cond`) these formalize the arithmetic of the theorem "Finiteness of close triples under `(H_J)`", `J < 3`. Not formalized: the identification of the norm `m` of the pigeonhole vector with the quantity in `(H_J)` beyond the stated hypotheses, the equivalence of the diameter condition with `δ ≤ C (log n)² / n` (only the difference-of-squares step is in `TPPGeneral`), and the passage from `n` bounded to finitely many triples.

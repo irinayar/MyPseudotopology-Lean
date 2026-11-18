@@ -32,3 +32,7 @@
 'TPP.N_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
 'TPP.N_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
 'TPP.box_cond' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TPP.rpow_neg_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TPP.delta_lower_J' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TPP.log_sq_lt_rpow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TPP.no_close_triple_large' depends on axioms: [propext, Classical.choice, Quot.sound]

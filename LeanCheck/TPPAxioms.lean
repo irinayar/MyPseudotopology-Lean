@@ -6,6 +6,7 @@ import LeanCheck.TPPElim
 import LeanCheck.TPPCross
 import LeanCheck.TPPTransfer
 import LeanCheck.TPPGeneral
+import LeanCheck.TPPTransferJ
 
 /-!
 # Axiom report for the ThreePrimePlus modules
@@ -48,3 +49,7 @@ should depend only on `propext`, `Classical.choice` and `Quot.sound`.
 #print axioms TPP.N_eq
 #print axioms TPP.N_ne_zero
 #print axioms TPP.box_cond
+#print axioms TPP.rpow_neg_mono
+#print axioms TPP.delta_lower_J
+#print axioms TPP.log_sq_lt_rpow
+#print axioms TPP.no_close_triple_large

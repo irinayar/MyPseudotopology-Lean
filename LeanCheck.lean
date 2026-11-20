@@ -515,3 +515,5 @@ import LeanCheck.TPPCross
 import LeanCheck.TPPTransfer
 import LeanCheck.TPPGeneral
 import LeanCheck.TPPTransferJ
+import LeanCheck.ThreePrimesUpper
+import LeanCheck.ThreePrimesTheoremB

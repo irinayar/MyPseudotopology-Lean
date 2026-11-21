@@ -525,3 +525,6 @@ import LeanCheck.ThreePrimesStrictM2
 import LeanCheck.ThreePrimesUpperM2
 import LeanCheck.ThreePrimesTheoremBM2
 import LeanCheck.ThreePrimesComparisonM2
+import LeanCheck.ThreePrimesUpperM3
+import LeanCheck.ThreePrimesTheoremBM3
+import LeanCheck.ThreePrimesComparisonM3

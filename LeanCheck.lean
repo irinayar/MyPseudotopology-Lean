@@ -528,3 +528,15 @@ import LeanCheck.ThreePrimesComparisonM2
 import LeanCheck.ThreePrimesUpperM3
 import LeanCheck.ThreePrimesTheoremBM3
 import LeanCheck.ThreePrimesComparisonM3
+
+import LeanCheck.PGNullFilters
+
+import LeanCheck.PGXi
+
+import LeanCheck.PGDigit
+
+import LeanCheck.PGBlock
+
+import LeanCheck.PGLimit
+
+import LeanCheck.PGAxioms

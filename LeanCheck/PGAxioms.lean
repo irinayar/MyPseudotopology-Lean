@@ -6,6 +6,8 @@ import LeanCheck.PGLimit
 import LeanCheck.PGSub
 import LeanCheck.PGCompactify
 import LeanCheck.PGSUnit
+import LeanCheck.PGGenerated
+import LeanCheck.PGIdem
 
 /-!
 # Axiom report for the PG modules (`PGNullFilters`, `PGXi`, `PGDigit`, `PGBlock`, `PGLimit`, `PGSub`, `PGCompactify`, `PGSUnit`)
@@ -56,3 +58,18 @@ Each declaration should depend only on `propext`, `Classical.choice` and `Quot.s
 #print axioms PG.inter_finite
 #print axioms PG.Ip_inter_finite
 #print axioms PG.Ip_inter_eq
+#print axioms PG.exists_ultra_le_map₂
+#print axioms PG.u_mem_genNull
+#print axioms PG.genNull_nullFamily
+#print axioms PG.genNull_le
+#print axioms PG.mem_of_subgroup_mem
+#print axioms PG.genNull_hausdorff
+#print axioms PG.int_hausdorff
+#print axioms PG.Lev.genUlt
+#print axioms PG.Lev.add
+#print axioms PG.Lev.neg
+#print axioms PG.exists_lev_of_genUlt
+#print axioms PG.Pw_mem
+#print axioms PG.Pw_mono
+#print axioms PG.plusF_mem
+#print axioms PG.not_pretopological

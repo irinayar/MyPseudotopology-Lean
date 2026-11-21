@@ -547,3 +547,11 @@ import LeanCheck.PGSub
 import LeanCheck.PGCompactify
 
 import LeanCheck.PGSUnit
+
+import LeanCheck.TwoPrimesTransfer
+
+import LeanCheck.TwoPrimesBall
+
+import LeanCheck.TwoPrimesTable
+
+import LeanCheck.TwoPrimesAxioms

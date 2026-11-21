@@ -1,6 +1,6 @@
 # PG: Lean checks for pseudotopological groups built from a topology and an ideal (21 November 2026)
 
-Modules: `LeanCheck/PGNullFilters.lean`, `PGXi.lean`, `PGDigit.lean`, `PGBlock.lean`, `PGLimit.lean`, and the axiom report `PGAxioms.lean`. Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration depends only on `propext`, `Classical.choice` and `Quot.sound` (see `PGAxioms.lean`). A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the PG article series (versions 1 to 3, unpublished) was checked by the author and has not been reviewed independently.
+Modules: `LeanCheck/PGNullFilters.lean`, `PGXi.lean`, `PGDigit.lean`, `PGBlock.lean`, `PGLimit.lean`, `PGSub.lean`, `PGCompactify.lean`, and the axiom report `PGAxioms.lean`. Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration depends only on `propext`, `Classical.choice` and `Quot.sound` (see `PGAxioms.lean`). A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the PG article series (versions 1 to 4, unpublished) was checked by the author and has not been reviewed independently.
 
 Setting: `G` an abelian group; filters are Mathlib filters, "finer" is `≤`, proper means `NeBot`; `F - x` is `Filter.map (· - x) F`, `F + H` is `Filter.map₂ (· + ·) F H`.
 
@@ -50,3 +50,20 @@ Not formalized: the iteration into maximal blocks and the counting of terms in b
 | `isOpenXi_preimage_homeo`, `isOpenXi_translate`, `isOpenXi_neg` | Preimages of open sets of the modification under translations and negation (homeomorphisms preserving `I`) are open. |
 
 Not formalized (hand proofs only): the counting lemma for `D_{p,k}`, the Bohr topology of `ℤ` and the Bohr-sequence proposition, the weight lemma, the closedness of `D_{p,k}` in the Bohr topology, the pigeonhole lemma on Bohr neighbourhoods, and the strictness construction.
+
+## `PGSub` (a second topology containing the convergence of `ξ`; abstract part of Theorem T of version 4)
+Setting as in `PGLimit`; a second topology `τ'` on `G` is given only through the family `Op` of its open sets, with the hypothesis that for every `Op`-open `W` and every `k` there is a `β`-open `O` with `O ∩ D k = W ∩ D k`.
+| Declaration | Statement |
+|---|---|
+| `xi_converges_op` | If `F → x` for `ξ`, then `W ∈ F` for every `Op`-open `W` containing `x` (`F` converges to `x` in `τ'`). |
+| `isOpenXi_of_op` | Every `Op`-open set is open in the topological modification of `ξ`. |
+
+Not formalized: that `τ'` is a group topology (direct limit of compact sets, product theorem for `k_ω`-spaces) and its construction from the compactification.
+
+## `PGCompactify` (closures of the digit sets in a compactification)
+| Declaration | Statement |
+|---|---|
+| `closure_image_inter_range` | For a topological embedding `e : G → K` and closed `D ⊆ G`: `closure (e '' D) ∩ range e = e '' D`. |
+| `closure_add_subset`, `closure_neg_subset` | `cl A + cl B ⊆ cl (A + B)` and `-cl A ⊆ cl (-A)` in a topological additive group. |
+
+Not formalized: the Bohr compactification, the compactness of the closures, the direct-limit group `L`, the product theorem for `k_ω`-spaces.

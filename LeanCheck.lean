@@ -541,3 +541,7 @@ import LeanCheck.PGBlock
 import LeanCheck.PGLimit
 
 import LeanCheck.PGAxioms
+
+import LeanCheck.PGSub
+
+import LeanCheck.PGCompactify

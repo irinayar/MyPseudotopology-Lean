@@ -1,6 +1,6 @@
-# ThreePrimes: Lean checks of two explicit upper bounds (20 November 2026)
+# ThreePrimes: Lean checks of two explicit upper bounds and their comparison (20 November 2026)
 
-Modules: `LeanCheck/ThreePrimesUpper.lean` and `LeanCheck/ThreePrimesTheoremB.lean` (imported by `LeanCheck.lean`). Both import `LeanCheck.TVGPlusCount` (and through it `TVGPlusValuation`), reuse its pigeonhole lemma `TVGPlus.pigeonhole_box` / its predicate `InBall` and its universal divisor `TVGPlus.forced`, and use `Real.logb 2 p` for `log₂ p`. Typechecked with Lean 4.35.0 and Mathlib; no `sorry`; every declaration listed below depends only on `propext`, `Classical.choice`, `Quot.sound`. The compiler gives only deprecation warnings for `push_neg`.
+Modules: `LeanCheck/ThreePrimesUpper.lean`, `LeanCheck/ThreePrimesTheoremB.lean` and `LeanCheck/ThreePrimesComparison.lean` (all imported by `LeanCheck.lean`). The first two import `LeanCheck.TVGPlusCount` (and through it `TVGPlusValuation`), reuse its pigeonhole lemma `TVGPlus.pigeonhole_box` / its predicate `InBall` and its universal divisor `TVGPlus.forced`, and use `Real.logb 2 p` for `log₂ p`. Typechecked with Lean 4.35.0 and Mathlib; no `sorry`; every declaration listed below depends only on `propext`, `Classical.choice`, `Quot.sound`. The compiler gives only deprecation warnings for `push_neg`.
 
 ## `ThreePrimesUpper` (Theorem "Explicit upper bound" of the article ThreePrimes, version 2)
 | Declaration | Statement |
@@ -22,5 +22,13 @@ Modules: `LeanCheck/ThreePrimesUpper.lean` and `LeanCheck/ThreePrimesTheoremB.le
 | `explicit_bounds_B` | With the forced exponents `a_p = aThr p δ` (so `D = Dvis S δ`): `D_S(δ) ≤ k ≤ D_S(δ) 2^M`. |
 | `size_B` | `D 2^M ≤ max(D, 2^{t*² − h + 1})` (real exponent). |
 
+## `ThreePrimesComparison` (Theorem B is never weaker than Theorem A; article ThreePrimes, version 3, Proposition 3.4)
+Imports `LeanCheck.ThreePrimesUpper` and `LeanCheck.ThreePrimesTheoremB`. No `sorry`; standard axioms only. Typechecked with Lean 4.35.0 and Mathlib with the `lean` command on all three modules in dependency order (not a full `lake build`).
+| Declaration | Statement |
+|---|---|
+| `aThr_logb_le` | For `p ≥ 2`, `δ > 0`, `m δ ≥ 2`, `m ≤ 2^h`, `h ≥ 1`: `a_p(δ) log₂ p ≤ h − 1`. |
+| `sumDelta_bounds` | If `a_p log₂ p ≤ h − 1` on `S`: `Δ ≤ (h−1) α` and `Δ ≤ (h−1)² A²`. |
+| `B_le_A` | For `S` nonempty with all `p ≥ 2`, `δ > 0`, `m δ ≥ 2`, `m ≤ 2^h`, `h ≥ 1`: `(Dvis S δ : ℝ) · 2^(Mstar S (aThr · δ) h) ≤ 2^⌈max 1 (A²) h² + max 1 (A²) h⌉`, i.e. `D_S(δ) 2^M ≤ 2^L`. |
+
 ## Differences from the prose and what is not formalized
-The article states the theorems for `m = ⌈2/δ⌉`, `h = ⌈log₂ m⌉`, `0 < δ ≤ 1/2`; the modules assume only `m δ ≥ 2`, `m ≤ 2^h` (and `h ≥ 1` in `ThreePrimesUpper`). The retained coordinates are cut off per prime at `⌊√((L+h)/log₂ p)⌋` (respectively `⌊√((Δ+M+h)/log₂ p)⌋` with `n > a_p`) instead of `p^{n²} ≤ N m` (resp. `≤ D 2^M m`); the error is bounded through `δ/2 < δ`, as in `TVGPlus.explicit_upper`. `discQ_nonneg` proves `Q ≥ 0` (the prose has `Q > 0`). Not formalized: the numerical checks, the comparison tables, the asymptotic expansion of the leading constant, and the statement that Theorem B is not worse than the first theorem (a numerical observation only). The correspondence between these statements and the article needs mathematical review.
+The article states the theorems for `m = ⌈2/δ⌉`, `h = ⌈log₂ m⌉`, `0 < δ ≤ 1/2`; the modules assume only `m δ ≥ 2`, `m ≤ 2^h` (and `h ≥ 1` in `ThreePrimesUpper`). The retained coordinates are cut off per prime at `⌊√((L+h)/log₂ p)⌋` (respectively `⌊√((Δ+M+h)/log₂ p)⌋` with `n > a_p`) instead of `p^{n²} ≤ N m` (resp. `≤ D 2^M m`); the error is bounded through `δ/2 < δ`, as in `TVGPlus.explicit_upper`. `discQ_nonneg` proves `Q ≥ 0` (the prose has `Q > 0`). Not formalized: the numerical checks, the comparison tables and the asymptotic expansion of the leading constant. The correspondence between these statements and the article needs mathematical review.

@@ -517,3 +517,4 @@ import LeanCheck.TPPGeneral
 import LeanCheck.TPPTransferJ
 import LeanCheck.ThreePrimesUpper
 import LeanCheck.ThreePrimesTheoremB
+import LeanCheck.ThreePrimesComparison

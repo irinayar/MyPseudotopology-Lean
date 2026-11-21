@@ -518,3 +518,10 @@ import LeanCheck.TPPTransferJ
 import LeanCheck.ThreePrimesUpper
 import LeanCheck.ThreePrimesTheoremB
 import LeanCheck.ThreePrimesComparison
+import LeanCheck.ThreePrimesUpperM1
+import LeanCheck.ThreePrimesTheoremBM1
+import LeanCheck.ThreePrimesComparisonM1
+import LeanCheck.ThreePrimesStrictM2
+import LeanCheck.ThreePrimesUpperM2
+import LeanCheck.ThreePrimesTheoremBM2
+import LeanCheck.ThreePrimesComparisonM2

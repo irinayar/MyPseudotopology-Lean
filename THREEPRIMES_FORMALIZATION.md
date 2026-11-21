@@ -1,6 +1,6 @@
 # ThreePrimes: Lean checks of two explicit upper bounds and their comparison (20 November 2026)
 
-Modules: `LeanCheck/ThreePrimesUpper.lean`, `LeanCheck/ThreePrimesTheoremB.lean` and `LeanCheck/ThreePrimesComparison.lean` (all imported by `LeanCheck.lean`). The first two import `LeanCheck.TVGPlusCount` (and through it `TVGPlusValuation`), reuse its pigeonhole lemma `TVGPlus.pigeonhole_box` / its predicate `InBall` and its universal divisor `TVGPlus.forced`, and use `Real.logb 2 p` for `log₂ p`. Typechecked with Lean 4.35.0 and Mathlib; no `sorry`; every declaration listed below depends only on `propext`, `Classical.choice`, `Quot.sound`. The compiler gives only deprecation warnings for `push_neg`.
+Modules: `LeanCheck/ThreePrimesUpper.lean`, `LeanCheck/ThreePrimesTheoremB.lean` and `LeanCheck/ThreePrimesComparison.lean` (and the variants `…M1`, `…M2` described below; all imported by `LeanCheck.lean`). The first two import `LeanCheck.TVGPlusCount` (and through it `TVGPlusValuation`), reuse its pigeonhole lemma `TVGPlus.pigeonhole_box` / its predicate `InBall` and its universal divisor `TVGPlus.forced`, and use `Real.logb 2 p` for `log₂ p`. Typechecked with Lean 4.35.0 and Mathlib; no `sorry`; every declaration listed below depends only on `propext`, `Classical.choice`, `Quot.sound`. The compiler gives only deprecation warnings for `push_neg`.
 
 ## `ThreePrimesUpper` (Theorem "Explicit upper bound" of the article ThreePrimes, version 2)
 | Declaration | Statement |
@@ -29,6 +29,19 @@ Imports `LeanCheck.ThreePrimesUpper` and `LeanCheck.ThreePrimesTheoremB`. No `so
 | `aThr_logb_le` | For `p ≥ 2`, `δ > 0`, `m δ ≥ 2`, `m ≤ 2^h`, `h ≥ 1`: `a_p(δ) log₂ p ≤ h − 1`. |
 | `sumDelta_bounds` | If `a_p log₂ p ≤ h − 1` on `S`: `Δ ≤ (h−1) α` and `Δ ≤ (h−1)² A²`. |
 | `B_le_A` | For `S` nonempty with all `p ≥ 2`, `δ > 0`, `m δ ≥ 2`, `m ≤ 2^h`, `h ≥ 1`: `(Dvis S δ : ℝ) · 2^(Mstar S (aThr · δ) h) ≤ 2^⌈max 1 (A²) h² + max 1 (A²) h⌉`, i.e. `D_S(δ) 2^M ≤ 2^L`. |
+
+## Variants with weaker hypotheses on `m` (article ThreePrimes, versions 5 and 6)
+The same three theorems with the hypothesis `m δ ≥ 2` replaced by `1 < m δ` (suffix `M1`, version 5; for example `m = ⌊1/δ⌋ + 1`) and by `1 ≤ m δ` (suffix `M2`, version 6; for example `m = ⌈1/δ⌉`). The modules `…M1`/`…M2` import the corresponding published module and reuse its lemmas unchanged; only the last step of each proof changes: every coordinate of the chain is bounded by `1/m`, so no factor `δ/2` is needed. Standard axioms only, no `sorry`; typechecked with the `lean` command in dependency order (not a full `lake build`).
+| Module | Declarations | Hypothesis |
+|---|---|---|
+| `ThreePrimesUpperM1` | `explicit_upper_tightM1`, `explicit_upper_tight_ceilM1`, `explicit_bounds_tightM1` | `1 < m δ`, `m ≤ 2^h` |
+| `ThreePrimesTheoremBM1` | `explicit_upper_multM1`, `explicit_upper_BM1`, `explicit_bounds_BM1` | `1 < m δ`, `m ≤ 2^h` |
+| `ThreePrimesComparisonM1` | `aThr_logb_leM1` (`a_p log₂ p ≤ h`), `sumDelta_boundsM1`, `B_le_AM1` (shorter proof: `h α` is an integer `≥ Δ`) | `1 < m δ`, `m ≤ 2^h`, `h ≥ 1` |
+| `ThreePrimesStrictM2` | `finite_lt_bound`, `Pn_sq_lt`: if the coordinates `n ≤ R` are each `< c` and the tail `n > R` is uniformly `≤ B < c`, then `Pn (sqScales p) k < c` | – |
+| `ThreePrimesUpperM2` | `explicit_upper_tight_ceilM2`, `explicit_bounds_tightM2` (also `explicit_upper_tightM2`) | `1 ≤ m δ`, `m ≤ 2^h` |
+| `ThreePrimesTheoremBM2` | `explicit_upper_multM2`, `explicit_upper_BM2`, `explicit_bounds_BM2` | `1 ≤ m δ`, `m ≤ 2^h` |
+| `ThreePrimesComparisonM2` | `aThr_logb_leM2`, `sumDelta_boundsM2`, `B_le_AM2` | `1 ≤ m δ`, `m ≤ 2^h`, `h ≥ 1` |
+In the `M2` modules the retained coordinates are finitely many and each strictly `< 1/m`, and the omitted coordinates satisfy the integer inequality `q ≥ N m + 1`, hence `‖k/q‖ ≤ N/(N m + 1) < 1/m`; `Pn_sq_lt` combines the two into a strict bound `P_p(k) < 1/m ≤ δ`. The hypothesis `0 < δ` is kept in the statements of `UpperM2` and `TheoremBM2` although it is no longer used (linter warning only). The `M1` modules are implied by the `M2` modules and are kept because article version 5 cites them.
 
 ## Differences from the prose and what is not formalized
 The article states the theorems for `m = ⌈2/δ⌉`, `h = ⌈log₂ m⌉`, `0 < δ ≤ 1/2`; the modules assume only `m δ ≥ 2`, `m ≤ 2^h` (and `h ≥ 1` in `ThreePrimesUpper`). The retained coordinates are cut off per prime at `⌊√((L+h)/log₂ p)⌋` (respectively `⌊√((Δ+M+h)/log₂ p)⌋` with `n > a_p`) instead of `p^{n²} ≤ N m` (resp. `≤ D 2^M m`); the error is bounded through `δ/2 < δ`, as in `TVGPlus.explicit_upper`. `discQ_nonneg` proves `Q ≥ 0` (the prose has `Q > 0`). Not formalized: the numerical checks, the comparison tables and the asymptotic expansion of the leading constant. The correspondence between these statements and the article needs mathematical review.

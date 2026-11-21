@@ -4,7 +4,7 @@ import LeanCheck.PGXi
 /-!
 # PG: the modification as an inductive-limit topology (Lean check)
 
-Scope. Theorem 6.5, Lemma 6.3 and Proposition 6.6 of `PG_v3`, in the abstract setting of `PGXi`: `G` is an abelian group with a
+Scope. Theorem 6.5, Lemma 6.7 and Proposition 6.10 of `PG_v3`, in the abstract setting of `PGXi`: `G` is an abelian group with a
 Hausdorff group topology, `I` is an admissible ideal (`AdmIdeal`) and `D : ℕ → Set G` is a family of closed sets with
 `D k ∈ I` and such that every member of `I` lies in some `D k` (for `ℤ`, the Bohr topology and the digit ideal `I_p`, with
 `D k = D_{p,k}`; the closedness of `D_{p,k}` is Proposition 6.4 of the article and is NOT formalized here).
@@ -12,9 +12,9 @@ Hausdorff group topology, `I` is an admissible ideal (`AdmIdeal`) and `D : ℕ �
 * `isOpenXi_iff_closed_traces` : `U` is open in the topological modification iff `D k \ U` is closed for every `k`
   (equivalently `U ∩ D k` is relatively open in `D k` for every `k`);
 * `thin_set_closed` : if `C ∩ D k` is finite for every `k`, then every subset `B ⊆ C` is closed in the modification
-  (Lemma 6.3);
+  (Lemma 6.7);
 * `isOpenXi_translate`, `isOpenXi_neg` : preimages of open sets of the modification under translations and under
-  negation are open (Proposition 6.6; `IsOpenXi` is invariant under the homeomorphisms of `G` that map members of `I` to
+  negation are open (Proposition 6.10; `IsOpenXi` is invariant under the homeomorphisms of `G` that map members of `I` to
   members of `I`, `isOpenXi_preimage_homeo`).
 
 A Lean proof verifies its formal statement under its hypotheses; the correspondence with the article requires
@@ -51,7 +51,7 @@ theorem isOpenXi_iff_closed_traces {I : Set (Set G)} (hI : AdmIdeal I) (D : ℕ 
     rw [(H k).closure_eq] at this
     exact this.2 hxU
 
-/-- Lemma 6.3: subsets of thin sets are closed in the modification. -/
+/-- Lemma 6.7: subsets of thin sets are closed in the modification. -/
 theorem thin_set_closed {I : Set (Set G)} (hI : AdmIdeal I) (D : ℕ → Set G)
     (hD : ∀ A ∈ I, ∃ k, A ⊆ D k) (hDI : ∀ k, D k ∈ I) (hclosed : ∀ k, IsClosed (D k))
     (C : Set G) (hC : ∀ k, (C ∩ D k).Finite) (B : Set G) (hB : B ⊆ C) : IsOpenXi I Bᶜ := by
@@ -64,7 +64,7 @@ theorem thin_set_closed {I : Set (Set G)} (hI : AdmIdeal I) (D : ℕ → Set G)
   rintro x ⟨hxD, hxB⟩
   exact ⟨hB hxB, hxD⟩
 
-/-- Invariance under homeomorphisms preserving `I` (Proposition 6.6). -/
+/-- Invariance under homeomorphisms preserving `I` (Proposition 6.10). -/
 theorem isOpenXi_preimage_homeo {I : Set (Set G)} (hI : AdmIdeal I) (h : G ≃ₜ G)
     (hh : ∀ B ∈ I, h '' B ∈ I) {U : Set G} (hU : IsOpenXi I U) : IsOpenXi I (h ⁻¹' U) := by
   rw [isOpenXi_iff hI] at hU ⊢

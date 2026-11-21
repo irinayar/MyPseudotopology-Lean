@@ -10,9 +10,9 @@ or `-p^z` (`b = false`); `val p l` is the sum of a list of terms and
 
 * `zero_mem_D`, `D_mono`, `D_neg`, `D_add` : `0 ∈ D_{p,k}`, monotone in `k`, symmetric, `D_{p,k} + D_{p,l} ⊆ D_{p,k+l}`;
 * `Ip p` : the family of subsets of `ℤ` contained in some `D_{p,k}`; `Ip_sub`, `Ip_union`, `Ip_single`, `Ip_add`, `Ip_neg`
-  are (I1), (I2), (I4), (I5). Properness (I3) rests on the counting Lemma 5.2 of the article, which is NOT formalized:
+  are (I1), (I2), (I4), (I5). Properness (I3) rests on the counting Lemma 5.1 of the article, which is NOT formalized:
   `Ip_admissible` assumes it as the hypothesis `hproper`;
-* `Ip_pow` : Proposition 5.4, `I_{p^r} = I_p` for `r ≥ 1`.
+* `Ip_pow` : Proposition 5.3, `I_{p^r} = I_p` for `r ≥ 1`.
 
 A Lean proof verifies its formal statement under its hypotheses; the correspondence with the article requires
 mathematical review.
@@ -108,7 +108,7 @@ theorem Ip_neg {p : ℕ} {A : Set ℤ} (hA : A ∈ Ip p) : (fun x : ℤ => -x) '
   rintro _ ⟨a, ha, rfl⟩
   exact D_neg (hk ha)
 
-/-- (I1)-(I5) for `I_p`, assuming properness (I3), which rests on the (not formalized) counting Lemma 5.2. -/
+/-- (I1)-(I5) for `I_p`, assuming properness (I3), which rests on the (not formalized) counting Lemma 5.1. -/
 theorem Ip_admissible (p : ℕ) (hproper : (Set.univ : Set ℤ) ∉ Ip p) : AdmIdeal (Ip p) where
   sub := fun _ hA B hB => Ip_sub hA B hB
   union := fun _ hA _ hB => Ip_union hA hB
@@ -117,7 +117,7 @@ theorem Ip_admissible (p : ℕ) (hproper : (Set.univ : Set ℤ) ∉ Ip p) : AdmI
   add := fun _ hA _ hB => Ip_add hA hB
   neg := fun _ hA => Ip_neg hA
 
-/-! ### Proposition 5.4: `I_{p^r} = I_p` -/
+/-! ### Proposition 5.3: `I_{p^r} = I_p` -/
 
 theorem val_pow_map (p r : ℕ) (l : List (Bool × ℕ)) :
     val (p ^ r) l = val p (l.map (fun t => (t.1, r * t.2))) := by

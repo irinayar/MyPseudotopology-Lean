@@ -5,9 +5,10 @@ import LeanCheck.PGBlock
 import LeanCheck.PGLimit
 import LeanCheck.PGSub
 import LeanCheck.PGCompactify
+import LeanCheck.PGSUnit
 
 /-!
-# Axiom report for the PG modules (`PGNullFilters`, `PGXi`, `PGDigit`, `PGBlock`, `PGLimit`, `PGSub`, `PGCompactify`)
+# Axiom report for the PG modules (`PGNullFilters`, `PGXi`, `PGDigit`, `PGBlock`, `PGLimit`, `PGSub`, `PGCompactify`, `PGSUnit`)
 
 Each declaration should depend only on `propext`, `Classical.choice` and `Quot.sound`.
 -/
@@ -45,3 +46,13 @@ Each declaration should depend only on `propext`, `Classical.choice` and `Quot.s
 #print axioms PG.closure_image_inter_range
 #print axioms PG.closure_add_subset
 #print axioms PG.closure_neg_subset
+#print axioms PG.pow_mul_pow_inj
+#print axioms PG.ratio_inj
+#print axioms PG.exists_block
+#print axioms PG.tuple_of_block
+#print axioms PG.block_cand
+#print axioms PG.Vals_finite
+#print axioms PG.reach_finite
+#print axioms PG.inter_finite
+#print axioms PG.Ip_inter_finite
+#print axioms PG.Ip_inter_eq

@@ -545,3 +545,5 @@ import LeanCheck.PGAxioms
 import LeanCheck.PGSub
 
 import LeanCheck.PGCompactify
+
+import LeanCheck.PGSUnit

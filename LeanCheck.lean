@@ -555,3 +555,11 @@ import LeanCheck.TwoPrimesBall
 import LeanCheck.TwoPrimesTable
 
 import LeanCheck.TwoPrimesAxioms
+
+import LeanCheck.TwoPrimesRange
+
+import LeanCheck.TwoPrimesChildren
+
+import LeanCheck.TwoPrimesMonotone
+
+import LeanCheck.TwoPrimesAxioms2

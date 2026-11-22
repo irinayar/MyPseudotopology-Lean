@@ -158,3 +158,18 @@ Not formalized: the counting hypothesis itself (it follows from the quoted heigh
 | `trace_cont_of_contains` | If a second topology (given by neighbourhood filters `N x`) contains the convergence `ξ_{β,I}` (every filter with `xi I F x` satisfies `F ≤ N x`), then for `A ∈ I` every `U ∈ N x` contains `W ∩ A` for a `β`-neighbourhood `W` of `x` (continuity of `(A, β) → (H, second topology)`). |
 
 Not formalized: that the direct limit topology of `⋃ E k` is a group topology (it needs the quoted theorem on products of `k_ω`-spaces), the instance `G = ℤ`, `K` the Bohr compactification, `A k = D_{p,k}`, and the hypothesis `A_k - A_k ⊆ A_{2k}` for the digit sets (this one is in `PGDigit`).
+
+## `PGNoGroup` and `PGSeparation` (Section 8, version 11: the modification of `ξ_{p,q}` is not a group topology)
+`PGNoGroup` imports `PGGroupTop`. Setting: `G` an abelian Hausdorff topological group, `I` an admissible ideal, `A n ∈ I` a sequence with every `B ∈ I` contained in some `A n`.
+| Declaration | Statement |
+|---|---|
+| `exists_nhds_inter_subset_of_Vxi` | If `S ∈ V_ξ(0)` and `B ∈ I`, then `W ∩ B ⊆ S` for some neighbourhood `W` of `0`. |
+| `isOpenXi_compl_of_cover` | If `C ∩ A n` is closed for every `n`, then `G ∖ C` is `ξ`-open (open in the topological modification). |
+| `no_groupTop_of_cover` | Let `0 ∉ C`, `C ∩ A n` closed for all `n`, `B₀ ∈ I`, and suppose that for every sequence `W j` of neighbourhoods of `0` there are `n` and `f j ∈ W j ∩ B₀` with `f 0 + ... + f (n-1) ∈ C`. Then no group topology has `IsOpenXi I` as its family of open sets. |
+`PGSeparation` imports `PGBlock`; terms are `(sign, exponent)` pairs and `val p l` is the value of a list.
+| Declaration | Statement |
+|---|---|
+| `separation` | If `val p lt = val p la + val p lb`, all exponents of `lt` are `> s + L`, all exponents of `lb` are `≤ s`, no exponent of `la` lies in `(s, s + L]`, and the total number of terms is `< p^(L+1)`, then `val p lt ∈ D p la.length` (a sum of at most `|la|` signed powers). |
+| `filter_flip` | Filtering by exponent commutes with flipping signs. |
+
+Not formalized: the structure of the sets `T_i` (exact weight, exponents, pigeonhole), the finiteness `T_i ∩ (D_{p,k} + D_{q,l})` for `k < 2r` (it uses the finiteness of `D_{p,K} ∩ D_{q,l}`, `PGSUnit`, under the S-unit equation theorem as hypothesis), the choice of the cutoffs `M_i` and the verification of the hypotheses of `no_groupTop_of_cover`.

@@ -8,6 +8,8 @@ import LeanCheck.PGCompactify
 import LeanCheck.PGSUnit
 import LeanCheck.PGGenerated
 import LeanCheck.PGIdem
+import LeanCheck.PGTop
+import LeanCheck.PGSumset
 
 /-!
 # Axiom report for the PG modules (`PGNullFilters`, `PGXi`, `PGDigit`, `PGBlock`, `PGLimit`, `PGSub`, `PGCompactify`, `PGSUnit`)
@@ -73,3 +75,10 @@ Each declaration should depend only on `propext`, `Classical.choice` and `Quot.s
 #print axioms PG.Pw_mono
 #print axioms PG.plusF_mem
 #print axioms PG.not_pretopological
+#print axioms PG.topNull_nullFamily
+#print axioms PG.genNull_subset_topNull
+#print axioms PG.genNull_subset_topNull_iff
+#print axioms PG.null_le_nhds_iff
+#print axioms PG.conv_le_nhds
+#print axioms PG.isCompact_Pw
+#print axioms PG.closure_Pw

@@ -567,3 +567,7 @@ import LeanCheck.TwoPrimesAxioms2
 import LeanCheck.PGGenerated
 
 import LeanCheck.PGIdem
+
+import LeanCheck.PGTop
+
+import LeanCheck.PGSumset

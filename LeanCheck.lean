@@ -577,3 +577,5 @@ import LeanCheck.PGGroupTop
 import LeanCheck.PGJoin
 
 import LeanCheck.PGTwoBases
+
+import LeanCheck.PGCompletion

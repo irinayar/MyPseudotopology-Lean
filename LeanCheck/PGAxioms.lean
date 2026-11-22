@@ -13,6 +13,7 @@ import LeanCheck.PGSumset
 import LeanCheck.PGGroupTop
 import LeanCheck.PGJoin
 import LeanCheck.PGTwoBases
+import LeanCheck.PGCompletion
 
 /-!
 # Axiom report for the PG modules (`PGNullFilters`, `PGXi`, `PGDigit`, `PGBlock`, `PGLimit`, `PGSub`, `PGCompactify`, `PGSUnit`)
@@ -102,3 +103,10 @@ Each declaration should depend only on `propext`, `Classical.choice` and `Quot.s
 #print axioms PG.univ_notin_join_of_finite
 #print axioms PG.Ipq_admissible
 #print axioms PG.exists_nondegenerate_sub
+#print axioms PG.uniformContinuous_of_group
+#print axioms PG.huc_of_sub
+#print axioms PG.exists_extension
+#print axioms PG.denseRange_inclusion_closure
+#print axioms PG.extension_compat
+#print axioms PG.trace_open
+#print axioms PG.trace_cont_of_contains

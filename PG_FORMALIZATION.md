@@ -145,3 +145,16 @@ Not formalized: the construction of the closed set `C` showing that the hypothes
 | `exists_nondegenerate_sub` | Every finite multiset of values has a sub-multiset with the same sum and no nonempty sub-multiset of sum `0` (removal of vanishing subsums). |
 
 Not formalized: the counting hypothesis itself (it follows from the quoted height inequality for non-degenerate sums of `S`-units) and the counting of tuples.
+
+## `PGCompletion` (the finest group topology as a trace, version 10)
+`PGCompletion` imports `PGXi`. Setting: `G` an abelian group with a T0 uniform group topology `σ`, `K` a uniform abelian group, `e : G →+ K` injective, `A k ⊆ G` increasing with union `G`, `E k = closure (e '' A k)`. Neither compactness of `K` nor closedness of the `A k` is used.
+| Declaration | Statement |
+|---|---|
+| `uniformContinuous_of_group` | A map from a subset of `K` to `G` is uniformly continuous iff for every neighbourhood `U` of `0` there is a neighbourhood `W` of `0` with `z - y ∈ W ⇒ g z - g y ∈ U`. |
+| `huc_of_sub` | If `A - A ⊆ A'` and the inclusion of `A'` (with the trace of `K`) is continuous at `0` for `σ`, then `x, y ∈ A`, `e x - e y ∈ W` imply `x - y ∈ U`. |
+| `exists_extension` | Under that condition the map `e x ↦ x` on `e '' A` extends to a continuous map from `closure (e '' A)` to the Raikov completion of `G` (`UniformSpace.Completion G`). |
+| `denseRange_inclusion_closure`, `extension_compat` | Extensions at two levels `A ⊆ B` agree on `closure (e '' A)`. |
+| `trace_open` | If the condition holds for every `A k`, every `σ`-open `V ⊆ G` is `e ⁻¹' W` for a set `W ⊆ K` whose trace on every `E k` is open in `E k` (that is, `V` is open in the trace of the direct limit topology of `⋃ E k`). |
+| `trace_cont_of_contains` | If a second topology (given by neighbourhood filters `N x`) contains the convergence `ξ_{β,I}` (every filter with `xi I F x` satisfies `F ≤ N x`), then for `A ∈ I` every `U ∈ N x` contains `W ∩ A` for a `β`-neighbourhood `W` of `x` (continuity of `(A, β) → (H, second topology)`). |
+
+Not formalized: that the direct limit topology of `⋃ E k` is a group topology (it needs the quoted theorem on products of `k_ω`-spaces), the instance `G = ℤ`, `K` the Bohr compactification, `A k = D_{p,k}`, and the hypothesis `A_k - A_k ⊆ A_{2k}` for the digit sets (this one is in `PGDigit`).

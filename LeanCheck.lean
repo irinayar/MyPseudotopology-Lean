@@ -573,3 +573,7 @@ import LeanCheck.PGTop
 import LeanCheck.PGSumset
 
 import LeanCheck.PGGroupTop
+
+import LeanCheck.PGJoin
+
+import LeanCheck.PGTwoBases

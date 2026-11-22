@@ -1,6 +1,6 @@
 # PG: Lean checks for pseudotopological groups built from a topology and an ideal (21 November 2026)
 
-Modules: `LeanCheck/PGNullFilters.lean`, `PGXi.lean`, `PGDigit.lean`, `PGBlock.lean`, `PGLimit.lean`, `PGSub.lean`, `PGCompactify.lean`, `PGSUnit.lean`, `PGGenerated.lean`, `PGIdem.lean`, `PGTop.lean`, `PGSumset.lean`, `PGGroupTop.lean`, and the axiom report `PGAxioms.lean`. Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration depends only on `propext`, `Classical.choice` and `Quot.sound` (see `PGAxioms.lean`). A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the PG article series (versions 1 to 8, unpublished) was checked by the author and has not been reviewed independently.
+Modules: `LeanCheck/PGNullFilters.lean`, `PGXi.lean`, `PGDigit.lean`, `PGBlock.lean`, `PGLimit.lean`, `PGSub.lean`, `PGCompactify.lean`, `PGSUnit.lean`, `PGGenerated.lean`, `PGIdem.lean`, `PGTop.lean`, `PGSumset.lean`, `PGGroupTop.lean`, `PGJoin.lean`, `PGTwoBases.lean`, and the axiom report `PGAxioms.lean`. Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration depends only on `propext`, `Classical.choice` and `Quot.sound` (see `PGAxioms.lean`). A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the PG article series (versions 1 to 9, unpublished) was checked by the author and has not been reviewed independently.
 
 Setting: `G` an abelian group; filters are Mathlib filters, "finer" is `≤`, proper means `NeBot`; `F - x` is `Filter.map (· - x) F`, `F + H` is `Filter.map₂ (· + ·) F H`.
 
@@ -130,3 +130,18 @@ Imports `PGXi`. `G` an abelian group with a Hausdorff group topology `β`, `I` a
 | `no_groupTop_of_sums` | If some modification-open `O ∋ 0` is such that for all symmetric `S_j ∈ V_ξ(0)` some sum `x_0 + ... + x_{n-1}`, `x_j ∈ S_j`, lies outside `O`, then there is no group topology whose open sets are those of the modification. |
 
 Not formalized: the construction of the closed set `C` showing that the hypothesis of `no_groupTop_of_sums` holds for the digit ideal (Section 7 of version 8), the pigeonhole and congruence arguments, the weight lemma beyond `PGBlock`.
+
+## `PGJoin` and `PGTwoBases` (Section 8, two bases, of version 9)
+`PGJoin` imports `PGXi`. For two ideals `I`, `J` of subsets of an abelian group, `joinI I J` is the family of sets contained in some `B + C`, `B ∈ I`, `C ∈ J`.
+| Declaration | Statement |
+|---|---|
+| `joinI_admissible`, `joinI_proper_of` | If `I`, `J` are admissible (I1)-(I5) and `univ ∉ joinI I J` (which holds if no `B + C` is the whole group), then `joinI I J` is admissible. |
+| `left_subset_joinI`, `right_subset_joinI`, `xi_mono_ideal` | `I ⊆ joinI I J`, `J ⊆ joinI I J`; if `I ⊆ J` then every filter converging for `ξ_{β,I}` converges for `ξ_{β,J}`. |
+`PGTwoBases` imports `PGJoin` and `PGDigit`; `Dsum p q k l = D_{p,k} + D_{q,l}`.
+| Declaration | Statement |
+|---|---|
+| `joinI_Ip_iff` | A set is in the join of `Ip p` and `Ip q` iff it lies in some `D_{p,k} + D_{q,l}`. |
+| `univ_notin_join_of_finite`, `Ipq_admissible` | If for all `k`, `l` the elements of `D_{p,k} + D_{q,l}` of absolute value at most `X` lie in a finite set with fewer than `2X+1` elements (for some `X`), then the join is proper and admissible. |
+| `exists_nondegenerate_sub` | Every finite multiset of values has a sub-multiset with the same sum and no nonempty sub-multiset of sum `0` (removal of vanishing subsums). |
+
+Not formalized: the counting hypothesis itself (it follows from the quoted height inequality for non-degenerate sums of `S`-units) and the counting of tuples.

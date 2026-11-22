@@ -10,6 +10,7 @@ import LeanCheck.PGGenerated
 import LeanCheck.PGIdem
 import LeanCheck.PGTop
 import LeanCheck.PGSumset
+import LeanCheck.PGGroupTop
 
 /-!
 # Axiom report for the PG modules (`PGNullFilters`, `PGXi`, `PGDigit`, `PGBlock`, `PGLimit`, `PGSub`, `PGCompactify`, `PGSUnit`)
@@ -82,3 +83,11 @@ Each declaration should depend only on `propext`, `Classical.choice` and `Quot.s
 #print axioms PG.conv_le_nhds
 #print axioms PG.isCompact_Pw
 #print axioms PG.closure_Pw
+#print axioms PG.nested_sums_family
+#print axioms PG.nested_sums_nhds
+#print axioms PG.exists_open_half
+#print axioms PG.neg_mem_Vxi
+#print axioms PG.mem_Vxi_of_isOpenXi
+#print axioms PG.half_of_groupTop
+#print axioms PG.nested_sums_Vxi
+#print axioms PG.no_groupTop_of_sums

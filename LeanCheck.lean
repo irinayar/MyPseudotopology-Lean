@@ -571,3 +571,5 @@ import LeanCheck.PGIdem
 import LeanCheck.PGTop
 
 import LeanCheck.PGSumset
+
+import LeanCheck.PGGroupTop

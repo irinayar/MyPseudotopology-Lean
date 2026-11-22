@@ -1,6 +1,6 @@
 # PG: Lean checks for pseudotopological groups built from a topology and an ideal (21 November 2026)
 
-Modules: `LeanCheck/PGNullFilters.lean`, `PGXi.lean`, `PGDigit.lean`, `PGBlock.lean`, `PGLimit.lean`, `PGSub.lean`, `PGCompactify.lean`, `PGSUnit.lean`, `PGGenerated.lean`, `PGIdem.lean`, `PGTop.lean`, `PGSumset.lean`, and the axiom report `PGAxioms.lean`. Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration depends only on `propext`, `Classical.choice` and `Quot.sound` (see `PGAxioms.lean`). A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the PG article series (versions 1 to 7, unpublished) was checked by the author and has not been reviewed independently.
+Modules: `LeanCheck/PGNullFilters.lean`, `PGXi.lean`, `PGDigit.lean`, `PGBlock.lean`, `PGLimit.lean`, `PGSub.lean`, `PGCompactify.lean`, `PGSUnit.lean`, `PGGenerated.lean`, `PGIdem.lean`, `PGTop.lean`, `PGSumset.lean`, `PGGroupTop.lean`, and the axiom report `PGAxioms.lean`. Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration depends only on `propext`, `Classical.choice` and `Quot.sound` (see `PGAxioms.lean`). A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the PG article series (versions 1 to 8, unpublished) was checked by the author and has not been reviewed independently.
 
 Setting: `G` an abelian group; filters are Mathlib filters, "finer" is `≤`, proper means `NeBot`; `F - x` is `Filter.map (· - x) F`, `F + H` is `Filter.map₂ (· + ·) F H`.
 
@@ -117,3 +117,16 @@ Imports `PGIdem` (for `Pw`). In a Hausdorff topological additive group:
 | Declaration | Statement |
 |---|---|
 | `isCompact_Pw`, `closure_Pw` | If `A` has compact closure then `Pw (closure A) m` is compact and `closure (Pw A m) = Pw (closure A) m` (the closure of an `m`-fold sumset is the `m`-fold sumset of the closure). |
+
+## `PGGroupTop` (Lemma 7.7 and the reduction step of Theorem 7.9 of version 8)
+Imports `PGXi`. `G` an abelian group with a Hausdorff group topology `β`, `I` an admissible ideal, `IsOpenXi I` the open sets of the topological modification, `Vxi I 0` the intersection of the filters converging to `0`.
+| Declaration | Statement |
+|---|---|
+| `nested_sums_family` | If a family `𝒪` of sets containing `0` can be halved (`U ∈ 𝒪 ⇒ ∃ U' ∈ 𝒪, U' + U' ⊆ U`), then every `O ∈ 𝒪` contains all sums `f 0 + ... + f (n-1)`, `f j ∈ P j`, for a sequence `P j ∈ 𝒪` and all `n` at once. |
+| `nested_sums_nhds`, `exists_open_half` | The case of the neighbourhoods of `0` in a topological additive group. |
+| `neg_mem_Vxi`, `mem_Vxi_of_isOpenXi` | `V_ξ(0)` is closed under negation; a modification-open set containing `0` belongs to `V_ξ(0)`. |
+| `half_of_groupTop` | If the open sets of a group topology `τ` on `G` are exactly the sets of `IsOpenXi I`, then the open sets containing `0` can be halved. |
+| `nested_sums_Vxi` | Under this halving property every modification-open `O ∋ 0` contains `S_0 + ... + S_{n-1}` for all `n`, with symmetric `S_j ∈ V_ξ(0)`. |
+| `no_groupTop_of_sums` | If some modification-open `O ∋ 0` is such that for all symmetric `S_j ∈ V_ξ(0)` some sum `x_0 + ... + x_{n-1}`, `x_j ∈ S_j`, lies outside `O`, then there is no group topology whose open sets are those of the modification. |
+
+Not formalized: the construction of the closed set `C` showing that the hypothesis of `no_groupTop_of_sums` holds for the digit ideal (Section 7 of version 8), the pigeonhole and congruence arguments, the weight lemma beyond `PGBlock`.

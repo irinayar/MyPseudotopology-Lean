@@ -13,7 +13,8 @@ available for a real `η`. What is proved here:
 * `B_le_A_sharpM3` (`c = 1`): `D_S(δ) 2^M ≤ 2^L` whenever `1 ≤ η α − Δ`.
 
 Here `L = ⌈a_S η² + a_S η⌉`, `a_S = max 1 (A²)`, `M = MstarR`. Whether `D_S(δ) 2^M ≤ 2^L` holds for every
-real `η` is not decided by these lemmas (it holds in all finite checks made).
+real `η` is not decided by these lemmas; it is FALSE for a general real `η` (counterexample `δ = 1/65614`,
+`S = {65609, 65617, 65629, 65633}`, `η = 16.03`, found 2026-11-22) and open for `η = log₂ m`.
 -/
 
 namespace LeanCheck

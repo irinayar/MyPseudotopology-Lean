@@ -14,7 +14,7 @@ available for a real `η`. What is proved here:
 
 Here `L = ⌈a_S η² + a_S η⌉`, `a_S = max 1 (A²)`, `M = MstarR`. Whether `D_S(δ) 2^M ≤ 2^L` holds for every
 real `η` is not decided by these lemmas; it is FALSE for a general real `η` (counterexample `δ = 1/65614`,
-`S = {65609, 65617, 65629, 65633}`, `η = 16.03`, found 2026-11-22) and open for `η = log₂ m`.
+`S = {65609, 65617, 65629, 65633}`, `η = 16.03`, found 2026-11-22) and also FALSE for `η = log₂ m` (`δ = 1/66922`, `S = {66919, 4864529, 52655459, 67477043, 272962260021097}`, second correction of 2026-11-22).
 -/
 
 namespace LeanCheck

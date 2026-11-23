@@ -583,3 +583,5 @@ import LeanCheck.PGCompletion
 import LeanCheck.PGNoGroup
 
 import LeanCheck.PGSeparation
+
+import LeanCheck.PGBohrGen

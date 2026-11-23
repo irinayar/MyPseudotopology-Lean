@@ -16,6 +16,7 @@ import LeanCheck.PGTwoBases
 import LeanCheck.PGCompletion
 import LeanCheck.PGNoGroup
 import LeanCheck.PGSeparation
+import LeanCheck.PGBohrGen
 
 /-!
 # Axiom report for the PG modules (`PGNullFilters`, `PGXi`, `PGDigit`, `PGBlock`, `PGLimit`, `PGSub`, `PGCompactify`, `PGSUnit`)
@@ -117,3 +118,9 @@ Each declaration should depend only on `propext`, `Classical.choice` and `Quot.s
 #print axioms PG.no_groupTop_of_cover
 #print axioms PG.filter_flip
 #print axioms PG.separation
+#print axioms PG.lev4
+#print axioms PG.exists_A_of_mem_lev4
+#print axioms PG.nhds_le_lev4
+#print axioms PG.genNull_eq_topNull
+#print axioms PG.halving4
+#print axioms PG.nhds_le_of_bog

@@ -590,3 +590,11 @@ import LeanCheck.PGBohrGen
 import LeanCheck.PGSubgroupBase
 
 import LeanCheck.PGFSRigid
+
+import LeanCheck.TwoPrimesFejer
+
+import LeanCheck.TwoPrimesUnimodal
+
+import LeanCheck.TwoPrimesCutBall
+
+import LeanCheck.TwoPrimesAxioms3

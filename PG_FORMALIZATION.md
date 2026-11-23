@@ -215,3 +215,19 @@ Not formalized: that `ξ(u)` for a subgroup-based `u` is the convergence of a gr
 | `exists_nsmul_mem` | If `s ∈ Vgen u` and `n : ℕ`, there is `A ∈ u` with `n • y ∈ s` and `n • (-y) ∈ s` for all `y ∈ A` (Lemma A: for `s = O - z`, `z + c y ∈ O` for `|c| ≤ n`). |
 
 Not formalized: that the ultrafilters `φ_*U` with `U` stable ordered-union satisfy the hypotheses (the identification with finite subsets of `ℕ`, `FU`-sets, `max`, `min`), the strategy built from an open set, the box induction and the passage from the box to the sets `U(S_0, S_1, ...)`, the non-halvability proposition (it uses `fs_rigid` of `PGFSRigid`), and the application of the quoted base theorem (`prop:zp`).
+
+## `PGImageStrong` and `PGSubgroupStrict` (Section 9, version 18: strong summability of images and strictness for subgroup-based ultrafilters)
+`PGImageStrong` (no imports beyond Mathlib): blocks form a type `X` with a relation `lt`, a union operation `un` and a value function `f : X → ℕ` with `f a > 0` and `f (un a b) = f a + f b` when `lt a b`, `lt a b → lt b c → lt a (un b c)`; `U` is an ultrafilter on `X` with the stability property and a base property (inside every `H ∈ U` an `lt`-increasing sequence `a` in `H` with all `un (a i) (a j)`, `i < j`, in `H`).
+| Declaration | Statement |
+|---|---|
+| `no_strictAnti_nat` | There is no strictly decreasing sequence of natural numbers. |
+| `stable_image_increasing` | There is `H ∈ U` such that `f a < f b` whenever `a, b ∈ H` and `lt a b` (the homogeneity step showing that the image of a stable ordered-union ultrafilter under `φ(s) = ∑_{i∈s} x_i` with `x_i > 0` is strongly summable). |
+
+`PGSubgroupStrict` (no imports beyond Mathlib): `u` is a nonprincipal ultrafilter on an abelian group `G` with `SubgroupBase u` (every member contains `H ∖ {0}` for a subgroup `H ∈ u`).
+| Declaration | Statement |
+|---|---|
+| `idempotent_of_subgroupBase` | For every `A ∈ u`, `{h | {k | h + k ∈ A} ∈ u} ∈ u`, that is, `A ∈ u ⊕ u`. |
+| `two_torsion_mem` | `{g | g + g = 0} ∈ u`. |
+| `no_subgroupBase_of_torsionFree` | There is no such `u` on a group without elements of order `2` (in particular on `ℤ`). |
+
+Not formalized: the passage from the homogeneous set to the finite-sum sets `FS(b)` (strong summability of the image), the colouring of a basis of `G[2]`, the infinite index of the resulting subgroup and the comparison with the Bohr topology (Corollary 9.13), and the abstract-group remark on Theorem 9.19. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the article requires mathematical review.

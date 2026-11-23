@@ -602,6 +602,8 @@ import LeanCheck.TwoPrimesAxioms3
 import LeanCheck.PGGameLemma
 
 import LeanCheck.PGOpenSets
+import LeanCheck.PGImageStrong
+import LeanCheck.PGSubgroupStrict
 
 import LeanCheck.TwoPrimesBlock
 

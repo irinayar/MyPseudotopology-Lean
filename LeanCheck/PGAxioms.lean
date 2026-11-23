@@ -21,6 +21,8 @@ import LeanCheck.PGSubgroupBase
 import LeanCheck.PGFSRigid
 import LeanCheck.PGGameLemma
 import LeanCheck.PGOpenSets
+import LeanCheck.PGImageStrong
+import LeanCheck.PGSubgroupStrict
 
 /-!
 # Axiom report for the PG modules (`PGNullFilters`, `PGXi`, `PGDigit`, `PGBlock`, `PGLimit`, `PGSub`, `PGCompactify`, `PGSUnit`)
@@ -140,3 +142,8 @@ Each declaration should depend only on `propext`, `Classical.choice` and `Quot.s
 #print axioms PG.lev_negF
 #print axioms PG.negF_mem
 #print axioms PG.exists_nsmul_mem
+#print axioms PG.no_strictAnti_nat
+#print axioms PG.stable_image_increasing
+#print axioms PG.idempotent_of_subgroupBase
+#print axioms PG.two_torsion_mem
+#print axioms PG.no_subgroupBase_of_torsionFree

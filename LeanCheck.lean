@@ -602,3 +602,7 @@ import LeanCheck.TwoPrimesAxioms3
 import LeanCheck.PGGameLemma
 
 import LeanCheck.PGOpenSets
+
+import LeanCheck.TwoPrimesBlock
+
+import LeanCheck.TwoPrimesAxioms4

@@ -608,3 +608,7 @@ import LeanCheck.PGSubgroupStrict
 import LeanCheck.TwoPrimesBlock
 
 import LeanCheck.TwoPrimesAxioms4
+
+import LeanCheck.TwoPrimesLevels
+
+import LeanCheck.TwoPrimesAxioms5

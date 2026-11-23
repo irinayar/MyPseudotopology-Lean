@@ -612,3 +612,7 @@ import LeanCheck.TwoPrimesAxioms4
 import LeanCheck.TwoPrimesLevels
 
 import LeanCheck.TwoPrimesAxioms5
+
+import LeanCheck.TwoPrimesSweep
+
+import LeanCheck.TwoPrimesAxioms6

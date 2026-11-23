@@ -586,3 +586,7 @@ import LeanCheck.PGNoGroup
 import LeanCheck.PGSeparation
 
 import LeanCheck.PGBohrGen
+
+import LeanCheck.PGSubgroupBase
+
+import LeanCheck.PGFSRigid

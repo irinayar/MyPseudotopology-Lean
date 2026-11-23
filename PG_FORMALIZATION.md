@@ -200,3 +200,18 @@ Not formalized: Bogolyubov's theorem, that members of ultrafilters in the smalle
 | `no_multiple` | If `y n > (2N+1) * (y 0 + ... + y (n-1))` for `n > N₀`, `F` is a nonempty finite set of indices `> N₀`, and `G j` are finite index sets and `ε j = ±1` for `j < N`, then `(N+1) * ∑_{n∈F} y n ≠ ∑_j ε j * ∑_{n∈G j} y n`. |
 
 Not formalized: that `ξ(u)` for a subgroup-based `u` is the convergence of a group topology (this follows from "pretopological implies topological", not formalized), the existence of strongly summable ultrafilters, the tails lemma, the P-point argument, and the application of `no_multiple` to the criterion `not_pretopological` (`PGIdem`).
+
+## `PGGameLemma` and `PGOpenSets` (Section 9, version 15: the topological modification for stable ordered-union ultrafilters)
+`PGGameLemma` (no imports beyond Mathlib): blocks form a type `X` with a rank `mx : X → ℕ` (finitely many blocks of rank `≤ m`) and a relation `lt` (`max a < min b`) with `lt a b → mx a < mx b`; `U` is an ultrafilter on `X` with `{b | lt a b} ∈ U`, the stability property (homogeneous `H ∈ U` for every partition of the pairs `lt a b`), and a base property (inside every `H ∈ U` a `lt`-increasing sequence with the winning property `Win`).
+| Declaration | Statement |
+|---|---|
+| `finite_lists` | Lists of bounded length over a finite set form a finite set. |
+| `game_lemma` | For every strategy `S` (a member `S σ ∈ U` for every finite history `σ`) there is a `lt`-increasing sequence `a` with `Win a` and `a k ∈ S (a 0, ..., a (k-1))` for all `k`: Player 1 has no winning strategy in the game `G(U)`. |
+`PGOpenSets` imports `PGIdem`; `u` is an ultrafilter on an abelian group.
+| Declaration | Statement |
+|---|---|
+| `mem_of_mem_Vgen_lev` | A member of `Vgen u = V_ξ(u)(0)` belongs to every level filter `Lev u n F`. |
+| `negF`, `lev_negF`, `negF_mem` | The all-minus filter sums `(-u) + ... + (-u)` and their members. |
+| `exists_nsmul_mem` | If `s ∈ Vgen u` and `n : ℕ`, there is `A ∈ u` with `n • y ∈ s` and `n • (-y) ∈ s` for all `y ∈ A` (Lemma A: for `s = O - z`, `z + c y ∈ O` for `|c| ≤ n`). |
+
+Not formalized: that the ultrafilters `φ_*U` with `U` stable ordered-union satisfy the hypotheses (the identification with finite subsets of `ℕ`, `FU`-sets, `max`, `min`), the strategy built from an open set, the box induction and the passage from the box to the sets `U(S_0, S_1, ...)`, the non-halvability proposition (it uses `fs_rigid` of `PGFSRigid`), and the application of the quoted base theorem (`prop:zp`).

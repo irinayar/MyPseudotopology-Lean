@@ -598,3 +598,7 @@ import LeanCheck.TwoPrimesUnimodal
 import LeanCheck.TwoPrimesCutBall
 
 import LeanCheck.TwoPrimesAxioms3
+
+import LeanCheck.PGGameLemma
+
+import LeanCheck.PGOpenSets

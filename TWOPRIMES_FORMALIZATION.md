@@ -52,6 +52,13 @@ Added for TwoPrimes_v9 (Section 8.4, level structure for general pairs of primes
 |---|---|
 | `sweep_decrease`, `sweep_bound` | Real phases `φ j` (`j < K`) all in the zone `(a-2, 2)` with `2 < a`, each step `φ (j+1) = φ j + a` or `φ j + a - b`, satisfy `φ j = φ 0 - j (b - a)` and `(K-1)(b-a) < 4 - a`: among `K` consecutive levels with `(K-1)(b-a) ≥ 4 - a` one is outside the zone (the circle step in the choice of levels). |
 
+Added for TwoPrimes_v16 (Section 6, explicit null-witness bound with arcs of length `1/m`; module `TwoPrimesTable2`):
+
+| Declaration | Statement |
+|---|---|
+| `arc_diff_lt` | For real `m > 0` and reals `x, y` with `⌊m x⌋ = ⌊m y⌋`: `|x - y| < 1/m` (two points of one half-open arc of length `1/m` differ by less than `1/m`; the arc step of the pigeonhole argument). |
+| `ExplicitArcsOK`, `arcs_m8`, `arcs_m16`, `arcs_m32`, `arcs_m64` | Arithmetic side conditions of the explicit bound with `m` arcs, `N = 2^(a₂²) 3^(a₃²) m^d`, `m N < 2^((R₂+1)²)`, `m N < 3^((R₃+1)²)` for `(m; a₂, a₃, R₂, R₃, d) = (8; 2,1,4,3,4), (16; 2,1,5,4,6), (32; 3,2,7,5,7), (64; 3,2,8,6,9)`, and `2^4 · 3 · 8^4 = 196608`. The pigeonhole step itself is not formalized. |
+
 Not formalized (stated in the TwoPrimes notes): the real-analysis part of the level-structure proposition (choice of the levels by the sweep over three consecutive `N`, asymptotics with logarithms), the comparison of the difference distribution with the triangular law, the block masses and the final assembly of the block collision lemma; the digit-set model of the balls as a whole (only its child count, `children_of_regular`, is checked) and the product formula for their autocorrelation, the collision-energy computations and certificates (computer-assisted, exact integer arithmetic, outside Lean), the completion `X_p` and its identification with `{x ∈ ℤ_p : ‖f_n(x)‖ → 0}`, non-local-compactness of `X_p`, the pigeonhole step of the explicit bound, and the energy estimate `C(r,X) ≤ 8/3 − δ` (open). Also not formalized from v5: the analytic parts of the near-uniformity theorem for cut balls (comparison of the linear function with the uniform law, the Kolmogorov distance), the principal Fourier part (Fourier analysis), the planar lattice-point lemma (needs Minkowski's second theorem, the Brunn-Minkowski and Rogers-Shephard inequalities), the layer-cake theorem for log-concave weights, and all computer-assisted certificates.
 
-To recheck: `lake build` and `#print axioms` for each declaration above (`TwoPrimesAxioms.lean`, `TwoPrimesAxioms2.lean`, `TwoPrimesAxioms3.lean`, `TwoPrimesAxioms4.lean`, `TwoPrimesAxioms5.lean`, `TwoPrimesAxioms6.lean`).
+To recheck: `lake build` and `#print axioms` for each declaration above (`TwoPrimesAxioms.lean`, `TwoPrimesAxioms2.lean`, `TwoPrimesAxioms3.lean`, `TwoPrimesAxioms4.lean`, `TwoPrimesAxioms5.lean`, `TwoPrimesAxioms6.lean`, `TwoPrimesAxioms7.lean`).

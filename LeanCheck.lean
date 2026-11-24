@@ -625,3 +625,5 @@ import LeanCheck.PGTwoCoreflection
 import LeanCheck.PGTwoAxioms
 import LeanCheck.PGTwoFinal
 import LeanCheck.PGTwoQuotient
+import LeanCheck.PGTwoDigits
+import LeanCheck.PGTwoVicinity

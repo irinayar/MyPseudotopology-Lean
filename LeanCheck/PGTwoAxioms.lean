@@ -4,6 +4,8 @@ import LeanCheck.PGTwoReflection
 import LeanCheck.PGTwoCoreflection
 import LeanCheck.PGTwoFinal
 import LeanCheck.PGTwoQuotient
+import LeanCheck.PGTwoDigits
+import LeanCheck.PGTwoVicinity
 
 /-! Axiom check for the modules of `PGtwo` (Phase A): every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -45,3 +47,13 @@ import LeanCheck.PGTwoQuotient
 #print axioms PG.pure_mem_quotC_iff
 #print axioms PG.quot_hausdorff_iff
 #print axioms PG.hausdorff_quotient_iff
+#print axioms PG.digit_unique
+#print axioms PG.rep_Sn
+#print axioms PG.condM_of_growth
+#print axioms PG.kernel_open_of_growth
+#print axioms PG.mem_vic_genFam
+#print axioms PG.vic_genFam_eq_iff
+#print axioms PG.isNbhdFilter_of_add_eq
+#print axioms PG.finite_null_iff
+#print axioms PG.vic_finite
+#print axioms PG.not_vicinity_zmod5

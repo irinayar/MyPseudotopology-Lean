@@ -623,3 +623,5 @@ import LeanCheck.PGTwoLattice
 import LeanCheck.PGTwoReflection
 import LeanCheck.PGTwoCoreflection
 import LeanCheck.PGTwoAxioms
+import LeanCheck.PGTwoFinal
+import LeanCheck.PGTwoQuotient

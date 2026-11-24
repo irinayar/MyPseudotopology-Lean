@@ -530,6 +530,7 @@ import LeanCheck.ThreePrimesTheoremBM3
 import LeanCheck.ThreePrimesComparisonM3
 import LeanCheck.ThreePrimesComparisonM4
 import LeanCheck.ThreePrimesExactM5
+import LeanCheck.ThreePrimesCritM6
 
 import LeanCheck.PGNullFilters
 

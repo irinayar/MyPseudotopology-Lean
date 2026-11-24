@@ -12,7 +12,7 @@ Scope. Section 6 of the second article (`PGtwo.tex`), Lemma 6.5 and Theorem 6.6,
 null family `C` (`PGNullFilters`).
 
 * `hausdorff_iff_principal` : the convergence is Hausdorff iff the only point `g` with `pure g ∈ C` is `0` (Lemma 6.5(a));
-* `IsOpenXi C O` and `closed_iff_conv_closed` : a set is closed for the topological modification iff every proper
+* `IsOpenMod C O` and `closed_iff_conv_closed` : a set is closed for the topological modification iff every proper
   convergent filter containing it has its limit in it (Lemma 6.5(b));
 * `quotC N C` : the final structure on `G ⧸ N` for the quotient map (Theorem 6.2 of the article, `PGTwoFinal`);
   `pure_mem_quotC_iff` : `pure (g + N)` converges to `0` in it iff some null filter has all its members meeting the coset
@@ -57,12 +57,12 @@ theorem hausdorff_iff_principal {C : Set (Filter G)} (hC : NullFamily C) :
     exact neg_eq_zero.1 this
 
 /-- Openness for the topological modification of the PG. -/
-def IsOpenXi (C : Set (Filter G)) (O : Set G) : Prop :=
+def IsOpenMod (C : Set (Filter G)) (O : Set G) : Prop :=
   ∀ x ∈ O, ∀ F : Filter G, F.NeBot → conv C F x → O ∈ F
 
 /-- Lemma 6.5(b). -/
 theorem closed_iff_conv_closed {C : Set (Filter G)} (hC : NullFamily C) (N : Set G) :
-    IsOpenXi C Nᶜ ↔ ∀ (F : Filter G) (x : G), F.NeBot → conv C F x → N ∈ F → x ∈ N := by
+    IsOpenMod C Nᶜ ↔ ∀ (F : Filter G) (x : G), F.NeBot → conv C F x → N ∈ F → x ∈ N := by
   constructor
   · intro h F x hne hconv hN
     by_contra hx
@@ -195,7 +195,7 @@ theorem quot_hausdorff_iff {C : Set (Filter G)} (hC : NullFamily C) :
 /-- Theorem 6.6: the quotient PG is Hausdorff iff `N` is closed for the topological modification of the PG. -/
 theorem hausdorff_quotient_iff {C : Set (Filter G)} (hC : NullFamily C) :
     (∀ (F : Filter (G ⧸ N)) (z : G ⧸ N), F ∈ quotC N C → Filter.map (fun y => y - z) F ∈ quotC N C → z = 0) ↔
-      IsOpenXi C (N : Set G)ᶜ :=
+      IsOpenMod C (N : Set G)ᶜ :=
   ((hausdorff_iff_principal (quotC_nullFamily N C)).trans (quot_hausdorff_iff N hC)).trans
     (closed_iff_conv_closed hC (N : Set G)).symm
 

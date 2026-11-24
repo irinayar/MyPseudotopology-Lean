@@ -1,6 +1,6 @@
 # PGtwo: Lean checks for the structure theory of pseudotopological groups, Phases A, B and C (24 November 2026)
 
-Modules: `LeanCheck/PGTwoGeneration.lean`, `PGTwoLattice.lean`, `PGTwoReflection.lean`, `PGTwoCoreflection.lean`, `PGTwoFinal.lean`, `PGTwoQuotient.lean`, `PGTwoDigits.lean`, `PGTwoVicinity.lean`, and the axiom report `PGTwoAxioms.lean`. They build on the modules of the first article (`PGNullFilters.lean`, `PGGenerated.lean`; see `PG_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGTwoAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGtwo`, Pseudotopological Groups II: Structure Theory, unpublished) was checked by the author and has not been reviewed independently. No independent build of these modules by anyone else has been made.
+Modules: `LeanCheck/PGTwoGeneration.lean`, `PGTwoLattice.lean`, `PGTwoReflection.lean`, `PGTwoCoreflection.lean`, `PGTwoFinal.lean`, `PGTwoQuotient.lean`, `PGTwoDigits.lean`, `PGTwoVicinity.lean`, `PGTwoTame.lean`, and the axiom report `PGTwoAxioms.lean`. They build on the modules of the first article (`PGNullFilters.lean`, `PGGenerated.lean`; see `PG_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGTwoAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGtwo`, Pseudotopological Groups II: Structure Theory, unpublished) was checked by the author and has not been reviewed independently. No independent build of these modules by anyone else has been made.
 
 Setting: `G` an abelian group; filters are Mathlib filters, "finer" is `≤`, proper means `NeBot`; `F - x` is `Filter.map (· - x) F`, `F + H` is `Filter.map₂ (· + ·) F H`; a filter converges to `x` in a topology if `F ≤ 𝓝 x`. A PG is given by a null family `C` (`NullFamily`, `PGNullFilters`). Only the abstract part of the second article is formalized; the digit and two-base arguments, the examples and the arithmetic inputs are not.
 
@@ -56,7 +56,7 @@ Setting: `G` an abelian group; filters are Mathlib filters, "finer" is `≤`, pr
 | Declaration | Statement |
 |---|---|
 | `hausdorff_iff_principal` | Lemma 6.5(a): the convergence is Hausdorff iff the only `g` with `pure g ∈ C` is `0`. |
-| `IsOpenXi`, `closed_iff_conv_closed` | Lemma 6.5(b): a set is closed for the topological modification iff every proper convergent filter containing it has its limit in it. |
+| `IsOpenMod`, `closed_iff_conv_closed` | Lemma 6.5(b): a set is closed for the topological modification iff every proper convergent filter containing it has its limit in it. |
 | `quotC`, `quotC_nullFamily`, `pure_mem_quotC_iff` | The final structure on `G ⧸ N`; `pure (g + N)` is null iff some null filter has all its members meeting the coset `g + N`. |
 | `quot_hausdorff_iff`, `hausdorff_quotient_iff` | Theorem 6.6: the quotient PG is Hausdorff iff `N` is closed for the topological modification (no Hausdorff hypothesis on `G`). |
 
@@ -77,5 +77,12 @@ Setting: `G` an abelian group; filters are Mathlib filters, "finer" is `≤`, pr
 | `nullSubgroup`, `finite_null_iff`, `vic_finite` | Proposition 5.26: on a finite group the null filters are the proper filters containing the subgroup `H` of points with `pure g` null, and the vicinity filter is the principal filter of `H`. |
 | `not_vicinity_zmod5` | Example 5.27: the principal filter of `{0, 1, -1}` on `ℤ/5ℤ` is not the vicinity filter of any PG. |
 | `pure_mem_iff_forall_vic`, `vic_translate`, `vic_eq_principal_of_finite_member`, `principal_vic_eq` | Proposition (null points and the vicinity filter): the points in every member of the vicinity filter are exactly the points `g` with `pure g` null (a subgroup); the vicinity filter is invariant under translation by them; if it has a finite member it is the principal filter of that subgroup; a principal vicinity filter is the principal filter of a subgroup. |
+
+## `PGTwoTame` (tame admissible pairs)
+| Declaration | Statement |
+|---|---|
+| `Tame I` | For every `A ∈ I` there is `N` such that every infinite `S ⊆ A` contains `n` elements (`1 ≤ n ≤ N`, repetitions allowed) with sum outside `A`. |
+| `exists_nhds_sum` | In a topological group, for a neighbourhood `U` of `0` and every `N` there is a neighbourhood `W` of `0` such that every sum of at most `N` elements of `W` lies in `U`. |
+| `kernel_open_of_tame` | For an admissible ideal `I` of a Hausdorff topological group that is tame, every continuous homomorphism from a topological group into `xi I` has an open kernel. |
 
 Not formalized: Corollary 6.3 (completeness and cocompleteness), the claim that every strongly summable ultrafilter has the growth sequence (quoted literature), the lemmas on signed powers (Lemmas 5.11, 5.12, 5.18), the one-base and two-base coreflections, the Bohr criterion, Theorem 5.24, Example 6.7 and the other examples.

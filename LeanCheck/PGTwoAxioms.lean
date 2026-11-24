@@ -6,6 +6,7 @@ import LeanCheck.PGTwoFinal
 import LeanCheck.PGTwoQuotient
 import LeanCheck.PGTwoDigits
 import LeanCheck.PGTwoVicinity
+import LeanCheck.PGTwoTame
 
 /-! Axiom check for the modules of `PGtwo` (Phase A): every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -61,3 +62,5 @@ import LeanCheck.PGTwoVicinity
 #print axioms PG.vic_translate
 #print axioms PG.vic_eq_principal_of_finite_member
 #print axioms PG.principal_vic_eq
+#print axioms PG.exists_nhds_sum
+#print axioms PG.kernel_open_of_tame

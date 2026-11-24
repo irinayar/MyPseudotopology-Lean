@@ -210,4 +210,79 @@ theorem not_vicinity_zmod5 :
   revert h3
   decide
 
+/-- The points that belong to every member of the vicinity filter are exactly the points `g` with `pure g` null. -/
+theorem pure_mem_iff_forall_vic {C : Set (Filter G)} (hC : NullFamily C) (g : G) :
+    (pure g : Filter G) ∈ C ↔ ∀ A ∈ vic C, g ∈ A := by
+  constructor
+  · intro h A hA
+    exact mem_vic.1 hA _ h
+  · intro h
+    by_contra hg
+    have hmem : ({g}ᶜ : Set G) ∈ vic C := by
+      rw [mem_vic]
+      intro F hF
+      by_contra hnot
+      haveI := hC.ne F hF
+      obtain ⟨U, hUF, hU⟩ := exists_ultra_compl_mem F hnot
+      have hU' : ({g} : Set G) ∈ (U : Filter G) := by simpa using hU
+      have hUeq : (U : Filter G) = pure g :=
+        (Filter.NeBot.le_pure_iff inferInstance).1 (Filter.le_pure_iff.2 hU')
+      have hUC : (U : Filter G) ∈ C := hC.finer F hF _ hUF inferInstance
+      rw [hUeq] at hUC
+      exact hg hUC
+    have := h _ hmem
+    exact this rfl
+
+/-- The vicinity filter is invariant under translation by the null points. -/
+theorem vic_translate {C : Set (Filter G)} (hC : NullFamily C) {k : G} (hk : (pure k : Filter G) ∈ C)
+    {A : Set G} (hA : A ∈ vic C) : (fun x : G => x + k) ⁻¹' A ∈ vic C := by
+  rw [mem_vic] at hA ⊢
+  intro F hF
+  have h1 : Filter.map₂ (· + ·) F (pure k) ∈ C := hC.add F hF _ hk
+  rw [Filter.map₂_pure_right] at h1
+  exact hA _ h1
+
+/-- If the vicinity filter has a finite member, it is the principal filter of the subgroup of null points. -/
+theorem vic_eq_principal_of_finite_member {C : Set (Filter G)} (hC : NullFamily C) {S : Set G}
+    (hS : S.Finite) (hSV : S ∈ vic C) :
+    vic C = 𝓟 ((nullSubgroup C hC : AddSubgroup G) : Set G) := by
+  have hK : ∀ F ∈ C, ((nullSubgroup C hC : AddSubgroup G) : Set G) ∈ F := by
+    intro F hF
+    by_contra hnot
+    haveI := hC.ne F hF
+    obtain ⟨U, hUF, hU⟩ := exists_ultra_compl_mem F hnot
+    have hSU : S ∈ (U : Filter G) := hUF (mem_vic.1 hSV F hF)
+    obtain ⟨a, haS, hUa⟩ := Ultrafilter.eq_pure_of_finite_mem hS hSU
+    have hUC : (U : Filter G) ∈ C := hC.finer F hF _ hUF inferInstance
+    rw [hUa] at hUC
+    have haK : a ∈ ((nullSubgroup C hC : AddSubgroup G) : Set G) := by
+      have : (pure a : Filter G) ∈ C := by simpa using hUC
+      exact this
+    rw [hUa] at hU
+    exact hU haK
+  ext s
+  rw [mem_vic, Filter.mem_principal]
+  constructor
+  · intro hs g hg
+    have : (pure g : Filter G) ∈ C := hg
+    exact hs _ this
+  · intro hs F hF
+    exact Filter.mem_of_superset (hK F hF) hs
+
+/-- A principal vicinity filter is the principal filter of the subgroup of null points; in particular its generating set is
+a subgroup. -/
+theorem principal_vic_eq {C : Set (Filter G)} (hC : NullFamily C) {A : Set G} (h : vic C = 𝓟 A) :
+    A = ((nullSubgroup C hC : AddSubgroup G) : Set G) := by
+  ext g
+  have h1 := pure_mem_iff_forall_vic hC g
+  rw [h] at h1
+  have h2 : (pure g : Filter G) ∈ C ↔ g ∈ A := by
+    rw [h1]
+    constructor
+    · intro hh
+      exact hh A (Filter.mem_principal_self A)
+    · intro hg A' hA'
+      exact (Filter.mem_principal.1 hA') hg
+  exact h2.symm
+
 end PG

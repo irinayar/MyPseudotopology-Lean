@@ -57,3 +57,7 @@ import LeanCheck.PGTwoVicinity
 #print axioms PG.finite_null_iff
 #print axioms PG.vic_finite
 #print axioms PG.not_vicinity_zmod5
+#print axioms PG.pure_mem_iff_forall_vic
+#print axioms PG.vic_translate
+#print axioms PG.vic_eq_principal_of_finite_member
+#print axioms PG.principal_vic_eq

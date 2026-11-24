@@ -617,3 +617,9 @@ import LeanCheck.TwoPrimesAxioms5
 import LeanCheck.TwoPrimesSweep
 
 import LeanCheck.TwoPrimesAxioms6
+
+import LeanCheck.PGTwoGeneration
+import LeanCheck.PGTwoLattice
+import LeanCheck.PGTwoReflection
+import LeanCheck.PGTwoCoreflection
+import LeanCheck.PGTwoAxioms

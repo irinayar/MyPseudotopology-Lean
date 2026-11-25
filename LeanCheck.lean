@@ -647,3 +647,4 @@ import LeanCheck.PVGTauTwoSidedAxioms
 import LeanCheck.PVGFinitePiece
 import LeanCheck.PVGFinitePieceAxioms
 import LeanCheck.PGThreeExact
+import LeanCheck.PGThreeSparse

@@ -1,6 +1,7 @@
 import LeanCheck.PGThreeSelective
 import LeanCheck.PGThreeSelectiveCH
 import LeanCheck.PGThreeExact
+import LeanCheck.PGThreeSparse
 
 /-! Axiom check for the modules of `PGthree`: every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -31,3 +32,8 @@ import LeanCheck.PGThreeExact
 #print axioms PG.Sel.exists_vicinity_of_condition
 #print axioms PG.Sel.not_vicinity_boolean_times_int
 #print axioms PG.Sel.exists_vicinity_boolean
+#print axioms PG.Sparse.exists_weight
+#print axioms PG.Sparse.lt_abs_val
+#print axioms PG.Sparse.val_inj
+#print axioms PG.Sparse.expansion
+#print axioms PG.Sparse.sparse_strict

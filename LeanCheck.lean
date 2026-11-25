@@ -533,6 +533,8 @@ import LeanCheck.ThreePrimesExactM5
 import LeanCheck.ThreePrimesCritM6
 import LeanCheck.ThreePrimesSecondM7
 import LeanCheck.ThreePrimesPackingM8
+import LeanCheck.ThreePrimesNrM9
+import LeanCheck.ThreePrimesMonoM10
 
 import LeanCheck.PGNullFilters
 

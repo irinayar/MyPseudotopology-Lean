@@ -657,3 +657,4 @@ import LeanCheck.PVGIntervalFreeAxioms
 import LeanCheck.PGThreePPoint
 import LeanCheck.PGThreeNull
 import LeanCheck.PGThreeGeneral
+import LeanCheck.PGThreeNonHaus

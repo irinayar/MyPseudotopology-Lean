@@ -644,3 +644,5 @@ import LeanCheck.PVGCyclicTrace
 import LeanCheck.PVGCyclicTraceAxioms
 import LeanCheck.PVGTauTwoSided
 import LeanCheck.PVGTauTwoSidedAxioms
+import LeanCheck.PVGFinitePiece
+import LeanCheck.PVGFinitePieceAxioms

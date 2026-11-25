@@ -8,20 +8,20 @@ import LeanCheck.PGTwoReflection
 /-!
 # PGtwo: initial and final structures, quotients of topological groups (Lean check)
 
-Scope. Section 6 of the second article (`PGtwo.tex`), Proposition 6.1, Theorem 6.2 and Proposition 6.4, abstract form.
+Scope. Section 6 of the second article (`PGtwo.tex`), Proposition 6.3, Theorem 6.4 and Proposition 6.6, abstract form.
 A PG is given by a null family (`PGNullFilters`).
 
 * `exists_ultra_map_eq` : an ultrafilter finer than the image `f F` of a proper filter is the image of an ultrafilter finer
   than `F`;
 * `initFam f C`, `initFam_nullFamily`, `initFam_univ` : the initial structure for a family of homomorphisms
   `f i : H →+ G i` (products, subgroups): the proper filters whose images are null for every `i` form a null family, and a
-  homomorphism into `H` is continuous iff every composite is (Proposition 6.1);
+  homomorphism into `H` is continuous iff every composite is (Proposition 6.3);
 * `finalGen f C`, `map_mem_finalGen`, `finalGen_univ` : the final structure for a family `f i : G i →+ H`, the PG generated
   (`PGTwoGeneration`) by the images of the null filters; a homomorphism out of `H` is continuous iff every composite is
-  (Theorem 6.2);
+  (Theorem 6.4);
 * `nullTop`, `nullTop_nullFamily` : the filters finer than `𝓝 0` in a topological group form a null family;
 * `final_of_open_map`, `final_quotient` : the final structure for a continuous open homomorphism of topological groups, in
-  particular the quotient map, is the topological group of the target (Proposition 6.4).
+  particular the quotient map, is the topological group of the target (Proposition 6.6).
 
 A Lean proof verifies its formal statement under its hypotheses; the correspondence with the article requires
 mathematical review.
@@ -97,7 +97,7 @@ theorem initFam_nullFamily (f : ∀ i, H →+ Gi i) {C : ∀ i, Set (Filter (Gi 
       rw [← Ultrafilter.coe_map, hWV]
     rwa [this] at h
 
-/-- Universal property of the initial structure (Proposition 6.1). -/
+/-- Universal property of the initial structure (Proposition 6.3). -/
 theorem initFam_univ (f : ∀ i, H →+ Gi i) {C : ∀ i, Set (Filter (Gi i))} {L : Type*} [AddCommGroup L]
     (CL : Set (Filter L)) (hCL : NullFamily CL) (h : L →+ H) :
     (∀ F ∈ CL, Filter.map h F ∈ initFam f C) ↔
@@ -131,7 +131,7 @@ theorem map_mem_finalGen (f : ∀ i, Gi i →+ H) {C : ∀ i, Set (Filter (Gi i)
   rintro _ ⟨j, F0, hF0, rfl⟩
   exact (hC j).ne F0 hF0 |>.map _
 
-/-- Universal property of the final structure (Theorem 6.2). -/
+/-- Universal property of the final structure (Theorem 6.4). -/
 theorem finalGen_univ (f : ∀ i, Gi i →+ H) {C : ∀ i, Set (Filter (Gi i))} (hC : ∀ i, NullFamily (C i))
     {K : Type*} [AddCommGroup K] {CK : Set (Filter K)} (hCK : NullFamily CK) (g : H →+ K) :
     (∀ i, ∀ F ∈ C i, Filter.map (g ∘ f i) F ∈ CK) ↔
@@ -190,7 +190,7 @@ theorem nullTop_nullFamily : NullFamily (nullTop T) where
 
 variable {Q : Type*} [AddCommGroup Q] [TopologicalSpace Q] [IsTopologicalAddGroup Q]
 
-/-- Proposition 6.4: the final structure for a continuous open homomorphism of topological groups is the topological
+/-- Proposition 6.6: the final structure for a continuous open homomorphism of topological groups is the topological
 group of the target. -/
 theorem final_of_open_map (π : T →+ Q) (hc : Continuous π) (ho : IsOpenMap π) :
     genFam {F | ∃ F0 ∈ nullTop T, F = Filter.map π F0} = nullTop Q := by
@@ -211,7 +211,7 @@ theorem final_of_open_map (π : T →+ Q) (hc : Continuous π) (ho : IsOpenMap �
       rwa [map_zero] at this
     exact hU.trans (hle.trans h1)
 
-/-- Proposition 6.4 for a quotient group. -/
+/-- Proposition 6.6 for a quotient group. -/
 theorem final_quotient (N : AddSubgroup T) :
     genFam {F | ∃ F0 ∈ nullTop T, F = Filter.map (QuotientAddGroup.mk' N) F0} = nullTop (T ⧸ N) :=
   final_of_open_map (QuotientAddGroup.mk' N) continuous_quot_mk QuotientAddGroup.isOpenMap_coe

@@ -8,17 +8,17 @@ import LeanCheck.PGTwoFinal
 /-!
 # PGtwo: Hausdorff quotients of a PG (Lean check)
 
-Scope. Section 6 of the second article (`PGtwo.tex`), Lemma 6.5 and Theorem 6.6, abstract form. A PG on `G` is given by a
+Scope. Section 6 of the second article (`PGtwo.tex`), Lemma 6.7 and Theorem 6.8, abstract form. A PG on `G` is given by a
 null family `C` (`PGNullFilters`).
 
-* `hausdorff_iff_principal` : the convergence is Hausdorff iff the only point `g` with `pure g ∈ C` is `0` (Lemma 6.5(a));
+* `hausdorff_iff_principal` : the convergence is Hausdorff iff the only point `g` with `pure g ∈ C` is `0` (Lemma 6.7(a));
 * `IsOpenMod C O` and `closed_iff_conv_closed` : a set is closed for the topological modification iff every proper
-  convergent filter containing it has its limit in it (Lemma 6.5(b));
-* `quotC N C` : the final structure on `G ⧸ N` for the quotient map (Theorem 6.2 of the article, `PGTwoFinal`);
+  convergent filter containing it has its limit in it (Lemma 6.7(b));
+* `quotC N C` : the final structure on `G ⧸ N` for the quotient map (Theorem 6.4 of the article, `PGTwoFinal`);
   `pure_mem_quotC_iff` : `pure (g + N)` converges to `0` in it iff some null filter has all its members meeting the coset
   `g + N`;
 * `quot_hausdorff_iff`, `hausdorff_quotient_iff` : the quotient is Hausdorff iff `N` is convergence-closed, iff `N` is closed
-  for the topological modification (Theorem 6.6). The group `G` need not be Hausdorff.
+  for the topological modification (Theorem 6.8). The group `G` need not be Hausdorff.
 
 A Lean proof verifies its formal statement under its hypotheses; the correspondence with the article requires
 mathematical review.
@@ -30,7 +30,7 @@ namespace PG
 
 variable {G : Type*} [AddCommGroup G]
 
-/-- Lemma 6.5(a). -/
+/-- Lemma 6.7(a). -/
 theorem hausdorff_iff_principal {C : Set (Filter G)} (hC : NullFamily C) :
     (∀ (F : Filter G) (z : G), F ∈ C → Filter.map (fun y => y - z) F ∈ C → z = 0) ↔
       (∀ g : G, (pure g : Filter G) ∈ C → g = 0) := by
@@ -60,7 +60,7 @@ theorem hausdorff_iff_principal {C : Set (Filter G)} (hC : NullFamily C) :
 def IsOpenMod (C : Set (Filter G)) (O : Set G) : Prop :=
   ∀ x ∈ O, ∀ F : Filter G, F.NeBot → conv C F x → O ∈ F
 
-/-- Lemma 6.5(b). -/
+/-- Lemma 6.7(b). -/
 theorem closed_iff_conv_closed {C : Set (Filter G)} (hC : NullFamily C) (N : Set G) :
     IsOpenMod C Nᶜ ↔ ∀ (F : Filter G) (x : G), F.NeBot → conv C F x → N ∈ F → x ∈ N := by
   constructor
@@ -142,7 +142,7 @@ theorem pure_mem_quotC_iff {C : Set (Filter G)} (hC : NullFamily C) (g : G) :
       rwa [hag] at this
     exact (quotC_nullFamily N C).finer _ hmem _ hle inferInstance
 
-/-- Theorem 6.6: the quotient has no nonzero principal null filter iff `N` is convergence-closed. -/
+/-- Theorem 6.8: the quotient has no nonzero principal null filter iff `N` is convergence-closed. -/
 theorem quot_hausdorff_iff {C : Set (Filter G)} (hC : NullFamily C) :
     (∀ q : G ⧸ N, (pure q : Filter (G ⧸ N)) ∈ quotC N C → q = 0) ↔
       ∀ (F : Filter G) (x : G), F.NeBot → conv C F x → (N : Set G) ∈ F → x ∈ N := by
@@ -192,7 +192,7 @@ theorem quot_hausdorff_iff {C : Set (Filter G)} (hC : NullFamily C) :
     have : g ∈ N := by simpa using N.neg_mem hx
     exact (QuotientAddGroup.eq_zero_iff g).2 this
 
-/-- Theorem 6.6: the quotient PG is Hausdorff iff `N` is closed for the topological modification of the PG. -/
+/-- Theorem 6.8: the quotient PG is Hausdorff iff `N` is closed for the topological modification of the PG. -/
 theorem hausdorff_quotient_iff {C : Set (Filter G)} (hC : NullFamily C) :
     (∀ (F : Filter (G ⧸ N)) (z : G ⧸ N), F ∈ quotC N C → Filter.map (fun y => y - z) F ∈ quotC N C → z = 0) ↔
       IsOpenMod C (N : Set G)ᶜ :=

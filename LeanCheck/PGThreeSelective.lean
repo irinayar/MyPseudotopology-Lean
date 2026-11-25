@@ -391,6 +391,85 @@ theorem not_large_of_finLast : ∀ (r : ℕ) (v : Fin (r + 1) → Ultrafilter �
     rw [hempty] at h'
     exact Ultrafilter.empty_notMem h'
 
+theorem not_large_empty : ∀ (r : ℕ) (v : Fin r → Ultrafilter ℕ), ¬ Large r v ∅ := by
+  intro r
+  induction r with
+  | zero =>
+    intro v h
+    have h' : Fin.elim0 ∈ (∅ : Set (Fin 0 → ℕ)) := h
+    exact notMem_empty _ h'
+  | succ r ih =>
+    intro v h
+    have hsec : ∀ x : ℕ, {t : Fin r → ℕ | Fin.cons x t ∈ (∅ : Set (Fin (r + 1) → ℕ))} = (∅ : Set (Fin r → ℕ)) :=
+      fun x => eq_empty_of_forall_notMem (fun t ht => notMem_empty (Fin.cons x t : Fin (r + 1) → ℕ) ht)
+    have h' : {x : ℕ | Large r (fun i => v i.succ) {t : Fin r → ℕ | Fin.cons x t ∈ (∅ : Set (Fin (r + 1) → ℕ))}} ∈ v 0 := h
+    have he : {x : ℕ | Large r (fun i => v i.succ) {t : Fin r → ℕ | Fin.cons x t ∈ (∅ : Set (Fin (r + 1) → ℕ))}}
+        = (∅ : Set ℕ) := by
+      refine eq_empty_of_forall_notMem (fun x hx => ?_)
+      have hx' : Large r (fun i => v i.succ) {t : Fin r → ℕ | Fin.cons x t ∈ (∅ : Set (Fin (r + 1) → ℕ))} := hx
+      rw [hsec x] at hx'
+      exact ih (fun i => v i.succ) hx'
+    rw [he] at h'
+    exact Ultrafilter.empty_notMem h'
+
+theorem large_zero (v : Fin 0 → Ultrafilter ℕ) (R : Set (Fin 0 → ℕ)) : Large 0 v R ↔ Fin.elim0 ∈ R := Iff.rfl
+
+theorem large_succ (r : ℕ) (v : Fin (r + 1) → Ultrafilter ℕ) (R : Set (Fin (r + 1) → ℕ)) :
+    Large (r + 1) v R ↔ {x : ℕ | Large r (fun i => v i.succ) {t : Fin r → ℕ | Fin.cons x t ∈ R}} ∈ v 0 := Iff.rfl
+
+/-- Largeness can be computed from the last coordinate. -/
+theorem large_snoc : ∀ (r : ℕ) (v : Fin (r + 1) → Ultrafilter ℕ) (R : Set (Fin (r + 1) → ℕ)),
+    Large (r + 1) v R ↔
+      Large r (fun i => v i.castSucc) {p : Fin r → ℕ | {z : ℕ | (Fin.snoc p z : Fin (r + 1) → ℕ) ∈ R} ∈ v (Fin.last r)} := by
+  intro r
+  induction r with
+  | zero =>
+    intro v R
+    have e : ∀ x : ℕ, (Fin.snoc (Fin.elim0 : Fin 0 → ℕ) x : Fin 1 → ℕ) = Fin.cons x (Fin.elim0 : Fin 0 → ℕ) := by
+      intro x
+      funext i
+      have hi : i = 0 := Fin.fin_one_eq_zero i
+      subst hi
+      simp [Fin.snoc]
+    have e1 : {x : ℕ | Large 0 (fun i => v i.succ) {t : Fin 0 → ℕ | Fin.cons x t ∈ R}}
+        = {x : ℕ | (Fin.cons x (Fin.elim0 : Fin 0 → ℕ) : Fin 1 → ℕ) ∈ R} :=
+      Set.ext (fun x => by
+        rw [mem_setOf_eq, mem_setOf_eq]
+        exact large_zero (fun i => v i.succ) {t : Fin 0 → ℕ | Fin.cons x t ∈ R})
+    have e2 : {z : ℕ | (Fin.snoc (Fin.elim0 : Fin 0 → ℕ) z : Fin 1 → ℕ) ∈ R}
+        = {x : ℕ | (Fin.cons x (Fin.elim0 : Fin 0 → ℕ) : Fin 1 → ℕ) ∈ R} := by
+      ext x
+      rw [mem_setOf_eq, mem_setOf_eq, e x]
+    rw [large_succ, large_zero, mem_setOf_eq, e1, e2]
+    exact Iff.rfl
+  | succ r ih =>
+    intro v R
+    set Q : Set (Fin (r + 1) → ℕ) :=
+      {p | {z : ℕ | (Fin.snoc p z : Fin (r + 2) → ℕ) ∈ R} ∈ v (Fin.last (r + 1))} with hQ
+    have hfun : (fun i : Fin r => v i.castSucc.succ) = (fun i : Fin r => v i.succ.castSucc) := by
+      funext i
+      rw [Fin.succ_castSucc]
+    have key : ∀ x : ℕ, Large (r + 1) (fun i => v i.succ) {t : Fin (r + 1) → ℕ | Fin.cons x t ∈ R} ↔
+        Large r (fun i => v i.succ.castSucc) {t : Fin r → ℕ | Fin.cons x t ∈ Q} := by
+      intro x
+      have hset : {p : Fin r → ℕ | {z : ℕ | (Fin.snoc p z : Fin (r + 1) → ℕ) ∈
+            {t : Fin (r + 1) → ℕ | (Fin.cons x t : Fin (r + 2) → ℕ) ∈ R}} ∈ v (Fin.last r).succ}
+          = {t : Fin r → ℕ | Fin.cons x t ∈ Q} := by
+        ext t
+        have e : {z : ℕ | (Fin.snoc t z : Fin (r + 1) → ℕ) ∈
+              {s : Fin (r + 1) → ℕ | (Fin.cons x s : Fin (r + 2) → ℕ) ∈ R}}
+            = {z : ℕ | (Fin.snoc (Fin.cons x t : Fin (r + 1) → ℕ) z : Fin (r + 2) → ℕ) ∈ R} := by
+          ext z
+          rw [mem_setOf_eq, mem_setOf_eq, mem_setOf_eq, Fin.cons_snoc_eq_snoc_cons]
+        rw [mem_setOf_eq, mem_setOf_eq, hQ, mem_setOf_eq, e, Fin.succ_last]
+      refine (ih (fun i => v i.succ) {t : Fin (r + 1) → ℕ | Fin.cons x t ∈ R}).trans ?_
+      rw [← hfun, ← hset]
+    rw [large_succ (r + 1) v R, large_succ r (fun i => v i.castSucc) Q]
+    have eset : {x : ℕ | Large (r + 1) (fun i => v i.succ) {t : Fin (r + 1) → ℕ | Fin.cons x t ∈ R}}
+        = {x : ℕ | Large r (fun i => v i.succ.castSucc) {t : Fin r → ℕ | Fin.cons x t ∈ Q}} :=
+      Set.ext key
+    rw [eset, Fin.castSucc_zero]
+
 section Group
 
 variable {G : Type*} [AddCommGroup G]
@@ -439,9 +518,11 @@ theorem rep_of_sumClosure (S : Set (Ultrafilter G)) {F : Filter G} (h : SumClosu
       · simp [Fintype.sum_sum_type]
 
 /-- The key step: no finite signed sum of small members of the ultrafilters contains a given `g ≠ 0`. -/
-theorem exists_avoiding [Countable G] [Infinite G] (htor : ∀ m : ℕ, 0 < m → {x : G | m • x = 0}.Finite)
+theorem exists_avoiding_general [Countable G] [Infinite G]
     {ι : Type} [Fintype ι] (u : ι → Ultrafilter G) (hsel : ∀ i, IsSel (u i))
-    (hiso : ∀ i j, u i ≠ u j → ¬ Iso (u i) (u j)) (c : ι → ℤ) (hc : ∀ i, c i = 1 ∨ c i = -1) {g : G} (hg : g ≠ 0) :
+    (hiso : ∀ i j, u i ≠ u j → ¬ Iso (u i) (u j))
+    (hmul : ∀ i, ∀ m : ℤ, m ≠ 0 → (∀ a, (u i).map (fun x : G => m • x) ≠ pure a) ∨ (u i).map (fun x : G => m • x) = pure 0)
+    (c : ι → ℤ) (hc : ∀ i, c i = 1 ∨ c i = -1) {g : G} (hg : g ≠ 0) :
     ∃ A : ι → Set G, (∀ i, A i ∈ u i) ∧ ∀ a : ι → G, (∀ i, a i ∈ A i) → ∑ i, c i • a i ≠ g := by
   classical
   obtain ⟨e⟩ : Nonempty (ℕ ≃ G) := by
@@ -501,51 +582,108 @@ theorem exists_avoiding [Countable G] [Infinite G] (htor : ∀ m : ℕ, 0 < m �
     exact h2
   -- all the equations
   set n := Fintype.card ι with hn
+  -- on `D j` the multiples that send the ultrafilter to `0` vanish
+  let D : Fin k → Set ℕ := fun j => ⋂ m ∈ Finset.Icc (-(n : ℤ)) n,
+    {y | (enum j : Ultrafilter G).map (fun x : G => m • x) = pure 0 → m • e y = 0}
+  have hDmem : ∀ j, D j ∈ w j := by
+    intro j
+    refine (Filter.biInter_finset_mem _).2 (fun m _ => ?_)
+    by_cases h0 : (enum j : Ultrafilter G).map (fun x : G => m • x) = pure 0
+    · have h1 : {x : G | m • x = 0} ∈ (enum j : Ultrafilter G) := by
+        have h2 : ({0} : Set G) ∈ (enum j : Ultrafilter G).map (fun x : G => m • x) := by
+          rw [h0]; exact rfl
+        exact h2
+      show _ ∈ w j
+      rw [hmemw]
+      refine Filter.mem_of_superset h1 (fun x hx => ?_)
+      show _ → m • e (e.symm x) = 0
+      intro _
+      rw [e.apply_symm_apply]
+      exact hx
+    · refine Filter.univ_mem' (fun y h => absurd h h0)
+  have hDprop : ∀ j (m : ℤ), m ∈ Finset.Icc (-(n : ℤ)) n →
+      (enum j : Ultrafilter G).map (fun x : G => m • x) = pure 0 → ∀ y ∈ D j, m • e y = 0 := by
+    intro j m hm h0 y hy
+    exact mem_iInter₂.1 hy m hm h0
   let Idx := Σ r : Fin (n + 1), (Fin r.val → Fin k) × (Fin r.val → Finset.Icc (-(n : ℤ)) n)
   let Rel : (idx : Idx) → Set (Fin idx.1.val → ℕ) := fun idx =>
-    {y | ∑ l, (idx.2.2 l : ℤ) • e (y l) = g}
+    {y | (∀ l, y l ∈ D (idx.2.1 l)) ∧ ∑ l, (idx.2.2 l : ℤ) • e (y l) = g}
+  have key : ∀ (r : ℕ) (σ : Fin r → Fin k) (d : Fin r → ℤ), (∀ l, d l ≠ 0) →
+      (∀ l, d l ∈ Finset.Icc (-(n : ℤ)) n) →
+      ¬ Large r (fun l => w (σ l)) {y | (∀ l, y l ∈ D (σ l)) ∧ ∑ l, d l • e (y l) = g} := by
+    intro r
+    induction r with
+    | zero =>
+      intro σ d _ _ h
+      have h' : (∀ l : Fin 0, Fin.elim0 l ∈ D (σ l)) ∧ ∑ l : Fin 0, d l • e (Fin.elim0 l) = g := h
+      have h2 := h'.2
+      simp at h2
+      exact hg h2.symm
+    | succ r ih =>
+      intro σ d hd hdn h
+      rw [large_snoc] at h
+      set j := σ (Fin.last r) with hj
+      set m := d (Fin.last r) with hm
+      set R : Set (Fin (r + 1) → ℕ) := {y | (∀ l, y l ∈ D (σ l)) ∧ ∑ l, d l • e (y l) = g} with hR
+      have hsec : ∀ (p : Fin r → ℕ) (z : ℕ), (Fin.snoc p z : Fin (r + 1) → ℕ) ∈ R ↔
+          (∀ l : Fin r, p l ∈ D (σ l.castSucc)) ∧ z ∈ D j ∧ (∑ l : Fin r, d l.castSucc • e (p l)) + m • e z = g := by
+        intro p z
+        show ((∀ l, (Fin.snoc p z : Fin (r + 1) → ℕ) l ∈ D (σ l)) ∧
+            ∑ l : Fin (r + 1), d l • e ((Fin.snoc p z : Fin (r + 1) → ℕ) l) = g) ↔ _
+        rw [Fin.forall_fin_succ', Fin.sum_univ_castSucc]
+        simp only [Fin.snoc_castSucc, Fin.snoc_last]
+        rw [and_assoc]
+      obtain ⟨i, hi⟩ := hmemU j
+      have hcases := hmul i m (hd _)
+      rw [hi] at hcases
+      rcases hcases with hfree | hzero
+      · have hQ : {p : Fin r → ℕ | {z | (Fin.snoc p z : Fin (r + 1) → ℕ) ∈ R} ∈ w (σ (Fin.last r))} = ∅ := by
+          refine eq_empty_of_forall_notMem (fun p hp => ?_)
+          set s : G := ∑ l : Fin r, d l.castSucc • e (p l) with hs
+          have h1 : {z | m • e z = g - s} ∈ w j := by
+            refine Filter.mem_of_superset hp (fun z hz => ?_)
+            have h2 := ((hsec p z).1 hz).2.2
+            show m • e z = g - s
+            rw [← h2, hs]
+            abel
+          rw [hmemw] at h1
+          have h3 : ({g - s} : Set G) ∈ (enum j : Ultrafilter G).map (fun x : G => m • x) := by
+            show {x : G | m • x ∈ ({g - s} : Set G)} ∈ (enum j : Ultrafilter G)
+            refine Filter.mem_of_superset h1 (fun x hx => ?_)
+            have hx' : m • e (e.symm x) = g - s := hx
+            rw [e.apply_symm_apply] at hx'
+            exact hx'
+          obtain ⟨a, _, ha⟩ := Ultrafilter.eq_pure_of_finite_mem (finite_singleton (g - s)) h3
+          exact hfree a ha
+        rw [hQ] at h
+        exact not_large_empty r _ h
+      · have h0 : ∀ z ∈ D j, m • e z = 0 := hDprop j m (hdn _) hzero
+        have hQ : {p : Fin r → ℕ | {z | (Fin.snoc p z : Fin (r + 1) → ℕ) ∈ R} ∈ w (σ (Fin.last r))} =
+            {p | (∀ l, p l ∈ D (σ l.castSucc)) ∧ ∑ l, d l.castSucc • e (p l) = g} := by
+          ext p
+          constructor
+          · intro hp
+            have hp' : {z : ℕ | (Fin.snoc p z : Fin (r + 1) → ℕ) ∈ R} ∈ w (σ (Fin.last r)) := hp
+            obtain ⟨z, hz⟩ := Ultrafilter.nonempty_of_mem hp'
+            obtain ⟨h1, h2, h3⟩ := (hsec p z).1 hz
+            refine ⟨h1, ?_⟩
+            rw [h0 z h2, add_zero] at h3
+            exact h3
+          · rintro ⟨h1, h2⟩
+            show {z | (Fin.snoc p z : Fin (r + 1) → ℕ) ∈ R} ∈ w j
+            refine Filter.mem_of_superset (hDmem j) (fun z hz => (hsec p z).2 ⟨h1, hz, ?_⟩)
+            rw [h0 z hz, add_zero]
+            exact h2
+        rw [hQ] at h
+        exact ih (fun l => σ l.castSucc) (fun l => d l.castSucc) (fun l => hd _) (fun l => hdn _) h
   have hone : ∀ idx : Idx, ∃ B : Fin k → Set ℕ, (∀ j, B j ∈ w j) ∧ ((∀ l, (idx.2.2 l : ℤ) ≠ 0) →
       ∀ y : Fin idx.1.val → ℕ, StrictMono y → (∀ l, y l ∈ B (idx.2.1 l)) → y ∉ Rel idx) := by
     intro idx
     by_cases hnz : ∀ l, (idx.2.2 l : ℤ) ≠ 0
     swap
     · exact ⟨fun _ => univ, fun _ => Filter.univ_mem, fun h => absurd h hnz⟩
-    have key : ∀ (r : ℕ) (σ : Fin r → Fin k) (d : Fin r → ℤ), (∀ l, d l ≠ 0) →
-        ¬ Large r (fun l => w (σ l)) {y | ∑ l, d l • e (y l) = g} := by
-      intro r σ d hd
-      cases r with
-      | zero =>
-        intro h
-        have h' : ∑ l : Fin 0, d l • e (Fin.elim0 l) = g := h
-        simp at h'
-        exact hg h'.symm
-      | succ r =>
-        refine not_large_of_finLast r _ (fun l a => (hwsel (σ l)).1 a) _ (fun p => ?_)
-        set s : G := ∑ l : Fin r, d l.castSucc • e (p l) with hs
-        have hm : 0 < (d (Fin.last r)).natAbs := Int.natAbs_pos.2 (hd _)
-        have hfin : {x : G | d (Fin.last r) • x = g - s}.Finite := by
-          by_cases hne : ∃ x₀ : G, d (Fin.last r) • x₀ = g - s
-          swap
-          · refine Set.Finite.subset finite_empty (fun x hx => hne ⟨x, hx⟩)
-          obtain ⟨x₀, hx₀⟩ := hne
-          refine ((htor _ hm).image (fun z => z + x₀)).subset (fun x hx => ?_)
-          refine ⟨x - x₀, ?_, by simp⟩
-          have h0 : d (Fin.last r) • (x - x₀) = 0 := by
-            rw [smul_sub, show d (Fin.last r) • x = g - s from hx, hx₀, sub_self]
-          show (d (Fin.last r)).natAbs • (x - x₀) = 0
-          rcases Int.natAbs_eq (d (Fin.last r)) with h1 | h1
-          · rw [h1, natCast_zsmul] at h0
-            exact h0
-          · rw [h1, neg_smul, neg_eq_zero, natCast_zsmul] at h0
-            exact h0
-        refine (hfin.preimage e.injective.injOn).subset (fun z hz => ?_)
-        have hz' : ∑ l : Fin (r + 1), d l • e ((Fin.snoc p z : Fin (r + 1) → ℕ) l) = g := hz
-        rw [Fin.sum_univ_castSucc] at hz'
-        simp only [Fin.snoc_castSucc, Fin.snoc_last] at hz'
-        show d (Fin.last r) • e z = g - s
-        rw [← hz', hs]
-        abel
-    obtain ⟨B, hB, hBprop⟩ := tuples w hwsel hwiso idx.1.val idx.2.1 (Rel idx) (key _ _ _ hnz)
+    obtain ⟨B, hB, hBprop⟩ := tuples w hwsel hwiso idx.1.val idx.2.1 (Rel idx)
+      (key _ _ _ hnz (fun l => (idx.2.2 l).2))
     exact ⟨B, hB, fun _ => hBprop⟩
   choose Bidx hBidxmem hBidx using hone
   -- pairwise disjoint members
@@ -568,15 +706,17 @@ theorem exists_avoiding [Countable G] [Infinite G] (htor : ∀ m : ℕ, 0 < m �
       exact hcon s hs hc'
     exact ⟨D, Dᶜ, hDi, hDj, fun _ => disjoint_compl_right⟩
   choose D1 D2 hD1 hD2 hD using hdisj
-  set B : Fin k → Set ℕ := fun j => (⋂ idx : Idx, Bidx idx j) ∩ ⋂ i, (D1 j i ∩ D2 i j) with hBdef
+  set B : Fin k → Set ℕ := fun j => ((⋂ idx : Idx, Bidx idx j) ∩ ⋂ i, (D1 j i ∩ D2 i j)) ∩ D j with hBdef
   have hBmem : ∀ j, B j ∈ w j := fun j =>
-    Filter.inter_mem (f := (w j : Filter ℕ)) (Filter.iInter_mem.2 (fun idx => hBidxmem idx j))
-      (Filter.iInter_mem.2 (fun i => Filter.inter_mem (f := (w j : Filter ℕ)) (hD1 j i) (hD2 i j)))
+    Filter.inter_mem (f := (w j : Filter ℕ))
+      (Filter.inter_mem (f := (w j : Filter ℕ)) (Filter.iInter_mem.2 (fun idx => hBidxmem idx j))
+        (Filter.iInter_mem.2 (fun i => Filter.inter_mem (f := (w j : Filter ℕ)) (hD1 j i) (hD2 i j))))
+      (hDmem j)
   have hBdisj : ∀ i j (y : ℕ), y ∈ B i → y ∈ B j → i = j := by
     intro i j y hyi hyj
     by_contra hij
-    have h1 : y ∈ D1 i j := (mem_iInter.1 hyi.2 j).1
-    have h2 : y ∈ D2 i j := (mem_iInter.1 hyj.2 i).2
+    have h1 : y ∈ D1 i j := (mem_iInter.1 hyi.1.2 j).1
+    have h2 : y ∈ D2 i j := (mem_iInter.1 hyj.1.2 i).2
     exact disjoint_left.1 (hD i j hij) h1 h2
   have hjof : ∀ i, ∃ j : Fin k, (enum j : Ultrafilter G) = u i := fun i => by
     refine ⟨enum.symm ⟨u i, Finset.mem_image_of_mem _ (Finset.mem_univ i)⟩, ?_⟩
@@ -628,8 +768,8 @@ theorem exists_avoiding [Countable G] [Infinite G] (htor : ∀ m : ℕ, 0 < m �
     exact Finset.mem_Icc.2 (abs_le.1 h1)
   let idx : Idx := ⟨⟨r, Nat.lt_succ_of_le hYcard⟩, σ, fun l => ⟨coef (ys l), habs _⟩⟩
   have hnz : ∀ l, (idx.2.2 l : ℤ) ≠ 0 := fun l => (Finset.mem_filter.1 (hysmem l)).2
-  refine hBidx idx hnz ys hysmono (fun l => ?_) ?_
-  · exact mem_iInter.1 (hσ' l).1 idx
+  refine hBidx idx hnz ys hysmono (fun l => ?_) ⟨fun l => (hσ' l).2, ?_⟩
+  · exact mem_iInter.1 (hσ' l).1.1 idx
   · show ∑ l : Fin r, coef (ys l) • e (ys l) = g
     rw [← hsumY]
     have h1 : Finset.univ.image ys = Y := by
@@ -637,6 +777,52 @@ theorem exists_avoiding [Countable G] [Infinite G] (htor : ∀ m : ℕ, 0 < m �
       rw [Finset.coe_image, Finset.coe_univ, image_univ]
       exact Y.range_orderEmbOfFin rfl
     rw [← h1, Finset.sum_image (fun a _ b _ h => hysmono.injective h)]
+
+/-- With finitely many solutions of `m • x = 0`, every image of a nonprincipal ultrafilter under a nonzero multiple is
+nonprincipal. -/
+theorem free_or_zero_of_finite_kernels (htor : ∀ m : ℕ, 0 < m → {x : G | m • x = 0}.Finite)
+    (v : Ultrafilter G) (hv : ∀ a, v ≠ pure a) (m : ℤ) (hm : m ≠ 0) :
+    ∀ a, v.map (fun x : G => m • x) ≠ pure a := by
+  intro a ha
+  have h1 : {x : G | m • x = a} ∈ v := by
+    have h2 : ({a} : Set G) ∈ v.map (fun x : G => m • x) := by rw [ha]; exact rfl
+    exact h2
+  obtain ⟨x₀, hx₀⟩ := Ultrafilter.nonempty_of_mem h1
+  refine notMem_of_finite hv (((htor _ (Int.natAbs_pos.2 hm)).image (fun z => z + x₀)).subset (fun x hx => ?_)) h1
+  refine ⟨x - x₀, ?_, by simp⟩
+  have h0 : m • (x - x₀) = 0 := by
+    rw [smul_sub, show m • x = a from hx, show m • x₀ = a from hx₀, sub_self]
+  show m.natAbs • (x - x₀) = 0
+  rcases Int.natAbs_eq m with h3 | h3
+  · rw [h3, natCast_zsmul] at h0
+    exact h0
+  · rw [h3, neg_smul, neg_eq_zero, natCast_zsmul] at h0
+    exact h0
+
+/-- The avoidance lemma under the finite-kernel hypothesis. -/
+theorem exists_avoiding [Countable G] [Infinite G] (htor : ∀ m : ℕ, 0 < m → {x : G | m • x = 0}.Finite)
+    {ι : Type} [Fintype ι] (u : ι → Ultrafilter G) (hsel : ∀ i, IsSel (u i))
+    (hiso : ∀ i j, u i ≠ u j → ¬ Iso (u i) (u j)) (c : ι → ℤ) (hc : ∀ i, c i = 1 ∨ c i = -1) {g : G} (hg : g ≠ 0) :
+    ∃ A : ι → Set G, (∀ i, A i ∈ u i) ∧ ∀ a : ι → G, (∀ i, a i ∈ A i) → ∑ i, c i • a i ≠ g :=
+  exists_avoiding_general u hsel hiso
+    (fun i m hm => Or.inl (free_or_zero_of_finite_kernels htor (u i) (hsel i).1 m hm)) c hc hg
+
+/-- Proposition 4.3, sufficiency: if every image `m u` is nonprincipal or `pure 0`, the only null principal ultrafilter
+is `pure 0`. -/
+theorem genFam_hausdorff_general [Countable G] [Infinite G] (S : Set (Ultrafilter G)) (hsel : ∀ u ∈ S, IsSel u)
+    (hiso : ∀ u ∈ S, ∀ v ∈ S, u ≠ v → ¬ Iso u v)
+    (hmul : ∀ u ∈ S, ∀ m : ℤ, m ≠ 0 → (∀ a, u.map (fun x : G => m • x) ≠ pure a) ∨ u.map (fun x : G => m • x) = pure 0) :
+    ∀ g : G, (pure g : Filter G) ∈ genFam (ultraGen S) → g = 0 := by
+  intro g hmem
+  by_contra hg
+  obtain ⟨F, hF, hle⟩ := hmem.2 (pure g) (le_of_eq (Ultrafilter.coe_pure g))
+  obtain ⟨ι, _, u, c, hu, hc, hrep⟩ := rep_of_sumClosure S hF
+  obtain ⟨A, hA, hav⟩ := exists_avoiding_general u (fun i => hsel _ (hu i))
+    (fun i j h => hiso _ (hu i) _ (hu j) h) (fun i => hmul _ (hu i)) c hc hg
+  have h1 := hle (hrep A hA)
+  have h2 : g ∈ {z | ∃ a : ι → G, (∀ i, a i ∈ A i) ∧ ∑ i, c i • a i = z} := h1
+  obtain ⟨a, ha, hsum⟩ := h2
+  exact hav a ha hsum
 
 /-- Theorem 3.4: in the PG generated by pairwise non-isomorphic selective ultrafilters the only null principal
 ultrafilter is `pure 0`, so the PG is Hausdorff. -/

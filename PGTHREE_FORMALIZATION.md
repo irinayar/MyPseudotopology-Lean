@@ -1,6 +1,6 @@
 # PGthree: Lean checks (25 November 2026)
 
-Modules: `LeanCheck/PGThreeSelective.lean`, `PGThreeSelectiveCH.lean`, `PGThreeExact.lean`, `PGThreeSparse.lean`, `PGThreeModification.lean`, `PGThreePPoint.lean`, `PGThreeNull.lean`, and the axiom report `PGThreeAxioms.lean`. They build on modules of the first two articles (see `PG_FORMALIZATION.md`, `PGTWO_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGThreeAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGthree`, Pseudotopological Groups III, unpublished) was checked by the author and has not been reviewed independently. No independent build of these modules by anyone else has been made.
+Modules: `LeanCheck/PGThreeSelective.lean`, `PGThreeSelectiveCH.lean`, `PGThreeExact.lean`, `PGThreeSparse.lean`, `PGThreeModification.lean`, `PGThreePPoint.lean`, `PGThreeNull.lean`, `PGThreeGeneral.lean`, and the axiom report `PGThreeAxioms.lean`. They build on modules of the first two articles (see `PG_FORMALIZATION.md`, `PGTWO_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGThreeAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGthree`, Pseudotopological Groups III, unpublished) was checked by the author and has not been reviewed independently. No independent build of these modules by anyone else has been made.
 
 Statement numbers below are those of Sections 3 to 8 of the article.
 
@@ -55,6 +55,16 @@ Hypotheses as in `condM_of_growth` (`PGTwoDigits`): `y` positive, for every `B` 
 | `null_free_iff`, `pw_injective` | Theorem 6.1: the nonprincipal ultrafilters converging to `0` are exactly the `pw w` for nonempty words with letters in `S` and nonzero coefficients, and different words give different ultrafilters. |
 | `only_trivial`, `kernel_open` | Theorem 6.2, for every such `S` whatever its size: the only neighbourhood filter of a group topology among the null filters is `pure 0`; continuous homomorphisms from topological groups have open kernels; for nonempty `S` the vicinity filter is not null. The proof uses an idempotent in a compact semigroup of ultrafilters. |
 | `exists_discrete_coreflection` | Corollary 6.3, under (S). |
+
+## `PGThreeGeneral` (Sections 6 and 8 on every countably infinite abelian group)
+`G` is any countably infinite abelian group and `S` a set of pairwise non-isomorphic selective ultrafilters whose PG has unique limits, in the equivalent form that every image `m • u` is nonprincipal or `pure 0`.
+
+| Declaration | Statement |
+|---|---|
+| `null_free_iff_general`, `pw_injective_general` | Theorem 6.1: the nonprincipal null ultrafilters are the `pw w` for nonempty words none of whose images `c • u` is `pure 0`, and `pw w` determines the list of images. |
+| `only_trivial_general`, `kernel_open_general` | Theorem 6.2. |
+| `exists_discrete_coreflection_general` | Corollary 6.3, when every equation `m • x = 0` has finitely many solutions or holds everywhere, under (S). |
+| `isOpenMod_compl_singleton`, `ppoint_hausdorff` | Section 8: in a PG with unique limits points are closed for the modification; so for countably many P-points whose PG has unique limits the group topology separates points. |
 
 ## `PGThreeModification` (Section 7, no set-theoretic hypothesis)
 Here `u j` (`j` in a countable index type) are pairwise non-isomorphic selective ultrafilters on a countably infinite abelian group `G`, `e : ℕ ≃ G`, `pos S y` is the number of elements of `S` that are at most `y`, and `Wset e S` is the set of the finite sums `∑ c y • e y` with `|c y| ≤ pos (S j) y` for some `j` with `y ∈ S j`.

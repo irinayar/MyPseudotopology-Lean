@@ -1,6 +1,6 @@
 # PGthree: Lean checks (25 November 2026)
 
-Modules: `LeanCheck/PGThreeSelective.lean`, `PGThreeSelectiveCH.lean`, `PGThreeExact.lean`, `PGThreeSparse.lean`, `PGThreeModification.lean`, `PGThreePPoint.lean`, `PGThreeNull.lean`, `PGThreeGeneral.lean`, `PGThreeNonHaus.lean`, and the axiom report `PGThreeAxioms.lean`. They build on modules of the first two articles (see `PG_FORMALIZATION.md`, `PGTWO_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGThreeAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGthree`, Pseudotopological Groups III, unpublished) was checked by the author and has not been reviewed independently. No independent build of these modules by anyone else has been made.
+Modules: `LeanCheck/PGThreeSelective.lean`, `PGThreeSelectiveCH.lean`, `PGThreeExact.lean`, `PGThreeSparse.lean`, `PGThreeModification.lean`, `PGThreePPoint.lean`, `PGThreeNull.lean`, `PGThreeGeneral.lean`, `PGThreeNonHaus.lean`, and the axiom report `PGThreeAxioms.lean`. They build on modules of the first two articles (see `PG_FORMALIZATION.md`, `PGTWO_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGThreeAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGthree`, Pseudotopological Groups III, unpublished) was checked by the author and has not been reviewed independently.
 
 Statement numbers below are those of Sections 3 to 8 of the article.
 
@@ -98,6 +98,6 @@ Here `u j` (`j` in a countable index type) are pairwise non-isomorphic selective
 | `modification_isGroupTopology_iff` | Corollary 8.4: in that situation the modification is a group topology if and only if `w` is a P-point. |
 
 
-Not formalized: Remark 3.9 (earlier work of the literature) and the second part of Remark 4.6 (the comparison with groups whose Zariski topology is cofinite).
+Not formalized: Remark 3.9 (earlier work of the literature), the second part of Remark 4.6 (the comparison with groups whose Zariski topology is cofinite), Propositions 8.5 and 8.6 (the relation with free abelian topological groups) with the reductions described in the remarks that follow them, the count of ultrafilters in Corollary 8.4, and the step from the filters to the coreflection in Theorem 6.4, which uses a proposition of the second article.
 
 The proof of Lemma 3.6 differs from the article's: the article builds `2^𝔠` selective ultrafilters inside every infinite set by a binary tree, while `exists_selective_avoiding` builds one by a single tower of length `ω₁` that avoids the given ones. That every infinite set belongs to `2^𝔠` selective ultrafilters is therefore not formalized.

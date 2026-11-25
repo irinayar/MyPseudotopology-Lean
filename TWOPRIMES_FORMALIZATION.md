@@ -72,3 +72,15 @@ To recheck: `lake build` and `#print axioms` for each declaration above (`TwoPri
 | `unit_witness` | for every `D` with `8 ≤ D ≤ 3000` a row of the explicit table gives `k` with `Small 3 D k` and `Small 2 D (k-1)`. |
 
 This certifies upper bounds `h_D(1) ≤ |k|` for the least witness height. **Minimality is not formalized.** Axiom report: `TwoPrimesAxioms8.lean` (only `propext`, `Classical.choice`, `Quot.sound`). The programs and data of the article are in `TwoPrimes_supplement/`.
+
+## Appendix statements and lattice completeness (module `TwoPrimesAppendix`)
+
+| Declaration | Statement |
+|---|---|
+| `box_sqnorm_lt`, `partial_le_sqnorm`, `coeff_expansion`, `no_point_lost` | the proposition "No lattice point is lost": if `w + ∑ z_i b_i` lies in the open box `(-1,1)^n`, every partial sum of the squared Gram–Schmidt terms is below `n`. The interval arithmetic and the program `latcert` are **not** formalized. |
+| `fibre_card`, `sum_sq_formula`, `parity_energy`, `parity_disjoint` | the parity family showing that the threshold 8/3 is sharp: multiplicities `m - |d|`, the sum `3(m^2 + 2 ∑ (m-k)^2) = m(2m^2+1)`, and disjointness. The assembly into the energy of the two sets and the Kolmogorov distance are not formalized. |
+| `peak_sum` | the finite sum in the resonance-peak formula (the reduction to this sum is not formalized). |
+| `decomposition` | the exact three-term identity for `C - C_model`, as algebra in the two weighted sums. |
+| `nrm_sub_le`, `chain_estimate` | `‖(x - r)/q‖ ≤ ‖x/q‖ + b_N/b_{N+1}`, the approximation estimate of the general divisibility chain (the completion statement is not formalized). |
+
+Axiom report: `TwoPrimesAxioms9.lean` (only `propext`, `Classical.choice`, `Quot.sound`).

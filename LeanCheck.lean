@@ -632,3 +632,5 @@ import LeanCheck.PGTwoTame
 import LeanCheck.PGTwoCosets
 import LeanCheck.TwoPrimesWitness
 import LeanCheck.TwoPrimesAxioms8
+import LeanCheck.TwoPrimesAppendix
+import LeanCheck.TwoPrimesAxioms9

@@ -634,3 +634,5 @@ import LeanCheck.TwoPrimesWitness
 import LeanCheck.TwoPrimesAxioms8
 import LeanCheck.TwoPrimesAppendix
 import LeanCheck.TwoPrimesAxioms9
+import LeanCheck.PGTwoCofinite
+import LeanCheck.PGTwoMultiBase

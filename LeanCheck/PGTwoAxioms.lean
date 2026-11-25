@@ -8,6 +8,8 @@ import LeanCheck.PGTwoDigits
 import LeanCheck.PGTwoVicinity
 import LeanCheck.PGTwoTame
 import LeanCheck.PGTwoCosets
+import LeanCheck.PGTwoCofinite
+import LeanCheck.PGTwoMultiBase
 
 /-! Axiom check for the modules of `PGtwo` (Phase A): every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -70,3 +72,16 @@ import LeanCheck.PGTwoCosets
 #print axioms PG.exists_coarsest_cosetIdeal
 #print axioms PG.kmem_of_subgroup_member
 #print axioms PG.tame_of_ap_bounded
+#print axioms PG.hausdorff_of_cofin
+#print axioms PG.unique_limit_of_cofin
+#print axioms PG.isOpenMod_iff_of_cofin
+#print axioms PG.nbhd_eq_top_of_cofin
+#print axioms PG.halveFilter_eq_top_of_cofin
+#print axioms PG.exists_free_ultra_of_cofin
+#print axioms PG.not_reflect_of_cofin
+#print axioms PG.no_pseudointersection_of_cofin
+#print axioms PG.countablyGenerated_eq_pure_of_cofin
+#print axioms PG.eventually_eq_of_cofin
+#print axioms PG.admIdeal_Imulti
+#print axioms PG.tame_Imulti
+#print axioms PG.kernel_open_Imulti

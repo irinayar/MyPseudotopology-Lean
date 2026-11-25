@@ -1,6 +1,6 @@
 # PGtwo: Lean checks for the structure theory of pseudotopological groups, Phases A, B and C (24 November 2026)
 
-Modules: `LeanCheck/PGTwoGeneration.lean`, `PGTwoLattice.lean`, `PGTwoReflection.lean`, `PGTwoCoreflection.lean`, `PGTwoFinal.lean`, `PGTwoQuotient.lean`, `PGTwoDigits.lean`, `PGTwoVicinity.lean`, `PGTwoTame.lean`, `PGTwoCosets.lean`, and the axiom report `PGTwoAxioms.lean`. They build on the modules of the first article (`PGNullFilters.lean`, `PGGenerated.lean`, and `PGXi.lean` for the PG of a topology and an ideal; see `PG_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGTwoAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGtwo`, Pseudotopological Groups II: Structure Theory, unpublished) was checked by the author and has not been reviewed independently. No independent build of these modules by anyone else has been made.
+Modules: `LeanCheck/PGTwoGeneration.lean`, `PGTwoLattice.lean`, `PGTwoReflection.lean`, `PGTwoCoreflection.lean`, `PGTwoFinal.lean`, `PGTwoQuotient.lean`, `PGTwoDigits.lean`, `PGTwoVicinity.lean`, `PGTwoTame.lean`, `PGTwoCosets.lean`, `PGTwoCofinite.lean`, `PGTwoMultiBase.lean`, and the axiom report `PGTwoAxioms.lean`. They build on the modules of the first article (`PGNullFilters.lean`, `PGGenerated.lean`, and `PGXi.lean` for the PG of a topology and an ideal; see `PG_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGTwoAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGtwo`, Pseudotopological Groups II: Structure Theory, unpublished) was checked by the author and has not been reviewed independently. No independent build of these modules by anyone else has been made.
 
 Statement numbers below are those of the article in its version of 24 November 2026.
 
@@ -100,5 +100,26 @@ Setting: `G` an abelian group; filters are Mathlib filters, "finer" is `≤`, pr
 | `tame_of_ap_bounded` | An ideal on `ℤ` such that for every member the lengths of its arithmetic progressions with nonzero difference are bounded is tame (`PGTwoTame`). |
 
 Neither the Bohr topology nor a particular subgroup `H` is used in these statements; that `cosetNbhd β H` is neither the discrete filter nor the neighbourhood filter of `β` in the examples of the article is not formalized.
+
+## `PGTwoCofinite` (Proposition 6.12: the cofinite filter at zero as a vicinity filter)
+`C` is a null family on an abelian group whose vicinity filter consists of the sets that contain `0` and have a finite complement (`CofinAtZero C`); `G` is assumed infinite from `nbhd_eq_top_of_cofin` on, where it is needed. Whether such a `C` exists is the open question of the article.
+
+| Declaration | Statement |
+|---|---|
+| `hausdorff_of_cofin`, `unique_limit_of_cofin` | (a): the only `g` with `pure g ∈ C` is `0`; limits are unique. |
+| `isOpenMod_iff_of_cofin` | (b): a set is open for the topological modification iff it is empty or has a finite complement. |
+| `nbhd_eq_top_of_cofin`, `halveFilter_eq_top_of_cofin` | (b): the neighbourhood filter of `0` of the finest group topology is `⊤`. |
+| `exists_free_ultra_of_cofin` | (c): every infinite set belongs to a nonprincipal ultrafilter in `C`. |
+| `not_reflect_of_cofin` | (d): for ultrafilters in `C` and `g ≠ 0`, one is never the image of the other under `x ↦ g - x`. |
+| `no_pseudointersection_of_cofin`, `countablyGenerated_eq_pure_of_cofin`, `eventually_eq_of_cofin` | (e): no member of `C` has an infinite pseudointersection; a countably generated member is `pure 0`; a convergent sequence is eventually equal to its limit. |
+
+## `PGTwoMultiBase` (finitely many integer bases)
+`APBounded p`, that every layer of sums for the bases `p i` contains only arithmetic progressions of bounded length, is a **hypothesis**. The article takes it from a quoted theorem (Hajdu, in the formulation of Conant), which is not formalized.
+
+| Declaration | Statement |
+|---|---|
+| `Dmulti p k`, `Imulti p` | The sums of one element of `D (p i) k` for every base, and the sets contained in some such layer. |
+| `admIdeal_Imulti` | With at least one base and `APBounded p`, the ideal is admissible. |
+| `tame_Imulti`, `kernel_open_Imulti` | The ideal is tame; for every Hausdorff group topology `β` on `ℤ`, every continuous homomorphism from a topological group into the PG of `β` and the ideal has an open kernel. |
 
 Not formalized: Proposition 4.2 (group topologies inside the lattice), Corollary 6.5 (completeness and cocompleteness), the claim that every strongly summable ultrafilter has the growth sequence (quoted literature), the lemmas on signed powers (Lemmas 5.11, 5.12, 5.18), the one-base and two-base coreflections, the Bohr criterion, Theorem 5.30, Example 6.9 and the other examples.

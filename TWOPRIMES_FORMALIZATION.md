@@ -84,3 +84,19 @@ This certifies upper bounds `h_D(1) ≤ |k|` for the least witness height. **Min
 | `nrm_sub_le`, `chain_estimate` | `‖(x - r)/q‖ ≤ ‖x/q‖ + b_N/b_{N+1}`, the approximation estimate of the general divisibility chain (the completion statement is not formalized). |
 
 Axiom report: `TwoPrimesAxioms9.lean` (only `propext`, `Classical.choice`, `Quot.sound`).
+
+## Far-apart top steps and non-resonance (module `TwoPrimesNonresonance`)
+
+Smaller step `u = q^(s^2)` (from the larger prime `q`), larger step `v = p^(t^2)`.
+
+| Declaration | Statement |
+|---|---|
+| `U_upper`, `U_lower` | the largest element of the lower digit set lies between (step)/(2D) and (step)/D. |
+| `gauge_lower`, `bound` | if `v >= 20 D u`, `X >= D v` and `D >= 100`, then for every nonzero integer pair `c (1 + (2 sqrt A0 + 1 + 2/G)/A_eff) <= 1.85`, where `c` is any number in the enclosure of the continuous energy and `G` the gauge of the pair. |
+| `rotation`, `irrational_ratio`, `exists_far` | heights `X = D v` with `v >= K D u` exist for all large `D`, in every window `[x0, x2]` with `x0 ln p > 1` and `x0 ln q > 9/4`. |
+| `nonresonance` | both together, with the actual digit-set data and both top ranges at least `D`. |
+| `exists_far_two_three` | the existence statement for the primes 2, 3 and the window `[3.4, 6]` (the hypotheses are satisfiable). |
+
+**Assumed, not formalized:** the enclosure `C0 - 2XW/Q^2 <= C_cont <= C0` and the formulas for the area `A0` and `H(0)` of the cluster model (they enter as hypotheses and definitions), and the inequality `C_model <= Gamma_D` (geometry of numbers). The energy bound on the actual balls (the remaining hypothesis) is open and not formalized.
+
+Axiom report: `TwoPrimesAxioms10.lean` (only `propext`, `Classical.choice`, `Quot.sound`).

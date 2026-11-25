@@ -4,6 +4,7 @@ import LeanCheck.PGThreeExact
 import LeanCheck.PGThreeSparse
 import LeanCheck.PGThreeModification
 import LeanCheck.PGThreePPoint
+import LeanCheck.PGThreeNull
 
 /-! Axiom check for the modules of `PGthree`: every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -50,3 +51,10 @@ import LeanCheck.PGThreePPoint
 #print axioms PG.PPoint.ppoint_modification
 #print axioms PG.PPoint.exists_open_not_nhds
 #print axioms PG.PPoint.modification_isGroupTopology_iff
+#print axioms PG.Null.mem_pw_ofFn
+#print axioms PG.Null.exists_word
+#print axioms PG.Null.null_free_iff
+#print axioms PG.Null.pw_injective
+#print axioms PG.Null.only_trivial
+#print axioms PG.Null.kernel_open
+#print axioms PG.Null.exists_discrete_coreflection

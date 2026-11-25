@@ -638,3 +638,5 @@ import LeanCheck.PGTwoCofinite
 import LeanCheck.PGTwoMultiBase
 import LeanCheck.TwoPrimesNonresonance
 import LeanCheck.TwoPrimesAxioms10
+import LeanCheck.PGThreeSelective
+import LeanCheck.PGThreeSelectiveCH

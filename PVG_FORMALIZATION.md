@@ -551,3 +551,13 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `piece_limits`, `finitePiece_char` | Limits along ultrafilters on sums of dilates of `S`; on `F + a₁S + … + a_kS` every algebraic character is continuous for the trace of `τ_B` (uses `independence_finset`). |
 | `finitePiece_trace`, `discTop_ne_bohr`, `intervalFree_witness` | `τ_D` and `τ_B` induce the same topology on every member of `I₀`; `τ_D ≠ τ_B`; hence a group topology strictly finer than `τ_B` has the Bohr trace on every member of `I₀`. |
 | `thickening` | For a group topology `γ` finer than `τ_B`: the Bohr trace on every member of the lacunary ideal holds iff `γ` is coarser than the Euclidean topology and has the Bohr trace on every member of `I₀`. |
+
+## The interval-free modification is not a group topology (`PVGIntervalFree`, 25 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGIntervalFreeAxioms.lean`. The box topology of the article is not formalized; the strict inclusions are checked with `τ_D` in its place.
+
+| Declaration | Statement |
+|---|---|
+| `I0_isIdeal`, `Jc_mem_I0` | `I₀` is an admissible ideal and contains the sets `c (S - S)` used in the argument. |
+| `Eall_compl_open0`, `modTop0_not_continuousAdd` | `ℝ \ E` is open in the topological modification `τ₀` of `ξ_{τ_B, I₀}`; addition is not continuous for `τ₀`. |
+| `intervalFree_strict` | `τ_B ⊂ τ_D ⊂ τ₀`, both strictly. |

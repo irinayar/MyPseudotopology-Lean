@@ -1,4 +1,4 @@
-# Unit-target heights h_D(1) for {2,3}, D = 8 .. 3000 (program programs/lattshift). Minimality: certified only in the ranges stated in the README.
+# Unit-target heights h_D(1) for {2,3}, D = 8 .. 3000 (program programs/lattshift). Minimality certified by programs/latcert (computer-assisted; see README).
 # h_D(1) = least |k| with P_3(k) < 1/D and P_2(k-1) < 1/D (strict).  e(D) = ln h / ln^2 D.  First D of each plateau, its length, e at the first and last D of the plateau.
 # D_first D_last digits h e_first e_last
 8 8 3 495 1.435 1.435

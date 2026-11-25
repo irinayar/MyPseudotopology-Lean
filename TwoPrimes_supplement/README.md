@@ -25,14 +25,30 @@ lake env lean LeanCheck/TwoPrimesAxioms8.lean
 
 ## Where minimality of the unit-target heights comes from
 
-| Range of D | Basis |
+Every D from 8 to 3000 is certified by `programs/latcert`, a lattice enumeration that cannot lose a point:
+
+* the Gram-Schmidt data of the reduced basis and the coefficients of the shift are exact integers;
+* every real number used to discard a branch is an interval of doubles containing it, rounded outwards after each operation;
+* every surviving point is checked with exact integers, and there is no node limit.
+
+This is a **computer-assisted** result: it relies on the correctness of the program, of the .NET runtime and of IEEE-754 arithmetic. It is not checked in Lean and has not been independently audited.
+
+```sh
+cd programs/latcert
+dotnet run -c Release -- unit 8 3000          # data/certified_unit_run.txt
+dotnet run -c Release -- targets 1 1000 10,12,16,18,22,26,28,30,32,36,40,48,64,80,100
+dotnet run -c Release -- targets 1 100 128,160,200,256   # data/certified_targets_run.txt (both runs)
+```
+
+Independent agreements:
+
+| Range of D | Agreement with |
 |---|---|
 | D <= 270 | exact Chinese-remainder window search (`witness`), data `exact_minima_window_D62_270.txt` for 62 <= D <= 270 |
 | 504 <= D <= 524 | exact window search |
-| 525 <= D <= 904 | agreement with exact searches reported in the author's earlier manuscript on prime-square metrics (not rerun here) |
-| all other D up to 3000 | `lattshift` (**floating** enumeration, every candidate checked exactly): minimal provided the enumeration loses no point |
-
-The article also states that every D from 8 to 48 was enumerated independently; that enumeration is not part of this supplement.
+| 525 <= D <= 904 | exact searches reported in the author's earlier manuscript on prime-square metrics (not rerun here) |
+| 8 <= D <= 3000 | `lattshift` (floating enumeration of the same lattice): identical values |
+| small cases | direct search by increasing absolute value (`latcert brute D t Kmax`): 128 cases with D <= 13, no difference |
 
 ## Requirements
 
@@ -51,6 +67,7 @@ Arguments follow `--`, for example `dotnet run -c Release -- 20 4194304 0 0`.
 
 | Folder | Article | Arithmetic | Command (arguments) | Expected | Rerun |
 |---|---|---|---|---|---|
+| `latcert` | Section 9, certified minima | exact data, outward-rounded intervals | `unit 8 3000`; `targets t0 t1 D1,D2,...`; `brute D t Kmax` | the values of the unit-target and target tables | yes, all |
 | `b1check` | Section 4, example D = 20 | exact | none | 45 positive shifts, E = 25731586, 24.5 %, 54.5 % | yes |
 | `digitcheck` | Section 4, digit model | exact | `3 20 10000` | model equals direct set (75 elements) | this case |
 | `explicit_bound` | Section 6 | exact | `perl cmp.pl`; `perl chk.pl` | table of bounds; for m = 8 a collision with k = 480, N = 196608 | yes |
@@ -83,6 +100,8 @@ For l = 3, 5, 7 and D = 40, 60, 80, 100, 130, 170, 220, 300, 400, run `ordcrit l
 | File | Content |
 |---|---|
 | `unit_target_heights_D8_3000.txt` | the staircase `h_D(1)`, D = 8..3000, 56 blocks |
+| `certified_unit_run.txt` | output of `latcert unit 8 3000` |
+| `certified_targets_run.txt` | output of `latcert targets` (all targets of the worst-case table) |
 | `target_heights.txt` | worst case over small targets |
 | `exact_minima_window_D62_270.txt` | exact window search for the unit target |
 | `stage_energies_pair_2_3.txt` | exact energies at completed stage heights |

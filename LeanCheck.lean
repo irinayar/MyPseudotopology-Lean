@@ -629,3 +629,4 @@ import LeanCheck.PGTwoQuotient
 import LeanCheck.PGTwoDigits
 import LeanCheck.PGTwoVicinity
 import LeanCheck.PGTwoTame
+import LeanCheck.PGTwoCosets

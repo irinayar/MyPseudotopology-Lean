@@ -640,3 +640,7 @@ import LeanCheck.TwoPrimesNonresonance
 import LeanCheck.TwoPrimesAxioms10
 import LeanCheck.PGThreeSelective
 import LeanCheck.PGThreeSelectiveCH
+import LeanCheck.PVGCyclicTrace
+import LeanCheck.PVGCyclicTraceAxioms
+import LeanCheck.PVGTauTwoSided
+import LeanCheck.PVGTauTwoSidedAxioms

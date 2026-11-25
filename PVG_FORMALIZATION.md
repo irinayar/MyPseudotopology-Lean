@@ -527,3 +527,15 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `exists_Eall_mem_nhds`, `condN_nhds_meets_Eall` | For an arbitrary group topology `γ` on `ℝ` with `TraceNhd` on `J_1 = S - S` and on `J_{c_i}`, `i ≥ 2`, every `γ`-neighbourhood of `0` meets `E = ⋃ E_i` (`Eall`); in particular for every group topology with the Bohr trace on every member of `I_S`. Same proof as `modTop_not_continuousAdd`, with a `γ`-neighbourhood `V` with `V + V ⊆ W`. |
 | `ConditionN`, `phiBasis`, `phiTop`, `phiTop_isTopologicalAddGroup`, `mem_nhds_phiTop`, `N_of_norm` | Statement of condition (N); for symmetric subadditive `Φ : ℝ → ℝ` with `Φ 0 = 0` the sets `{Φ < ε}` form an `AddGroupFilterBasis`; if `Φ` satisfies (a) `Φ → 0` Euclidean-ly, (b) `Φ → 0` along Bohr-null nets in every member of `I_S`, (c) `Φ ≥ θ` somewhere in every Bohr neighbourhood of `0`, then (N) holds with `γ = τ_B ⊓ τ_Φ`. Nonnegativity of `Φ` is not needed. |
 | `Jtil`, `Jtil_mem_IS`, `Atoms`, `atoms_add_contains_interval` | `J_a = [-1,1] + aS - aS ∈ I_S`; for every assignment `a ↦ B_a` of Bohr neighbourhoods of `0`, the set of atoms `⋃_a (J_a ∩ B_a)` has `Atoms + Atoms` containing a nonempty Euclidean open set (`prodLimit` and Baire). |
+
+## The Bohr trace on one cyclic subgroup, and open sets of the modification (`PVGCyclicTrace`, `PVGTauTwoSided`, 25 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom reports in `PVGCyclicTraceAxioms.lean` and `PVGTauTwoSidedAxioms.lean`.
+
+The cyclic-subgroup statement replaces the earlier conditional core `cyclic_core` (`PVGCyclicCore`): local quasi-convexity is not needed. "`γ` is coarser than the Euclidean topology" is stated as: every `γ`-neighbourhood of `0` contains an interval around `0`. The statement about ideals that contain some `aℤ`, and the statement that no proper interval is open, follow at once and are not formalized.
+
+| Declaration | Statement |
+|---|---|
+| `cyclicTrace_le` | A group topology `γ` coarser than the Euclidean topology whose trace on `aℤ`, `a ≠ 0`, is coarser than the Bohr trace is coarser than the Bohr topology (`bohrTop ≤ γ`). |
+| `cyclicTrace_eq`, `cyclicTrace_zero` | If moreover `γ` is finer than the Bohr topology and induces the Bohr topology on `aℤ`, `a ≠ 0`, then `γ = bohrTop`; for `γ ≠ bohrTop` only `a = 0` has the Bohr trace. |
+| `tau_unbounded_side`, `tau_unbounded_above`, `tau_unbounded_below` | Every nonempty open set of the topological modification of the lacunary PVG is unbounded above and below. |

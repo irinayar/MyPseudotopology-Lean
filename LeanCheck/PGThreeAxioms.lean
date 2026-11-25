@@ -2,6 +2,7 @@ import LeanCheck.PGThreeSelective
 import LeanCheck.PGThreeSelectiveCH
 import LeanCheck.PGThreeExact
 import LeanCheck.PGThreeSparse
+import LeanCheck.PGThreeModification
 
 /-! Axiom check for the modules of `PGthree`: every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -37,3 +38,9 @@ import LeanCheck.PGThreeSparse
 #print axioms PG.Sparse.val_inj
 #print axioms PG.Sparse.expansion
 #print axioms PG.Sparse.sparse_strict
+#print axioms PG.Sel.exists_thinned
+#print axioms PG.Sel.exists_basic_subset
+#print axioms PG.Sel.exists_halved
+#print axioms PG.Sel.modification_isGroupTopology
+#print axioms PG.Sel.exists_sparse_of_selective
+#print axioms PG.Sel.selective_int_strict

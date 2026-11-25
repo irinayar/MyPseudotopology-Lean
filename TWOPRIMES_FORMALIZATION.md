@@ -62,3 +62,13 @@ Added for TwoPrimes_v16 (Section 6, explicit null-witness bound with arcs of len
 Not formalized (stated in the TwoPrimes notes): the real-analysis part of the level-structure proposition (choice of the levels by the sweep over three consecutive `N`, asymptotics with logarithms), the comparison of the difference distribution with the triangular law, the block masses and the final assembly of the block collision lemma; the digit-set model of the balls as a whole (only its child count, `children_of_regular`, is checked) and the product formula for their autocorrelation, the collision-energy computations and certificates (computer-assisted, exact integer arithmetic, outside Lean), the completion `X_p` and its identification with `{x ∈ ℤ_p : ‖f_n(x)‖ → 0}`, non-local-compactness of `X_p`, the pigeonhole step of the explicit bound, and the energy estimate `C(r,X) ≤ 8/3 − δ` (open). Also not formalized from v5: the analytic parts of the near-uniformity theorem for cut balls (comparison of the linear function with the uniform law, the Kolmogorov distance), the principal Fourier part (Fourier analysis), the planar lattice-point lemma (needs Minkowski's second theorem, the Brunn-Minkowski and Rogers-Shephard inequalities), the layer-cake theorem for log-concave weights, and all computer-assisted certificates.
 
 To recheck: `lake build` and `#print axioms` for each declaration above (`TwoPrimesAxioms.lean`, `TwoPrimesAxioms2.lean`, `TwoPrimesAxioms3.lean`, `TwoPrimesAxioms4.lean`, `TwoPrimesAxioms5.lean`, `TwoPrimesAxioms6.lean`, `TwoPrimesAxioms7.lean`).
+
+## Unit-target witnesses (module `TwoPrimesWitness`, appendix table of unit-target heights)
+
+| Declaration | Statement |
+|---|---|
+| `Small p D x` | for every `n ≥ 1` some multiple of `p^(n²)` is closer to `x` than `p^(n²)/D` (that is, `‖x/p^(n²)‖ < 1/D`; the values tend to 0, so this is `P_p(x) < 1/D`). |
+| `small_of_check` | a finite test (levels `1..N` and `D·|x| < p^((N+1)²)`) implies `Small p D x`. |
+| `unit_witness` | for every `D` with `8 ≤ D ≤ 3000` a row of the explicit table gives `k` with `Small 3 D k` and `Small 2 D (k-1)`. |
+
+This certifies upper bounds `h_D(1) ≤ |k|` for the least witness height. **Minimality is not formalized.** Axiom report: `TwoPrimesAxioms8.lean` (only `propext`, `Classical.choice`, `Quot.sound`). The programs and data of the article are in `TwoPrimes_supplement/`.

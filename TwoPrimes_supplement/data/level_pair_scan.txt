@@ -1,0 +1,74 @@
+# Level-pair screen (program programs/astar2; usage: astar2 p q Nmax K x0off x2off).
+# common-height range: Q_eff(L)=min(D e^{x2 L^2}, min(p^{N^2},q^{M^2}))/s; dangerous iff exists convergent a/b of B/s, a<=D/2, with Q_eff|bB-as| < K a (s+B); usable iff not dangerous and Legendre condition 2K(D/2)^2(s+B) <= Q_eff B holds; window [xS+0.01,xS+0.5]; L grid from 30 step 0.1; grid points only; double-precision logarithms (not a certificate)
+
+## 2 3 600 9
+pair 2,3 xS=3.3656 window [3.376,3.866] K=9 Nmax=600
+feasible pairs 413; (pair,L) usable 35552, dangerous 0, unverified (Legendre fails) 0
+L grid 30..242.8 step 0.1: uncovered intervals 0 
+smallest Legendre margin (ln Q_eff - ln bound) among usable: 8.95 (N=79 M=63 L=33.2)
+
+## 2 3 600 1000
+pair 2,3 xS=3.3656 window [3.376,3.866] K=1000 Nmax=600
+feasible pairs 413; (pair,L) usable 35552, dangerous 0, unverified (Legendre fails) 0
+L grid 30..242.8 step 0.1: uncovered intervals 0 
+smallest Legendre margin (ln Q_eff - ln bound) among usable: 4.24 (N=79 M=63 L=33.2)
+
+## 2 5 400 9
+pair 2,5 xS=2.8315 window [2.842,3.332] K=9 Nmax=400
+feasible pairs 248; (pair,L) usable 18596, dangerous 0, unverified (Legendre fails) 0
+L grid 30..173.7 step 0.1: uncovered intervals 0 
+smallest Legendre margin (ln Q_eff - ln bound) among usable: 13.13 (N=94 M=62 L=42.6)
+
+## 2 7 400 9
+pair 2,7 xS=2.6087 window [2.619,3.109] K=9 Nmax=400
+feasible pairs 246; (pair,L) usable 20497, dangerous 0, unverified (Legendre fails) 0
+L grid 30..179.4 step 0.1: uncovered intervals 0 
+smallest Legendre margin (ln Q_eff - ln bound) among usable: 7.03 (N=73 M=44 L=34.2)
+
+## 3 5 400 9
+pair 3,5 xS=2.2033 window [2.213,2.703] K=9 Nmax=400
+feasible pairs 288; (pair,L) usable 35082, dangerous 0, unverified (Legendre fails) 0
+L grid 30..241.1 step 0.1: uncovered intervals 0 
+smallest Legendre margin (ln Q_eff - ln bound) among usable: 3.85 (N=116 M=96 L=73.5)
+
+## 3 7 400 9
+pair 3,7 xS=2.0171 window [2.027,2.517] K=9 Nmax=400
+feasible pairs 280; (pair,L) usable 38057, dangerous 0, unverified (Legendre fails) 0
+L grid 30..249.3 step 0.1: uncovered intervals 0 
+smallest Legendre margin (ln Q_eff - ln bound) among usable: 8.53 (N=367 M=276 L=242.0)
+
+## 5 7 400 9
+pair 5,7 xS=1.6489 window [1.659,2.149] K=9 Nmax=400
+feasible pairs 319; (pair,L) usable 63776, dangerous 0, unverified (Legendre fails) 0
+L grid 30..324.5 step 0.1: uncovered intervals 0 
+smallest Legendre margin (ln Q_eff - ln bound) among usable: 11.35 (N=89 M=81 L=76.4)
+
+## 2 11 400 9
+pair 2,11 xS=2.3908 window [2.401,2.891] K=9 Nmax=400
+feasible pairs 248; (pair,L) usable 22643, dangerous 0, unverified (Legendre fails) 0
+L grid 30..185.6 step 0.1: uncovered intervals 0 
+smallest Legendre margin (ln Q_eff - ln bound) among usable: 4.86 (N=107 M=58 L=52.1)
+
+## 3 11 400 9
+pair 3,11 xS=1.8359 window [1.846,2.336] K=9 Nmax=400
+feasible pairs 278; (pair,L) usable 41615, dangerous 0, unverified (Legendre fails) 1
+L grid 30..258.0 step 0.1: uncovered intervals 0 
+smallest Legendre margin (ln Q_eff - ln bound) among usable: 10.20 (N=165 M=112 L=112.7)
+
+## 5 11 400 9
+pair 5,11 xS=1.4921 window [1.502,1.992] K=9 Nmax=400
+feasible pairs 309; (pair,L) usable 68719, dangerous 0, unverified (Legendre fails) 0
+L grid 30..335.9 step 0.1: uncovered intervals 0 
+smallest Legendre margin (ln Q_eff - ln bound) among usable: 6.73 (N=73 M=60 L=65.0)
+
+## 7 11 400 9
+pair 7,11 xS=1.3513 window [1.361,1.851] K=9 Nmax=400
+feasible pairs 327; (pair,L) usable 88867, dangerous 0, unverified (Legendre fails) 0
+L grid 30..381.8 step 0.1: uncovered intervals 0 
+smallest Legendre margin (ln Q_eff - ln bound) among usable: 7.19 (N=41 M=37 L=41.3)
+
+## 2 13 400 9
+pair 2,13 xS=2.3260 window [2.336,2.826] K=9 Nmax=400
+feasible pairs 247; (pair,L) usable 23258, dangerous 0, unverified (Legendre fails) 0
+L grid 30..187.6 step 0.1: uncovered intervals 0 
+smallest Legendre margin (ln Q_eff - ln bound) among usable: 7.05 (N=103 M=54 L=50.7)

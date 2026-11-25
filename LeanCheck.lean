@@ -630,3 +630,5 @@ import LeanCheck.PGTwoDigits
 import LeanCheck.PGTwoVicinity
 import LeanCheck.PGTwoTame
 import LeanCheck.PGTwoCosets
+import LeanCheck.TwoPrimesWitness
+import LeanCheck.TwoPrimesAxioms8

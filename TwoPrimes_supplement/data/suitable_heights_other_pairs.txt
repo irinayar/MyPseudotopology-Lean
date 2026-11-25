@@ -1,0 +1,21 @@
+# Exact check of the suitable-height construction for other prime pairs (program programs/lscheck2).
+pair {2,5} xS=2.831545 x0=2.841545 x2=3.332
+L in [100,160] step 5: failures=0; resonance-flagged candidates=0; max block index used (K)=2; min ln(lambda lower bound)=328.23; max x=2.8665
+pair {2,7} xS=2.608667 x0=2.618667 x2=3.109
+L in [100,160] step 5: failures=0; resonance-flagged candidates=0; max block index used (K)=2; min ln(lambda lower bound)=327.99; max x=2.6572
+pair {3,5} xS=2.203327 x0=2.213327 x2=2.703
+L in [100,160] step 5: failures=0; resonance-flagged candidates=0; max block index used (K)=3; min ln(lambda lower bound)=287.64; max x=2.2704
+pair {3,7} xS=2.017101 x0=2.027101 x2=2.517
+L in [100,160] step 5: failures=0; resonance-flagged candidates=0; max block index used (K)=2; min ln(lambda lower bound)=251.52; max x=2.0640
+pair {5,7} xS=1.648906 x0=1.658906 x2=2.149
+L in [100,160] step 5: failures=0; resonance-flagged candidates=0; max block index used (K)=3; min ln(lambda lower bound)=220.23; max x=1.7137
+pair {2,11} xS=2.390771 x0=2.400771 x2=2.891
+L in [100,160] step 5: failures=0; resonance-flagged candidates=0; max block index used (K)=2; min ln(lambda lower bound)=261.95; max x=2.4248
+pair {3,11} xS=1.835896 x0=1.845896 x2=2.336
+L in [100,160] step 5: failures=0; resonance-flagged candidates=0; max block index used (K)=2; min ln(lambda lower bound)=251.55; max x=1.8762
+pair {5,11} xS=1.492091 x0=1.502091 x2=1.992
+L in [100,160] step 5: failures=0; resonance-flagged candidates=0; max block index used (K)=3; min ln(lambda lower bound)=254.16; max x=1.5505
+pair {7,11} xS=1.351258 x0=1.361258 x2=1.851
+L in [100,160] step 5: failures=0; resonance-flagged candidates=1; max block index used (K)=3; min ln(lambda lower bound)=215.52; max x=1.4016
+pair {2,13} xS=2.325999 x0=2.335999 x2=2.826
+L in [100,160] step 5: failures=0; resonance-flagged candidates=0; max block index used (K)=2; min ln(lambda lower bound)=269.56; max x=2.3644

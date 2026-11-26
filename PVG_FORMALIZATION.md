@@ -652,3 +652,9 @@ An ultrafilter converges to `x` if for one finite tuple `a` it contains, for eve
 - `tconv_nhds`, `tconv_sT`, `tconv_unique`: coarser than the usual convergence, an unbounded convergent sequence, Hausdorff.
 - `tconv_frechet`, `tconv_not_pretopological`: Fréchet–Urysohn and not pretopological.
 - `xi_iff`: on ultrafilters, the lacunary convergence is this one together with the Bohr topology.
+
+## Bounded signed sums (`PVGTwoBounded`, 26 November 2026)
+
+No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only. Typechecked as a single module; no full `lake build`.
+
+- `bounded_sum`: for a positive sequence with `s (n+1) / s n` tending to infinity, a bounded signed sum with finitely many fixed coefficients has vanishing combined coefficients at all large indices.

@@ -701,3 +701,5 @@ import LeanCheck.PVGTwoFU
 import LeanCheck.PVGTwoFUAxioms
 import LeanCheck.TwoPrimesDualSharp
 import LeanCheck.TwoPrimesAxioms17
+import LeanCheck.PVGTwoBounded
+import LeanCheck.PVGTwoBoundedAxioms

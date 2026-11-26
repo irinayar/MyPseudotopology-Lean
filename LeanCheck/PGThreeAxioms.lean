@@ -12,6 +12,7 @@ import LeanCheck.PGThreeNormal
 import LeanCheck.PGThreeHeight
 import LeanCheck.PGThreeWords
 import LeanCheck.PGThreeAnySel
+import LeanCheck.PGThreeBohr
 
 /-! Axiom check for the modules of `PGthree`: every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -165,3 +166,29 @@ import LeanCheck.PGThreeAnySel
 #print axioms PG.AnySel.all_coarsest_iff_finite_torsion
 #print axioms PG.AnySel.closure_example
 #print axioms PG.AnySel.closure_example_supply
+#print axioms PG.Bohr.ratCircle_injective
+#print axioms PG.Bohr.iota_injective
+#print axioms PG.Bohr.lim_lam
+#print axioms PG.Bohr.lam_eq
+#print axioms PG.Bohr.lam_pure
+#print axioms PG.Bohr.Lim.add
+#print axioms PG.Bohr.Lim.neg
+#print axioms PG.Bohr.lam_map_neg
+#print axioms PG.Bohr.add_le_map₂
+#print axioms PG.Bohr.lam_add
+#print axioms PG.Bohr.lam_idempotent
+#print axioms PG.Bohr.lim_of_sumClosure
+#print axioms PG.Bohr.lim_mem_K
+#print axioms PG.Bohr.iota_mem_K
+#print axioms PG.Bohr.finite_of_compact_countable
+#print axioms PG.Bohr.limits_finite_group
+#print axioms PG.Bohr.tendsto_zero_of_torsionfree
+#print axioms PG.Bohr.L_ultraGen
+#print axioms PG.Bohr.countable_closure
+#print axioms PG.Bohr.countable_K
+#print axioms PG.Bohr.finite_gen_nullPts_fg
+#print axioms PG.Bohr.finite_gen_torsion
+#print axioms PG.Bohr.finite_gen_coarsest
+#print axioms PG.Bohr.pure_mem_of_translated_idempotent
+#print axioms PG.Bohr.lam_translated_idempotent
+#print axioms PG.Bohr.translated_idempotents

@@ -184,3 +184,14 @@ A quantitative form of Kronecker's theorem (transference); no priority is claime
 
 Not formalized: the asymptotic consequence for the unit-target exponent, and the dual condition
 itself, which is open. Axioms: `TwoPrimesAxioms15`.
+
+## An explicit witness at a very small radius (module `TwoPrimesWitnessLarge`)
+
+* `rounding`: if the rows of a nonsingular integer matrix lie in the congruence lattice of the
+  weights modulo `u`, every residue is `Σ d j * w j` with `2 |d j| ≤ Σ i |B i j|`.
+* `unit_witness_large`: an explicit integer with `|witness| < 2^10071`, with `witness` small for the
+  base 3 and `witness - 1` small for the base 2 at the radius `1/D`, `D = 1.7 * 10^18`.
+  Checked by the kernel (`decide +kernel`), no `native_decide`. Minimality is not claimed.
+
+Not formalized: the 124-dimensional matrix itself and the bounds for all targets which follow from
+its column widths (see `TwoPrimes_supplement/basis124`). Axioms: `TwoPrimesAxioms16`.

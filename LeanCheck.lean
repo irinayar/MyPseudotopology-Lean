@@ -712,3 +712,5 @@ import LeanCheck.TwoPrimesAxioms19
 import LeanCheck.TwoPrimesBox
 import LeanCheck.TwoPrimesBoxCertificate
 import LeanCheck.TwoPrimesAxioms20
+import LeanCheck.TwoPrimesDualGap
+import LeanCheck.TwoPrimesAxioms21

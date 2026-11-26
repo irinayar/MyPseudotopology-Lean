@@ -261,3 +261,13 @@ the balls and is not formalized. Axioms: `TwoPrimesAxioms19`.
 
 That the two balls are these sets is the digit description of the first article and is not part of
 the module. Axioms: `TwoPrimesAxioms20`.
+
+## The dual side of the certificate (module `TwoPrimesDualGap`)
+
+* `phase`: for every real `theta`, if `J_j ||w_j theta|| < 90` at all 124 digits then
+  `||theta|| < 1/10` (the first 123 rows of the matrix are exact relations between the weights).
+* `dual_gap`: for `b` not divisible by `3^6400`, `max N_j ||b w_j / 3^6400|| > 140` and
+  `sum (N_j ||b w_j / 3^6400||)^2 > 336^2`.
+
+Here `J_j = floor(l^(2m-1) / 10^15)` and `N_j = 2 J_j + 1`. The results are due to ChatGPT.
+Axioms: `TwoPrimesAxioms21`.

@@ -114,3 +114,8 @@ For l = 3, 5, 7 and D = 40, 60, 80, 100, 130, 170, 220, 300, 400, run `ordcrit l
 ## Not included
 
 The outputs of the screen over every regular D up to 156000; the rows of the 220-case peak table; interval enclosures and certificates mentioned in the article as coming from independent reviews.
+
+## Second article
+
+The folder `basis124` holds a lattice certificate and its checker for *Two Prime-Square Metrics on the
+Integers II*; see its own README.

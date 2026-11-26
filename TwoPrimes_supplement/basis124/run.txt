@@ -1,0 +1,28 @@
+D=1000000000000000 s=80 t=101 h=124
+pass  matrix is h by h
+pass  selected digits are distinct
+pass  p indices at most t, q indices at most s
+pass  D >= max(100,2q^2) and regular
+pass  v >= 20 D u
+pass  D v below both caps
+pass  every selected digit is active
+pass  some weight is a unit mod u
+pass  every row lies in the congruence lattice
+Hadamard bound below 2^22634; primes used 731, product above 2^22660
+pass  determinant equals +u or -u (certified)
+pass  every width is below N+1
+U = 1.69011031781807768284
+L = 0.59023909022740415769
+E = 0.28278023167259077023
+sum of alpha about 0.5260067665
+pass  E < 0.282780231673
+energy bound = 1.71037364223012957885
+pass  C < 1.711
+pass  lengths do not decrease and C < 1.711 at D = 900000000000000
+pass  lengths do not decrease and C < 1.711 at D = 881127231234234
+pass  no power of 2 or 3 in the interval
+pass  certificate is for D = 10^15
+ln(D v)/ln^2 D at D=1000000000000000: 5.956217538
+ln(D v)/ln^2 D at D=881127231234234: 6.000000000
+pass  every |t| <= X/3 satisfies the collision criterion
+ALL CHECKS PASSED

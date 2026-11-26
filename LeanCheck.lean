@@ -538,6 +538,10 @@ import LeanCheck.ThreePrimesMonoM10
 import LeanCheck.ThreePrimesCritM6Axioms
 import LeanCheck.ThreePrimesSecondM7Axioms
 import LeanCheck.ThreePrimesPackingM8Axioms
+import LeanCheck.ThreePrimesHeightM11
+import LeanCheck.ThreePrimesNrFamilyM12
+import LeanCheck.ThreePrimesHeightM11Axioms
+import LeanCheck.ThreePrimesNrFamilyM12Axioms
 
 import LeanCheck.PGNullFilters
 

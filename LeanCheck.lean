@@ -535,6 +535,9 @@ import LeanCheck.ThreePrimesSecondM7
 import LeanCheck.ThreePrimesPackingM8
 import LeanCheck.ThreePrimesNrM9
 import LeanCheck.ThreePrimesMonoM10
+import LeanCheck.ThreePrimesCritM6Axioms
+import LeanCheck.ThreePrimesSecondM7Axioms
+import LeanCheck.ThreePrimesPackingM8Axioms
 
 import LeanCheck.PGNullFilters
 

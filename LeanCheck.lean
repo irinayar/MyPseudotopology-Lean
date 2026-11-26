@@ -685,3 +685,5 @@ import LeanCheck.TwoPrimesEffective
 import LeanCheck.TwoPrimesAxioms13
 import LeanCheck.PVGTwoServed
 import LeanCheck.PVGTwoServedAxioms
+import LeanCheck.PVGTwoPoint
+import LeanCheck.PVGTwoPointAxioms

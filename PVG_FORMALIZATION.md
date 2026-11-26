@@ -621,3 +621,14 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 - `exists_two_unservable`: two such groups that no non-precompact group topology below the usual one serves together.
 
 Not formalized: the reduction to topologies with a countable base, and the theorem of Comfort and Ross.
+
+## A servable set and one point (`PVGTwoPoint`, 26 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGTwoPointAxioms.lean`. Typechecked module by module with Lean 4.35.0; no full `lake build`.
+
+- `inA_of_Cdig`, `Yset_rep`: for a sparse sequence `delta`, a compact set of coefficients in `A(delta)` whose dilates of the lacunary set contain every sum of powers of two that avoids the windows.
+- `Yset_tb`: total boundedness of these dilates forces total boundedness of the set of those sums.
+- `near_Yset`, `exists_cover`: every real is a point `c s_n`, plus a difference of two such sums, plus a bounded term.
+- `exists_point_unservable`: there is `c` such that no non-precompact group topology below the usual one makes `aS`, `a` in `A(delta)`, and `cS` totally bounded, although `A(delta)` alone has such a topology.
+
+Not formalized: the statement for generic `c`.

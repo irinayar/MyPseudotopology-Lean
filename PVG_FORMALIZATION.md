@@ -593,3 +593,19 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `Agroup_null` | The group `A(δ)` of the dimension theorem lies in such a null set. |
 
 Not formalized: that a precompact group topology is the initial topology of its continuous characters (Comfort and Ross), which turns `no_witness` into the statement that condition (N) fails.
+
+## An averaged topology (`PVGTwoAverage`, 25 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGTwoAverageAxioms.lean`.
+`avTop` is the Bohr topology of `ℝ` together with the pseudonorm `sup_N N⁻¹ ∑_{p ≤ N} ‖x / 2^p‖`; `InL a` says that
+`sup_n Φ_N(a s_n) → 0`, where `Φ_N` is the `N`-th average.
+
+| Declaration | Statement |
+|---|---|
+| `av_group`, `av_le_bohr`, `av_coarser_euclid`, `av_not_precompact`, `av_ne_bohr` | `avTop` is a group topology strictly between the Bohr and the Euclidean topology, and it is not precompact. |
+| `av_trace`, `inL_zero`, `inL_neg`, `inL_add` | It induces the Bohr topology on subsets of `[-m, m] + a_1 S + … + a_r S` with `a_i` in the group `Λ`. |
+| `inL_of_digits` | A number whose binary digits have uniform density zero lies in `Λ`. |
+| `exists_not_inA` | For every sequence `δ_k ≠ 0`, `δ_k → 0`, some `a ∈ Λ` is not in `A(δ)`. |
+| `av_no_step1_witness` | Hence the Bohr trace fails somewhere on `Λ` for a locally quasi-convex topology, conditional on Step 1 of the proof of Proposition 16.1 of the PVG article (a hypothesis, not proved here). |
+
+Not formalized: Step 1, and the statement that every locally quasi-convex group topology coarser than `avTop` is coarser than the Bohr topology.

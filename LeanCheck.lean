@@ -671,3 +671,5 @@ import LeanCheck.PGThreeNormal
 import LeanCheck.PGThreeHeight
 import LeanCheck.PVGTwoNoWitness
 import LeanCheck.PVGTwoNoWitnessAxioms
+import LeanCheck.PVGTwoAverage
+import LeanCheck.PVGTwoAverageAxioms

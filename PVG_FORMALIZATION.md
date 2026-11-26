@@ -579,3 +579,17 @@ These modules concern a working article that continues the PVG article (its Sect
 | `dilates_totally_bounded` | `aS` is `γ_δ`-totally bounded for `a ∈ A(δ)`. |
 
 Not formalized: that `A(δ)` is a null set (it rests on Proposition 16.1 of the PVG article).
+
+## No witness of condition (N) (`PVGTwoNoWitness`, 25 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGTwoNoWitnessAxioms.lean`.
+
+| Declaration | Statement |
+|---|---|
+| `null_cover`, `group_null_cover` | If a group topology on `ℝ` is coarser than the usual one and not precompact, and `T` is unbounded, then `{a : aT is totally bounded}` lies in a countable union of closed Lebesgue-null sets. |
+| `tb_of_dilates`, `group_tb_of_dilates` | If `aT` is totally bounded for every `a`, the group is precompact. |
+| `trace_null` | For a non-precompact such topology, the `a` for which it induces the Bohr topology on `J_a` lie in such a null set. |
+| `no_witness` | A group topology coarser than the usual one that induces the Bohr topology on every `J_a` is precompact. |
+| `Agroup_null` | The group `A(δ)` of the dimension theorem lies in such a null set. |
+
+Not formalized: that a precompact group topology is the initial topology of its continuous characters (Comfort and Ross), which turns `no_witness` into the statement that condition (N) fails.

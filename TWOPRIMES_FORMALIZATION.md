@@ -135,3 +135,22 @@ Heights `X = M v` with `M >= 100` top clusters, `M` separate from the radius par
 **Assumed, not formalized:** the identification of the balls with the digit sets, as in the previous section; the passage from `C <= 2.3` to witnesses; the use of one radius from each short range. A bound for `kappa_M` is open.
 
 Axiom report: `TwoPrimesAxioms12.lean` (only `propext`, `Classical.choice`, `Quot.sound`).
+
+## Witnesses from a positive density of differences (module `TwoPrimesEffective`)
+
+For a base `p` the levels have the weights `p^(n^2)`, and `Small p s k` says that `k` is within `s`
+of `0` modulo `1` after division by every such weight.
+
+* `abs_digit_le_of_far`, `card_marked_le`: a digit product of modulus at least `η` has at most
+  `24 D² log(1/η)` levels whose argument is visibly away from the integers.
+* `run`: along levels which are not of this kind the phase is only multiplied, with no wrap-around.
+* `rigidity`: if the digit products of two coprime bases are both at least `η` at `θ`, then `θ` is
+  extremely close to an integer.
+* `exists_four`: a Fourier positivity criterion on a large cyclic group.
+* `witness_of_density`: let `V` be a set of at least `X/K` integers, each a difference `a - b` with
+  `|a|, |b| ≤ X`, `a` small for `p` and `b` small for `q` at the radius `s`. Let
+  `B = ⌊12 D² log(50K)⌋` and `X ≥ exp(4^(2B+1) A₀)`. Then every `|t| ≤ exp(3 A₀)` has `k` with
+  `|k| ≤ 8X` which is small for `p`, with `k - t` small for `q`, at the radius `4(s + 1/D)`.
+
+Not formalized: the existence of such sets `V` for two primes (a uniform density estimate, which
+the module takes as a hypothesis) and the choice of the heights `X`. Axioms: `TwoPrimesAxioms13`.

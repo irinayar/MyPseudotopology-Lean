@@ -681,3 +681,5 @@ import LeanCheck.PVGTwoAverage
 import LeanCheck.PVGTwoAverageAxioms
 import LeanCheck.TwoPrimesMultiple
 import LeanCheck.TwoPrimesAxioms12
+import LeanCheck.TwoPrimesEffective
+import LeanCheck.TwoPrimesAxioms13

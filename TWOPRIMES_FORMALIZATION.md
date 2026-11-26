@@ -229,3 +229,21 @@ Axioms: `TwoPrimesAxioms18`.
   every target of the stated size.
 
 The existence of such matrices for all large `D` is open. Axioms: `TwoPrimesAxioms18`.
+
+## The two claims (module `TwoPrimesClaims`)
+
+`ClaimU p q C`: for all small `eps` the target 1 has a witness `|k| <= exp(C ln^2(1/eps))`.
+`ClaimA p q B`: the range claim with the exponent `B`.
+
+* `claimU_of_density`: differences with inverse density at most `D^(delta + o(1))`, `delta < 1`, at
+  heights `ln X <= x ln^2 D`, one `D` in each short range, give `ClaimU` for all constants above
+  `x/(1 - delta)^2`.
+* `claimA_of_density`, `density_of_claimA`, `claimA_iff_density`: `ClaimA` for all exponents above
+  `B0` is equivalent to a positive density of the differences at heights `ln X <= B ln^2 D`.
+* `claimU_of_visible`: if for every large `D` every `theta` with `||theta|| > 1/10` has a level
+  `l^(n^2) <= exp(x ln^2 D)` with `I_n ||l^(n^2) theta|| >= D^(delta - 1)`, `0 < delta <= 1`, then
+  `ClaimU` holds for all constants above `x/delta^2`.
+* `claimU_of_dual_condition`: the case of the thresholds `D^(-tau)` for all small `tau`.
+
+The hypotheses are open. The converse direction of the dual criterion uses the digit description of
+the balls and is not formalized. Axioms: `TwoPrimesAxioms19`.

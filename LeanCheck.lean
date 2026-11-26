@@ -707,3 +707,5 @@ import LeanCheck.TwoPrimesBasisData
 import LeanCheck.TwoPrimesBasis
 import LeanCheck.TwoPrimesShortBasis
 import LeanCheck.TwoPrimesAxioms18
+import LeanCheck.TwoPrimesClaims
+import LeanCheck.TwoPrimesAxioms19

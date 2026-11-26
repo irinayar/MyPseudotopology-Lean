@@ -561,3 +561,21 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `I0_isIdeal`, `Jc_mem_I0` | `I₀` is an admissible ideal and contains the sets `c (S - S)` used in the argument. |
 | `Eall_compl_open0`, `modTop0_not_continuousAdd` | `ℝ \ E` is open in the topological modification `τ₀` of `ξ_{τ_B, I₀}`; addition is not continuous for `τ₀`. |
 | `intervalFree_strict` | `τ_B ⊂ τ_D ⊂ τ₀`, both strictly. |
+
+## Locally quasi-convex topologies for countably many coefficients (`PVGTwoCountable`, `PVGTwoDimension`, 25 November 2026)
+
+These modules concern a working article that continues the PVG article (its Section 4). No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGTwoAxioms.lean`.
+
+`γ_δ` (`gamTop δ`) is the Bohr topology together with uniform convergence on the characters `x ↦ δ_k x mod 1`; `A(δ)` (`InA δ t`, `Agroup`) is the set of `a` with `sup_n ‖a δ_k t_n‖ → 0`.
+
+| Declaration | Statement |
+|---|---|
+| `gam_group`, `gam_le_bohr`, `gam_coarser_euclid`, `gam_lqc` | `γ_δ` is a locally quasi-convex group topology between the Bohr and the Euclidean topology (`δ` bounded). |
+| `gam_not_precompact`, `gam_ne_bohr` | If `δ` takes infinitely many values, `γ_δ` is not precompact, hence not the Bohr topology. |
+| `trace_eq`, `inA_of_trace` | `γ_δ` induces the Bohr topology on subsets of `[-m, m] + a_1 T + … + a_r T` with `a_i ∈ A(δ)`; the Bohr trace near `0` on `[-1,1] + aT + (-a)T` forces `a ∈ A(δ)`. |
+| `inA_of_step1` | The necessity of the criterion, conditional on Step 1 of the proof of Proposition 16.1 of the PVG article (a hypothesis, not proved here). |
+| `syndetic`, `small`, `exists_seq`, `countable_witness` | For `|t_{n+1}/t_n| → ∞` and every countable set of coefficients there is such a topology, different from the Bohr topology. |
+| `dimH_Agroup`, `dyadic_mem`, `dimension_witness` | For `t_n = 2^(n²)` and `δ_k = 2^{-(4^k+k)}`: `A(δ)` has Hausdorff dimension `1`, contains the dyadic rationals, and `γ_δ` has the properties above. |
+| `dilates_totally_bounded` | `aS` is `γ_δ`-totally bounded for `a ∈ A(δ)`. |
+
+Not formalized: that `A(δ)` is a null set (it rests on Proposition 16.1 of the PVG article).

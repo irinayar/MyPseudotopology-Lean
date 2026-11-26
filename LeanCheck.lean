@@ -659,3 +659,6 @@ import LeanCheck.PGThreeNull
 import LeanCheck.PGThreeGeneral
 import LeanCheck.PGThreeNonHaus
 import LeanCheck.PGThreeIdem
+import LeanCheck.PVGTwoCountable
+import LeanCheck.PVGTwoDimension
+import LeanCheck.PVGTwoAxioms

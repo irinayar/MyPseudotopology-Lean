@@ -6,13 +6,15 @@ import LeanCheck.TwoPrimesNonresonance
 # Heights `X = M v` with a general number `M` of top clusters
 
 The module `TwoPrimesFormula` treats the height `X = D v`, where `1/D` is the radius.  Here the
-number of top clusters is a separate integer `M ≥ 100`.
+number of top clusters is a separate integer `M ≥ 100`.  The lower set `Z` may have any number of
+elements (it contains `0`).
 
 * `energy_formula_multiple`: `(1 - 5/M)(4/3) κ_M ≤ C ≤ (1 + 5/M)(4/3) κ_M`.  The lower sets only
-  have to satisfy `Setting 100` (widths `100|y| < u`, `100|z| < v`, `v ≥ 2000 u`).
+  have to satisfy `Wide` (widths `100|y| < u`, `100|z| < v`, `v ≥ 2000 u`).
 * `energy_of_kappa_lt`: if `κ_M ≤ K < 69/40` and `M ≥ 200K/(69 - 40K)` then `C ≤ 2.3`.
 * `block_transfer`: `H² P_j ≤ (j+H-1)² P_H`, with `P_j = Σ_ξ G(ξ) F_j(ξ v/u)`.
 * `kappa_transfer`: `κ_M ≤ (1 + 3h/M + 4h²/M²) P_H/H²`, `h = H - 1`.
+* `phi_le_four_kappa`, `kappa_le_thirtytwo`: `P_H/H² ≤ 4 κ_H`, and `κ_M ≤ 32 κ_H` for `H ≤ M`.
 * `small_conductor`: the kernel alone bounds the nonzero frequencies of a conductor `Q` prime to
   `v` by `π² Q²/(4 M²)`.
 * `exists_far_multiple`: for large `D` one pair of levels serves all `1 ≤ M ≤ D^μ`.
@@ -27,16 +29,19 @@ open Finset Real TwoPrimesFormula
 
 set_option linter.unusedSectionVars false
 
-/-- The hypotheses: the setting of `TwoPrimesFormula` with the fixed width `1/100`, and `M ≥ 100`
-top clusters. -/
+/-- The hypotheses: lower digit sets of width `1/100` and `M ≥ 100` top clusters.  No lower bound on
+the number of elements of `Z` is assumed; it contains `0`. -/
 structure Wide (M u v : ℕ) (Y Z : Finset ℤ) : Prop where
-  S : Setting 100 u v Y Z
+  hv : 2000 * u ≤ v
+  hYne : Y.Nonempty
+  hY : ∀ y ∈ Y, (100 : ℤ) * |y| < u
+  hZ : ∀ z ∈ Z, (100 : ℤ) * |z| < v
+  hZ0 : (0 : ℤ) ∈ Z
   hM : 100 ≤ M
 
-/-- A setting at radius `1/D` with `D ≥ 100` gives the setting at width `1/100`. -/
-lemma setting_hundred {D u v : ℕ} {Y Z : Finset ℤ} (S : Setting D u v Y Z) :
-    Setting 100 u v Y Z where
-  hD := le_refl _
+/-- A setting of `TwoPrimesFormula` at radius `1/D`, with `M ≥ 100`, satisfies `Wide`. -/
+lemma wide_of_setting {D M u v : ℕ} {Y Z : Finset ℤ} (S : Setting D u v Y Z) (hM : 100 ≤ M) :
+    Wide M u v Y Z where
   hv := le_trans (Nat.mul_le_mul_right u (Nat.mul_le_mul_left 20 S.hD)) S.hv
   hYne := S.hYne
   hY := by
@@ -48,20 +53,81 @@ lemma setting_hundred {D u v : ℕ} {Y Z : Finset ℤ} (S : Setting D u v Y Z) :
     refine lt_of_le_of_lt (mul_le_mul_of_nonneg_right ?_ (abs_nonneg _)) (S.hZ z hz)
     exact_mod_cast S.hD
   hZ0 := S.hZ0
-  hZ5 := S.hZ5
+  hM := hM
+
+/-- The hypotheses allow `Z` to consist of one element. -/
+theorem wide_singleton : Wide 100 1 2000 {0} {0} where
+  hv := by norm_num
+  hYne := singleton_nonempty _
+  hY := by simp
+  hZ := by simp
+  hZ0 := mem_singleton_self _
+  hM := le_refl _
 
 namespace Wide
 
 variable {M u v : ℕ} {Y Z : Finset ℤ} (W : Wide M u v Y Z)
 include W
 
-lemma u_pos : 0 < u := W.S.u_pos
-
-lemma v_pos : 0 < v := W.S.v_pos
-
-lemma uv : 2000 * u ≤ v := by
-  have h := W.S.hv
+lemma u_pos : 0 < u := by
+  obtain ⟨y, hy⟩ := W.hYne
+  have h1 := W.hY y hy
+  have h2 := abs_nonneg y
   omega
+
+lemma v_pos : 0 < v := by
+  have h1 := W.hZ 0 W.hZ0
+  simp only [abs_zero, mul_zero] at h1
+  exact_mod_cast h1
+
+lemma uv : 2000 * u ≤ v := W.hv
+
+lemma Y_small : ∀ y ∈ Y, 2 * |y| < (u : ℤ) := by
+  intro y hy
+  have h1 := W.hY y hy
+  have h2 := abs_nonneg y
+  omega
+
+lemma Z_small : ∀ z ∈ Z, 2 * |z| < (v : ℤ) := by
+  intro z hz
+  have h1 := W.hZ z hz
+  have h2 := abs_nonneg z
+  omega
+
+lemma Y_card_pos : (0 : ℝ) < Y.card := by exact_mod_cast W.hYne.card_pos
+
+lemma Z_card_ge : (1 : ℝ) ≤ Z.card := by
+  have h : 0 < Z.card := card_pos.mpr ⟨0, W.hZ0⟩
+  exact_mod_cast h
+
+lemma power_eq_G (ξ : ℕ) : power u Y ξ * power u Z ξ
+    = (Y.card : ℝ) ^ 2 * (Z.card : ℝ) ^ 2 * G u Y Z ξ := by
+  have h1 := W.Y_card_pos
+  have h2 := W.Z_card_ge
+  have h3 : (Z.card : ℝ) ≠ 0 := by linarith
+  have h4 : (Y.card : ℝ) ≠ 0 := h1.ne'
+  unfold G
+  field_simp
+
+lemma sum_power (g : ℕ → ℝ) : ∑ ξ ∈ range u, power u Y ξ * power u Z ξ * g ξ
+    = (Y.card : ℝ) ^ 2 * (Z.card : ℝ) ^ 2 * ∑ ξ ∈ range u, G u Y Z ξ * g ξ := by
+  rw [mul_sum]
+  refine sum_congr rfl fun ξ _ => ?_
+  rw [W.power_eq_G]
+  ring
+
+lemma G_nonneg (ξ : ℕ) : 0 ≤ G u Y Z ξ := by
+  unfold G
+  exact div_nonneg (mul_nonneg (power_nonneg _ _ _) (power_nonneg _ _ _)) (by positivity)
+
+lemma G_zero : G u Y Z 0 = 1 := by
+  have h1 := W.Y_card_pos
+  have h2 := W.Z_card_ge
+  have h3 : (Z.card : ℝ) ≠ 0 := by linarith
+  have h4 : (Y.card : ℝ) ≠ 0 := h1.ne'
+  unfold G
+  rw [power_zero, power_zero]
+  field_simp
 
 lemma J_ge : 2000 * M ≤ M * v / u := by
   rw [Nat.le_div_iff_mul_le W.u_pos]
@@ -75,7 +141,7 @@ lemma sub_setA : prodSet u (Ico 1 (M * v / u)) Y ⊆ setA M u v Y := by
   obtain ⟨⟨j, y⟩, hp, rfl⟩ := mem_image.mp ha
   obtain ⟨hj, hy⟩ := mem_product.mp hp
   have hj' := mem_Ico.mp hj
-  have hsmall := W.S.Y_small y hy
+  have hsmall := W.Y_small y hy
   have hy1 := abs_le.mp (le_refl |y|)
   unfold setA
   rw [mem_filter]
@@ -110,7 +176,7 @@ lemma sub_setB : prodSet v (Ico 1 M) Z ⊆ setB M v Z := by
   obtain ⟨⟨k, z⟩, hp, rfl⟩ := mem_image.mp hb
   obtain ⟨hk, hz⟩ := mem_product.mp hp
   have hk' := mem_Ico.mp hk
-  have hsmall := W.S.Z_small z hz
+  have hsmall := W.Z_small z hz
   have hz1 := abs_le.mp (le_refl |z|)
   unfold setB
   rw [mem_filter]
@@ -145,12 +211,12 @@ lemma card_setB : (setB M v Z).card = M * Z.card + 1 := by
         fun p => (p.1 : ℤ) * v + p.2 := by
     unfold setB prodSet
     rw [filter_image]
-  rw [himg, card_image_of_injOn ((digit_injOn v _ Z W.S.Z_small).mono
+  rw [himg, card_image_of_injOn ((digit_injOn v _ Z W.Z_small).mono
     (coe_subset.mpr (filter_subset _ _))), card_filter, sum_product]
   obtain ⟨d, hd⟩ : ∃ d, M = d + 1 := ⟨M - 1, by omega⟩
   have hbound : ∀ z ∈ Z, -(v : ℤ) < z ∧ z < v := by
     intro z hz
-    have h1 := W.S.Z_small z hz
+    have h1 := W.Z_small z hz
     have h2 := abs_le.mp (le_refl |z|)
     have := abs_nonneg z
     omega
@@ -213,7 +279,7 @@ lemma card_setB : (setB M v Z).card = M * Z.card + 1 := by
       simp only [mem_inter, mem_filter, mem_singleton]
       constructor
       · rintro ⟨⟨_, h4⟩, ⟨_, h5⟩⟩; omega
-      · rintro rfl; exact ⟨⟨W.S.hZ0, le_refl _⟩, ⟨W.S.hZ0, le_refl _⟩⟩
+      · rintro rfl; exact ⟨⟨W.hZ0, le_refl _⟩, ⟨W.hZ0, le_refl _⟩⟩
     rw [h2, h3, card_singleton] at h1
     exact h1.symm
   have hMZ : M * Z.card = d * Z.card + Z.card := by rw [hd]; ring
@@ -221,7 +287,7 @@ lemma card_setB : (setB M v Z).card = M * Z.card + 1 := by
 
 lemma card_setA_lower : (((M * v / u : ℕ) : ℝ) - 1) * Y.card ≤ ((setA M u v Y).card : ℝ) := by
   have h1 := card_le_card W.sub_setA
-  rw [card_prodSet u _ Y W.S.Y_small, Nat.card_Ico] at h1
+  rw [card_prodSet u _ Y W.Y_small, Nat.card_Ico] at h1
   have hJ : 1 ≤ M * v / u := by
     have := W.J_ge
     have := W.hM
@@ -231,7 +297,7 @@ lemma card_setA_lower : (((M * v / u : ℕ) : ℝ) - 1) * Y.card ≤ ((setA M u 
 
 lemma card_setA_upper : ((setA M u v Y).card : ℝ) ≤ (((M * v / u : ℕ) : ℝ) + 2) * Y.card := by
   have h1 := card_le_card W.setA_sub
-  rw [card_prodSet u _ Y W.S.Y_small, Nat.card_Ico, Nat.sub_zero] at h1
+  rw [card_prodSet u _ Y W.Y_small, Nat.card_Ico, Nat.sub_zero] at h1
   have h3 : ((setA M u v Y).card : ℝ) ≤ (((M * v / u + 2) * Y.card : ℕ) : ℝ) := by exact_mod_cast h1
   rwa [Nat.cast_mul, Nat.cast_add, Nat.cast_ofNat] at h3
 
@@ -239,7 +305,8 @@ lemma card_setA_upper : ((setA M u v Y).card : ℝ) ≤ (((M * v / u : ℕ) : �
 lemma weight_bounds (m : ℤ) {y y' z z' : ℤ} (hy : y ∈ Y) (hy' : y' ∈ Y) (hz : z ∈ Z) (hz' : z' ∈ Z)
     (h : (u : ℤ) ∣ m * v + (z - z') - (y - y')) :
     let q := (m * v + (z - z') - (y - y')) / (u : ℤ)
-    (v : ℝ) / u * ((M : ℝ) - 1 - |(m : ℝ)|) ≤ ((M * v / u : ℕ) : ℝ) - 1 - (q.natAbs : ℝ) ∧
+    (v : ℝ) / u * ((M : ℝ) - 3 / 100 - |(m : ℝ)|)
+        ≤ ((M * v / u : ℕ) : ℝ) - 1 - (q.natAbs : ℝ) ∧
     (((M * v / u : ℕ) : ℝ) + 2 - (q.natAbs : ℝ)) ≤ (v : ℝ) / u * ((M : ℝ) + 1 - |(m : ℝ)|) := by
   intro q
   have hur : (0 : ℝ) < u := by exact_mod_cast W.u_pos
@@ -253,12 +320,12 @@ lemma weight_bounds (m : ℤ) {y y' z z' : ℤ} (hy : y ∈ Y) (hy' : y' ∈ Y) 
   have hyb : ∀ y ∈ Y, |(y : ℝ)| ≤ u / 100 := by
     intro y hy
     rw [le_div_iff₀ (by norm_num : (0 : ℝ) < 100), mul_comm]
-    have h1 := (W.S.hY y hy).le
+    have h1 := (W.hY y hy).le
     exact_mod_cast h1
   have hzb : ∀ z ∈ Z, |(z : ℝ)| ≤ v / 100 := by
     intro z hz
     rw [le_div_iff₀ (by norm_num : (0 : ℝ) < 100), mul_comm]
-    have h1 := (W.S.hZ z hz).le
+    have h1 := (W.hZ z hz).le
     exact_mod_cast h1
   have herr : |((z : ℝ) - z') - ((y : ℝ) - y')| ≤ 2 * (v / 100) + 2 * (u / 100) := by
     have h1 := abs_sub ((z : ℝ) - z') ((y : ℝ) - y')
@@ -296,8 +363,8 @@ lemma weight_bounds (m : ℤ) {y y' z z' : ℤ} (hy : y ∈ Y) (hy' : y' ∈ Y) 
   · refine le_of_mul_le_mul_right ?_ hur
     rw [hexp]
     have e1 : (J - 1 - |(q : ℝ)|) * u = (J + 1) * u - 2 * u - |(q : ℝ)| * u := by ring
-    have e2 : (v : ℝ) * ((M : ℝ) - 1 - |(m : ℝ)|)
-        = (M : ℝ) * v - v - |(m : ℝ)| * v := by ring
+    have e2 : (v : ℝ) * ((M : ℝ) - 3 / 100 - |(m : ℝ)|)
+        = (M : ℝ) * v - 3 / 100 * v - |(m : ℝ)| * v := by ring
     rw [e1, e2]
     linarith [hab.2]
   · refine le_of_mul_le_mul_right ?_ hur
@@ -315,7 +382,7 @@ lemma energy_le : energy (setA M u v Y) (setB M v Z)
   have hu := W.u_pos
   have hmono := energy_mono W.setA_sub W.setB_sub
   have hIco : Ico 0 (M * v / u + 2) = Ico 0 (0 + (M * v / u + 2)) := by rw [Nat.zero_add]
-  rw [hIco, energy_prod u v _ 0 hu _ Y Z W.S.Y_small W.S.Z_small, ← range_eq_Ico] at hmono
+  rw [hIco, energy_prod u v _ 0 hu _ Y Z W.Y_small W.Z_small, ← range_eq_Ico] at hmono
   refine le_trans hmono ?_
   set Wt : ℤ → ℝ := fun m => (v : ℝ) / u * ((M : ℝ) + 1 - |(m : ℝ)|) with hW
   have hstep : ∀ k ∈ range (M + 1), ∀ k' ∈ range (M + 1),
@@ -368,7 +435,8 @@ lemma energy_le : energy (setA M u v Y) (setB M v Z)
 /-- The lower bound for the energy in Fourier form. -/
 lemma le_energy :
     (v : ℝ) / u * ((1 / (u : ℝ)) * ∑ ξ ∈ range u, power u Y ξ * power u Z ξ *
-        TwoPrimesFormula.H (M - 1) ((ξ : ℝ) * v / u))
+        (TwoPrimesFormula.H (M - 1) ((ξ : ℝ) * v / u)
+          + 97 / 100 * F (M - 1) ((ξ : ℝ) * v / u)))
       ≤ energy (setA M u v Y) (setB M v Z) := by
   have hu := W.u_pos
   have hM := W.hM
@@ -379,9 +447,9 @@ lemma le_energy :
   have hIco : Ico 1 (M * v / u) = Ico 1 (1 + (M * v / u - 1)) := by
     congr 1
     omega
-  rw [hIco, energy_prod u v _ 1 hu _ Y Z W.S.Y_small W.S.Z_small] at hmono
+  rw [hIco, energy_prod u v _ 1 hu _ Y Z W.Y_small W.Z_small] at hmono
   refine le_trans ?_ hmono
-  set Wt : ℤ → ℝ := fun m => (v : ℝ) / u * ((M : ℝ) - 1 - |(m : ℝ)|) with hW
+  set Wt : ℤ → ℝ := fun m => (v : ℝ) / u * ((M : ℝ) - 3 / 100 - |(m : ℝ)|) with hW
   have hstep : ∀ k ∈ Ico 1 M, ∀ k' ∈ Ico 1 M,
       Wt ((k : ℤ) - k') * (∑ z ∈ Z, ∑ z' ∈ Z, ∑ y ∈ Y, ∑ y' ∈ Y,
             ind u (((k : ℤ) - k') * v + (z - z') - (y - y')))
@@ -408,7 +476,7 @@ lemma le_energy :
   refine le_trans ?_ (sum_le_sum fun k hk => sum_le_sum fun k' hk' => hstep k hk k' hk')
   rw [fourier u v hu (Ico 1 M) Wt Y Z]
   have hkernel : ∀ θ : ℝ, ∑ k ∈ Ico 1 M, ∑ k' ∈ Ico 1 M, Wt ((k : ℤ) - k') * c θ ((k : ℤ) - k')
-      = (v : ℝ) / u * TwoPrimesFormula.H (M - 1) θ := by
+      = (v : ℝ) / u * (TwoPrimesFormula.H (M - 1) θ + 97 / 100 * F (M - 1) θ) := by
     intro θ
     have hshift : ∑ k ∈ Ico 1 M, ∑ k' ∈ Ico 1 M, Wt ((k : ℤ) - k') * c θ ((k : ℤ) - k')
         = ∑ k ∈ range (M - 1), ∑ k' ∈ range (M - 1), Wt ((k : ℤ) - k') * c θ ((k : ℤ) - k') := by
@@ -419,12 +487,12 @@ lemma le_energy :
       have e1 : (((1 + k : ℕ) : ℤ) - ((1 + k' : ℕ) : ℤ)) = (k : ℤ) - k' := by push_cast; ring
       rw [e1]
     rw [hshift]
-    unfold TwoPrimesFormula.H
-    rw [mul_sum]
+    unfold TwoPrimesFormula.H F
+    rw [mul_sum, ← sum_add_distrib, mul_sum]
     refine sum_congr rfl fun k _ => ?_
-    rw [mul_sum]
+    rw [mul_sum, ← sum_add_distrib, mul_sum]
     refine sum_congr rfl fun k' _ => ?_
-    rw [hW, Nat.cast_sub (by omega : 1 ≤ M), Nat.cast_one]
+    simp only [hW, Nat.cast_sub (by omega : 1 ≤ M), Nat.cast_one]
     ring
   rw [mul_left_comm]
   refine mul_le_mul_of_nonneg_left (le_of_eq ?_) (by positivity)
@@ -436,12 +504,12 @@ lemma le_energy :
 lemma one_le_kappaD : 1 ≤ kappaD M u v Y Z := by
   have hH := H_at_zero_pos M (by have := W.hM; omega)
   have h0 : G u Y Z 0 * (TwoPrimesFormula.H M (((0 : ℕ) : ℝ) * v / u) / TwoPrimesFormula.H M 0) = 1 := by
-    rw [W.S.G_zero, show ((0 : ℕ) : ℝ) * v / u = 0 by simp, div_self hH.ne', mul_one]
+    rw [W.G_zero, show ((0 : ℕ) : ℝ) * v / u = 0 by simp, div_self hH.ne', mul_one]
   unfold kappaD
   rw [← h0]
   exact single_le_sum
     (f := fun ξ => G u Y Z ξ * (TwoPrimesFormula.H M ((ξ : ℝ) * v / u) / TwoPrimesFormula.H M 0))
-    (fun ξ _ => mul_nonneg (W.S.G_nonneg ξ) (div_nonneg (H_nonneg _ _) hH.le))
+    (fun ξ _ => mul_nonneg (W.G_nonneg ξ) (div_nonneg (H_nonneg _ _) hH.le))
     (mem_range.mpr W.u_pos)
 
 lemma sum_H_eq : ∑ ξ ∈ range u, G u Y Z ξ * TwoPrimesFormula.H M ((ξ : ℝ) * v / u)
@@ -457,8 +525,8 @@ lemma C_form (a T b : ℝ) (ha : a ≠ 0) (hb : b ≠ 0) :
     (2 * ((M : ℝ) * v) + 1) * ((v : ℝ) / u * ((1 / (u : ℝ)) *
         ((Y.card : ℝ) ^ 2 * (Z.card : ℝ) ^ 2 * T))) / ((a * Y.card) * (b * Z.card)) ^ 2
       = (2 * ((M : ℝ) * v) + 1) * v * T / ((u : ℝ) ^ 2 * a ^ 2 * b ^ 2) := by
-  have h1 := W.S.Y_card_pos.ne'
-  have h2 : (Z.card : ℝ) ≠ 0 := by have := W.S.Z_card_ge; linarith
+  have h1 := W.Y_card_pos.ne'
+  have h2 : (Z.card : ℝ) ≠ 0 := by have := W.Z_card_ge; linarith
   have h3 : (u : ℝ) ≠ 0 := by have := W.u_pos; positivity
   field_simp
 
@@ -471,8 +539,8 @@ lemma C_upper (T : ℝ) (hT : 0 ≤ T)
   have hMr : (100 : ℝ) ≤ M := by exact_mod_cast W.hM
   have hM0 : (0 : ℝ) < M := by linarith
   have huv : 2000 * (u : ℝ) ≤ v := by exact_mod_cast W.uv
-  have hY := W.S.Y_card_pos
-  have hZ := W.S.Z_card_ge
+  have hY := W.Y_card_pos
+  have hZ := W.Z_card_ge
   set r : ℝ := (M : ℝ) * v / u with hr
   have hr20 : 2000 * (M : ℝ) ≤ r := by
     rw [hr, le_div_iff₀ hur]
@@ -532,8 +600,8 @@ lemma C_lower (T : ℝ) (hT : 0 ≤ T)
   have hMr : (100 : ℝ) ≤ M := by exact_mod_cast W.hM
   have hM0 : (0 : ℝ) < M := by linarith
   have huv : 2000 * (u : ℝ) ≤ v := by exact_mod_cast W.uv
-  have hY := W.S.Y_card_pos
-  have hZ := W.S.Z_card_ge
+  have hY := W.Y_card_pos
+  have hZ := W.Z_card_ge
   have hZ0 : (0 : ℝ) < Z.card := by linarith
   set r : ℝ := (M : ℝ) * v / u with hr
   have hr20 : 2000 * (M : ℝ) ≤ r := by
@@ -618,6 +686,34 @@ lemma small_terms :
 
 end Wide
 
+/-- `(N - 1) F_N ≤ 2 K_N`: one block carries at most this share of the kernel. -/
+lemma F_le_H (N : ℕ) (θ : ℝ) (hN : 1 ≤ N) :
+    ((N : ℝ) - 1) * F N θ ≤ 2 * TwoPrimesFormula.H N θ := by
+  have h2sum : 2 * (∑ j ∈ range N, F j θ) ≤ TwoPrimesFormula.H N θ := by
+    rw [H_eq]; have := F_nonneg N θ; linarith
+  have h1 : ∑ _a ∈ Ico 1 N, F N θ ≤ ∑ a ∈ Ico 1 N, 2 * (F a θ + F (N - a) θ) := by
+    refine sum_le_sum fun a ha => ?_
+    have ha' := mem_Ico.mp ha
+    have e1 : a + (N - a) = N := by omega
+    calc F N θ = F (a + (N - a)) θ := by rw [e1]
+      _ ≤ _ := F_add_le _ _ _
+  have h3 : ∑ a ∈ Ico 1 N, F (N - a) θ = ∑ a ∈ Ico 1 N, F a θ := by
+    refine sum_nbij' (fun a => N - a) (fun a => N - a) ?_ ?_ ?_ ?_ ?_
+    · intro a ha; simp only [mem_Ico] at ha ⊢; omega
+    · intro a ha; simp only [mem_Ico] at ha ⊢; omega
+    · intro a ha; simp only [mem_Ico] at ha ⊢; omega
+    · intro a ha; simp only [mem_Ico] at ha ⊢; omega
+    · intro a _; rfl
+  rw [sum_const, Nat.card_Ico, nsmul_eq_mul, ← mul_sum, sum_add_distrib, h3,
+    Nat.cast_sub hN, Nat.cast_one] at h1
+  have h4 : ∑ j ∈ Ico 1 N, F j θ ≤ ∑ j ∈ range N, F j θ :=
+    sum_le_sum_of_subset_of_nonneg (fun a ha => mem_range.mpr (mem_Ico.mp ha).2)
+      fun j _ _ => F_nonneg j θ
+  linarith
+
+namespace Wide
+end Wide
+
 variable {M u v : ℕ} {Y Z : Finset ℤ}
 
 set_option maxHeartbeats 2000000 in
@@ -649,64 +745,84 @@ theorem energy_formula_multiple (W : Wide M u v Y Z) :
     rw [hTdef, mul_div_right_comm, hK]
   constructor
   · -- lower bound
-    have hd3 : (0 : ℝ) ≤ (M : ℝ) - 3 := by linarith
-    set a : ℝ := ((M : ℝ) - 3) / ((M : ℝ) + 1) with ha
-    have ha0 : 0 ≤ a := div_nonneg hd3 (by linarith)
-    have hker : ∀ θ : ℝ, a * TwoPrimesFormula.H M θ ≤ TwoPrimesFormula.H (M - 1) θ := by
+    set a : ℝ := 1 - 21 / 10 * x with ha
+    have ha0 : 0 ≤ a := by linarith
+    have hker : ∀ θ : ℝ, a * TwoPrimesFormula.H M θ
+        ≤ TwoPrimesFormula.H (M - 1) θ + 97 / 100 * F (M - 1) θ := by
       intro θ
-      have h1 := H_succ_le (M - 1) (by have := W.hM; omega) θ
-      rw [Nat.sub_add_cancel (by omega : 1 ≤ M)] at h1
-      have h2 : (((M - 1 : ℕ)) : ℝ) - 2 = (M : ℝ) - 3 := by
-        rw [Nat.cast_sub (by omega : 1 ≤ M), Nat.cast_one]; ring
-      rw [h2] at h1
-      have h3 : (0 : ℝ) < (M : ℝ) - 3 := by linarith
-      have e1 : 1 + 4 / ((M : ℝ) - 3) = ((M : ℝ) + 1) / ((M : ℝ) - 3) := by
-        field_simp
-        ring
-      rw [e1, div_mul_eq_mul_div, le_div_iff₀ h3] at h1
-      rw [ha, div_mul_eq_mul_div, div_le_iff₀ (by linarith : (0 : ℝ) < (M : ℝ) + 1)]
+      have hs := H_succ (M - 1) θ
+      rw [Nat.sub_add_cancel (by omega : 1 ≤ M)] at hs
+      have hK0 := H_nonneg M θ
+      have hF1 := F_le_H M θ (by omega)
+      have hF2 := F_le_H (M - 1) θ (by omega)
+      rw [Nat.cast_sub (by omega : 1 ≤ M), Nat.cast_one] at hF2
+      have hmon : TwoPrimesFormula.H (M - 1) θ ≤ TwoPrimesFormula.H M θ := by
+        have h1 := F_nonneg (M - 1) θ
+        have h2 := F_nonneg M θ
+        linarith
+      have hd1 : (0 : ℝ) < (M : ℝ) - 1 := by linarith
+      have hd2 : (0 : ℝ) < (M : ℝ) - 2 := by linarith
+      have e1 : F M θ ≤ 2 / ((M : ℝ) - 1) * TwoPrimesFormula.H M θ := by
+        rw [div_mul_eq_mul_div, le_div_iff₀ hd1, mul_comm (F M θ)]
+        exact hF1
+      have e2 : F (M - 1) θ ≤ 2 / ((M : ℝ) - 2) * TwoPrimesFormula.H M θ := by
+        rw [div_mul_eq_mul_div, le_div_iff₀ hd2, mul_comm (F (M - 1) θ)]
+        have h3 : (M : ℝ) - 1 - 1 = (M : ℝ) - 2 := by ring
+        rw [h3] at hF2
+        linarith
+      have hnum : 2 / ((M : ℝ) - 1) + 3 / 100 * (2 / ((M : ℝ) - 2)) ≤ 21 / 10 * x := by
+        have h4 : 21 / 10 * x = (21 / 10) / (M : ℝ) := by rw [hx]; ring
+        have h5 : 2 / ((M : ℝ) - 1) + 3 / 100 * (2 / ((M : ℝ) - 2))
+            = (2 * ((M : ℝ) - 2) + 6 / 100 * ((M : ℝ) - 1)) / (((M : ℝ) - 1) * ((M : ℝ) - 2)) := by
+          field_simp
+          ring
+        rw [h4, h5, div_le_div_iff₀ (mul_pos hd1 hd2) hM0]
+        nlinarith
+      have h6 := mul_le_mul_of_nonneg_right hnum hK0
+      have h7 : (2 / ((M : ℝ) - 1) + 3 / 100 * (2 / ((M : ℝ) - 2))) * TwoPrimesFormula.H M θ
+          = 2 / ((M : ℝ) - 1) * TwoPrimesFormula.H M θ
+            + 3 / 100 * (2 / ((M : ℝ) - 2) * TwoPrimesFormula.H M θ) := by ring
+      rw [ha]
       linarith
     have hE : (v : ℝ) / u * ((1 / (u : ℝ)) * ((Y.card : ℝ) ^ 2 * (Z.card : ℝ) ^ 2 * (a * T)))
         ≤ energy (setA M u v Y) (setB M v Z) := by
       refine le_trans ?_ W.le_energy
       refine mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left ?_ (by positivity)) (by positivity)
-      rw [W.S.sum_power]
+      rw [W.sum_power]
       refine mul_le_mul_of_nonneg_left ?_ (by positivity)
       rw [← hsum, mul_sum]
       refine sum_le_sum fun ξ _ => ?_
       rw [mul_left_comm]
-      exact mul_le_mul_of_nonneg_left (hker _) (W.S.G_nonneg ξ)
+      exact mul_le_mul_of_nonneg_left (hker _) (W.G_nonneg ξ)
     have h1 := W.C_lower (a * T) (mul_nonneg ha0 hT0) hE
     refine le_trans ?_ h1
-    have hZ5 := W.S.Z_card_ge
+    have hZ1 := W.Z_card_ge
     set p : ℝ := 1 + 2 * u / ((M : ℝ) * v) with hp
     set q : ℝ := 1 + 1 / ((M : ℝ) * Z.card) with hq
     have hp1 : p ≤ 1 + x / 1000 := by linarith
     have hp0 : 0 < p := by linarith
-    have hq1 : q ≤ 1 + x / 5 := by
-      have h2 : 1 / ((M : ℝ) * Z.card) ≤ x / 5 := by
-        have e1 : x / 5 = 1 / ((M : ℝ) * 5) := by rw [hx]; ring
-        rw [e1]
-        exact one_div_le_one_div_of_le (by positivity) (mul_le_mul_of_nonneg_left hZ5 hM0.le)
+    have hq1 : q ≤ 1 + x := by
+      have h2 : 1 / ((M : ℝ) * Z.card) ≤ x := by
+        rw [hx]
+        refine one_div_le_one_div_of_le hM0 ?_
+        have := mul_le_mul_of_nonneg_left hZ1 hM0.le
+        linarith
       linarith
     have hq0 : 0 < q := by
       have : (0 : ℝ) ≤ 1 / ((M : ℝ) * Z.card) := by positivity
       linarith
-    have haval : 1 - 4 * x ≤ a := by
-      have e1 : 1 - 4 * x = ((M : ℝ) - 4) / M := by rw [hx]; field_simp
-      rw [e1, ha, div_le_div_iff₀ hM0 (by linarith)]
-      nlinarith
     have hmain : (1 - 5 * x) * (p ^ 2 * q ^ 2) ≤ a := by
-      have h2 : p * q ≤ 1 + 21 / 100 * x := by
+      have h2 : p * q ≤ 1 + 102 / 100 * x := by
         refine le_trans (mul_le_mul hp1 hq1 hq0.le (by linarith)) ?_
         nlinarith
-      have h3 : p ^ 2 * q ^ 2 ≤ 1 + 43 / 100 * x := by
+      have h3 : p ^ 2 * q ^ 2 ≤ 1 + 21 / 10 * x := by
         have e1 : p ^ 2 * q ^ 2 = (p * q) ^ 2 := by ring
         rw [e1]
         refine le_trans (pow_le_pow_left₀ (mul_nonneg hp0.le hq0.le) h2 2) ?_
         nlinarith
       have h4 : (0 : ℝ) ≤ 1 - 5 * x := by linarith
-      refine le_trans (mul_le_mul_of_nonneg_left h3 h4) (le_trans ?_ haval)
+      refine le_trans (mul_le_mul_of_nonneg_left h3 h4) ?_
+      rw [ha]
       nlinarith
     have hden : (0 : ℝ) < (M : ℝ) ^ 3 * p ^ 2 * q ^ 2 := by positivity
     rw [le_div_iff₀ hden]
@@ -738,12 +854,12 @@ theorem energy_formula_multiple (W : Wide M u v Y Z) :
         ((Y.card : ℝ) ^ 2 * (Z.card : ℝ) ^ 2 * (b * T))) := by
       refine le_trans W.energy_le ?_
       refine mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left ?_ (by positivity)) (by positivity)
-      rw [W.S.sum_power]
+      rw [W.sum_power]
       refine mul_le_mul_of_nonneg_left ?_ (by positivity)
       rw [← hsum, mul_sum]
       refine sum_le_sum fun ξ _ => ?_
       rw [mul_left_comm]
-      exact mul_le_mul_of_nonneg_left (H_succ_le M hM3 _) (W.S.G_nonneg ξ)
+      exact mul_le_mul_of_nonneg_left (H_succ_le M hM3 _) (W.G_nonneg ξ)
     have h1 := W.C_upper (b * T) (mul_nonneg hb0 hT0) hE
     refine le_trans h1 ?_
     set p : ℝ := 1 - 2 * u / ((M : ℝ) * v) with hp
@@ -1126,6 +1242,113 @@ theorem kappa_transfer (u v : ℕ) (hu : 0 < u) (Y Z : Finset ℤ) (hY : Y.Nonem
     exact sum_congr rfl fun ξ _ => by ring
   rw [e, div_le_iff₀ hH0, mul_comm _ (TwoPrimesFormula.H M 0)]
   exact hfin
+
+/-- Proposition: every shorter block average is at least a quarter of the longer one, hence
+`Φ_H = P_H / H² ≤ 4 κ_H`. -/
+theorem phi_le_four_kappa (u v : ℕ) (hu : 0 < u) (Y Z : Finset ℤ) (hY : Y.Nonempty)
+    (hZ : Z.Nonempty) (H : ℕ) (hH : 1 ≤ H) :
+    P u v Y Z H / (H : ℝ) ^ 2 ≤ 4 * kappaD H u v Y Z := by
+  have hHr : (0 : ℝ) < H := by exact_mod_cast (by omega : 0 < H)
+  set Φ : ℝ := P u v Y Z H / (H : ℝ) ^ 2 with hΦ
+  have hPH : P u v Y Z H = (H : ℝ) ^ 2 * Φ := by rw [hΦ]; field_simp
+  have hGnn : ∀ ξ, 0 ≤ G u Y Z ξ := by
+    intro ξ
+    unfold G
+    exact div_nonneg (mul_nonneg (power_nonneg _ _ _) (power_nonneg _ _ _)) (mul_nonneg (sq_nonneg _) (sq_nonneg _))
+  have hPnn : ∀ j, 0 ≤ P u v Y Z j := fun j =>
+    sum_nonneg fun ξ _ => mul_nonneg (hGnn ξ) (F_nonneg _ _)
+  have hΦ0 : 0 ≤ Φ := div_nonneg (hPnn _) (by positivity)
+  have hlow : ∀ j, j ≤ H → (j : ℝ) ^ 2 * Φ ≤ 4 * P u v Y Z j := by
+    intro j hj
+    rcases Nat.eq_zero_or_pos j with h0 | h0
+    · subst h0
+      have := hPnn 0
+      simp only [Nat.cast_zero]
+      linarith
+    have h1 := block_transfer u v hu Y Z hY hZ H j h0
+    have h2 : ((H + j - 1 : ℕ) : ℝ) ≤ 2 * (H : ℝ) := by
+      have : H + j - 1 ≤ 2 * H := by omega
+      exact_mod_cast this
+    have h3 : ((H + j - 1 : ℕ) : ℝ) ^ 2 * P u v Y Z j ≤ (2 * (H : ℝ)) ^ 2 * P u v Y Z j :=
+      mul_le_mul_of_nonneg_right (pow_le_pow_left₀ (Nat.cast_nonneg _) h2 2) (hPnn j)
+    have h4 := le_trans h1 h3
+    rw [hPH] at h4
+    refine le_of_mul_le_mul_left ?_ (pow_pos hHr 2)
+    have e1 : (H : ℝ) ^ 2 * ((j : ℝ) ^ 2 * Φ) = (j : ℝ) ^ 2 * ((H : ℝ) ^ 2 * Φ) := by ring
+    have e2 : (H : ℝ) ^ 2 * (4 * P u v Y Z j) = (2 * (H : ℝ)) ^ 2 * P u v Y Z j := by ring
+    rw [e1, e2]
+    exact h4
+  have hH0 := H_at_zero_pos H hH
+  have hsum : ∑ ξ ∈ range u, G u Y Z ξ * TwoPrimesFormula.H H ((ξ : ℝ) * v / u)
+      = 2 * (∑ j ∈ range H, P u v Y Z j) + P u v Y Z H := by
+    unfold P
+    simp only [H_eq]
+    have e : ∀ ξ ∈ range u, G u Y Z ξ * (2 * (∑ j ∈ range H, F j ((ξ : ℝ) * v / u))
+          + F H ((ξ : ℝ) * v / u))
+        = (∑ j ∈ range H, 2 * (G u Y Z ξ * F j ((ξ : ℝ) * v / u)))
+          + G u Y Z ξ * F H ((ξ : ℝ) * v / u) := by
+      intro ξ _
+      rw [mul_add, mul_sum, mul_sum]
+      congr 1
+      exact sum_congr rfl fun j _ => by ring
+    rw [sum_congr rfl e, sum_add_distrib]
+    congr 1
+    rw [sum_comm, mul_sum]
+    exact sum_congr rfl fun j _ => by rw [mul_sum]
+  have hK : TwoPrimesFormula.H H 0 = 2 * (∑ j ∈ range H, (j : ℝ) ^ 2) + (H : ℝ) ^ 2 := by
+    have h := sum_shift_sq H 0
+    have e1 : ∑ j ∈ range H, ((j : ℝ) + ((0 : ℕ) : ℝ)) ^ 2 = ∑ j ∈ range H, (j : ℝ) ^ 2 :=
+      sum_congr rfl fun j _ => by rw [Nat.cast_zero, add_zero]
+    rw [e1, Nat.cast_zero] at h
+    linear_combination -h
+  have hmain : TwoPrimesFormula.H H 0 * Φ
+      ≤ 4 * ∑ ξ ∈ range u, G u Y Z ξ * TwoPrimesFormula.H H ((ξ : ℝ) * v / u) := by
+    have h1 : (∑ j ∈ range H, (j : ℝ) ^ 2) * Φ ≤ 4 * ∑ j ∈ range H, P u v Y Z j := by
+      rw [sum_mul, mul_sum]
+      exact sum_le_sum fun j hj => hlow j (mem_range.mp hj).le
+    have h2 := hlow H le_rfl
+    rw [hsum, hK]
+    have e : (2 * (∑ j ∈ range H, (j : ℝ) ^ 2) + (H : ℝ) ^ 2) * Φ
+        = 2 * ((∑ j ∈ range H, (j : ℝ) ^ 2) * Φ) + (H : ℝ) ^ 2 * Φ := by ring
+    rw [e]
+    linarith
+  have e : kappaD H u v Y Z
+      = (∑ ξ ∈ range u, G u Y Z ξ * TwoPrimesFormula.H H ((ξ : ℝ) * v / u))
+        / TwoPrimesFormula.H H 0 := by
+    unfold kappaD
+    rw [sum_div]
+    exact sum_congr rfl fun ξ _ => by ring
+  rw [e, mul_div_assoc', le_div_iff₀ hH0, mul_comm Φ]
+  exact hmain
+
+/-- **`κ_M ≤ 32 κ_H` for `H ≤ M`.** -/
+theorem kappa_le_thirtytwo (u v : ℕ) (hu : 0 < u) (Y Z : Finset ℤ) (hY : Y.Nonempty)
+    (hZ : Z.Nonempty) (M H : ℕ) (hH : 1 ≤ H) (hHM : H ≤ M) :
+    kappaD M u v Y Z ≤ 32 * kappaD H u v Y Z := by
+  have hM : 1 ≤ M := le_trans hH hHM
+  have h1 := kappa_transfer u v hu Y Z hY hZ M H hM hH
+  have h2 := phi_le_four_kappa u v hu Y Z hY hZ H hH
+  have hMr : (1 : ℝ) ≤ M := by exact_mod_cast hM
+  have hM0 : (0 : ℝ) < M := by linarith
+  have hHr : (1 : ℝ) ≤ H := by exact_mod_cast hH
+  have hHMr : (H : ℝ) ≤ M := by exact_mod_cast hHM
+  have hh0 : (0 : ℝ) ≤ (H : ℝ) - 1 := by linarith
+  have hhM : (H : ℝ) - 1 ≤ M := by linarith
+  have ha : 3 * ((H : ℝ) - 1) / M ≤ 3 := by
+    rw [div_le_iff₀ hM0]; linarith
+  have hb : 4 * ((H : ℝ) - 1) ^ 2 / (M : ℝ) ^ 2 ≤ 4 := by
+    rw [div_le_iff₀ (by positivity)]
+    have := pow_le_pow_left₀ hh0 hhM 2
+    linarith
+  have hGnn : ∀ ξ, 0 ≤ G u Y Z ξ := by
+    intro ξ
+    unfold G
+    exact div_nonneg (mul_nonneg (power_nonneg _ _ _) (power_nonneg _ _ _)) (by positivity)
+  have hΦ0 : 0 ≤ P u v Y Z H / (H : ℝ) ^ 2 :=
+    div_nonneg (sum_nonneg fun ξ _ => mul_nonneg (hGnn ξ) (F_nonneg _ _)) (by positivity)
+  have h3 : kappaD M u v Y Z ≤ 8 * (P u v Y Z H / (H : ℝ) ^ 2) :=
+    le_trans h1 (mul_le_mul_of_nonneg_right (by linarith) hΦ0)
+  linarith
 
 /-! ## Small conductors -/
 

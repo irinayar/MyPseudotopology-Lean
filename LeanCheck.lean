@@ -699,3 +699,5 @@ import LeanCheck.TwoPrimesWitnessLarge
 import LeanCheck.TwoPrimesAxioms16
 import LeanCheck.PVGTwoFU
 import LeanCheck.PVGTwoFUAxioms
+import LeanCheck.TwoPrimesDualSharp
+import LeanCheck.TwoPrimesAxioms17

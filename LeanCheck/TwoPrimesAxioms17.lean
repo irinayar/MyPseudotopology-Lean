@@ -1,0 +1,5 @@
+import LeanCheck.TwoPrimesDualSharp
+
+#print axioms TwoPrimesDualSharp.rep_of_dual_dilated
+#print axioms TwoPrimesDualSharp.abs_value_of_digits
+#print axioms TwoPrimesDualSharp.witness_of_dual_dilated

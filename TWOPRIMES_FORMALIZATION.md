@@ -121,12 +121,13 @@ Axiom report: `TwoPrimesAxioms11.lean` (only `propext`, `Classical.choice`, `Quo
 
 ## More top clusters (module `TwoPrimesMultiple`)
 
-Heights `X = M v` with `M >= 100` top clusters, `M` separate from the radius parameter. The finite-set statements need only `100 |y| < u`, `100 |z| < v`, `v >= 2000 u`, `0` in `Z`, `|Z| >= 5` (`Wide M u v Y Z`); a setting at radius `1/D` with `D >= 100` gives this (`setting_hundred`).
+Heights `X = M v` with `M >= 100` top clusters, `M` separate from the radius parameter. The finite-set statements need only `100 |y| < u`, `100 |z| < v`, `v >= 2000 u`, `0` in `Z` and `M >= 100` (`Wide M u v Y Z`); there is no lower bound on `|Z|`. A setting of `TwoPrimesFormula` at radius `1/D` gives this (`wide_of_setting`), and `Z = {0}` is allowed (`wide_singleton`). (Before 2026-11-26 the hypothesis `|Z| >= 5` was assumed.)
 
 | Declaration | Statement |
 |---|---|
 | `energy_formula_multiple` | `(1 - 5/M)(4/3) kappa_M <= C <= (1 + 5/M)(4/3) kappa_M`, where `C` is the normalized energy at `X = M v`. |
 | `energy_of_kappa_lt` | `kappa_M <= K` and `200 K <= M (69 - 40 K)` give `C <= 2.3`. |
+| `phi_le_four_kappa`, `kappa_le_thirtytwo` | `P_H/H^2 <= 4 kappa_H`; `kappa_M <= 32 kappa_H` for `H <= M`. |
 | `blk_transfer`, `block_transfer` | `H^2 P_j <= (j + H - 1)^2 P_H`, where `P_j = sum_xi G(xi) F_j(xi v/u)`. |
 | `kappa_transfer` | `kappa_M <= (1 + 3h/M + 4h^2/M^2) P_H/H^2` with `h = H - 1`, for all `M, H >= 1`. |
 | `small_conductor` | for `gcd(v, Q) = 1`, `sum_{0<b<Q} W_M(b v/Q) <= pi^2 Q^2/(4 M^2)`. |
@@ -195,3 +196,14 @@ itself, which is open. Axioms: `TwoPrimesAxioms15`.
 
 Not formalized: the 124-dimensional matrix itself and the bounds for all targets which follow from
 its column widths (see `TwoPrimes_supplement/basis124`). Axioms: `TwoPrimesAxioms16`.
+
+## The dual criterion with a loss linear in 1/c (module `TwoPrimesDualSharp`)
+
+* `rep_of_dual_dilated`: if every `theta` with `||t theta|| > 1/10` has an index with
+  `J i * ||w i theta|| >= c` (`J i >= 1`), and `2 c H >= 1`, `log(7 h H R) <= 4h/3`,
+  `sum |w i| J i <= R`, then `t = sum w i z i` with `|z i| <= 2 h H J i`.
+* `abs_value_of_digits`: digit sums with `D |z n| <= L q^(2n+1)` satisfy `|value| <= (2L/D) q^(N^2)`.
+* `witness_of_dual_dilated`: for the weights `q^(n^2)`, `p^(n^2)`, a witness `k` for `t` at the radius
+  `4 h H / D` with `|k| <= (4 h H / D) q^(Nq^2)`.
+
+The dual condition is a hypothesis. Axioms: `TwoPrimesAxioms17`.

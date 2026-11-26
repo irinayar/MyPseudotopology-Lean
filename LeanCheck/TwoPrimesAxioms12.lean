@@ -1,6 +1,9 @@
 import LeanCheck.TwoPrimesMultiple
 
-#print axioms TwoPrimesMultiple.setting_hundred
+#print axioms TwoPrimesMultiple.wide_of_setting
+#print axioms TwoPrimesMultiple.wide_singleton
+#print axioms TwoPrimesMultiple.phi_le_four_kappa
+#print axioms TwoPrimesMultiple.kappa_le_thirtytwo
 #print axioms TwoPrimesMultiple.energy_formula_multiple
 #print axioms TwoPrimesMultiple.energy_of_kappa_lt
 #print axioms TwoPrimesMultiple.block_transfer

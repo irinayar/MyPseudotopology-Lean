@@ -154,3 +154,18 @@ of `0` modulo `1` after division by every such weight.
 
 Not formalized: the existence of such sets `V` for two primes (a uniform density estimate, which
 the module takes as a hypothesis) and the choice of the heights `X`. Axioms: `TwoPrimesAxioms13`.
+
+## Only a density of differences is needed (module `TwoPrimesSupport`)
+
+Notation as in `TwoPrimesEffective`.
+
+* `witness_of_support`: let `W` be a set of at least `Y/K` integers, each a difference `a - b` with
+  `|a|, |b| ≤ Y`, `a` small for `q` and `b` small for `p` at the radius `1/D`. Let
+  `q^(2m+1) > D` and `p^(2n+1) > D`. Then every `t` with `|t| + max(q^(m²), p^(n²)) ≤ Y` has `k`
+  with `|k| ≤ 35KY`, `k` small for `q` and `k - t` small for `p` at the radius `35K/D`.
+* `witness_of_energy`: the same when `Y · E ≤ K (|A| |B|)²` for the collision energy `E` of `a - b`.
+* `support_of_range`: conversely, witnesses for all `|t| ≤ T` give at least `2T + 1` differences.
+* `walk`: the walk with the two steps which stays in a window.
+
+Not formalized: the existence of such sets `W` for two primes (that is the open hypothesis), and
+the asymptotic consequences for height exponents. Axioms: `TwoPrimesAxioms14`.

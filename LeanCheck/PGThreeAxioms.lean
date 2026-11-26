@@ -8,6 +8,8 @@ import LeanCheck.PGThreeNull
 import LeanCheck.PGThreeGeneral
 import LeanCheck.PGThreeNonHaus
 import LeanCheck.PGThreeIdem
+import LeanCheck.PGThreeNormal
+import LeanCheck.PGThreeHeight
 
 /-! Axiom check for the modules of `PGthree`: every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -80,3 +82,12 @@ import LeanCheck.PGThreeIdem
 #print axioms PG.Idem.independent_no_idempotent
 #print axioms PG.Idem.far_zero
 #print axioms PG.Idem.sparse_no_idempotent
+#print axioms PG.Null.normal_unique
+#print axioms PG.Null.replace_letter
+#print axioms PG.Null.selective_not_pretopological
+#print axioms PG.Height.nsmul_map_le
+#print axioms PG.Height.bounded_nbhd
+#print axioms PG.Height.bounded_discrete
+#print axioms PG.Height.freeAbelian_discrete
+#print axioms PG.Height.digits_G
+#print axioms PG.Height.digits_discrete

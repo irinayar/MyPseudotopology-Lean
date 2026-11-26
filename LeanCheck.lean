@@ -667,3 +667,5 @@ import LeanCheck.PVGTwoDimension
 import LeanCheck.PVGTwoAxioms
 import LeanCheck.TwoPrimesFormula
 import LeanCheck.TwoPrimesAxioms11
+import LeanCheck.PGThreeNormal
+import LeanCheck.PGThreeHeight

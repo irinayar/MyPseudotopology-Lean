@@ -542,6 +542,8 @@ import LeanCheck.ThreePrimesHeightM11
 import LeanCheck.ThreePrimesNrFamilyM12
 import LeanCheck.ThreePrimesHeightM11Axioms
 import LeanCheck.ThreePrimesNrFamilyM12Axioms
+import LeanCheck.ThreePrimesDensityM13
+import LeanCheck.ThreePrimesDensityM13Axioms
 
 import LeanCheck.PGNullFilters
 

@@ -169,3 +169,18 @@ Notation as in `TwoPrimesEffective`.
 
 Not formalized: the existence of such sets `W` for two primes (that is the open hypothesis), and
 the asymptotic consequences for height exponents. Axioms: `TwoPrimesAxioms14`.
+
+## A dual form of bounded representations (module `TwoPrimesDual`)
+
+A quantitative form of Kronecker's theorem (transference); no priority is claimed for the principle.
+
+* `dist_rep_le`: if `t = Σ w i * z i` with `|z i| ≤ H * J i`, then
+  `‖t θ‖ ≤ H * Σ J i * ‖w i θ‖`.
+* `rep_of_dual`: if every `θ` with `‖t θ‖ > 1/10` has an index with `J i * ‖w i θ‖ ≥ c`
+  (`J i ≥ 1`, `c ≤ 1/2`), then `t = Σ w i * z i` with `|z i| ≤ 2 h J i`, whenever
+  `log(7 h R) ≤ 16 c² h / 3` and `Σ |w i| J i ≤ R`.
+* `small_of_digits`, `witness_of_dual`: the case of the weights `q^(n²)`, `p^(n²)`; the target `t`
+  then has a witness at the radius `4h/D`.
+
+Not formalized: the asymptotic consequence for the unit-target exponent, and the dual condition
+itself, which is open. Axioms: `TwoPrimesAxioms15`.

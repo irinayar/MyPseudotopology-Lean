@@ -15,6 +15,7 @@ import LeanCheck.PGThreeAnySel
 import LeanCheck.PGThreeBohr
 import LeanCheck.PGThreeOne
 import LeanCheck.PGThreeGroups
+import LeanCheck.PGThreeZFC
 
 /-! Axiom check for the modules of `PGthree`: every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -319,3 +320,34 @@ import LeanCheck.PGThreeGroups
 #print axioms PG.Groups.case_int
 #print axioms PG.Groups.case_tor
 #print axioms PG.Groups.no_coreflection_of_independent
+#print axioms PG.ZFC.isClosed_Dual
+#print axioms PG.ZFC.continuous_ev
+#print axioms PG.ZFC.norm_ev
+#print axioms PG.ZFC.ev_add
+#print axioms PG.ZFC.ev_zero
+#print axioms PG.ZFC.conj_ev
+#print axioms PG.ZFC.ev_arg_add
+#print axioms PG.ZFC.integrable_ev
+#print axioms PG.ZFC.integral_ev
+#print axioms PG.ZFC.orthonormal_evL
+#print axioms PG.ZFC.sum_sq_coeff_le
+#print axioms PG.ZFC.finite_large_coeff
+#print axioms PG.ZFC.sq_re_ev
+#print axioms PG.ZFC.abs_re_ev
+#print axioms PG.ZFC.both_sides
+#print axioms PG.ZFC.isOpen_Up
+#print axioms PG.ZFC.isClosed_Cl
+#print axioms PG.ZFC.Up_subset_Cl
+#print axioms PG.ZFC.Pat_congr
+#print axioms PG.ZFC.step
+#print axioms PG.ZFC.interpolation
+#print axioms PG.ZFC.Br_infinite
+#print axioms PG.ZFC.Br_inter_finite
+#print axioms PG.ZFC.vb_le
+#print axioms PG.ZFC.lam_apply
+#print axioms PG.ZFC.nsmul_lam_injective
+#print axioms PG.ZFC.mk_closure_le
+#print axioms PG.ZFC.exists_exponents
+#print axioms PG.ZFC.vicinity_without_hypotheses
+#print axioms PG.ZFC.vicinity_iff
+#print axioms PG.ZFC.int_cofinite

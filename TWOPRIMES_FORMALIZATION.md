@@ -271,3 +271,15 @@ the module. Axioms: `TwoPrimesAxioms20`.
 
 Here `J_j = floor(l^(2m-1) / 10^15)` and `N_j = 2 J_j + 1`. The results are due to ChatGPT.
 Axioms: `TwoPrimesAxioms21`.
+
+## The weighted sum (module `TwoPrimesSum`)
+
+* `diag`: `kappa_M >= (3M/(2M^2+1)) u / (|Y| |Z|)` for any finite sets.
+* `average`: the average over the units modulo `q^R` of `sum G(xi) W_M(a xi / u)` is at most
+  `1 + (3M/(2M^2+1)) (sum G - 1)`.
+* `lowcond`: the frequencies of a conductor prime to `p` are bounded by one digit factor of `p`
+  and the sizes of the others.
+* `qmass`: the closed formula for `sum_{b mod q^a} |phi_Y(b/q^a)|^2`.
+
+Not formalized: the two asymptotic statements and the two examples of that part of the article.
+Axioms: `TwoPrimesAxioms22`.

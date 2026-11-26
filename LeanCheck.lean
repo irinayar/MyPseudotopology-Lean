@@ -714,3 +714,5 @@ import LeanCheck.TwoPrimesBoxCertificate
 import LeanCheck.TwoPrimesAxioms20
 import LeanCheck.TwoPrimesDualGap
 import LeanCheck.TwoPrimesAxioms21
+import LeanCheck.TwoPrimesSum
+import LeanCheck.TwoPrimesAxioms22

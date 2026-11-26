@@ -691,3 +691,5 @@ import LeanCheck.TwoPrimesSupport
 import LeanCheck.TwoPrimesAxioms14
 import LeanCheck.TwoPrimesDual
 import LeanCheck.TwoPrimesAxioms15
+import LeanCheck.PVGTwoUnion
+import LeanCheck.PVGTwoUnionAxioms

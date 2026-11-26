@@ -632,3 +632,12 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 - `exists_point_unservable`: there is `c` such that no non-precompact group topology below the usual one makes `aS`, `a` in `A(delta)`, and `cS` totally bounded, although `A(delta)` alone has such a topology.
 
 Not formalized: the statement for generic `c`.
+
+## Rigidity and an unservable increasing union (`PVGTwoUnion`, 26 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGTwoUnionAxioms.lean`. Typechecked module by module with Lean 4.35.0; no full `lake build`.
+
+- `rigidity`: if all dilates `aS`, `a` in `A(delta)`, are totally bounded in a group topology below the usual one, then each neighbourhood of 0 covers, with finitely many translates, a set `{x | ‖x δ_k‖ ≤ ε for all k}`.
+- `union_core`, `exists_union_unservable`: if also the dilates for `a / 2^m` are totally bounded for arbitrarily large `m`, the topology is precompact; every group topology coarser than all `γ_(2^m δ)` is precompact.
+
+Not formalized: the statement about maximal sets.

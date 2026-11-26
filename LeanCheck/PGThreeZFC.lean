@@ -13,11 +13,11 @@ Scope. Section 4 of the third article (`PGthree.tex`).
   is above `1/8` on a set of positive measure and below `-1/8` on another;
 * `interpolation` : every infinite subset of `H` has a sequence along which these signs can be chosen freely;
 * `exists_exponents` : the condition (E) on `H`;
-* `vicinity_without_hypotheses` : if `H` is a countably infinite subgroup of an abelian group `G` satisfying (E),
-  there is a set of ultrafilters whose PG has unique limits and whose vicinity filter consists of the sets that
-  contain `0` and all but finitely many points of `H`.
-* `vicinity_iff` : for a countably infinite subgroup `H`, the filter above is the vicinity filter of some PG exactly
-  when (E) holds;
+* `vicinity_without_hypotheses` : if `H` is an infinite subgroup of an abelian group `G` with at most `2 ^ 𝔠` elements
+  satisfying (E), there is a set of ultrafilters whose PG has unique limits and whose vicinity filter consists of the
+  sets that contain `0` and all but finitely many points of `H`;
+* `card_le_of_vicinity` : that cardinality bound is necessary;
+* `vicinity_iff` : the filter above is the vicinity filter of some PG exactly when the bound and (E) hold;
 * `int_cofinite` : the case of the cofinite filter at `0` on `ℤ`.
 
 No set-theoretic hypothesis is used. A Lean proof verifies its formal statement under its hypotheses; the
@@ -502,54 +502,20 @@ theorem interpolation (hpos : ∀ n ∈ M, 0 < n) (hfib : ∀ n ∈ M, ∀ y : G
     simp only [hC, mem_iInter] at h1
     exact h1 j (Finset.mem_Ico.2 ⟨hj, Nat.lt_succ_self j⟩)
 
-/-! ### Continuum many ultrafilters with different limits -/
+/-! ### Many ultrafilters with different limits -/
 
-/-- The codes of the initial segments of `x`. -/
-def Br (x : ℕ → Bool) : Set ℕ := range (fun k => Encodable.encode ((List.range k).map x))
-
-theorem Br_infinite (x : ℕ → Bool) : (Br x).Infinite := by
-  refine infinite_range_of_injective (fun k l h => ?_)
-  have h1 := congrArg List.length (Encodable.encode_injective h)
-  simpa using h1
-
-theorem Br_inter_finite (x y : ℕ → Bool) (h : x ≠ y) : (Br x ∩ Br y).Finite := by
-  obtain ⟨m, hm⟩ := Function.ne_iff.1 h
-  refine ((finite_Iio (m + 1)).image (fun k => Encodable.encode ((List.range k).map x))).subset ?_
-  rintro c ⟨⟨k, hk⟩, ⟨l, hl⟩⟩
-  have h1 : (List.range k).map x = (List.range l).map y := Encodable.encode_injective (hk.trans hl.symm)
-  have h2 : k = l := by simpa using congrArg List.length h1
-  subst h2
-  refine ⟨k, ?_, hk⟩
-  by_contra hkm
-  have h3 : m < k := by
-    rw [mem_Iio] at hkm
-    omega
-  have h4 := congrArg (fun L => L[m]?) h1
-  simp [h3] at h4
-  exact hm h4
-
-noncomputable def vb (x : ℕ → Bool) : Ultrafilter ℕ :=
-  haveI : (cofinite ⊓ 𝓟 (Br x)).NeBot := (Br_infinite x).cofinite_inf_principal_neBot
-  Ultrafilter.of (cofinite ⊓ 𝓟 (Br x))
-
-theorem vb_le (x : ℕ → Bool) : (vb x : Filter ℕ) ≤ cofinite ⊓ 𝓟 (Br x) := by
-  haveI : (cofinite ⊓ 𝓟 (Br x)).NeBot := (Br_infinite x).cofinite_inf_principal_neBot
-  exact Ultrafilter.of_le _
-
-noncomputable def ub (b : ℕ → G) (x : ℕ → Bool) : Ultrafilter G := (vb x).map b
-
-theorem lam_apply (b : ℕ → G) (x : ℕ → Bool) (n : ℕ) (χ : Dual G) :
-    Tendsto (fun j => ev (n • b j) χ) (vb x : Filter ℕ)
-      (𝓝 ((AddCircle.toCircle ((n • lam (ub b x)) (toHom χ)) : Circle) : ℂ)) := by
-  have h1 : Tendsto iota (Filter.map b (vb x : Filter ℕ)) (𝓝 (lam (ub b x))) := by
-    have h := lim_lam (ub b x)
+theorem lam_apply (b : ℕ → G) (v : Ultrafilter ℕ) (n : ℕ) (χ : Dual G) :
+    Tendsto (fun j => ev (n • b j) χ) (v : Filter ℕ)
+      (𝓝 ((AddCircle.toCircle ((n • lam (v.map b)) (toHom χ)) : Circle) : ℂ)) := by
+  have h1 : Tendsto iota (Filter.map b (v : Filter ℕ)) (𝓝 (lam (v.map b))) := by
+    have h := lim_lam (v.map b)
     unfold Lim at h
-    rwa [ub, Ultrafilter.coe_map] at h
-  have h2 : Tendsto (fun j => (iota (b j)) (toHom χ)) (vb x : Filter ℕ) (𝓝 (lam (ub b x) (toHom χ))) := by
+    rwa [Ultrafilter.coe_map] at h
+  have h2 : Tendsto (fun j => (iota (b j)) (toHom χ)) (v : Filter ℕ) (𝓝 (lam (v.map b) (toHom χ))) := by
     have h3 := (continuous_apply (toHom χ)).continuousAt.tendsto.comp (tendsto_map'_iff.1 h1)
     exact h3
-  have h4 : Tendsto (fun j => n • (iota (b j)) (toHom χ)) (vb x : Filter ℕ)
-      (𝓝 (n • lam (ub b x) (toHom χ))) := h2.const_smul n
+  have h4 : Tendsto (fun j => n • (iota (b j)) (toHom χ)) (v : Filter ℕ)
+      (𝓝 (n • lam (v.map b) (toHom χ))) := h2.const_smul n
   have h5 := (continuous_subtype_val.comp AddCircle.continuous_toCircle).continuousAt.tendsto.comp h4
   have e : ∀ j, ev (n • b j) χ = ((AddCircle.toCircle (n • (iota (b j)) (toHom χ)) : Circle) : ℂ) := by
     intro j
@@ -561,43 +527,126 @@ theorem lam_apply (b : ℕ → G) (x : ℕ → Bool) (n : ℕ) (χ : Dual G) :
   exact h5
 
 theorem nsmul_lam_injective (b : ℕ → G) (n : ℕ)
-    (hint : ∀ s : ℕ → Bool, ∃ χ : Dual G, ∀ j, n ≤ j → χ ∈ Cl n (b j) (s j)) :
-    Function.Injective (fun x : ℕ → Bool => n • lam (ub b x)) := by
+    (hint : ∀ s : ℕ → Bool, ∃ χ : Dual G, ∀ j, n ≤ j → χ ∈ Cl n (b j) (s j))
+    (v w : Ultrafilter ℕ) (hv : (v : Filter ℕ) ≤ cofinite) (hw : (w : Filter ℕ) ≤ cofinite)
+    (h : n • lam (v.map b) = n • lam (w.map b)) : v = w := by
   classical
-  intro x y h
-  by_contra hxy
-  obtain ⟨χ, hχ⟩ := hint (fun j => decide (j ∈ Br x))
-  have hbig : ∀ z : ℕ → Bool, ∀ᶠ j in (vb z : Filter ℕ), j ∈ Br z ∧ n ≤ j := by
-    intro z
-    have h1 : ∀ᶠ j in (vb z : Filter ℕ), j ∈ Br z :=
-      (vb_le z).trans inf_le_right (mem_principal_self _)
-    have h2 : ∀ᶠ j in (vb z : Filter ℕ), n ≤ j := by
-      refine (vb_le z).trans inf_le_left ?_
-      rw [Nat.cofinite_eq_atTop]
-      exact eventually_ge_atTop n
-    exact h1.and h2
-  have hx : 1 / 8 ≤ (((AddCircle.toCircle ((n • lam (ub b x)) (toHom χ)) : Circle) : ℂ)).re := by
-    have ht := (Complex.continuous_re.continuousAt).tendsto.comp (lam_apply b x n χ)
+  by_contra hne
+  obtain ⟨S, hSv, hSw⟩ : ∃ S : Set ℕ, S ∈ v ∧ Sᶜ ∈ w := by
+    by_contra hc
+    apply hne
+    refine (Ultrafilter.coe_le_coe.1 (fun S hS => ?_)).symm
+    show S ∈ w
+    by_contra hSw
+    exact hc ⟨S, hS, Ultrafilter.compl_mem_iff_notMem.2 hSw⟩
+  obtain ⟨χ, hχ⟩ := hint (fun j => decide (j ∈ S))
+  have hev : ∀ z : Ultrafilter ℕ, (z : Filter ℕ) ≤ cofinite → ∀ᶠ j in (z : Filter ℕ), n ≤ j := by
+    intro z hz
+    refine hz ?_
+    rw [Nat.cofinite_eq_atTop]
+    exact eventually_ge_atTop n
+  have hx : 1 / 8 ≤ (((AddCircle.toCircle ((n • lam (v.map b)) (toHom χ)) : Circle) : ℂ)).re := by
+    have ht := (Complex.continuous_re.continuousAt).tendsto.comp (lam_apply b v n χ)
     refine ge_of_tendsto ht ?_
-    filter_upwards [hbig x] with j hj
-    have h1 := hχ j hj.2
-    simp only [Cl, decide_eq_true hj.1, if_true, mem_setOf_eq] at h1
+    filter_upwards [show S ∈ (v : Filter ℕ) from hSv, hev v hv] with j hj hj2
+    have h1 := hχ j hj2
+    simp only [Cl, decide_eq_true hj, if_true, mem_setOf_eq] at h1
     exact h1
-  have hy : (((AddCircle.toCircle ((n • lam (ub b y)) (toHom χ)) : Circle) : ℂ)).re ≤ -(1 / 8) := by
-    have ht := (Complex.continuous_re.continuousAt).tendsto.comp (lam_apply b y n χ)
+  have hy : (((AddCircle.toCircle ((n • lam (w.map b)) (toHom χ)) : Circle) : ℂ)).re ≤ -(1 / 8) := by
+    have ht := (Complex.continuous_re.continuousAt).tendsto.comp (lam_apply b w n χ)
     refine le_of_tendsto ht ?_
-    have h3 : ∀ᶠ j in (vb y : Filter ℕ), j ∉ Br x := by
-      have h4 : (Br x ∩ Br y)ᶜ ∈ (vb y : Filter ℕ) :=
-        (vb_le y).trans inf_le_left (Br_inter_finite x y hxy).compl_mem_cofinite
-      filter_upwards [h4, hbig y] with j hj hj2
-      exact fun h => hj ⟨h, hj2.1⟩
-    filter_upwards [h3, hbig y] with j hj hj2
-    have h1 := hχ j hj2.2
-    simp only [Cl, decide_eq_false hj, Bool.false_eq_true, if_false, mem_setOf_eq] at h1
+    filter_upwards [show Sᶜ ∈ (w : Filter ℕ) from hSw, hev w hw] with j hj hj2
+    have h1 := hχ j hj2
+    have hj' : j ∉ S := hj
+    simp only [Cl, decide_eq_false hj', Bool.false_eq_true, if_false, mem_setOf_eq] at h1
     exact h1
-  have e : n • lam (ub b x) = n • lam (ub b y) := h
-  rw [e] at hx
+  rw [h] at hx
   linarith
+
+theorem aleph0_lt_two_pow_c : ℵ₀ < (2 : Cardinal.{0}) ^ 𝔠 :=
+  Cardinal.aleph0_lt_continuum.trans (Cardinal.cantor _)
+
+/-- There are `2 ^ 𝔠` nonprincipal ultrafilters on `ℕ`. -/
+theorem le_mk_free : (2 : Cardinal.{0}) ^ 𝔠 ≤ #{v : Ultrafilter ℕ // (v : Filter ℕ) ≤ cofinite} := by
+  classical
+  have hall : #(Ultrafilter ℕ) = (2 : Cardinal.{0}) ^ 𝔠 := by
+    rw [Cardinal.mk_ultrafilter_of_infinite, Cardinal.mk_nat, Cardinal.two_power_aleph0]
+  by_contra hc
+  rw [not_le] at hc
+  have hsub : (univ : Set (Ultrafilter ℕ)) ⊆ {v : Ultrafilter ℕ | (v : Filter ℕ) ≤ cofinite} ∪ range pure := by
+    intro v _
+    by_cases h : (v : Filter ℕ) ≤ cofinite
+    · exact Or.inl h
+    · refine Or.inr ?_
+      rcases v.le_cofinite_or_eq_pure with h1 | ⟨a, ha⟩
+      · exact absurd h1 h
+      · exact ⟨a, ha.symm⟩
+  have h1 : #(Ultrafilter ℕ) < (2 : Cardinal.{0}) ^ 𝔠 := by
+    rw [← Cardinal.mk_univ]
+    refine lt_of_le_of_lt ((Cardinal.mk_le_mk_of_subset hsub).trans (Cardinal.mk_union_le _ _)) ?_
+    refine Cardinal.add_lt_of_lt aleph0_lt_two_pow_c.le hc ?_
+    exact lt_of_le_of_lt (Cardinal.mk_range_le.trans Cardinal.mk_nat.le) aleph0_lt_two_pow_c
+  rw [hall] at h1
+  exact lt_irrefl _ h1
+
+/-! ### The closure of a subgroup in the Bohr compactification -/
+
+/-- Only the points of `B` lie in the closure of `B` in the Bohr compactification. -/
+theorem mem_of_iota_mem_closure (B : AddSubgroup G) (g : G)
+    (h : iota g ∈ (B.map (iota (G := G))).topologicalClosure) : g ∈ B := by
+  by_contra hg
+  have hne : (QuotientAddGroup.mk' B) g ≠ 0 := fun h0 => hg ((QuotientAddGroup.eq_zero_iff g).1 h0)
+  have h1 : iota ((QuotientAddGroup.mk' B) g) ≠ 0 := fun h0 => hne (iota_injective (h0.trans (map_zero iota).symm))
+  obtain ⟨f, hf⟩ := Function.ne_iff.1 h1
+  set χ : G →+ UnitAddCircle := f.comp (QuotientAddGroup.mk' B) with hχ
+  have hclosed : IsClosed {x : Circles G | x χ = 0} := isClosed_eq (continuous_apply χ) continuous_const
+  have hsub : ((B.map (iota (G := G))) : Set (Circles G)) ⊆ {x : Circles G | x χ = 0} := by
+    rintro _ ⟨c, hc, rfl⟩
+    show f ((QuotientAddGroup.mk' B) c) = 0
+    have h2 : (QuotientAddGroup.mk' B) c = 0 := (QuotientAddGroup.eq_zero_iff c).2 hc
+    rw [h2, map_zero]
+  have h3 : iota g ∈ {x : Circles G | x χ = 0} := by
+    have h4 : (iota g) ∈ closure ((B.map (iota (G := G))) : Set (Circles G)) := by
+      rw [← AddSubgroup.topologicalClosure_coe]
+      exact h
+    exact closure_minimal hsub hclosed h4
+  exact hf h3
+
+theorem lam_mem_closure (B : AddSubgroup G) (b : ℕ → G) (hb : ∀ j, b j ∈ B) (v : Ultrafilter ℕ) (n : ℕ) :
+    n • lam (v.map b) ∈ (B.map (iota (G := G))).topologicalClosure := by
+  refine AddSubgroup.nsmul_mem _ ?_ n
+  have h1 : Tendsto iota (Filter.map b (v : Filter ℕ)) (𝓝 (lam (v.map b))) := by
+    have h := lim_lam (v.map b)
+    unfold Lim at h
+    rwa [Ultrafilter.coe_map] at h
+  have h2 : lam (v.map b) ∈ closure ((B.map (iota (G := G))) : Set (Circles G)) := by
+    refine mem_closure_of_tendsto (tendsto_map'_iff.1 h1) (Filter.univ_mem' (fun j => ?_))
+    exact ⟨b j, hb j, rfl⟩
+  rw [← AddSubgroup.topologicalClosure_coe] at h2
+  exact h2
+
+/-- A translate of `H` meets the closure of a countable subgroup of `H` in a countable set. -/
+theorem countable_translate_inter (H B : AddSubgroup G) (hBH : B ≤ H) (hB : (B : Set G).Countable)
+    (k : Circles G) :
+    {x : Circles G | x ∈ (B.map (iota (G := G))).topologicalClosure ∧ ∃ h ∈ H, x = iota h + k}.Countable := by
+  set T : Set (Circles G) :=
+    {x : Circles G | x ∈ (B.map (iota (G := G))).topologicalClosure ∧ ∃ h ∈ H, x = iota h + k} with hT
+  rcases Set.eq_empty_or_nonempty T with h0 | ⟨x0, hx0⟩
+  · rw [h0]
+    exact countable_empty
+  · refine (hB.image (fun c => x0 + iota c)).mono (fun x hx => ?_)
+    obtain ⟨h0, hh0, e0⟩ := hx0.2
+    obtain ⟨h1, hh1, e1⟩ := hx.2
+    have e : x - x0 = iota (h1 - h0) := by
+      rw [e0, e1, map_sub]
+      abel
+    have h2 : iota (h1 - h0) ∈ (B.map (iota (G := G))).topologicalClosure := by
+      rw [← e]
+      exact AddSubgroup.sub_mem _ hx.1 hx0.1
+    refine ⟨h1 - h0, mem_of_iota_mem_closure B _ h2, ?_⟩
+    show x0 + iota (h1 - h0) = x
+    rw [← e]
+    abel
 
 /-! ### The theorem -/
 
@@ -752,77 +801,101 @@ theorem exists_exponents [Infinite H]
       · refine Or.inr ⟨_, ⟨h, ?_⟩, Or.inl hred⟩
         omega
 
-/-- Without set-theoretic hypotheses: the vicinity filter. -/
-theorem vicinity_without_hypotheses [Countable H] [Infinite H]
+/-- Without set-theoretic hypotheses: the vicinity filter, for subgroups of cardinality at most `2 ^ 𝔠`. -/
+theorem vicinity_without_hypotheses [Infinite H] (hcard : #H ≤ (2 : Cardinal.{0}) ^ 𝔠)
     (hE : ∀ m : ℕ, 1 ≤ m → {x : G | x ∈ H ∧ m • x = 0}.Finite ∨ ∀ x ∈ H, m • x = 0) :
     ∃ S : Set (Ultrafilter G), (∀ g : G, (pure g : Filter G) ∈ genFam (ultraGen S) → g = 0) ∧
       ∀ s : Set G, s ∈ vic (genFam (ultraGen S)) ↔ (0 : G) ∈ s ∧ ((H : Set G) \ s).Finite := by
   classical
   obtain ⟨M, hpos, hfib, h2, hred⟩ := exists_exponents H hE
-  set I : Type := {A : Set G // A ⊆ H ∧ A.Infinite} with hI
-  have hIc : #I ≤ 𝔠 := by
-    have h1 : #I ≤ #(Set H) := by
-      refine Cardinal.mk_le_of_injective (f := fun A : I => (Subtype.val ⁻¹' A.1 : Set H)) (fun A B h => ?_)
+  set κ : Cardinal.{0} := (2 : Cardinal.{0}) ^ 𝔠 with hκ
+  have hκ0 : ℵ₀ < κ := aleph0_lt_two_pow_c
+  set I : Type := {A : Set G // A ⊆ H ∧ A.Infinite ∧ A.Countable} with hI
+  have hIc : #I ≤ κ := by
+    have h1 : #I ≤ #{t : Set H // #t ≤ ℵ₀} := by
+      have hcount : ∀ A : I, #(Subtype.val ⁻¹' A.1 : Set H) ≤ ℵ₀ := fun A =>
+        Cardinal.le_aleph0_iff_set_countable.2 (A.2.2.2.preimage Subtype.val_injective)
+      refine Cardinal.mk_le_of_injective
+        (f := fun A : I => (⟨(Subtype.val ⁻¹' A.1 : Set H), hcount A⟩ : {t : Set H // #t ≤ ℵ₀}))
+        (fun A B h => ?_)
+      have h' : (Subtype.val ⁻¹' A.1 : Set H) = Subtype.val ⁻¹' B.1 := Subtype.ext_iff.1 h
       refine Subtype.ext (Set.ext (fun x => ?_))
       constructor
       · intro hx
-        exact (Set.ext_iff.1 h ⟨x, A.2.1 hx⟩).1 hx
+        exact (Set.ext_iff.1 h' ⟨x, A.2.1 hx⟩).1 hx
       · intro hx
-        exact (Set.ext_iff.1 h ⟨x, B.2.1 hx⟩).2 hx
-    refine h1.trans ?_
-    rw [Cardinal.mk_set]
-    exact Cardinal.power_le_power_left two_ne_zero (Cardinal.mk_le_aleph0 (α := H))
+        exact (Set.ext_iff.1 h' ⟨x, B.2.1 hx⟩).2 hx
+    refine h1.trans ((Cardinal.mk_bounded_set_le H ℵ₀).trans ?_)
+    have h3 : max #H ℵ₀ ≤ κ := max_le hcard hκ0.le
+    refine (Cardinal.power_le_power_right h3).trans (le_of_eq ?_)
+    rw [hκ, ← Cardinal.power_mul, Cardinal.continuum_mul_aleph0]
   have hb : ∀ A : I, ∃ b : ℕ → G, Function.Injective b ∧ (∀ i, b i ∈ A.1) ∧
       ∀ n ∈ M, ∀ s : ℕ → Bool, ∃ χ : Dual G, ∀ j, n ≤ j → χ ∈ Cl n (b j) (s j) :=
-    fun A => interpolation H M hpos hfib h2 A.1 A.2.1 A.2.2
+    fun A => interpolation H M hpos hfib h2 A.1 A.2.1 A.2.2.1
   choose b hbinj hbmem hbint using hb
   obtain ⟨r, wo, hr⟩ := Cardinal.exists_ord_eq I
   haveI := wo
-  have hseg : ∀ i : I, #{j : I // r j i} < 𝔠 := by
+  have hseg : ∀ i : I, #{j : I // r j i} < κ := by
     intro i
     have h1 : (Ordinal.typein r i).card < #I := Cardinal.card_typein_lt i hr
     exact lt_of_lt_of_le (lt_of_eq_of_lt (Ordinal.card_typein (r := r) i).symm h1) hIc
-  have hchoose : ∀ (i : I) (prev : ∀ j : I, r j i → Circles G), ∃ x : ℕ → Bool,
-      ∀ n ∈ M, n • lam (ub (b i) x) ∉
-        AddSubgroup.closure ((iota (G := G)) '' (H : Set G) ∪ range (fun j : {j : I // r j i} => prev j.1 j.2)) := by
+  have hchoose : ∀ (i : I) (prev : ∀ j : I, r j i → Circles G),
+      ∃ v : {v : Ultrafilter ℕ // (v : Filter ℕ) ≤ cofinite},
+        ∀ n ∈ M, n • lam (v.1.map (b i)) ∉
+          AddSubgroup.closure ((iota (G := G)) '' (H : Set G) ∪ range (fun j : {j : I // r j i} => prev j.1 j.2)) := by
     intro i prev
-    set T : Set (Circles G) := (iota (G := G)) '' (H : Set G) ∪ range (fun j : {j : I // r j i} => prev j.1 j.2)
-      with hT
-    have hTc : #T < 𝔠 := by
-      refine lt_of_le_of_lt (Cardinal.mk_union_le _ _) (Cardinal.add_lt_of_lt Cardinal.aleph0_le_continuum ?_ ?_)
-      · refine lt_of_le_of_lt ?_ Cardinal.aleph0_lt_continuum
-        exact Cardinal.mk_le_aleph0_iff.2 ((Set.countable_coe_iff.1 (inferInstanceAs (Countable H))).image _).to_subtype
-      · exact lt_of_le_of_lt Cardinal.mk_range_le (hseg i)
-    have hWc : #(AddSubgroup.closure T) < 𝔠 :=
-      lt_of_le_of_lt (mk_closure_le T) (max_lt Cardinal.aleph0_lt_continuum hTc)
+    set P : Set (Circles G) := range (fun j : {j : I // r j i} => prev j.1 j.2) with hP
+    set Kp : AddSubgroup (Circles G) := AddSubgroup.closure P with hKp
+    have hKc : #Kp < κ :=
+      lt_of_le_of_lt (mk_closure_le P) (max_lt hκ0 (lt_of_le_of_lt Cardinal.mk_range_le (hseg i)))
+    set B : AddSubgroup G := AddSubgroup.closure (range (b i)) with hB
+    have hBH : B ≤ H := by
+      refine (AddSubgroup.closure_le _).2 ?_
+      rintro _ ⟨j, rfl⟩
+      exact i.2.1 (hbmem i j)
+    have hBc : (B : Set G).Countable := countable_closure _ (countable_range _)
+    have hbB : ∀ j, b i j ∈ B := fun j => AddSubgroup.subset_closure ⟨j, rfl⟩
+    set Tk : Kp → Set (Circles G) := fun k =>
+      {x : Circles G | x ∈ (B.map (iota (G := G))).topologicalClosure ∧ ∃ h ∈ H, x = iota h + (k : Circles G)}
+      with hTk
+    have hTkc : ∀ k, #(Tk k) ≤ ℵ₀ := fun k =>
+      Cardinal.le_aleph0_iff_set_countable.2 (countable_translate_inter H B hBH hBc k)
     by_contra hno
-    have h1 : ∀ x : ℕ → Bool, ∃ n : M, (n : ℕ) • lam (ub (b i) x) ∈ AddSubgroup.closure T := by
-      intro x
-      by_contra h
-      exact hno ⟨x, fun n hn hmem => h ⟨⟨n, hn⟩, hmem⟩⟩
-    choose nx hnx using h1
-    have hinj : Function.Injective (fun x : ℕ → Bool =>
-        ((nx x, ⟨(nx x : ℕ) • lam (ub (b i) x), hnx x⟩) : M × AddSubgroup.closure T)) := by
-      intro x y h
-      obtain ⟨hn, hv⟩ := Prod.ext_iff.1 h
-      have hv' : (nx x : ℕ) • lam (ub (b i) x) = (nx y : ℕ) • lam (ub (b i) y) := Subtype.ext_iff.1 hv
-      have hn' : (nx x : ℕ) = nx y := congrArg Subtype.val hn
-      rw [← hn'] at hv'
-      exact nsmul_lam_injective (b i) _ (hbint i _ (nx x).2) hv'
-    have h3 : #(ℕ → Bool) ≤ #(M × AddSubgroup.closure T) := Cardinal.mk_le_of_injective hinj
-    have h4 : #(ℕ → Bool) = 𝔠 := by
-      rw [← Cardinal.power_def, Cardinal.mk_bool, Cardinal.mk_nat, Cardinal.two_power_aleph0]
-    have h5 : #(M × AddSubgroup.closure T) < 𝔠 := by
-      rw [Cardinal.mk_prod, Cardinal.lift_id, Cardinal.lift_id]
-      refine Cardinal.mul_lt_of_lt Cardinal.aleph0_le_continuum ?_ hWc
-      exact lt_of_le_of_lt (Cardinal.mk_le_aleph0 (α := M)) Cardinal.aleph0_lt_continuum
-    rw [h4] at h3
-    exact absurd (lt_of_le_of_lt h3 h5) (lt_irrefl _)
+    have h1 : ∀ v : {v : Ultrafilter ℕ // (v : Filter ℕ) ≤ cofinite},
+        ∃ n : M, ∃ k : Kp, (n : ℕ) • lam (v.1.map (b i)) ∈ Tk k := by
+      intro v
+      have h3 : ∃ n ∈ M, n • lam (v.1.map (b i)) ∈
+          AddSubgroup.closure ((iota (G := G)) '' (H : Set G) ∪ P) := by
+        by_contra h
+        exact hno ⟨v, fun n hn hmem => h ⟨n, hn, hmem⟩⟩
+      obtain ⟨n, hn, hmem⟩ := h3
+      have h4 : AddSubgroup.closure ((iota (G := G)) '' (H : Set G) ∪ P) = H.map (iota (G := G)) ⊔ Kp := by
+        rw [AddSubgroup.closure_union, ← AddSubgroup.coe_map, AddSubgroup.closure_eq]
+      rw [h4] at hmem
+      obtain ⟨y, hy, k, hk, e⟩ := AddSubgroup.mem_sup.1 hmem
+      obtain ⟨h, hh, rfl⟩ := hy
+      exact ⟨⟨n, hn⟩, ⟨k, hk⟩, lam_mem_closure B (b i) hbB v.1 n, h, hh, e.symm⟩
+    choose nv kv hv using h1
+    have hinj : Function.Injective (fun v : {v : Ultrafilter ℕ // (v : Filter ℕ) ≤ cofinite} =>
+        ((nv v, ⟨kv v, ⟨(nv v : ℕ) • lam (v.1.map (b i)), hv v⟩⟩) : M × Σ k : Kp, Tk k)) := by
+      intro v w h
+      obtain ⟨hn, hs⟩ := Prod.ext_iff.1 h
+      have hn' : (nv v : ℕ) = nv w := congrArg Subtype.val hn
+      have hval : (nv v : ℕ) • lam (v.1.map (b i)) = (nv w : ℕ) • lam (w.1.map (b i)) :=
+        congrArg (fun z : Σ k : Kp, Tk k => (z.2 : Circles G)) hs
+      rw [← hn'] at hval
+      exact Subtype.ext (nsmul_lam_injective (b i) _ (hbint i _ (nv v).2) v.1 w.1 v.2 w.2 hval)
+    have h5 : #(M × Σ k : Kp, Tk k) < κ := by
+      rw [Cardinal.mk_prod, Cardinal.lift_id, Cardinal.lift_id, Cardinal.mk_sigma]
+      refine Cardinal.mul_lt_of_lt hκ0.le (lt_of_le_of_lt (Cardinal.mk_le_aleph0 (α := M)) hκ0) ?_
+      refine lt_of_le_of_lt (Cardinal.sum_le_mk_mul_iSup _) ?_
+      refine Cardinal.mul_lt_of_lt hκ0.le hKc (lt_of_le_of_lt (ciSup_le' hTkc) hκ0)
+    exact absurd (lt_of_le_of_lt (le_mk_free.trans (Cardinal.mk_le_of_injective hinj)) h5) (lt_irrefl _)
   choose pick hpick using hchoose
   have wf : WellFounded r := wo.wf
-  let lims : I → Circles G := wf.fix (fun i prev => lam (ub (b i) (pick i prev)))
-  have hlims : ∀ i, lims i = lam (ub (b i) (pick i (fun j _ => lims j))) := fun i => wf.fix_eq _ i
-  set u : I → Ultrafilter G := fun i => ub (b i) (pick i (fun j _ => lims j)) with hu
+  let lims : I → Circles G := wf.fix (fun i prev => lam ((pick i prev).1.map (b i)))
+  have hlims : ∀ i, lims i = lam ((pick i (fun j _ => lims j)).1.map (b i)) := fun i => wf.fix_eq _ i
+  set u : I → Ultrafilter G := fun i => (pick i (fun j _ => lims j)).1.map (b i) with hu
   have hlu : ∀ i, lam (u i) = lims i := fun i => (hlims i).symm
   have hind : ∀ i, ∀ n ∈ M, n • lam (u i) ∉
       AddSubgroup.closure ((iota (G := G)) '' (H : Set G) ∪ range (fun j : {j : I // r j i} => lam (u j.1))) := by
@@ -834,21 +907,21 @@ theorem vicinity_without_hypotheses [Countable H] [Infinite H]
     exact hpick i (fun j _ => lims j) n hn
   have huH : ∀ i, (H : Set G) ∈ u i := by
     intro i
-    show b i ⁻¹' (H : Set G) ∈ vb _
+    show b i ⁻¹' (H : Set G) ∈ (pick i (fun j _ => lims j)).1
     exact Filter.univ_mem' (fun k => i.2.1 (hbmem i k))
   have huA : ∀ i : I, i.1 ∈ u i := by
     intro i
-    show b i ⁻¹' i.1 ∈ vb _
+    show b i ⁻¹' i.1 ∈ (pick i (fun j _ => lims j)).1
     exact Filter.univ_mem' (fun k => hbmem i k)
   have hufree : ∀ i a, u i ≠ pure a := by
     intro i a h
     have h1 : ({a} : Set G) ∈ u i := by
       rw [h]
       exact rfl
-    have h3 : b i ⁻¹' {a} ∈ vb (pick i (fun j _ => lims j)) := h1
+    have h3 : b i ⁻¹' {a} ∈ (pick i (fun j _ => lims j)).1 := h1
     have h4 : (b i ⁻¹' {a}).Finite := (finite_singleton a).preimage (hbinj i).injOn
-    have h5 : (b i ⁻¹' {a})ᶜ ∈ vb (pick i (fun j _ => lims j)) :=
-      (vb_le _).trans inf_le_left h4.compl_mem_cofinite
+    have h5 : (b i ⁻¹' {a})ᶜ ∈ (pick i (fun j _ => lims j)).1 :=
+      (pick i (fun j _ => lims j)).2 h4.compl_mem_cofinite
     exact Ultrafilter.compl_mem_iff_notMem.1 h5 h3
   have hsmul : ∀ (i : I) (m k : ℤ), (∀ x ∈ H, m • x = k • x) → m • lam (u i) = k • lam (u i) := by
     intro i m k h
@@ -953,17 +1026,130 @@ theorem vicinity_without_hypotheses [Countable H] [Infinite H]
   · rintro v ⟨i, rfl⟩
     exact huH i
   · intro A hA hAinf
-    exact ⟨u ⟨A, hA, hAinf⟩, ⟨_, rfl⟩, huA ⟨A, hA, hAinf⟩⟩
+    set e := hAinf.natEmbedding with he
+    set A' : Set G := range (fun n => ((e n : A) : G)) with hA'
+    have hinj : Function.Injective (fun n => ((e n : A) : G)) := fun a c h => e.injective (Subtype.ext h)
+    have hsub : A' ⊆ A := by
+      rintro _ ⟨n, rfl⟩
+      exact (e n).2
+    have hA'I : A' ⊆ H ∧ A'.Infinite ∧ A'.Countable :=
+      ⟨hsub.trans hA, infinite_range_of_injective hinj, countable_range _⟩
+    refine ⟨u ⟨A', hA'I⟩, ⟨_, rfl⟩, ?_⟩
+    exact Filter.mem_of_superset (f := (u ⟨A', hA'I⟩ : Filter G)) (huA ⟨A', hA'I⟩) hsub
+
+/-! ### The cardinality is necessary -/
+
+/-- If the filter is a vicinity filter, then `H` has at most `2 ^ 𝔠` elements. -/
+theorem card_le_of_vicinity {C : Set (Filter G)} (hC : NullFamily C)
+    (hV : ∀ s : Set G, s ∈ vic C ↔ (0 : G) ∈ s ∧ ((H : Set G) \ s).Finite) :
+    #H ≤ (2 : Cardinal.{0}) ^ 𝔠 := by
+  classical
+  have hκ0 : ℵ₀ < (2 : Cardinal.{0}) ^ 𝔠 := aleph0_lt_two_pow_c
+  rcases finite_or_infinite H with hfin | hinf
+  · exact (Cardinal.lt_aleph0_of_finite H).le.trans hκ0.le
+  have hhaus : ∀ g : G, (pure g : Filter G) ∈ C → g = 0 := by
+    intro g hg
+    by_contra hne
+    have hs : ({g}ᶜ : Set G) ∈ vic C := by
+      refine (hV _).2 ⟨fun h => hne (mem_singleton_iff.1 h).symm, (finite_singleton g).subset (fun x hx => ?_)⟩
+      exact not_not.1 hx.2
+    exact (mem_vic.1 hs _ hg) rfl
+  have hnull : ∀ X : Set G, X ⊆ H → X.Infinite → ∃ U : Ultrafilter G, X ∈ U ∧ (U : Filter G) ∈ C := by
+    intro X hXH hX
+    have hX' : (X \ {0}).Infinite := hX.diff (finite_singleton 0)
+    have hs : ((X \ {0})ᶜ : Set G) ∉ vic C := by
+      intro h
+      have h1 := ((hV _).1 h).2
+      exact hX' (h1.subset (fun x hx => ⟨hXH hx.1, fun hc => hc hx⟩))
+    rw [mem_vic] at hs
+    push Not at hs
+    obtain ⟨F, hF, hsF⟩ := hs
+    have : F.NeBot := hC.ne F hF
+    obtain ⟨U, hUF, hUX⟩ := exists_ultra_compl_mem F hsF
+    rw [compl_compl] at hUX
+    exact ⟨U, Filter.mem_of_superset (f := (U : Filter G)) hUX (fun x hx => hx.1),
+      hC.finer F hF _ hUF U.neBot⟩
+  set f0 := Infinite.natEmbedding H with hf0
+  set B : AddSubgroup H := AddSubgroup.closure (range f0) with hB
+  have hBc : (B : Set H).Countable := countable_closure _ (countable_range _)
+  have hBi : (B : Set H).Infinite :=
+    (infinite_range_of_injective f0.injective).mono AddSubgroup.subset_closure
+  set BG : Set G := Subtype.val '' (B : Set H) with hBG
+  have hBGc : BG.Countable := hBc.image _
+  have hBGi : BG.Infinite := hBi.image Subtype.val_injective.injOn
+  set rep : H ⧸ B → G := fun c => ((c.out : H) : G) with hrep
+  have hpick : ∀ c : H ⧸ B, ∃ U : Ultrafilter G, (fun x => rep c + x) '' BG ∈ U ∧ (U : Filter G) ∈ C := by
+    intro c
+    refine hnull _ ?_ (hBGi.image (fun a _ d _ h => add_left_cancel h))
+    rintro _ ⟨_, ⟨y, _, rfl⟩, rfl⟩
+    exact H.add_mem (c.out).2 y.2
+  choose U hUm hUC using hpick
+  set v : H ⧸ B → Ultrafilter G := fun c => (U c).map (fun x => x - rep c) with hv
+  have hvB : ∀ c, BG ∈ v c := by
+    intro c
+    show (fun x => x - rep c) ⁻¹' BG ∈ U c
+    refine Filter.mem_of_superset (f := (U c : Filter G)) (hUm c) ?_
+    rintro _ ⟨y, hy, rfl⟩
+    show rep c + y - rep c ∈ BG
+    rwa [add_sub_cancel_left]
+  have hinj : Function.Injective v := by
+    intro c d h
+    have hle : (pure (rep c - rep d) : Filter G)
+        ≤ Filter.map₂ (· + ·) (U c : Filter G) (Filter.map (fun x : G => -x) (U d : Filter G)) := by
+      intro s hs
+      obtain ⟨t1, ht1, t2, ht2, h12⟩ := Filter.mem_map₂_iff.1 hs
+      have h1 : (fun y => rep c + y) ⁻¹' t1 ∈ v c := by
+        show (fun x => x - rep c) ⁻¹' ((fun y => rep c + y) ⁻¹' t1) ∈ U c
+        refine Filter.mem_of_superset (f := (U c : Filter G)) ht1 (fun x hx => ?_)
+        show rep c + (x - rep c) ∈ t1
+        rwa [add_sub_cancel]
+      have h3 : (fun y => rep d + y) ⁻¹' ((fun x : G => -x) ⁻¹' t2) ∈ v d := by
+        show (fun x => x - rep d) ⁻¹' ((fun y => rep d + y) ⁻¹' ((fun x : G => -x) ⁻¹' t2)) ∈ U d
+        refine Filter.mem_of_superset (f := (U d : Filter G)) (Filter.mem_map.1 ht2) (fun x hx => ?_)
+        show rep d + (x - rep d) ∈ (fun x : G => -x) ⁻¹' t2
+        rwa [add_sub_cancel]
+      rw [← h] at h3
+      obtain ⟨y, hy1, hy2⟩ := Ultrafilter.nonempty_of_mem (Filter.inter_mem (f := (v c : Filter G)) h1 h3)
+      have e : (rep c + y) + -(rep d + y) = rep c - rep d := by abel
+      refine Filter.mem_pure.2 ?_
+      rw [← e]
+      exact h12 (mem_image2_of_mem hy1 hy2)
+    have hsum := hC.add _ (hUC c) _ (hC.neg _ (hUC d))
+    have h0 := hhaus _ (hC.finer _ hsum _ hle inferInstance)
+    have h4 : (c.out : H) = d.out := Subtype.ext (sub_eq_zero.1 h0)
+    rw [← QuotientAddGroup.out_eq' c, ← QuotientAddGroup.out_eq' d, h4]
+  have : Infinite BG := hBGi.to_subtype
+  have : Countable BG := hBGc.to_subtype
+  have hq : #(H ⧸ B) ≤ (2 : Cardinal.{0}) ^ 𝔠 := by
+    have hcm : ∀ c, range (Subtype.val : BG → G) ∈ v c := fun c => by
+      rw [Subtype.range_coe]
+      exact hvB c
+    set w : H ⧸ B → Ultrafilter BG := fun c => (v c).comap Subtype.val_injective (hcm c) with hw
+    have hwinj : Function.Injective w := by
+      intro c d h
+      refine hinj (Ultrafilter.coe_injective ?_)
+      have e : ∀ c, Filter.map (Subtype.val : BG → G) (w c : Filter BG) = (v c : Filter G) := by
+        intro c
+        rw [hw, Ultrafilter.coe_comap]
+        exact Filter.map_comap_of_mem (hcm c)
+      rw [← e c, ← e d, h]
+    refine (Cardinal.mk_le_of_injective hwinj).trans (le_of_eq ?_)
+    rw [Cardinal.mk_ultrafilter_of_infinite, Cardinal.mk_eq_aleph0 BG, Cardinal.two_power_aleph0]
+  have hBle : #B ≤ ℵ₀ := Cardinal.le_aleph0_iff_set_countable.2 hBc
+  rw [Cardinal.mk_congr (AddSubgroup.addGroupEquivQuotientProdAddSubgroup (s := B)), Cardinal.mk_prod,
+    Cardinal.lift_id, Cardinal.lift_id]
+  exact Cardinal.mul_le_of_le hκ0.le hq (hBle.trans hκ0.le)
 
 /-- The exact condition, without set-theoretic hypotheses. -/
-theorem vicinity_iff [Countable H] [Infinite H] :
+theorem vicinity_iff [Infinite H] :
     (∃ C : Set (Filter G), NullFamily C ∧ ∀ s : Set G, s ∈ vic C ↔ (0 : G) ∈ s ∧ ((H : Set G) \ s).Finite) ↔
-      ∀ m : ℕ, 1 ≤ m → {x : G | x ∈ H ∧ m • x = 0}.Finite ∨ ∀ x ∈ H, m • x = 0 := by
+      #H ≤ (2 : Cardinal.{0}) ^ 𝔠 ∧
+        ∀ m : ℕ, 1 ≤ m → {x : G | x ∈ H ∧ m • x = 0}.Finite ∨ ∀ x ∈ H, m • x = 0 := by
   constructor
-  · rintro ⟨C, hC, hV⟩ m hm
-    exact finite_or_zero_of_vicinity hC H hV m hm
-  · intro hE
-    obtain ⟨S, _, hV⟩ := vicinity_without_hypotheses H hE
+  · rintro ⟨C, hC, hV⟩
+    exact ⟨card_le_of_vicinity H hC hV, fun m hm => finite_or_zero_of_vicinity hC H hV m hm⟩
+  · rintro ⟨hcard, hE⟩
+    obtain ⟨S, _, hV⟩ := vicinity_without_hypotheses H hcard hE
     exact ⟨genFam (ultraGen S), genFam_nullFamily _, hV⟩
 
 /-- The cofinite filter at `0` on `ℤ` is the vicinity filter of a PG with unique limits. -/
@@ -972,7 +1158,9 @@ theorem int_cofinite :
       ∀ s : Set ℤ, s ∈ vic C ↔ (0 : ℤ) ∈ s ∧ sᶜ.Finite := by
   have : Infinite (⊤ : AddSubgroup ℤ) := Infinite.of_injective (fun n : ℤ => (⟨n, trivial⟩ : (⊤ : AddSubgroup ℤ)))
     (fun a b h => Subtype.ext_iff.1 h)
-  obtain ⟨S, hh, hV⟩ := vicinity_without_hypotheses (⊤ : AddSubgroup ℤ) (fun m hm => Or.inl (by
+  have hcard : #(⊤ : AddSubgroup ℤ) ≤ (2 : Cardinal.{0}) ^ 𝔠 :=
+    (Cardinal.mk_le_aleph0 (α := (⊤ : AddSubgroup ℤ))).trans aleph0_lt_two_pow_c.le
+  obtain ⟨S, hh, hV⟩ := vicinity_without_hypotheses (⊤ : AddSubgroup ℤ) hcard (fun m hm => Or.inl (by
     refine (finite_singleton (0 : ℤ)).subset (fun x hx => ?_)
     have h1 : (m : ℤ) * x = 0 := by
       rw [← nsmul_eq_mul]

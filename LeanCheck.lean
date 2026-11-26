@@ -697,3 +697,5 @@ import LeanCheck.PVGTwoUnion
 import LeanCheck.PVGTwoUnionAxioms
 import LeanCheck.TwoPrimesWitnessLarge
 import LeanCheck.TwoPrimesAxioms16
+import LeanCheck.PVGTwoFU
+import LeanCheck.PVGTwoFUAxioms

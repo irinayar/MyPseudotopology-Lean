@@ -641,3 +641,14 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 - `union_core`, `exists_union_unservable`: if also the dilates for `a / 2^m` are totally bounded for arbitrarily large `m`, the topology is precompact; every group topology coarser than all `γ_(2^m δ)` is precompact.
 
 Not formalized: the statement about maximal sets.
+
+## A Fréchet–Urysohn pseudotopological vector group (`PVGTwoFU`, 26 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGTwoFUAxioms.lean`. Typechecked module by module with Lean 4.35.0; no full `lake build`.
+
+An ultrafilter converges to `x` if for one finite tuple `a` it contains, for every `N`, the points `x + u + sum a_i σ_i` with `|u| < 1/(N+1)` and `σ_i` zero or `±2^((n+1)^2)`, `n ≥ N`; a filter converges if all finer ultrafilters do.
+
+- `tconv_pure`, `tconv_mono`, `tconv_of_ultra`, `tconv_add`, `tconv_mul`: a pseudotopology with continuous addition and dilations.
+- `tconv_nhds`, `tconv_sT`, `tconv_unique`: coarser than the usual convergence, an unbounded convergent sequence, Hausdorff.
+- `tconv_frechet`, `tconv_not_pretopological`: Fréchet–Urysohn and not pretopological.
+- `xi_iff`: on ultrafilters, the lacunary convergence is this one together with the Bohr topology.

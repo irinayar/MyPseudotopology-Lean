@@ -7,6 +7,7 @@ import LeanCheck.PGThreePPoint
 import LeanCheck.PGThreeNull
 import LeanCheck.PGThreeGeneral
 import LeanCheck.PGThreeNonHaus
+import LeanCheck.PGThreeIdem
 
 /-! Axiom check for the modules of `PGthree`: every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -74,3 +75,8 @@ import LeanCheck.PGThreeNonHaus
 #print axioms PG.Null.nbhd_iff
 #print axioms PG.Null.exists_coarsest_iff
 #print axioms PG.Null.exists_no_coarsest
+#print axioms PG.Idem.nbhd_iff_of_no_idempotent
+#print axioms PG.Idem.trivial_of_no_idempotent
+#print axioms PG.Idem.independent_no_idempotent
+#print axioms PG.Idem.far_zero
+#print axioms PG.Idem.sparse_no_idempotent

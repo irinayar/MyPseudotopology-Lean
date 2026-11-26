@@ -100,3 +100,21 @@ Smaller step `u = q^(s^2)` (from the larger prime `q`), larger step `v = p^(t^2)
 **Assumed, not formalized:** the enclosure `C0 - 2XW/Q^2 <= C_cont <= C0` and the formulas for the area `A0` and `H(0)` of the cluster model (they enter as hypotheses and definitions), and the inequality `C_model <= Gamma_D` (geometry of numbers). The energy bound on the actual balls (the remaining hypothesis) is open and not formalized.
 
 Axiom report: `TwoPrimesAxioms10.lean` (only `propext`, `Classical.choice`, `Quot.sound`).
+
+## The energy at far-apart heights (module `TwoPrimesFormula`)
+
+Top steps `u`, `v` with `v >= 20 D u`, height `X = D v`, radius parameter `D >= 100`; `Y`, `Z` finite sets of integers with `D |y| < u`, `D |z| < v`, `0` in `Z`, `|Z| >= 5`. `A = {j u + y in [0, X]}`, `B = {k v + z in [0, X]}`. `H D` is the kernel `K_D(theta) = sum_{|m|<D} (D-|m|)^2 e(m theta)`, written as a double sum of cosines.
+
+| Declaration | Statement |
+|---|---|
+| `H_eq`, `H_succ_le` | `K_D = 2 sum_{j<D} F_j + F_D` (Fejer kernels), and `K_{D+1} <= (1 + 4/(D-2)) K_D`. |
+| `H_ge_near`, `weight_le_far` | the weight `K_D/K_D(0)` is at least `4/pi^2` within `1/(2D)` of an integer, and at most `3/(4 D^2 delta^2)` at distance `delta`. |
+| `energy_formula` | `(1 - 5/D)(4/3) kappa_D <= C <= (1 + 5/D)(4/3) kappa_D`. |
+| `energy_le_kappa` | `C <= 1.36 kappa`. |
+| `Setting.one_le_kappaD`, `Setting.kappaD_le_kappa` | `1 <= kappa_D <= kappa`. |
+| `energy_lower`, `energy_of_kappaD`, `kappaD_of_energy`, `near_sum_le` | `C >= (4/3)(1 - 5/D)`; `kappa_D <= 1.64` gives `C <= 2.3`; `C <= 2.3` gives `kappa_D <= 1.82`; the frequencies near the integers carry at most `(pi^2/4)(kappa_D - 1)`. |
+| `Setting.card_setB`, `setting_satisfiable` | `|B| = D |Z| + 1`; the hypotheses are satisfiable. |
+
+**Assumed, not formalized:** that the balls of radius `1/D` below the height are the sets `A` and `B` formed with the lower digit sets (the digit theorem of the first article), and that these digit sets satisfy the listed properties. A bound for `kappa_D` is open.
+
+Axiom report: `TwoPrimesAxioms11.lean` (only `propext`, `Classical.choice`, `Quot.sound`).

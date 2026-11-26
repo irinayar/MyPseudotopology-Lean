@@ -662,3 +662,5 @@ import LeanCheck.PGThreeIdem
 import LeanCheck.PVGTwoCountable
 import LeanCheck.PVGTwoDimension
 import LeanCheck.PVGTwoAxioms
+import LeanCheck.TwoPrimesFormula
+import LeanCheck.TwoPrimesAxioms11

@@ -219,7 +219,7 @@ modulo 2. `TwoPrimesBasis` checks by `decide +kernel` (no `native_decide`) the r
   `|k - t| < 2^10143`, `P_3(k) < 7 * 10^-18` and `P_2(k - t) < 7 * 10^-18`; the difference `k - t`
   depends only on `t` modulo `3^6400`.
 
-Not formalized: the energy bound at heights of this size, which uses a lattice-box estimate.
+The energy bound at heights of this size is in `TwoPrimesBoxCertificate` below.
 Axioms: `TwoPrimesAxioms18`.
 
 ## A short lattice basis gives witnesses (module `TwoPrimesShortBasis`)
@@ -247,3 +247,17 @@ The existence of such matrices for all large `D` is open. Axioms: `TwoPrimesAxio
 
 The hypotheses are open. The converse direction of the dual criterion uses the digit description of
 the balls and is not formalized. Axioms: `TwoPrimesAxioms19`.
+
+## The lattice-box estimate and the energy bound (modules `TwoPrimesBox`, `TwoPrimesBoxCertificate`)
+
+* `box_bounds`, `box_energy`: for independent uniform integer digits and **any nonsingular** matrix
+  whose rows lie in the congruence lattice modulo `Q` (the rows may span a proper sublattice),
+  `prod (N_j + 1 - r_j)^+ <= Q * n_c <= prod (N_j - 1 + r_j)` and
+  `sum_{0<b<Q} |E e(b g / Q)|^2 <= (U - 1)(1 - L)`.
+* `kappa_le`, `finite_energy`: for every `D` in `[9 * 10^14, 10^15]` the normalized collision energy
+  of the sets built from the digit sets of 3 (80 levels) and 2 (101 levels) at `X = D * 2^10201` is
+  less than `1.711`.
+* `window`: `3.4 ln^2 D < ln X < 6 ln^2 D`.
+
+That the two balls are these sets is the digit description of the first article and is not part of
+the module. Axioms: `TwoPrimesAxioms20`.

@@ -709,3 +709,6 @@ import LeanCheck.TwoPrimesShortBasis
 import LeanCheck.TwoPrimesAxioms18
 import LeanCheck.TwoPrimesClaims
 import LeanCheck.TwoPrimesAxioms19
+import LeanCheck.TwoPrimesBox
+import LeanCheck.TwoPrimesBoxCertificate
+import LeanCheck.TwoPrimesAxioms20

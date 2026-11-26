@@ -703,3 +703,7 @@ import LeanCheck.TwoPrimesDualSharp
 import LeanCheck.TwoPrimesAxioms17
 import LeanCheck.PVGTwoBounded
 import LeanCheck.PVGTwoBoundedAxioms
+import LeanCheck.TwoPrimesBasisData
+import LeanCheck.TwoPrimesBasis
+import LeanCheck.TwoPrimesShortBasis
+import LeanCheck.TwoPrimesAxioms18

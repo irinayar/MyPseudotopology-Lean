@@ -194,8 +194,8 @@ itself, which is open. Axioms: `TwoPrimesAxioms15`.
   base 3 and `witness - 1` small for the base 2 at the radius `1/D`, `D = 1.7 * 10^18`.
   Checked by the kernel (`decide +kernel`), no `native_decide`. Minimality is not claimed.
 
-Not formalized: the 124-dimensional matrix itself and the bounds for all targets which follow from
-its column widths (see `TwoPrimes_supplement/basis124`). Axioms: `TwoPrimesAxioms16`.
+The 124-dimensional matrix and the bounds for all targets are in `TwoPrimesBasis` below; see also
+`TwoPrimes_supplement/basis124`. Axioms: `TwoPrimesAxioms16`.
 
 ## The dual criterion with a loss linear in 1/c (module `TwoPrimesDualSharp`)
 
@@ -207,3 +207,25 @@ its column widths (see `TwoPrimes_supplement/basis124`). Axioms: `TwoPrimesAxiom
   `4 h H / D` with `|k| <= (4 h H / D) q^(Nq^2)`.
 
 The dual condition is a hypothesis. Axioms: `TwoPrimesAxioms17`.
+
+## The 124-dimensional certificate inside Lean (modules `TwoPrimesBasisData`, `TwoPrimesBasis`)
+
+`TwoPrimesBasisData` is the matrix of `TwoPrimes_supplement/basis124` as Lean data, with an inverse
+modulo 2. `TwoPrimesBasis` checks by `decide +kernel` (no `native_decide`) the row congruences modulo
+`3^6400`, the column sums, invertibility modulo 2 and the digit bounds at every level.
+
+* `det_ne_zero`: the matrix is nonsingular. (Its determinant is not computed.)
+* `explicit`, `explicit_witness`: for every `t` with `|t| <= 2^10300` there is `k` with
+  `|k - t| < 2^10143`, `P_3(k) < 7 * 10^-18` and `P_2(k - t) < 7 * 10^-18`; the difference `k - t`
+  depends only on `t` modulo `3^6400`.
+
+Not formalized: the energy bound at heights of this size, which uses a lattice-box estimate.
+Axioms: `TwoPrimesAxioms18`.
+
+## A short lattice basis gives witnesses (module `TwoPrimesShortBasis`)
+
+* `witness_of_short_basis`: a nonsingular integer matrix with rows in the congruence lattice modulo
+  `q^(s^2)` and column sums at most `rho (2 J_j + 1)` gives a witness at the radius `3 rho / D` for
+  every target of the stated size.
+
+The existence of such matrices for all large `D` is open. Axioms: `TwoPrimesAxioms18`.

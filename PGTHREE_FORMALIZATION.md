@@ -1,6 +1,6 @@
 # PGthree: Lean checks (25 and 26 November 2026)
 
-Modules: `LeanCheck/PGThreeSelective.lean`, `PGThreeSelectiveCH.lean`, `PGThreeExact.lean`, `PGThreeSparse.lean`, `PGThreeModification.lean`, `PGThreePPoint.lean`, `PGThreeNull.lean`, `PGThreeGeneral.lean`, `PGThreeNonHaus.lean`, `PGThreeIdem.lean`, `PGThreeNormal.lean`, `PGThreeHeight.lean`, `PGThreeWords.lean`, `PGThreeAnySel.lean`, `PGThreeBohr.lean`, and the axiom report `PGThreeAxioms.lean`. They build on modules of the first two articles (see `PG_FORMALIZATION.md`, `PGTWO_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGThreeAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGthree`, Pseudotopological Groups III, unpublished) was checked by the author and has not been reviewed independently.
+Modules: `LeanCheck/PGThreeSelective.lean`, `PGThreeSelectiveCH.lean`, `PGThreeExact.lean`, `PGThreeSparse.lean`, `PGThreeModification.lean`, `PGThreePPoint.lean`, `PGThreeNull.lean`, `PGThreeGeneral.lean`, `PGThreeNonHaus.lean`, `PGThreeIdem.lean`, `PGThreeNormal.lean`, `PGThreeHeight.lean`, `PGThreeWords.lean`, `PGThreeAnySel.lean`, `PGThreeBohr.lean`, `PGThreeOne.lean`, and the axiom report `PGThreeAxioms.lean`. They build on modules of the first two articles (see `PG_FORMALIZATION.md`, `PGTWO_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGThreeAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGthree`, Pseudotopological Groups III, unpublished) was checked by the author and has not been reviewed independently.
 
 Statement numbers below are those of Sections 3 to 9 of the article.
 
@@ -158,6 +158,18 @@ A letter is a pair `(i, φ)` with `φ : ℕ → G`, standing for the image of th
 | `tendsto_zero_of_torsionfree` | Theorem 9.9(c), for the filters of `𝔑`. |
 | `finite_gen_nullPts_fg`, `finite_gen_torsion`, `finite_gen_coarsest` | Corollary 9.10: the points converging to `0` form a finitely generated group with finite torsion, and without a nonprincipal null idempotent there is a coarsest neighbourhood filter of a group topology among the null filters. The bound `m` on the number of generators is not formalized. |
 | `translated_idempotents` | Proposition 9.11, for any family. |
+
+## `PGThreeOne` (Section 9: one ultrafilter without a coreflection, 26 November 2026)
+`Schur q`: every member of `q` contains `x`, `y` and `x + y`. `chain Q j n` is the ultrafilter sum `Q (j+n) + ... + Q j`, and `chainLim Q` the limit of `chain Q 0 n` along a free ultrafilter on `ℕ`. `A2 = ℕ →₀ ZMod 2`, `Dense' s`: positive upper density along the subgroups of the points supported below `n`. `FS` is the group of the sequences in `A2` with finitely many nonzero terms, a countable Boolean group.
+
+| Declaration | Statement |
+|---|---|
+| `schur_of_idempotent`, `le_three`, `le_diff`, `gen_sum_schur` | Theorem 9.12: `v + q` and `q + v` generate the same PG as the pair `v`, `q`. |
+| `Q_le_chainLim`, `countably_many` | Theorem 9.13. |
+| `finite_bogolyubov`, `bogolyubov` | Lemma 9.14. |
+| `exists_essential_idempotent` | An idempotent ultrafilter all of whose members have positive upper density. |
+| `u0_free`, `Nfil_null`, `nsum_disjoint_Iset`, `meets_Iset`, `no_coarsest`, `u0_hausdorff` | The steps of Theorem 9.15. |
+| `one_ultrafilter_no_coreflection` | Theorem 9.15: a nonprincipal ultrafilter on `FS` whose PG has unique limits and no coarsest symmetric halvable null filter containing `0` in its members. No set-theoretic hypothesis. |
 
 Not formalized: Remark 3.9 (earlier work of the literature), the second part of Remark 4.6 (the comparison with groups whose Zariski topology is cofinite), Propositions 8.5 and 8.6 (the relation with free abelian topological groups) with the reductions described in the remarks that follow them, the count of ultrafilters in Corollary 8.4, the two one-ultrafilter examples after Corollary 6.5, the description of the coreflection topology in Theorems 6.4(c) and 6.7(c), the examples of Remark 9.5, the remarks on block sums in Section 8 and on uncountable families after the questions, the passage from images under `y` of ultrafilters on `ℕ` to ultrafilters containing the set of terms in Theorem 9.2(b), the bound on the number of generators in Corollary 9.10, and the step from the filters of group topologies to coreflections, which uses a proposition of the second article.
 

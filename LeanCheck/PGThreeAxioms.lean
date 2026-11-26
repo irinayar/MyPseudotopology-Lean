@@ -13,6 +13,7 @@ import LeanCheck.PGThreeHeight
 import LeanCheck.PGThreeWords
 import LeanCheck.PGThreeAnySel
 import LeanCheck.PGThreeBohr
+import LeanCheck.PGThreeOne
 
 /-! Axiom check for the modules of `PGthree`: every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -192,3 +193,63 @@ import LeanCheck.PGThreeBohr
 #print axioms PG.Bohr.pure_mem_of_translated_idempotent
 #print axioms PG.Bohr.lam_translated_idempotent
 #print axioms PG.Bohr.translated_idempotents
+#print axioms PG.One.schur_of_idempotent
+#print axioms PG.One.le_three
+#print axioms PG.One.le_diff
+#print axioms PG.One.gen_sum_schur
+#print axioms PG.One.mem_genFam_of_le
+#print axioms PG.One.Tri_mono
+#print axioms PG.One.tri_mono
+#print axioms PG.One.Tri_mem
+#print axioms PG.One.exists_Tri
+#print axioms PG.One.tri_sumClosure
+#print axioms PG.One.chain_step
+#print axioms PG.One.chain_le_tri
+#print axioms PG.One.Q_le_chain
+#print axioms PG.One.mem_chainLim
+#print axioms PG.One.Q_le_chainLim
+#print axioms PG.One.countably_many
+#print axioms PG.One.zmod_two
+#print axioms PG.One.sgn_zero
+#print axioms PG.One.sgn_one
+#print axioms PG.One.sgn_add
+#print axioms PG.One.sgn_sq_le
+#print axioms PG.One.add_eq_zero_iff_two
+#print axioms PG.One.orth
+#print axioms PG.One.fhat_sq
+#print axioms PG.One.parseval
+#print axioms PG.One.rep_of_fourth_ne_zero
+#print axioms PG.One.finite_bogolyubov
+#print axioms PG.One.emb_apply
+#print axioms PG.One.emb_injective
+#print axioms PG.One.emb_res
+#print axioms PG.One.cnt_mono
+#print axioms PG.One.dense_mono
+#print axioms PG.One.dense_union
+#print axioms PG.One.dense_univ
+#print axioms PG.One.not_dense_zero
+#print axioms PG.One.cnt_translate
+#print axioms PG.One.dense_translate
+#print axioms PG.One.exists_essential_idempotent
+#print axioms PG.One.bogolyubov
+#print axioms PG.One.map_add_hom
+#print axioms PG.One.Qc_idempotent
+#print axioms PG.One.mem_of_finiteIndex
+#print axioms PG.One.above_mem
+#print axioms PG.One.Sset_mem
+#print axioms PG.One.A0_mem
+#print axioms PG.One.u0_free
+#print axioms PG.One.nsum_of_sumClosure
+#print axioms PG.One.Sset_order
+#print axioms PG.One.nsum_disjoint_Iset
+#print axioms PG.One.Nfil_nbhd
+#print axioms PG.One.Nfil_null
+#print axioms PG.One.sum_halve
+#print axioms PG.One.meets_Iset
+#print axioms PG.One.no_coarsest
+#print axioms PG.One.lam_chain
+#print axioms PG.One.u0_hausdorff
+#print axioms PG.One.neg_A2
+#print axioms PG.One.neg_FS
+#print axioms PG.One.comp_inc
+#print axioms PG.One.one_ultrafilter_no_coreflection

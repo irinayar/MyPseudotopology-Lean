@@ -675,3 +675,5 @@ import LeanCheck.PVGTwoNoWitness
 import LeanCheck.PVGTwoNoWitnessAxioms
 import LeanCheck.PVGTwoAverage
 import LeanCheck.PVGTwoAverageAxioms
+import LeanCheck.TwoPrimesMultiple
+import LeanCheck.TwoPrimesAxioms12

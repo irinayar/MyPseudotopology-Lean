@@ -118,3 +118,20 @@ Top steps `u`, `v` with `v >= 20 D u`, height `X = D v`, radius parameter `D >= 
 **Assumed, not formalized:** that the balls of radius `1/D` below the height are the sets `A` and `B` formed with the lower digit sets (the digit theorem of the first article), and that these digit sets satisfy the listed properties. A bound for `kappa_D` is open.
 
 Axiom report: `TwoPrimesAxioms11.lean` (only `propext`, `Classical.choice`, `Quot.sound`).
+
+## More top clusters (module `TwoPrimesMultiple`)
+
+Heights `X = M v` with `M >= 100` top clusters, `M` separate from the radius parameter. The finite-set statements need only `100 |y| < u`, `100 |z| < v`, `v >= 2000 u`, `0` in `Z`, `|Z| >= 5` (`Wide M u v Y Z`); a setting at radius `1/D` with `D >= 100` gives this (`setting_hundred`).
+
+| Declaration | Statement |
+|---|---|
+| `energy_formula_multiple` | `(1 - 5/M)(4/3) kappa_M <= C <= (1 + 5/M)(4/3) kappa_M`, where `C` is the normalized energy at `X = M v`. |
+| `energy_of_kappa_lt` | `kappa_M <= K` and `200 K <= M (69 - 40 K)` give `C <= 2.3`. |
+| `blk_transfer`, `block_transfer` | `H^2 P_j <= (j + H - 1)^2 P_H`, where `P_j = sum_xi G(xi) F_j(xi v/u)`. |
+| `kappa_transfer` | `kappa_M <= (1 + 3h/M + 4h^2/M^2) P_H/H^2` with `h = H - 1`, for all `M, H >= 1`. |
+| `small_conductor` | for `gcd(v, Q) = 1`, `sum_{0<b<Q} W_M(b v/Q) <= pi^2 Q^2/(4 M^2)`. |
+| `exists_far_multiple` | for `mu >= 0`, `(mu+1)^2 < 4 x0 ln p`, `(mu+2)^2 < 4 x0 ln q` and large `D`, one pair of levels serves every `1 <= M <= D^mu`, in the window `[x0, x2]`. |
+
+**Assumed, not formalized:** the identification of the balls with the digit sets, as in the previous section; the passage from `C <= 2.3` to witnesses; the use of one radius from each short range. A bound for `kappa_M` is open.
+
+Axiom report: `TwoPrimesAxioms12.lean` (only `propext`, `Classical.choice`, `Quot.sound`).

@@ -658,3 +658,15 @@ An ultrafilter converges to `x` if for one finite tuple `a` it contains, for eve
 No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only. Typechecked as a single module; no full `lake build`.
 
 - `bounded_sum`: for a positive sequence with `s (n+1) / s n` tending to infinity, a bounded signed sum with finitely many fixed coefficients has vanishing combined coefficients at all large indices.
+
+## Almost every added point (`PVGTwoAlmost`, 26 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGTwoAlmostAxioms.lean`. Typechecked module by module with Lean 4.35.0; no full `lake build`.
+
+Lebesgue measure on `[0,1)`, sparse sequence of `PVGTwoPoint`.
+
+- `bad_volume`: the numbers whose binary blocks never show a given pattern of level `K` have small measure.
+- `ae_all_patterns`: for almost every `c` and all large `K` every pattern of level `K` occurs.
+- `ae_cover`, `ae_point_unservable`: for almost every `c`, a group topology below the usual one that makes all `aS`, `a` in `A(delta)`, and `cS` totally bounded is precompact.
+
+Not formalized: the statement about a comeagre set.

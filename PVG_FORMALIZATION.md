@@ -609,3 +609,15 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 | `av_no_step1_witness` | Hence the Bohr trace fails somewhere on `Λ` for a locally quasi-convex topology, conditional on Step 1 of the proof of Proposition 16.1 of the PVG article (a hypothesis, not proved here). |
 
 Not formalized: Step 1, and the statement that every locally quasi-convex group topology coarser than `avTop` is coarser than the Bohr topology.
+
+## Which sets of coefficients can be served (`PVGTwoServed`, 26 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGTwoServedAxioms.lean`. Typechecked module by module with Lean 4.35.0; no full `lake build`.
+
+- `trace_of_tb`, `served_of_tb`: for a group topology between the Bohr and the usual one, total boundedness of the dilates of the lacunary set gives the Bohr trace on the corresponding members of the ideal.
+- `av_tb_iff`: for the averaged topology the totally bounded dilates are exactly those with coefficient in the group of Section 6.
+- `ae_volume_pos`: a projection estimate: for a probability measure with `μ(ball r) ≤ M r^s`, `1/2 < s < 1`, carried by a compact `K`, the set `K + lam K` has positive measure for almost every `lam` in `[1,2]`.
+- `ae_sum_eq_univ`: for almost every such `lam`, every real number is `a + lam b` with `a, b` in the group of the dimension theorem.
+- `exists_two_unservable`: two such groups that no non-precompact group topology below the usual one serves together.
+
+Not formalized: the reduction to topologies with a countable base, and the theorem of Comfort and Ross.

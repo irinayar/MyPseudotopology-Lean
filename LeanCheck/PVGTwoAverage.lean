@@ -14,7 +14,8 @@ that `t₁` is finer. `InL a` says `a ∈ Λ`, that is, `sup_n Φ_N(a s_n) → 0
 * `inL_of_digits` : a number whose binary digits have uniform density zero belongs to `Λ`;
 * `exists_not_inA` : for every sequence `δ_k ≠ 0`, `δ_k → 0`, some `a ∈ Λ` is not in `A(δ)`;
 * `av_no_step1_witness` : the consequence for locally quasi-convex topologies, **conditional on Step 1** of the proof of
-  Proposition 16.1 of PVG_v57 (hypotheses `hV`, `hc`), which is not proved in Lean.
+  Proposition 16.1 of PVG_v57: it assumes an equicontinuous set `E` (`hV`), a sequence `c k` in `E` (`hc`) with `c k ≠ c0` (`hne`)
+  and `c k → c0` (`hlim`). Neither the existence of `E` nor the choice of the sequence is proved in Lean.
 
 A Lean proof verifies its formal statement under its hypotheses; the correspondence with the article requires mathematical review.
 -/

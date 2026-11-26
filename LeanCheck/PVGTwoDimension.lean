@@ -14,7 +14,7 @@ forced zero positions in this indexing.
 * `dimension_witness` : Theorem 4.7, the properties of `γ_δ`;
 * `dilates_totally_bounded` : Corollary 4.8, total boundedness of `aS` (with `gam_not_precompact`: `γ_δ` is not precompact).
 
-Not formalized: that `A(δ)` is a null set (it rests on Proposition 16.1 of PVG_v57).
+Not formalized in this module: that `A(δ)` is a null set; see `PVG.Two.Agroup_null` in `PVGTwoNoWitness`.
 
 A Lean proof verifies its formal statement under its hypotheses; the correspondence with the article requires mathematical review.
 -/

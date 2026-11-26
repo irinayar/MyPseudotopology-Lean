@@ -1,6 +1,6 @@
 # PGthree: Lean checks (25 and 26 November 2026)
 
-Modules: `LeanCheck/PGThreeSelective.lean`, `PGThreeSelectiveCH.lean`, `PGThreeExact.lean`, `PGThreeSparse.lean`, `PGThreeModification.lean`, `PGThreePPoint.lean`, `PGThreeNull.lean`, `PGThreeGeneral.lean`, `PGThreeNonHaus.lean`, `PGThreeIdem.lean`, `PGThreeNormal.lean`, `PGThreeHeight.lean`, `PGThreeWords.lean`, `PGThreeAnySel.lean`, `PGThreeBohr.lean`, `PGThreeOne.lean`, and the axiom report `PGThreeAxioms.lean`. They build on modules of the first two articles (see `PG_FORMALIZATION.md`, `PGTWO_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGThreeAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGthree`, Pseudotopological Groups III, unpublished) was checked by the author and has not been reviewed independently.
+Modules: `LeanCheck/PGThreeSelective.lean`, `PGThreeSelectiveCH.lean`, `PGThreeExact.lean`, `PGThreeSparse.lean`, `PGThreeModification.lean`, `PGThreePPoint.lean`, `PGThreeNull.lean`, `PGThreeGeneral.lean`, `PGThreeNonHaus.lean`, `PGThreeIdem.lean`, `PGThreeNormal.lean`, `PGThreeHeight.lean`, `PGThreeWords.lean`, `PGThreeAnySel.lean`, `PGThreeBohr.lean`, `PGThreeOne.lean`, `PGThreeGroups.lean`, and the axiom report `PGThreeAxioms.lean`. They build on modules of the first two articles (see `PG_FORMALIZATION.md`, `PGTWO_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGThreeAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGthree`, Pseudotopological Groups III, unpublished) was checked by the author and has not been reviewed independently.
 
 Statement numbers below are those of Sections 3 to 9 of the article.
 
@@ -166,10 +166,22 @@ A letter is a pair `(i, φ)` with `φ : ℕ → G`, standing for the image of th
 |---|---|
 | `schur_of_idempotent`, `le_three`, `le_diff`, `gen_sum_schur` | Theorem 9.12: `v + q` and `q + v` generate the same PG as the pair `v`, `q`. |
 | `Q_le_chainLim`, `countably_many` | Theorem 9.13. |
-| `finite_bogolyubov`, `bogolyubov` | Lemma 9.14. |
+| `finite_bogolyubov`, `bogolyubov` | Bogolyubov's lemma in the countable Boolean group (the Boolean case of Lemma 9.14, with `D + D + D + D` containing a subgroup of finite index). |
 | `exists_essential_idempotent` | An idempotent ultrafilter all of whose members have positive upper density. |
 | `u0_free`, `Nfil_null`, `nsum_disjoint_Iset`, `meets_Iset`, `no_coarsest`, `u0_hausdorff` | The steps of Theorem 9.15. |
-| `one_ultrafilter_no_coreflection` | Theorem 9.15: a nonprincipal ultrafilter on `FS` whose PG has unique limits and no coarsest symmetric halvable null filter containing `0` in its members. No set-theoretic hypothesis. |
+| `one_ultrafilter_no_coreflection` | The Boolean case of Theorem 9.15: a nonprincipal ultrafilter on `FS` whose PG has unique limits and no coarsest symmetric halvable null filter containing `0` in its members. No set-theoretic hypothesis. |
+
+## `PGThreeGroups` (Section 9: every group with an infinite direct sum, 26 November 2026)
+`dsum E` is `E + E - E - E`. `tsupp x` is the set of the `t` with `x / 3^(t+1)` at distance at least `1/6` from the integers (stated with integers as `¬ Flat t x`). `Tor p` is the direct sum of the groups `ZMod (p k)`, `p k` prime. `FSum C` is the direct sum of the groups `C i`. `IndepSeq g`: a vanishing integer combination of the `g k` vanishes term by term.
+
+| Declaration | Statement |
+|---|---|
+| `finite_bogolyubov_gen`, `mem_bohr_of_approx`, `bohr_of_levels` | The two steps of Lemma 9.14: finite abelian groups, then limits of characters. |
+| `exists_idem_dense`, `bog_int`, `bog_tor` | An idempotent ultrafilter of positive upper density on `ℤ` and on `Tor p`, whose members `E` have `E + E - E - E` a Bohr neighbourhood of `0` (Lemma 9.14 for these members). |
+| `tsupp_nonempty`, `tsupp_window` | The properties of the supports on `ℤ`. |
+| `abstract_no_coreflection` | The construction on a direct sum of countably many groups with such ultrafilters and supports. |
+| `transfer`, `case_int`, `case_tor` | Passage to a group containing the direct sum; the two cases. |
+| `no_coreflection_of_independent` | Theorem 9.15: on every abelian group with an infinite sequence of independent nonzero elements there is a nonprincipal ultrafilter whose PG has unique limits and no coarsest symmetric halvable null filter containing `0` in its members. No set-theoretic hypothesis. |
 
 Not formalized: Remark 3.9 (earlier work of the literature), the second part of Remark 4.6 (the comparison with groups whose Zariski topology is cofinite), Propositions 8.5 and 8.6 (the relation with free abelian topological groups) with the reductions described in the remarks that follow them, the count of ultrafilters in Corollary 8.4, the two one-ultrafilter examples after Corollary 6.5, the description of the coreflection topology in Theorems 6.4(c) and 6.7(c), the examples of Remark 9.5, the remarks on block sums in Section 8 and on uncountable families after the questions, the passage from images under `y` of ultrafilters on `ℕ` to ultrafilters containing the set of terms in Theorem 9.2(b), the bound on the number of generators in Corollary 9.10, and the step from the filters of group topologies to coreflections, which uses a proposition of the second article.
 

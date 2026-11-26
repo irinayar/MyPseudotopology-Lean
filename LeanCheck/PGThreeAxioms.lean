@@ -14,6 +14,7 @@ import LeanCheck.PGThreeWords
 import LeanCheck.PGThreeAnySel
 import LeanCheck.PGThreeBohr
 import LeanCheck.PGThreeOne
+import LeanCheck.PGThreeGroups
 
 /-! Axiom check for the modules of `PGthree`: every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -253,3 +254,68 @@ import LeanCheck.PGThreeOne
 #print axioms PG.One.neg_FS
 #print axioms PG.One.comp_inc
 #print axioms PG.One.one_ultrafilter_no_coreflection
+#print axioms PG.Groups.normSq_fh
+#print axioms PG.Groups.parseval_gen
+#print axioms PG.Groups.rep_of_ne_zero
+#print axioms PG.Groups.finite_bogolyubov_gen
+#print axioms PG.Groups.mem_bohr_of_approx
+#print axioms PG.Groups.bohr_of_levels
+#print axioms PG.Groups.cntF_mono
+#print axioms PG.Groups.denseF_mono
+#print axioms PG.Groups.denseF_union
+#print axioms PG.Groups.denseF_univ
+#print axioms PG.Groups.not_denseF_zero
+#print axioms PG.Groups.exists_idem_dense
+#print axioms PG.Groups.idem_mem_finiteIndex
+#print axioms PG.Groups.three_pow_gt
+#print axioms PG.Groups.flat_of_large
+#print axioms PG.Groups.mem_tsupp
+#print axioms PG.Groups.flat_zero
+#print axioms PG.Groups.tsupp_zero
+#print axioms PG.Groups.tsupp_nonempty
+#print axioms PG.Groups.flat_window
+#print axioms PG.Groups.tsupp_window
+#print axioms PG.Groups.IntF_card
+#print axioms PG.Groups.int_translate
+#print axioms PG.Groups.bog_int
+#print axioms PG.Groups.emT_apply
+#print axioms PG.Groups.emT_injective
+#print axioms PG.Groups.emT_reT
+#print axioms PG.Groups.TorF_card
+#print axioms PG.Groups.bounded_support
+#print axioms PG.Groups.tor_translate
+#print axioms PG.Groups.bog_tor
+#print axioms PG.Groups.comp_inc_same
+#print axioms PG.Groups.comp_inc_ne
+#print axioms PG.Groups.compS_fin
+#print axioms PG.Groups.Qs_idem
+#print axioms PG.Groups.Ss_mem
+#print axioms PG.Groups.As_mem
+#print axioms PG.Groups.us_free
+#print axioms PG.Groups.ns_of_sumClosure
+#print axioms PG.Groups.Ss_order
+#print axioms PG.Groups.ns_disjoint_Is
+#print axioms PG.Groups.comap_iota_nbhd
+#print axioms PG.Groups.map_nbhd
+#print axioms PG.Groups.Ns_nbhd
+#print axioms PG.Groups.Ns_null
+#print axioms PG.Groups.q_le_bohr
+#print axioms PG.Groups.meets_Is
+#print axioms PG.Groups.lam_chains
+#print axioms PG.Groups.us_hausdorff
+#print axioms PG.Groups.abstract_no_coreflection
+#print axioms PG.Groups.map_neg_comm
+#print axioms PG.Groups.map_add_comm
+#print axioms PG.Groups.sumClosure_map
+#print axioms PG.Groups.sumClosure_map'
+#print axioms PG.Groups.ultra_of_range
+#print axioms PG.Groups.le_of_map_le
+#print axioms PG.Groups.genFam_map
+#print axioms PG.Groups.genFam_comap
+#print axioms PG.Groups.comap_nbhd
+#print axioms PG.Groups.transfer
+#print axioms PG.Groups.sumHom_eq
+#print axioms PG.Groups.indep_comp
+#print axioms PG.Groups.case_int
+#print axioms PG.Groups.case_tor
+#print axioms PG.Groups.no_coreflection_of_independent

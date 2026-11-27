@@ -699,6 +699,7 @@ import LeanCheck.PGFourContinuum
 import LeanCheck.PGFourQuotient
 import LeanCheck.PGFourCoreflection
 import LeanCheck.PGFourOrder
+import LeanCheck.PGFourAllGroups
 import LeanCheck.PGFourAxioms
 import LeanCheck.PVGTwoNoWitness
 import LeanCheck.PVGTwoNoWitnessAxioms

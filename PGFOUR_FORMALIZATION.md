@@ -147,3 +147,17 @@ In `PGFourClassify` and `PGFourFinite`, `sumL y l` takes the **last** entry of `
 | `classification_psum`, `classification_family_psum` | The two classification theorems for `psum`, in the order of the article. |
 
 Correspondence with the article should be read through these two declarations.
+
+## `PGFourAllGroups` (27 November 2026)
+
+`y` is a sparse sequence in an abelian group `G` (`Sparse`), `I y` the ideal of the sets contained in `F + A y m r`, and `top y univ` the group topology with the base of the sums of high terms with small digits.
+
+| Declaration | Statement |
+|---|---|
+| `exists_sparse` | Every infinite abelian group has a sparse sequence. |
+| `admissible`, `top_t2` | `I y` satisfies (I1)-(I5) and `top y univ` is Hausdorff. |
+| `no_coarsest` | There is no coarsest group topology all of whose convergent filters converge for the PG. |
+| `every_infinite_group` | The conclusion, for every infinite abelian group. |
+| `no_ideal_of_finite` | A finite abelian group carries no ideal with (I1)-(I5). |
+
+Not formalized: that a coreflection exists exactly when there is such a coarsest topology (quoted), the countable base of the topology and the countable generation of the ideal.

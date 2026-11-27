@@ -11,6 +11,7 @@ import LeanCheck.PGFourContinuum
 import LeanCheck.PGFourQuotient
 import LeanCheck.PGFourCoreflection
 import LeanCheck.PGFourOrder
+import LeanCheck.PGFourAllGroups
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -79,3 +80,9 @@ import LeanCheck.PGFourOrder
 #print axioms PG.Order.psum_eq
 #print axioms PG.Order.classification_psum
 #print axioms PG.Order.classification_family_psum
+#print axioms PG.NoCoreAll.exists_sparse
+#print axioms PG.NoCoreAll.admissible
+#print axioms PG.NoCoreAll.top_t2
+#print axioms PG.NoCoreAll.no_coarsest
+#print axioms PG.NoCoreAll.every_infinite_group
+#print axioms PG.NoCoreAll.no_ideal_of_finite

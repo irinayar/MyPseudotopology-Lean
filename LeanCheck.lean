@@ -780,3 +780,5 @@ import LeanCheck.PVGThreeBounded
 import LeanCheck.PVGThreeSquares
 import LeanCheck.PVGThreeGeneral
 import LeanCheck.PVGThreeCompletionAxioms
+import LeanCheck.PVGThreeCountable
+import LeanCheck.PVGThreeCountableAxioms

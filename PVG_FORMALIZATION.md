@@ -754,3 +754,11 @@ Written by ChatGPT; typechecked by Claude with small repairs in `PVGThreeBounded
 - `gam_eq_euclid_of_bounded`, `A_eq_singleton_zero_of_bounded`: bounded gaps.
 - `not_rig_of_square_shift`: `L_k + j` a square infinitely often and unbounded gaps give no rigidity.
 - `rig_of_finest_of_infinite_nonzero`: the description implies rigidity for every null sequence with infinitely many nonzero terms.
+
+## Countably many coefficients (`PVGThreeCountable`, 27 November 2026)
+
+No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only. No Kalton-Roberts assumption.
+
+- `tune`: a frequency near `1/(2x)` that is almost invisible on the dilates, for `x` far from the lacunary set.
+- `not_rig_of_countable`: countably many coefficients and far points in `U(eps)` give no rigidity.
+- `rig_iff_bounded_of_countable`: for dyadic sequences with countably many coefficients, rigidity means bounded gaps.

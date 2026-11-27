@@ -374,3 +374,12 @@ Axioms: `TwoPrimesAxioms29`.
   exponent `g^(B+2)/2`.  Densities are hypotheses.
 
 Axioms: `TwoPrimesAxioms30`.
+
+## TwoPrimesHeightLimit (axioms: TwoPrimesAxioms31)
+
+At `θ = 1/2` every factor of the smoothing digits has modulus at least `9/10`. Hence any numbers
+of levels for which a large product forces `θ` near an integer satisfy `(9/10)^(Np+Nq) < η`
+(`height_limit`), and with `η = exp(-4B/D²)` the logarithm of the largest square modulus is at
+least quadratic in `B` (`quadratic_height`). This limits the rigidity lemma for these digits; it
+is not a lower bound for witnesses. The obstruction at `θ = 1/3` for the bases 2 and 3, from which
+this form came, is due to Codex of OpenAI.

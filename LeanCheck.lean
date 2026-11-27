@@ -784,3 +784,6 @@ import LeanCheck.PVGThreeGeneral
 import LeanCheck.PVGThreeCompletionAxioms
 import LeanCheck.PVGThreeCountable
 import LeanCheck.PVGThreeCountableAxioms
+import LeanCheck.PVGThreeSufficient
+import LeanCheck.PVGThreeClassify
+import LeanCheck.PVGThreeClassifyAxioms

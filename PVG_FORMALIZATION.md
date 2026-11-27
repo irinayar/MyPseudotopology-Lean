@@ -762,3 +762,16 @@ No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only. No Kalton-R
 - `tune`: a frequency near `1/(2x)` that is almost invisible on the dilates, for `x` far from the lacunary set.
 - `not_rig_of_countable`: countably many coefficients and far points in `U(eps)` give no rigidity.
 - `rig_iff_bounded_of_countable`: for dyadic sequences with countably many coefficients, rigidity means bounded gaps.
+
+## Sufficient condition and classification (`PVGThreeSufficient`, `PVGThreeClassify`, 27 November 2026)
+
+No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only. No Kalton-Roberts assumption.
+`delta_k = 2^(-L_k)`, `L` strictly increasing with `2 <= L 0`.
+
+- `rig_of_avoids_seq`: if there are widths `w_k -> infinity` such that for every `p0` there are arbitrarily large `n`
+  with no `m^2 - n^2 + p` (`m > n`, `p < p0`) in any `[L_k - w_k, L_k)`, then `delta` is rigid.
+- `rig_of_far_windows`: the case of infinitely many large jumps.
+- `card_divisors_pow_le`: `d(n)^K <= C n` (not found in Mathlib).
+- `rig_iff_of_sparse`, `rig_iff_uncountable_of_sparse`: if `k^5 <= C L_k` and `L_k <= c^2 + c` with `c = sqrt L_k`,
+  then rigidity, `L_k - c^2 -> infinity`, and uncountability of `A(delta)` are equivalent.
+- `rig_four_pow`: `L_k = 4^k + k` gives a rigid sequence.

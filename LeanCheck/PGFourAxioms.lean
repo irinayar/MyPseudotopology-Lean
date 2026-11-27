@@ -4,6 +4,8 @@ import LeanCheck.PGFourSums
 import LeanCheck.PGFourClassify
 import LeanCheck.PGFourFinite
 import LeanCheck.PGFourVicinity
+import LeanCheck.PGFourPretop
+import LeanCheck.PGFourPretopEx
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -41,3 +43,16 @@ import LeanCheck.PGFourVicinity
 #print axioms PG.FiniteFam.lattice_mem
 #print axioms PG.FiniteFam.classification_family
 #print axioms PG.Vicinity.sparse_strict
+
+#print axioms PG.open_subset_of_pretopological
+#print axioms PG.sparse_of_not_pretopological
+#print axioms PG.pretopological_iff_open_base
+#print axioms PG.PretopEx.exists_countable_closed
+#print axioms PG.PretopEx.Countably.admissible
+#print axioms PG.PretopEx.Countably.vicinity_le_nhds
+#print axioms PG.PretopEx.Countably.not_pretopological
+#print axioms PG.PretopEx.Countably.tight
+#print axioms PG.PretopEx.Bounded.admissible
+#print axioms PG.PretopEx.Bounded.cofinal
+#print axioms PG.PretopEx.Bounded.vicinity_le_nhds
+#print axioms PG.PretopEx.Bounded.not_pretopological

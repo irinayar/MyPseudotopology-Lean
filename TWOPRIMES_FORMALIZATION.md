@@ -302,5 +302,5 @@ Sharpens `TwoPrimesEffective.witness_of_density`.
 * `witness_of_density_sharp`: the height `exp(4^(2B+1) A)` is replaced by `exp((9/4)^(B+1) A)`,
   with `B = floor(12 D^2 log(50K))`, for targets `|t| <= exp(2A)`.
 
-The two refinements (one budget of `B+1` windows for both bases, and window ratios close to
-`sqrt 2`) are due to ChatGPT. Axioms: `TwoPrimesAxioms24`.
+One budget of `B+1` windows for all bases is also used in `ThreePrimesDensityM13`; its use here,
+and window ratios close to `sqrt 2`, were proposed by ChatGPT. Axioms: `TwoPrimesAxioms24`.

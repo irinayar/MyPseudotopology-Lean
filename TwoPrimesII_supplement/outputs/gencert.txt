@@ -1,0 +1,1 @@
+h=124 bases: 66 of 2, 58 of 3; first (2, 36) last (3, 80)

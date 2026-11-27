@@ -1,0 +1,18 @@
+# x = 3.4
+D=1000 n=14 m=18 ln(v/u)/lnD=2.121 lnX/ln^2D=4.365 checks=True Ccont<=1.33311 sqrtTerm=1.61E-003 lamTerm=9.99E-004 Gamma<=1.33659
+D=1000001 n=26 m=33 ln(v/u)/lnD=1.676 lnX/ln^2D=3.797 checks=True Ccont<=1.33333 sqrtTerm=2.30E-005 lamTerm=4.42E-005 Gamma<=1.33342
+D=1000000007 n=38 m=48 ln(v/u)/lnD=1.311 lnX/ln^2D=3.616 checks=True Ccont<=1.33333 sqrtTerm=3.10E-006 lamTerm=2.21E-006 Gamma<=1.33334
+D=1e15 n=65 m=82 ln(v/u)/lnD=1.385 lnX/ln^2D=3.842 checks=True Ccont<=1.33333 sqrtTerm=1.01E-010 lamTerm=7.40E-011 Gamma<=1.33333
+D=1e30 n=123 m=155 ln(v/u)/lnD=1.258 lnX/ln^2D=3.460 checks=True Ccont<=1.33333 sqrtTerm=3.25E-019 lamTerm=1.44E-018 Gamma<=1.33333
+D=1e60 n=246 m=310 ln(v/u)/lnD=1.724 lnX/ln^2D=3.475 checks=True Ccont<=1.33333 sqrtTerm=4.66E-052 lamTerm=2.49E-052 Gamma<=1.33333
+D=1e100 n=408 m=514 ln(v/u)/lnD=1.871 lnX/ln^2D=3.445 checks=True Ccont<=1.33333 sqrtTerm=6.87E-094 lamTerm=3.91E-094 Gamma<=1.33333
+D=1e200 n=814 m=1025 ln(v/u)/lnD=1.452 lnX/ln^2D=3.429 checks=True Ccont<=1.33333 sqrtTerm=1.43E-145 lamTerm=1.33E-145 Gamma<=1.33333
+# x = 4.0
+D=1000 n=18 m=23 ln(v/u)/lnD=2.603 lnX/ln^2D=7.196 checks=True Ccont<=1.33311 sqrtTerm=3.05E-004 lamTerm=9.99E-004 Gamma<=1.33485
+D=1000001 n=30 m=38 ln(v/u)/lnD=1.809 lnX/ln^2D=5.050 checks=True Ccont<=1.33333 sqrtTerm=9.19E-006 lamTerm=6.27E-006 Gamma<=1.33335
+D=1000000007 n=41 m=52 ln(v/u)/lnD=2.176 lnX/ln^2D=4.249 checks=True Ccont<=1.33333 sqrtTerm=3.95E-010 lamTerm=1.00E-009 Gamma<=1.33333
+D=1e15 n=68 m=86 ln(v/u)/lnD=2.210 lnX/ln^2D=4.228 checks=True Ccont<=1.33333 sqrtTerm=6.56E-017 lamTerm=1.00E-015 Gamma<=1.33333
+D=1e30 n=134 m=169 ln(v/u)/lnD=1.882 lnX/ln^2D=4.115 checks=True Ccont<=1.33333 sqrtTerm=1.42E-028 lamTerm=9.53E-029 Gamma<=1.33333
+D=1e60 n=265 m=334 ln(v/u)/lnD=2.125 lnX/ln^2D=4.034 checks=True Ccont<=1.33333 sqrtTerm=4.50E-064 lamTerm=1.00E-060 Gamma<=1.33333
+D=1e100 n=443 m=558 ln(v/u)/lnD=1.819 lnX/ln^2D=4.060 checks=True Ccont<=1.33333 sqrtTerm=2.63E-091 lamTerm=1.86E-091 Gamma<=1.33333
+D=1e200 n=880 m=1108 ln(v/u)/lnD=1.267 lnX/ln^2D=4.007 checks=True Ccont<=1.33333 sqrtTerm=4.54E-127 lamTerm=5.46E-127 Gamma<=1.33333

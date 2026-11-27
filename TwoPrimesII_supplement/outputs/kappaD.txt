@@ -1,0 +1,16 @@
+p=2 q=11 D=7 s=2 t=5 v/(Du)=327.4 kappa=1.000001 kappaD=1.000000 (4/3)kappaD=1.33333 C_lower=0.97128 C_upper=1.79263
+p=2 q=13 D=10 s=2 t=5 v/(Du)=117.5 kappa=1.000242 kappaD=1.000010 (4/3)kappaD=1.33335 C_lower=1.09137 C_upper=1.61255
+p=2 q=13 D=11 s=2 t=5 v/(Du)=106.8 kappa=1.000386 kappaD=1.000014 (4/3)kappaD=1.33335 C_lower=1.11599 C_upper=1.57959
+p=2 q=13 D=14 s=2 t=5 v/(Du)=83.9 kappa=1.002958 kappaD=1.000054 (4/3)kappaD=1.33341 C_lower=1.16755 C_upper=1.51481
+p=2 q=13 D=17 s=2 t=5 v/(Du)=69.1 kappa=1.015753 kappaD=1.000190 (4/3)kappaD=1.33359 C_lower=1.19975 C_upper=1.47672
+p=3 q=13 D=11 s=2 t=4 v/(Du)=137.0 kappa=1.000043 kappaD=1.000001 (4/3)kappaD=1.33333 C_lower=1.11602 C_upper=1.57964
+p=3 q=13 D=14 s=2 t=4 v/(Du)=107.7 kappa=1.000087 kappaD=1.000003 (4/3)kappaD=1.33334 C_lower=1.16749 C_upper=1.51474
+p=3 q=13 D=15 s=2 t=4 v/(Du)=100.5 kappa=1.000477 kappaD=1.000018 (4/3)kappaD=1.33336 C_lower=1.17978 C_upper=1.50003
+p=5 q=13 D=8 s=2 t=3 v/(Du)=8.5 kappa=1.000078 kappaD=1.000006 (4/3)kappaD=1.33334 C_lower=1.02113 C_upper=1.71098
+p=5 q=13 D=11 s=2 t=3 v/(Du)=6.2 kappa=1.001293 kappaD=1.000037 (4/3)kappaD=1.33338 C_lower=1.11527 C_upper=1.57856
+p=2 q=3 D=8 s=3 t=5 v/(Du)=213.1 kappa=1.000131 kappaD=1.000008 (4/3)kappaD=1.33334 C_lower=1.02201 C_upper=1.71246
+p=2 q=3 D=20 s=3 t=5 v/(Du)=85.2 kappa=1.311674 kappaD=1.002310 (4/3)kappaD=1.33641 C_lower=1.22440 C_upper=1.45468
+p=2 q=3 D=80 s=4 t=7 v/(Du)=163470.6 kappa=1.094745 kappaD=1.001276 (4/3)kappaD=1.33504 C_lower=1.30921 C_upper=1.36111
+p=2 q=3 D=40 s=4 t=6 v/(Du)=39.9 kappa=2.792996 kappaD=1.025154 (4/3)kappaD=1.36687 C_lower=1.31287 C_upper=1.42213
+p=2 q=3 D=8 s=4 t=5 v/(Du)=0.1 kappa=2.952278 kappaD=1.101001 (4/3)kappaD=1.46800 C_lower=1.05301 C_upper=1.70880
+p=2 q=5 D=8 s=3 t=5 v/(Du)=2.1 kappa=1.007482 kappaD=1.000542 (4/3)kappaD=1.33406 C_lower=1.02168 C_upper=1.71172

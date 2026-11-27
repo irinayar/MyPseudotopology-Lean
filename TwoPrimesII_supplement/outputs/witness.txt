@@ -1,0 +1,24 @@
+D=1000000000000000  max (width/2)/N = 3.403844E-003
+target 1: rounds 346, all |d_j| <= width_j/2: True
+  P_3(k) = 5.659112E-019 (level 34)   P_2(k - t) = 5.833064E-019 (level 78)
+  log2|k| = 10070.875   decimal digits 3032
+  ln|k| / ln^2(1/P) = 3.9600
+target -1: rounds 346, all |d_j| <= width_j/2: True
+  P_3(k) = 5.659112E-019 (level 34)   P_2(k - t) = 5.833064E-019 (level 78)
+  log2|k| = 10070.875   decimal digits 3032
+  ln|k| / ln^2(1/P) = 3.9600
+target 12345: rounds 346, all |d_j| <= width_j/2: True
+  P_3(k) = 6.598332E-019 (level 37)   P_2(k - t) = 8.401549E-019 (level 58)
+  log2|k| = 10071.688   decimal digits 3032
+  ln|k| / ln^2(1/P) = 4.0300
+target large: rounds 346, all |d_j| <= width_j/2: True
+  P_3(k) = 5.898271E-019 (level 41)   P_2(k - t) = 5.215982E-019 (level 84)
+  log2|k| = 10071.184   decimal digits 3032
+  ln|k| / ln^2(1/P) = 3.9622
+uniform: digit-sum norm bounds  q: 6.807689E-018  p: 6.795626E-018
+uniform: log2 of the largest |z| = 10142.760, of the largest |y| = 10076.175
+uniform: log2 of 3^((s+1)^2) = 10398.939
+exact: both digit-sum norms below 7e-18 at every level up to 200: True
+exact: no selected digit above level 200: True
+exact: |z| < 2^10143: True   |y| < 2^10077: True
+exact: (2^10300 + |z|) * 10^18 < 7 * 3^6561, so levels above 80 are below 7e-18: True

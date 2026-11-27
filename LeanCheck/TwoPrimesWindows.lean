@@ -12,7 +12,8 @@ This sharpens `TwoPrimesEffective.witness_of_density`.
   with the same `B = ⌊12 D² log(50K)⌋`, the same witness radius and the same bound `|k| ≤ 8X`.
   The price is `2500 log` (base) `≤ A₀` and targets `|t| ≤ exp(2 A₀)`.
 
-Both refinements were suggested by ChatGPT.
+One budget for all bases is also used, with windows of ratio `m + 1`, in `ThreePrimesDensityM13`.
+Its use here and the narrower windows were proposed by ChatGPT.
 -/
 
 namespace TwoPrimesWindows

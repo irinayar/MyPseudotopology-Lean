@@ -1,0 +1,20 @@
+D=7 X=234881024 levels=(4,2) N2=1027972 N3=18336578 E=1004801862966670530 candidates=9034331 contributing=3188533
+C=1.328493 lambda=NN/(2X+1)=40125.610 1/lambda=0.0000 excess=C-1/lambda-4/3=-0.0049 binary_max=234881024 ternary_max=234873013
+D=10 X=335544320 levels=(5,2) N2=180251 N3=15472775 E=15423444650887933 candidates=627641 contributing=195473
+C=1.330667 lambda=NN/(2X+1)=4155.909 1/lambda=0.0002 excess=C-1/lambda-4/3=-0.0029 binary_max=335544320 ternary_max=335537476
+D=11 X=369098752 levels=(5,2) N2=117646 N3=15469430 E=5972230120073542 candidates=690354 contributing=112339
+C=1.331086 lambda=NN/(2X+1)=2465.352 1/lambda=0.0004 excess=C-1/lambda-4/3=-0.0027 binary_max=369098752 ternary_max=369096391
+D=14 X=469762048 levels=(5,2) N2=97091 N3=5148068 E=354187026770046 candidates=135291 contributing=14504
+C=1.331969 lambda=NN/(2X+1)=532.005 1/lambda=0.0019 excess=C-1/lambda-4/3=-0.0032 binary_max=469762048 ternary_max=469744795
+D=17 X=570425344 levels=(5,2) N2=46666 N3=5172878 E=68063014721062 candidates=28006 contributing=5308
+C=1.332522 lambda=NN/(2X+1)=211.594 1/lambda=0.0047 excess=C-1/lambda-4/3=-0.0055 binary_max=570425344 ternary_max=570421969
+D=11 X=473513931 levels=(4,2) N2=982576 N3=19845320 E=534426606255496074 candidates=1580295 contributing=952636
+C=1.331074 lambda=NN/(2X+1)=20590.244 1/lambda=0.0000 excess=C-1/lambda-4/3=-0.0023 binary_max=473513931 ternary_max=473513925
+D=14 X=602654094 levels=(4,2) N2=460111 N3=6604457 E=10204297169350353 candidates=278317 contributing=64862
+C=1.331931 lambda=NN/(2X+1)=2521.167 1/lambda=0.0004 excess=C-1/lambda-4/3=-0.0018 binary_max=602654094 ternary_max=602639128
+D=15 X=645700815 levels=(4,2) N2=432136 N3=6623998 E=8451897020455716 candidates=298164 contributing=57047
+C=1.332092 lambda=NN/(2X+1)=2216.559 1/lambda=0.0005 excess=C-1/lambda-4/3=-0.0017 binary_max=645700815 ternary_max=645680425
+D=8 X=15625000 levels=(3,2) N2=193689 N3=901403 E=1296534668770719 candidates=636571 contributing=141890
+C=1.329188 lambda=NN/(2X+1)=5586.939 1/lambda=0.0002 excess=C-1/lambda-4/3=-0.0043 binary_max=15625000 ternary_max=15625000
+D=11 X=21484375 levels=(3,2) N2=143958 N3=900743 E=520790525846570 candidates=103806 contributing=76782
+C=1.330891 lambda=NN/(2X+1)=3017.755 1/lambda=0.0003 excess=C-1/lambda-4/3=-0.0028 binary_max=21484375 ternary_max=21480460

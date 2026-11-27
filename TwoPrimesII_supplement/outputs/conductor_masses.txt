@@ -1,0 +1,4 @@
+qp q=3 D=8 s=4 |Y|=233569 layers=16 max relative difference=2.22E-016
+qp q=3 D=20 s=4 |Y|=16425 layers=16 max relative difference=2.22E-016
+qp q=5 D=8 s=3 |Y|=24211 layers=9 max relative difference=2.22E-016
+qp q=2 D=7 s=5 |Y|=146853 layers=25 max relative difference=2.22E-016

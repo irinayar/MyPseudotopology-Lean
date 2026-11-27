@@ -1,0 +1,13 @@
+p=2 q=101 D=7 s=1 t=4 M=7 admissible=True |A|=131729 |B|=6994 |B|=M|Z|+1:True E=1229110044346 C=1.328572 (4/3)kappaM=1.333666 C/(4/3 kappaM)-1=-3.82E-003 lower<=E:True E<=upper:True fftErr=1.4E-012
+p=2 q=101 D=7 s=1 t=4 M=20 admissible=True |A|=376348 |B|=19981 |B|=M|Z|+1:True E=28748482964416 C=1.332727 (4/3)kappaM=1.333372 C/(4/3 kappaM)-1=-4.83E-004 lower<=E:True E<=upper:True fftErr=4.5E-012
+p=2 q=101 D=7 s=1 t=4 M=40 admissible=True |A|=752681 |B|=39961 |B|=M|Z|+1:True E=230045858412975 C=1.333183 (4/3)kappaM=1.333343 C/(4/3 kappaM)-1=-1.20E-004 lower<=E:True E<=upper:True fftErr=1.1E-011
+p=2 q=101 D=7 s=1 t=4 M=70 admissible=True |A|=1317209 |B|=69931 |B|=M|Z|+1:True E=1232995089586607 C=1.333277 (4/3)kappaM=1.333336 C/(4/3 kappaM)-1=-4.43E-005 lower<=E:True E<=upper:True fftErr=2.2E-011
+p=3 q=101 D=7 s=1 t=3 M=7 admissible=True |A|=39571 |B|=3382 |B|=M|Z|+1:True E=86334250492 C=1.328320 (4/3)kappaM=1.333558 C/(4/3 kappaM)-1=-3.93E-003 lower<=E:True E<=upper:True fftErr=7.4E-013
+p=3 q=101 D=7 s=1 t=3 M=30 admissible=True |A|=169549 |B|=14491 |B|=M|Z|+1:True E=6813689799165 C=1.333024 (4/3)kappaM=1.333344 C/(4/3 kappaM)-1=-2.40E-004 lower<=E:True E<=upper:True fftErr=3.6E-012
+p=3 q=101 D=7 s=1 t=3 M=100 admissible=True |A|=565165 |B|=48301 |B|=M|Z|+1:True E=252385600351193 C=1.333286 (4/3)kappaM=1.333334 C/(4/3 kappaM)-1=-3.65E-005 lower<=E:True E<=upper:True fftErr=1.1E-011
+p=3 q=101 D=7 s=1 t=3 M=200 admissible=True |A|=1130319 |B|=96601 |B|=M|Z|+1:True E=2019050025010841 C=1.333316 (4/3)kappaM=1.333334 C/(4/3 kappaM)-1=-1.31E-005 lower<=E:True E<=upper:True fftErr=2.2E-011
+p=3 q=101 D=7 s=1 t=3 M=300 admissible=True |A|=1695471 |B|=144901 |B|=M|Z|+1:True E=6814229630047001 C=1.333324 (4/3)kappaM=1.333333 C/(4/3 kappaM)-1=-6.73E-006 lower<=E:True E<=upper:True fftErr=3.6E-011
+p=2 q=53 D=9 s=1 t=4 M=9 admissible=True |A|=122414 |B|=1828 |B|=M|Z|+1:True E=56503535320 C=1.331110 (4/3)kappaM=1.334088 C/(4/3 kappaM)-1=-2.23E-003 lower<=E:True E<=upper:True fftErr=3.0E-013
+p=2 q=53 D=9 s=1 t=4 M=20 admissible=False |A|=181957 |B|=4061 |B|=M|Z|+1:True E=323661631195 C=1.553917 (4/3)kappaM=1.333484 C/(4/3 kappaM)-1=1.65E-001 lower<=E:False E<=upper:True fftErr=6.0E-013
+p=2 q=53 D=9 s=1 t=4 M=40 admissible=False |A|=181957 |B|=8121 |B|=M|Z|+1:True E=740464395855 C=1.777942 (4/3)kappaM=1.333371 C/(4/3 kappaM)-1=3.33E-001 lower<=E:False E<=upper:True fftErr=7.4E-013
+p=2 q=53 D=9 s=1 t=4 M=70 admissible=False |A|=181957 |B|=11470 |B|=M|Z|+1:False E=1084561380184 C=2.284535 (4/3)kappaM=1.333346 C/(4/3 kappaM)-1=7.13E-001 lower<=E:False E<=upper:True fftErr=9.1E-013

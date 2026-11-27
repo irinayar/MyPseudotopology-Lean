@@ -687,6 +687,7 @@ import LeanCheck.PGThreeFamilies
 import LeanCheck.PGThreeFamiliesSel
 import LeanCheck.PGThreeAxioms
 import LeanCheck.PGFourGroupwise
+import LeanCheck.PGFourCover
 import LeanCheck.PGFourAxioms
 import LeanCheck.PVGTwoNoWitness
 import LeanCheck.PVGTwoNoWitnessAxioms

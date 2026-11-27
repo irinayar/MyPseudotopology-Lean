@@ -775,3 +775,8 @@ import LeanCheck.PVGThreeRigid
 import LeanCheck.PVGThreeDescribe
 import LeanCheck.PVGThreeDyadic
 import LeanCheck.PVGThreeAxioms
+import LeanCheck.PVGThreeServing
+import LeanCheck.PVGThreeBounded
+import LeanCheck.PVGThreeSquares
+import LeanCheck.PVGThreeGeneral
+import LeanCheck.PVGThreeCompletionAxioms

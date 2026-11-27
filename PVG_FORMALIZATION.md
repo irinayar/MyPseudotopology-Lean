@@ -745,3 +745,12 @@ No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only. The theorem
 - `finest_lqc` (namespace `PVG.Three`): under rigidity `gamma_delta` is the finest locally quasi-convex serving topology.
 - `rig_of_bounded`: bounded gaps give rigidity. `not_rig`: unbounded gaps and dyadic `A(delta)` give no rigidity.
 - `PVGThreeDescribe` is generated from `PVGTwoDescribe` with the sequence made a parameter.
+
+## Completion of the rigidity section (`PVGThreeServing`, `PVGThreeBounded`, `PVGThreeSquares`, `PVGThreeGeneral`, 27 November 2026)
+
+Written by ChatGPT; typechecked by Claude with small repairs in `PVGThreeBounded` and `PVGThreeSquares`. No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only (`PVGThreeCompletionAxioms`).
+
+- `allserving_of_rig`: the topologies that serve `A(delta)` for rigid dyadic `delta` (Kalton-Roberts assumed).
+- `gam_eq_euclid_of_bounded`, `A_eq_singleton_zero_of_bounded`: bounded gaps.
+- `not_rig_of_square_shift`: `L_k + j` a square infinitely often and unbounded gaps give no rigidity.
+- `rig_of_finest_of_infinite_nonzero`: the description implies rigidity for every null sequence with infinitely many nonzero terms.

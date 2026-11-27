@@ -746,3 +746,4 @@ import LeanCheck.PVGTwoKR
 import LeanCheck.PVGTwoKRAxioms
 import LeanCheck.PVGTwoCor
 import LeanCheck.PVGTwoCorAxioms
+import LeanCheck.TwoPrimesSUnit

@@ -383,3 +383,11 @@ of levels for which a large product forces `θ` near an integer satisfy `(9/10)^
 least quadratic in `B` (`quadratic_height`). This limits the rigidity lemma for these digits; it
 is not a lower bound for witnesses. The obstruction at `θ = 1/3` for the bases 2 and 3, from which
 this form came, is due to Codex of OpenAI.
+
+## TwoPrimesSUnit (axioms: TwoPrimesAxioms32)
+
+Takes Corollary 1 of J.-H. Evertse, *On sums of S-units and linear recurrences*, Compositio Math.
+53 (1984), as the explicit hypothesis `EvertseCor1` (not proved here). From it: rigidity at a height
+`(1+δ) Y` for an accuracy `exp(-Y)`, for all `Y` beyond a constant which is not computed
+(`rigidity_sunit`), and, assuming the densities, witnesses `|k| ≤ C (1+|t|)^(1+δ)` at a fixed radius
+(`witness_of_free_heights_sunit`). The constant `C` is not effective.

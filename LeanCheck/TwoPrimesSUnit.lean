@@ -339,7 +339,8 @@ theorem sparse_bound {p q : ℕ} (hpp : p.Prime) (hqp : q.Prime) (hne : p ≠ q)
       (∀ j ∈ t, b j ≠ 0) → val p s a e ≠ val q t b f →
       ∃ s' ⊆ s, ∃ t' ⊆ t, ∃ z : ℤ, val p s' a e = val p s a e - z ∧
         val q t' b f = val q t b f - z ∧
-        (s'.Nonempty → t'.Nonempty → ∃ i ∈ s', ∃ j ∈ t',
+        (s'.Nonempty → t'.Nonempty → ∃ i ∈ s', ∃ j ∈ t', (∀ i' ∈ s', e i' ≤ e i) ∧
+          (∀ j' ∈ t', f j' ≤ f j) ∧
           max ((p : ℝ) ^ e i) ((q : ℝ) ^ f j)
             ≤ C * (|(val p s a e : ℝ) - (val q t b f : ℝ)| * (p : ℝ) ^ e i * (q : ℝ) ^ f j
               * (∏ i ∈ s', |(a i : ℝ)|) * ∏ j ∈ t', |(b j : ℝ)|) ^ (1 + ε)) := by
@@ -408,7 +409,7 @@ theorem sparse_bound {p q : ℕ} (hpp : p.Prime) (hqp : q.Prime) (hne : p ≠ q)
   refine ⟨s', hs', t', ht', z, hA, hB, fun hsne htne => ?_⟩
   obtain ⟨i1, hi1, hi1m⟩ := exists_max_image s' e hsne
   obtain ⟨j1, hj1, hj1m⟩ := exists_max_image t' f htne
-  refine ⟨i1, hi1, j1, hj1, ?_⟩
+  refine ⟨i1, hi1, j1, hj1, hi1m, hj1m, ?_⟩
   set E := e i1 with hEdef
   set F := f j1 with hFdef
   set Q : ℚ := (p : ℚ) ^ E * (q : ℚ) ^ F with hQ
@@ -1171,7 +1172,7 @@ theorem rigidity_sunit {p q : ℕ} (hpp : p.Prime) (hqp : q.Prime) (hne : p ≠ 
     exact hfin q hq2 Lq hlq.2.1 z (by rw [← hvq]; exact this)
   -- both sides present: contradiction
   exfalso
-  obtain ⟨i1, hi1, j1, hj1, hmax⟩ := hbound hsne htne
+  obtain ⟨i1, hi1, j1, hj1, _, _, hmax⟩ := hbound hsne htne
   set E := expo n0 i1 with hEd
   set F := expo n0 j1 with hFd
   set Δ : ℝ := |(val p s (coef p θ n0) (expo n0) : ℝ)

@@ -18,6 +18,7 @@ import LeanCheck.PGThreeGroups
 import LeanCheck.PGThreeZFC
 import LeanCheck.PGThreeSequences
 import LeanCheck.PGThreeUncountable
+import LeanCheck.PGThreeFamilies
 
 /-! Axiom check for the modules of `PGthree`: every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -378,3 +379,11 @@ import LeanCheck.PGThreeUncountable
 #print axioms PG.Uncountable.not_isGroupTopology
 #print axioms PG.Uncountable.exists_unseparated_of_card
 #print axioms PG.Uncountable.unseparated_of_limit
+#print axioms PG.Families.exists_fun_of_not_pfilter
+#print axioms PG.Families.exists_open_not_nhds
+#print axioms PG.Families.dominating
+#print axioms PG.Families.exists_open_not_nhds_of_dominating
+#print axioms PG.Families.common_pfilter
+#print axioms PG.Families.exists_Uset_subset_common
+#print axioms PG.Families.no_injection_of_bounded
+#print axioms PG.Families.pfilter_modification

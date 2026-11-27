@@ -1,5 +1,6 @@
 import LeanCheck.PGFourGroupwise
 import LeanCheck.PGFourCover
+import LeanCheck.PGFourSums
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -17,3 +18,9 @@ import LeanCheck.PGFourCover
 #print axioms PG.Cover.no_injection_of_uncovered
 #print axioms PG.Cover.common_pfilter_of_uncovered
 #print axioms PG.Cover.pfilter_modification_of_uncovered
+#print axioms PG.Sums.terms_mem
+#print axioms PG.Sums.exists_terms
+#print axioms PG.Sums.vector_of_sum
+#print axioms PG.Sums.few_small
+#print axioms PG.Sums.exists_open_not_nhds
+#print axioms PG.Sums.not_isGroupTopology

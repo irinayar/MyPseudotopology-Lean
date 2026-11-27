@@ -763,3 +763,7 @@ import LeanCheck.TwoPrimesSUnit
 import LeanCheck.PVGTwoNoDescribe
 import LeanCheck.PVGTwoNoDescribeAxioms
 import LeanCheck.TwoPrimesLower
+import LeanCheck.PVGThreeRigid
+import LeanCheck.PVGThreeDescribe
+import LeanCheck.PVGThreeDyadic
+import LeanCheck.PVGThreeAxioms

@@ -7,6 +7,7 @@ import LeanCheck.PGFourVicinity
 import LeanCheck.PGFourPretop
 import LeanCheck.PGFourPretopEx
 import LeanCheck.PGFourVicSeq
+import LeanCheck.PGFourContinuum
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -59,3 +60,5 @@ import LeanCheck.PGFourVicSeq
 #print axioms PG.PretopEx.Bounded.not_pretopological
 #print axioms PG.VicSeq.exists_disjoint
 #print axioms PG.VicSeq.no_vicinity_sequence
+#print axioms PG.Continuum.vicinity_no_sequence
+#print axioms PG.Continuum.bound_sharp

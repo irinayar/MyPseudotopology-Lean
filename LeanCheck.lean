@@ -695,6 +695,7 @@ import LeanCheck.PGFourVicinity
 import LeanCheck.PGFourPretop
 import LeanCheck.PGFourPretopEx
 import LeanCheck.PGFourVicSeq
+import LeanCheck.PGFourContinuum
 import LeanCheck.PGFourAxioms
 import LeanCheck.PVGTwoNoWitness
 import LeanCheck.PVGTwoNoWitnessAxioms

@@ -686,3 +686,11 @@ No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.soun
 No `sorry`, same three axioms; report in `PVGTwoFUGenAxioms.lean`.
 
 - The statements of `PVGTwoFU` for every sequence of nonzero reals with `|s (n+1)| / |s n|` tending to infinity.
+
+## Three further statements (`PVGTwoRestTwo`, 26 November 2026)
+
+No `sorry`, same three axioms; report in `PVGTwoRestTwoAxioms.lean`.
+
+- `xi_finest`: a group topology in which every lacunary convergent filter converges is contained in the Bohr topology.
+- `trace_forces_usual`: the Bohr trace on one set `J_a` puts a group topology below the usual one.
+- `no_rigidity`: a sequence with `A(delta) = {0}` for which the rigidity conclusion fails.

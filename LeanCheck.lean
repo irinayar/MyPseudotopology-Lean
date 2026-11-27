@@ -724,3 +724,5 @@ import LeanCheck.PVGTwoComeagre
 import LeanCheck.PVGTwoRestAxioms
 import LeanCheck.PVGTwoFUGen
 import LeanCheck.PVGTwoFUGenAxioms
+import LeanCheck.PVGTwoRestTwo
+import LeanCheck.PVGTwoRestTwoAxioms

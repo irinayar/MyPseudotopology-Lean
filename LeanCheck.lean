@@ -726,3 +726,5 @@ import LeanCheck.PVGTwoFUGen
 import LeanCheck.PVGTwoFUGenAxioms
 import LeanCheck.PVGTwoRestTwo
 import LeanCheck.PVGTwoRestTwoAxioms
+import LeanCheck.PVGTwoFinest
+import LeanCheck.PVGTwoFinestAxioms

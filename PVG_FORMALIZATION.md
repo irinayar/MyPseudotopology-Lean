@@ -694,3 +694,12 @@ No `sorry`, same three axioms; report in `PVGTwoRestTwoAxioms.lean`.
 - `xi_finest`: a group topology in which every lacunary convergent filter converges is contained in the Bohr topology.
 - `trace_forces_usual`: the Bohr trace on one set `J_a` puts a group topology below the usual one.
 - `no_rigidity`: a sequence with `A(delta) = {0}` for which the rigidity conclusion fails.
+
+## The finest topology that serves a set (`PVGTwoFinest`, 26 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; report in `PVGTwoFinestAxioms.lean`.
+
+- `parity_serves`: for `delta_k -> 0`, `|delta_k| <= 1`, adding the condition that `sum_k round(delta_k x) theta_k -> 0` modulo 1 gives a group topology finer than `gamma_delta` in which all `aS`, `a` in `A(delta)`, are totally bounded.
+- `odd_points`, `parity_strict`: for the sparse sequence and `theta_k = 1/2` it is strictly finer.
+- `finest_lqc`: for the sparse sequence, `gamma_delta` is the finest locally quasi-convex topology with this property.
+- `exists_finest`, `finest_not_lqc`: every servable set has a finest serving topology; here it is not locally quasi-convex.

@@ -758,3 +758,4 @@ import LeanCheck.PVGTwoCorAxioms
 import LeanCheck.TwoPrimesSUnit
 import LeanCheck.PVGTwoNoDescribe
 import LeanCheck.PVGTwoNoDescribeAxioms
+import LeanCheck.TwoPrimesLower

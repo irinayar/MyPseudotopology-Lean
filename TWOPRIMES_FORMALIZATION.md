@@ -391,3 +391,11 @@ Takes Corollary 1 of J.-H. Evertse, *On sums of S-units and linear recurrences*,
 `(1+δ) Y` for an accuracy `exp(-Y)`, for all `Y` beyond a constant which is not computed
 (`rigidity_sunit`), and, assuming the densities, witnesses `|k| ≤ C (1+|t|)^(1+δ)` at a fixed radius
 (`witness_of_free_heights_sunit`). The constant `C` is not effective.
+
+## TwoPrimesLower (axioms: TwoPrimesAxioms33)
+
+Lower bounds for witnesses. `t = (q^(m²)-1)/2` forces `|k| > (1-2ε)t - ε` (`lower_one_level`).
+For primes `p < q` and small `ε` there are arbitrarily large `t` all of whose witnesses satisfy
+`|k| ≥ t / (32 R (1+R) ε)`, `R = exp(3 √(ln p ln q))` (`lower_linear`). If `m² ln q - n² ln p`
+comes arbitrarily close to zero, no bound `|k| ≤ C t` holds at a radius below `1/4`
+(`no_linear_bound`). No assumption beyond the stated ones.

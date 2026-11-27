@@ -686,6 +686,8 @@ import LeanCheck.PGThreeUncountable
 import LeanCheck.PGThreeFamilies
 import LeanCheck.PGThreeFamiliesSel
 import LeanCheck.PGThreeAxioms
+import LeanCheck.PGFourGroupwise
+import LeanCheck.PGFourAxioms
 import LeanCheck.PVGTwoNoWitness
 import LeanCheck.PVGTwoNoWitnessAxioms
 import LeanCheck.PVGTwoAverage

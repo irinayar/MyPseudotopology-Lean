@@ -737,3 +737,7 @@ import LeanCheck.TwoPrimesCritical
 import LeanCheck.TwoPrimesSharpFactor
 import LeanCheck.TwoPrimesSmoothing
 import LeanCheck.TwoPrimesGolden
+import LeanCheck.PVGTwoStab
+import LeanCheck.PVGTwoDescribe
+import LeanCheck.PVGTwoMany
+import LeanCheck.PVGTwoDescribeAxioms

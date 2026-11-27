@@ -1,0 +1,10 @@
+import LeanCheck.TwoPrimesSharpFactor
+
+#print axioms TwoPrimesSharpFactor.digit_near_sharp
+#print axioms TwoPrimesSharpFactor.abs_digit_le_sharp
+#print axioms TwoPrimesSharpFactor.rigidity_sharp
+#print axioms TwoPrimesSharpFactor.witness_of_density_sharpfactor
+#print axioms TwoPrimesSharpFactor.witness_of_critical_density_sharp
+#print axioms TwoPrimesSharpFactor.witness_of_free_heights_sharp
+#check @TwoPrimesSharpFactor.witness_of_density_sharpfactor
+#check @TwoPrimesSharpFactor.rigidity_sharp

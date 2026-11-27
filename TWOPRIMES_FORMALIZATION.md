@@ -336,3 +336,15 @@ The windows, the constant 17 and the bounds are due to ChatGPT. Axioms: `TwoPrim
   `a = 12 D^2 log 2`, then the target has a witness.  The density is a hypothesis.
 
 The criterion is due to ChatGPT. Axioms: `TwoPrimesAxioms27`.
+
+## A sharper digit factor (module `TwoPrimesSharpFactor`)
+
+* `digit_near_sharp`: for `0 <= y <= 1/(2J+1)` the factor is at most `1 - ((2J+1)y)^2`.
+* `abs_digit_le_sharp`: `||x|| >= s/J`, `s^2 <= 1/8`, gives `|factor| <= exp(-4s^2)`.
+* `run_sharp`: the visibility threshold can be `1/(sqrt 8 D J)` once `J >= 4`.
+* `rigidity_sharp`: `floor(2 D^2 log(1/eta))` visible levels.
+* `witness_of_density_sharpfactor`, `witness_of_critical_density_sharp`,
+  `witness_of_free_heights_sharp`: the density theorem and its consequences with
+  `B = floor(D^2 log(17K))` (needs `log(4D)^2 <= 4 log p x0^2`).  Densities are hypotheses.
+
+Axioms: `TwoPrimesAxioms28`.

@@ -1,0 +1,3 @@
+import LeanCheck.TwoPrimesCritical
+
+#print axioms TwoPrimesCritical.witness_of_critical_density

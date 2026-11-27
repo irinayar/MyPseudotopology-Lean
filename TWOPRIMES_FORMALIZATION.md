@@ -328,3 +328,11 @@ The bounded gap and the exponent are due to ChatGPT. Axioms: `TwoPrimesAxioms25`
   density is a hypothesis.
 
 The windows, the constant 17 and the bounds are due to ChatGPT. Axioms: `TwoPrimesAxioms26`.
+
+## The critical logarithmic density (module `TwoPrimesCritical`)
+
+* `witness_of_critical_density`: fixed radius and target; if arbitrarily large heights carry sets
+  with `|V| >= X/K` where `K` is as small as wanted compared with `(log X)^(1/a)`,
+  `a = 12 D^2 log 2`, then the target has a witness.  The density is a hypothesis.
+
+The criterion is due to ChatGPT. Axioms: `TwoPrimesAxioms27`.

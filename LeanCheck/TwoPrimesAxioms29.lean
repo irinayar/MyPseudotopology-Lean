@@ -1,0 +1,10 @@
+import LeanCheck.TwoPrimesSmoothing
+
+#print axioms TwoPrimesSmoothing.abs_phi_le
+#print axioms TwoPrimesSmoothing.cos_le_mean
+#print axioms TwoPrimesSmoothing.rigidity_smooth
+#print axioms TwoPrimesSmoothing.witness_of_density_smooth
+#print axioms TwoPrimesSmoothing.witness_of_critical_density_smooth
+#print axioms TwoPrimesSmoothing.witness_of_free_heights_smooth
+#check @TwoPrimesSmoothing.witness_of_density_smooth
+#check @TwoPrimesSmoothing.abs_phi_le

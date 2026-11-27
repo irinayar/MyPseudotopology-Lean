@@ -348,3 +348,17 @@ The criterion is due to ChatGPT. Axioms: `TwoPrimesAxioms27`.
   `B = floor(D^2 log(17K))` (needs `log(4D)^2 <= 4 log p x0^2`).  Densities are hypotheses.
 
 Axioms: `TwoPrimesAxioms28`.
+
+## Smoothing digits concentrated at the ends (module `TwoPrimesSmoothing`)
+
+Smoothing digit: `+-J` with probability `9/20` each, uniform on `[-J,J]` with probability `1/10`.
+
+* `abs_phi_le`: `||x|| >= (12/25D)/J`, `D >= 12`, gives `|factor| <= exp(-4/D^2)`.
+* `cos_le_mean`: no digit supported on `[-J,J]` has a smaller factor than `cos(2 pi s)` at the
+  distance `s/J`.
+* `rigidity_smooth`: `floor(D^2 log(1/eta)/4)` visible levels.
+* `witness_of_density_smooth`, `witness_of_critical_density_smooth`,
+  `witness_of_free_heights_smooth`: the consequences with `B = floor(D^2 log(17K)/8)`.
+  Densities are hypotheses.
+
+Axioms: `TwoPrimesAxioms29`.

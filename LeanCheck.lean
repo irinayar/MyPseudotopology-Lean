@@ -691,6 +691,7 @@ import LeanCheck.PGFourCover
 import LeanCheck.PGFourSums
 import LeanCheck.PGFourClassify
 import LeanCheck.PGFourFinite
+import LeanCheck.PGFourVicinity
 import LeanCheck.PGFourAxioms
 import LeanCheck.PVGTwoNoWitness
 import LeanCheck.PVGTwoNoWitnessAxioms

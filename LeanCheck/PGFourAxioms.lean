@@ -3,6 +3,7 @@ import LeanCheck.PGFourCover
 import LeanCheck.PGFourSums
 import LeanCheck.PGFourClassify
 import LeanCheck.PGFourFinite
+import LeanCheck.PGFourVicinity
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -39,3 +40,4 @@ import LeanCheck.PGFourFinite
 #print axioms PG.FiniteFam.not_group_of_sep_family
 #print axioms PG.FiniteFam.lattice_mem
 #print axioms PG.FiniteFam.classification_family
+#print axioms PG.Vicinity.sparse_strict

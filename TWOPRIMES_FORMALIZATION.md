@@ -315,3 +315,16 @@ and window ratios close to `sqrt 2`, were proposed by ChatGPT. Axioms: `TwoPrime
   a hypothesis.
 
 The bounded gap and the exponent are due to ChatGPT. Axioms: `TwoPrimesAxioms25`.
+
+## Windows with an additive allowance for rounding (module `TwoPrimesAdaptive`)
+
+* `rigidity_adaptive`: windows `x_{j+1} = sqrt 2 x_j + 4c`, `c >= sqrt(log q)`; if the product of
+  the digit products is at least `eta`, then `theta` is within `exp(-2 x0^2)/2` of an integer.
+* `exists_four'`: the positivity criterion with the phase threshold as a parameter.
+* `witness_of_density_adaptive`: height `64 exp(x_{B+1}^2)`, `B = floor(12 D^2 log(17K))`, targets
+  `|t| <= exp(2 x0^2)/32`, witness `|k| <= 8X`.
+* `xs_sq_le`: `x_j^2 <= 2^j (x0 + 4c/(sqrt 2 - 1))^2`.
+* `witness_of_free_heights_adaptive`: `|k| <= C0 (1+|t|)^(2^B) exp(C1 sqrt(log(1+|t|)))`; the
+  density is a hypothesis.
+
+The windows, the constant 17 and the bounds are due to ChatGPT. Axioms: `TwoPrimesAxioms26`.

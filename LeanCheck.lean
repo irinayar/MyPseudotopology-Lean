@@ -732,3 +732,4 @@ import LeanCheck.TwoPrimesKernel
 import LeanCheck.TwoPrimesAxioms23
 import LeanCheck.TwoPrimesWindows
 import LeanCheck.TwoPrimesFreeHeight
+import LeanCheck.TwoPrimesAdaptive

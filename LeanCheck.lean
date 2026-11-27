@@ -677,6 +677,15 @@ import LeanCheck.PGThreeNormal
 import LeanCheck.PGThreeHeight
 import LeanCheck.PGThreeWords
 import LeanCheck.PGThreeAnySel
+import LeanCheck.PGThreeBohr
+import LeanCheck.PGThreeOne
+import LeanCheck.PGThreeGroups
+import LeanCheck.PGThreeZFC
+import LeanCheck.PGThreeSequences
+import LeanCheck.PGThreeUncountable
+import LeanCheck.PGThreeFamilies
+import LeanCheck.PGThreeFamiliesSel
+import LeanCheck.PGThreeAxioms
 import LeanCheck.PVGTwoNoWitness
 import LeanCheck.PVGTwoNoWitnessAxioms
 import LeanCheck.PVGTwoAverage

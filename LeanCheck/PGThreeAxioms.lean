@@ -19,6 +19,7 @@ import LeanCheck.PGThreeZFC
 import LeanCheck.PGThreeSequences
 import LeanCheck.PGThreeUncountable
 import LeanCheck.PGThreeFamilies
+import LeanCheck.PGThreeFamiliesSel
 
 /-! Axiom check for the modules of `PGthree`: every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -387,3 +388,8 @@ import LeanCheck.PGThreeFamilies
 #print axioms PG.Families.exists_Uset_subset_common
 #print axioms PG.Families.no_injection_of_bounded
 #print axioms PG.Families.pfilter_modification
+#print axioms PG.FamiliesSel.not_iso_of_map
+#print axioms PG.FamiliesSel.exists_selective_family
+#print axioms PG.FamiliesSel.dominating_of_base
+#print axioms PG.FamiliesSel.exists_selective_family_of_base
+#print axioms PG.FamiliesSel.exists_selective_family_of_card

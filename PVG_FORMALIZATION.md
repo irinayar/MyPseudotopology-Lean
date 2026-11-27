@@ -719,3 +719,12 @@ No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only.
 
 - `kaltonRoberts_of_classical`: the assumption `Stab.KaltonRoberts` follows from Theorem 4.1 of Kalton and Roberts as stated, for set functions vanishing on the empty set. That theorem itself is not formalized.
 - `finest_described_classical`: the description of the finest serving topology under the classical statement.
+
+## Correction and completion for the parity topologies (`PVGTwoDescribe`, `PVGTwoCor`, 27 November 2026)
+
+In `PVGTwoDescribe` as first published (ffb6427, 1f306c2), `parTop theta` was an unspecified choice among the topologies given by `parity_serves`. The checked statement `finest_described` therefore did not say that the parity topologies `gamma_(delta,theta)` generate the finest serving topology. `parTop` is now defined explicitly, and the same proofs check. No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only.
+
+- `parTop_spec`, `parTop_hasBasis`: properties and base of `gamma_(delta,theta)` for the sparse sequence.
+- `finest_described`, `finest_described_classical`: now about these topologies.
+- `gamAll_hasBasis`: the base of the finest serving topology.
+- `allserving`: the topologies that serve `A(delta)`.

@@ -8,6 +8,7 @@ import LeanCheck.PGFourPretop
 import LeanCheck.PGFourPretopEx
 import LeanCheck.PGFourVicSeq
 import LeanCheck.PGFourContinuum
+import LeanCheck.PGFourQuotient
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -62,3 +63,9 @@ import LeanCheck.PGFourContinuum
 #print axioms PG.VicSeq.no_vicinity_sequence
 #print axioms PG.Continuum.vicinity_no_sequence
 #print axioms PG.Continuum.bound_sharp
+#print axioms PG.Quot.quot_subset
+#print axioms PG.Quot.quotient_eq_iff
+#print axioms PG.Quot.quotient_eq_of_compact_add
+#print axioms PG.QuotEx.admissible
+#print axioms PG.QuotEx.equal
+#print axioms PG.QuotEx.no_single

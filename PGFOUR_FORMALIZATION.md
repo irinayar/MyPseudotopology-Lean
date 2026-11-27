@@ -112,3 +112,14 @@ Not formalized: the existence of such a set `B0` (an `I₀` set, quoted), that t
 | `bound_sharp` | On `ℕ →₀ ZMod 2` some set of at most continuum many ultrafilters has `ξ(S)` Hausdorff, while no infinite set of unit vectors has its complement in every filter converging to `0`. |
 
 Not formalized: the existence of such a set `B0` inside every infinite set (an `I₀` set, quoted), and the corollary on sequences and countable bases. This module supersedes the use of `PGFourVicSeq`, which treats countably many filters.
+
+## `PGFourQuotient` (27 November 2026)
+
+`ξ` is the PG of a topology and an ideal, `N` a subgroup, `q : G → G ⧸ N`. `quotC N (nullXi I)` is the family of filters converging to `0` in the final quotient, `nullTarget N I` the family of filters on `G ⧸ N` that contain the neighbourhoods of `0` and the image of a member of `I`.
+
+| Declaration | Statement |
+|---|---|
+| `quot_subset` | The first family is contained in the second. |
+| `quotient_eq_iff` | They are equal iff for every `A ∈ I` and every choice of neighbourhoods `U B` of `0`, one for each `B ∈ I`, finitely many of the sets `q '' (U B ∩ B)` cover the trace of a neighbourhood of `0` on `q '' A`. |
+| `quotient_eq_of_compact_add` | They are equal if `N ⊆ K + M` with `K ⊆ N` compact and `M ⊆ N` a member of `I`. |
+| `QuotEx.equal`, `QuotEx.no_single` | A case with `N` compact, so that the families are equal, in which no single member of `I` serves for all neighbourhoods. |

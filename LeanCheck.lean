@@ -742,3 +742,5 @@ import LeanCheck.PVGTwoDescribe
 import LeanCheck.PVGTwoMany
 import LeanCheck.PVGTwoDescribeAxioms
 import LeanCheck.TwoPrimesHeightLimit
+import LeanCheck.PVGTwoKR
+import LeanCheck.PVGTwoKRAxioms

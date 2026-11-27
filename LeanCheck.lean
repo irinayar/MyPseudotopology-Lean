@@ -728,3 +728,5 @@ import LeanCheck.PVGTwoRestTwo
 import LeanCheck.PVGTwoRestTwoAxioms
 import LeanCheck.PVGTwoFinest
 import LeanCheck.PVGTwoFinestAxioms
+import LeanCheck.TwoPrimesKernel
+import LeanCheck.TwoPrimesAxioms23

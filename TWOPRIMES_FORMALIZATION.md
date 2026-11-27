@@ -283,3 +283,11 @@ Axioms: `TwoPrimesAxioms21`.
 
 Not formalized: the two asymptotic statements and the two examples of that part of the article.
 Axioms: `TwoPrimesAxioms22`.
+
+## The normalized kernel decreases (module `TwoPrimesKernel`)
+
+* `weight_antitone`: `W_N(theta) <= W_M(theta)` for `1 <= M <= N` and every real `theta`, where
+  `W_M = K_M / K_M(0)`.
+* `kappa_antitone`: hence `kappa_N <= kappa_M` for the same lower sets.
+
+The theorem and its proof are due to ChatGPT. Axioms: `TwoPrimesAxioms23`.

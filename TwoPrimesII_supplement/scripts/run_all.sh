@@ -2,7 +2,7 @@
 # Reruns every computation of this folder and writes the results to outputs/.
 # Run from anywhere:  bash scripts/run_all.sh
 # Needs the .NET SDK 9 (the programs target .NET 8 and 9) and Perl.
-# Memory below 1 GB; a few minutes in all on a desktop machine.
+# About eleven minutes on a desktop machine; the largest arrays take about 0.7 GB.
 set -e
 cd "$(dirname "$0")/.."
 FIRST=../TwoPrimes_supplement

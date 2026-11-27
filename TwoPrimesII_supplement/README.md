@@ -29,8 +29,8 @@ the program `programs/crtpq` (exact collision energy) and the certificate matrix
 | `programs/morem` `energy` | the two balls listed from the definition, energy by a Fourier transform | table of heights with more top clusters; the example without the cap | floating transform, results rounded to integers |
 | `programs/morem` `kappa` | block averages and `kappa_M` on formal digit products | the paragraph on longer blocks | floating |
 | `programs/morem` `qp` | conductor masses of one digit set against direct counting | check of the closed formula | floating |
-| `programs/morem` `cert` | recomputation of the three low-conductor certificates | table of certificates | exact |
-| `programs/witness17` | explicit witnesses from the 124-dimensional matrix, with exact checks of the uniform bounds | the section on the short basis | witnesses and the lines marked `exact` are exact |
+| `programs/morem` `cert` | recomputation of the three low-conductor certificates | table of certificates | integer counts and exact fractions; their decimal forms and the printed exponent are floating |
+| `programs/witness17` | explicit witnesses from the 124-dimensional matrix, with checks of the uniform bounds | the section on the short basis | floating inverse and rounding search; integer construction of the witnesses, residue and box checks, and the lines marked `exact`; the printed norms, logarithms and ratios are floating |
 | `programs/gencert` | the data file of the Lean module `TwoPrimesBasisData` from the matrix | formal verification | exact |
 
 The program which found the 124-dimensional matrix is not part of this supplement. Nothing here
@@ -44,8 +44,14 @@ Needs the .NET SDK 9 (the programs target .NET 8 and 9) and Perl. From this fold
 bash scripts/run_all.sh
 ```
 
-This rewrites `outputs/`. It needs less than 1 GB of memory and a few minutes on a desktop
-machine. Single runs, for example:
+This rewrites `outputs/`. A run took about eleven minutes on a desktop machine. The largest
+arrays take about 0.7 GB; the peak memory was not measured.
+
+`witness17` prints the results of its checks as `True` or `False` and does not stop on a `False`,
+so read those lines in `outputs/witness.txt`; a normal exit alone certifies nothing. `crtpq` counts
+in integers and prints the normalized energy as a decimal.
+
+Single runs, for example:
 
 ```sh
 dotnet run -c Release --project programs/kappaD -- 2 3 40 4 6        # p q D s t

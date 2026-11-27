@@ -787,3 +787,5 @@ import LeanCheck.PVGThreeCountableAxioms
 import LeanCheck.PVGThreeSufficient
 import LeanCheck.PVGThreeClassify
 import LeanCheck.PVGThreeClassifyAxioms
+import LeanCheck.PVGThreeUpperGap
+import LeanCheck.PVGThreeUpperGapAxioms

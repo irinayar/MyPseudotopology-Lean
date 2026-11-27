@@ -775,3 +775,12 @@ No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only. No Kalton-R
 - `rig_iff_of_sparse`, `rig_iff_uncountable_of_sparse`: if `k^5 <= C L_k` and `L_k <= c^2 + c` with `c = sqrt L_k`,
   then rigidity, `L_k - c^2 -> infinity`, and uncountability of `A(delta)` are equivalent.
 - `rig_four_pow`: `L_k = 4^k + k` gives a rigid sequence.
+
+## Classification by the next square (`PVGThreeUpperGap`, 27 November 2026)
+
+No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only. Theorem and proof due to ChatGPT.
+`c = sqrt L_k`, `D_k = (c+1)^2 - L_k`, hypothesis `k^(2s+1) <= C D_k^s` with `s >= 1`, and `2 <= L 0`.
+
+- `card_sqdiff_large`: for `M > U^4` at most one `n <= U` has `n^2 + M` a square larger than `n^2`.
+- `rig_iff_of_upper_gap`, `rig_iff_uncountable_of_upper_gap`: rigidity, `L_k - c^2 -> infinity` and
+  uncountability of `A(delta)` are equivalent. This strengthens `rig_iff_of_sparse`.

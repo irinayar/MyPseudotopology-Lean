@@ -2,6 +2,7 @@ import LeanCheck.PGFourGroupwise
 import LeanCheck.PGFourCover
 import LeanCheck.PGFourSums
 import LeanCheck.PGFourClassify
+import LeanCheck.PGFourFinite
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -34,3 +35,7 @@ import LeanCheck.PGFourClassify
 #print axioms PG.Classify.total_mem
 #print axioms PG.Classify.genFam_eq_of_one
 #print axioms PG.Classify.classification
+#print axioms PG.FiniteFam.diff_small_family
+#print axioms PG.FiniteFam.not_group_of_sep_family
+#print axioms PG.FiniteFam.lattice_mem
+#print axioms PG.FiniteFam.classification_family

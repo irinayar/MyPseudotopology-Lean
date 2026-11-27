@@ -756,3 +756,5 @@ import LeanCheck.PVGTwoKRAxioms
 import LeanCheck.PVGTwoCor
 import LeanCheck.PVGTwoCorAxioms
 import LeanCheck.TwoPrimesSUnit
+import LeanCheck.PVGTwoNoDescribe
+import LeanCheck.PVGTwoNoDescribeAxioms

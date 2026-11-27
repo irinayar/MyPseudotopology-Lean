@@ -730,3 +730,4 @@ import LeanCheck.PVGTwoFinest
 import LeanCheck.PVGTwoFinestAxioms
 import LeanCheck.TwoPrimesKernel
 import LeanCheck.TwoPrimesAxioms23
+import LeanCheck.TwoPrimesWindows

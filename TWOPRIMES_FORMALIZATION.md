@@ -291,3 +291,16 @@ Axioms: `TwoPrimesAxioms22`.
 * `kappa_antitone`: hence `kappa_N <= kappa_M` for the same lower sets.
 
 The theorem and its proof are due to ChatGPT. Axioms: `TwoPrimesAxioms23`.
+
+## Narrower windows with one budget (module `TwoPrimesWindows`)
+
+Sharpens `TwoPrimesEffective.witness_of_density`.
+
+* `rigidity_joint`: if the product of the two digit products at `theta` has modulus at least
+  `eta`, then `theta` is within `exp(-2.19 A)/2` of an integer, for levels up to
+  `exp((9/4)^(B+1) A)` with `B = floor(24 D^2 log(1/eta))` and `A >= 2500 log q`.
+* `witness_of_density_sharp`: the height `exp(4^(2B+1) A)` is replaced by `exp((9/4)^(B+1) A)`,
+  with `B = floor(12 D^2 log(50K))`, for targets `|t| <= exp(2A)`.
+
+The two refinements (one budget of `B+1` windows for both bases, and window ratios close to
+`sqrt 2`) are due to ChatGPT. Axioms: `TwoPrimesAxioms24`.

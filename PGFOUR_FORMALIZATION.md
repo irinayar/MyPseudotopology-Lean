@@ -136,3 +136,14 @@ Not formalized: the existence of such a set `B0` inside every infinite set (an `
 | `no_coarsest` | There is no coarsest group topology all of whose convergent filters converge for the PG. |
 
 Not formalized: that a coreflection exists exactly when there is such a coarsest topology (quoted).
+
+## `PGFourOrder` (27 November 2026): the order of summation
+
+In `PGFourClassify` and `PGFourFinite`, `sumL y l` takes the **last** entry of `l` outermost, while the article takes the first summand outermost (`A ∈ p + q` iff `{x | {z | x + z ∈ A} ∈ q} ∈ p`). Addition of ultrafilters is not commutative.
+
+| Declaration | Statement |
+|---|---|
+| `psum`, `psum_eq` | The sum with the first entry outermost equals `sumL y l.reverse`. |
+| `classification_psum`, `classification_family_psum` | The two classification theorems for `psum`, in the order of the article. |
+
+Correspondence with the article should be read through these two declarations.

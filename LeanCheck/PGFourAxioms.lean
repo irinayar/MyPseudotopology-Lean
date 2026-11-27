@@ -10,6 +10,7 @@ import LeanCheck.PGFourVicSeq
 import LeanCheck.PGFourContinuum
 import LeanCheck.PGFourQuotient
 import LeanCheck.PGFourCoreflection
+import LeanCheck.PGFourOrder
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -75,3 +76,6 @@ import LeanCheck.PGFourCoreflection
 #print axioms PG.NoCore.col_converges
 #print axioms PG.NoCore.few_terms
 #print axioms PG.NoCore.no_coarsest
+#print axioms PG.Order.psum_eq
+#print axioms PG.Order.classification_psum
+#print axioms PG.Order.classification_family_psum

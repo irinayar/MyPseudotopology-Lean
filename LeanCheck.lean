@@ -736,3 +736,4 @@ import LeanCheck.TwoPrimesAdaptive
 import LeanCheck.TwoPrimesCritical
 import LeanCheck.TwoPrimesSharpFactor
 import LeanCheck.TwoPrimesSmoothing
+import LeanCheck.TwoPrimesGolden

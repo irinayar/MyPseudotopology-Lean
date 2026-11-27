@@ -362,3 +362,15 @@ Smoothing digit: `+-J` with probability `9/20` each, uniform on `[-J,J]` with pr
   Densities are hypotheses.
 
 Axioms: `TwoPrimesAxioms29`.
+
+## Staggered windows (module `TwoPrimesGolden`)
+
+* `exists_stagger`: if the two bases have at most `B` marked levels together, some `k <= B` has one
+  base free on `(w (k+1), w (k+2)]` and the other on `(w k, w (k+2)]` (positions `n sqrt(log l)`).
+* `w_rec`: `w k = g^(k/2) (x0+4c) - 4c`, `g` the golden ratio, satisfies
+  `w (k+2)^2 > (w (k+1)+c)^2 + (w k+c)^2 + 1`.
+* `rigidity_golden`, `witness_of_density_golden`, `witness_of_critical_density_golden`,
+  `witness_of_free_heights_golden`: height `64 exp(g^(B+2) (x0+4c)^2)`; at a fixed radius the
+  exponent `g^(B+2)/2`.  Densities are hypotheses.
+
+Axioms: `TwoPrimesAxioms30`.

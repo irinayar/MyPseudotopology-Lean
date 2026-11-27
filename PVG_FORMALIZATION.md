@@ -670,3 +670,19 @@ Lebesgue measure on `[0,1)`, sparse sequence of `PVGTwoPoint`.
 - `ae_cover`, `ae_point_unservable`: for almost every `c`, a group topology below the usual one that makes all `aS`, `a` in `A(delta)`, and `cS` totally bounded is precompact.
 
 Not formalized: the statement about a comeagre set.
+
+## The statements left out before (`PVGTwoClassical`, `PVGTwoRest`, `PVGTwoComeagre`, 26 November 2026)
+
+No `sorry`, no `native_decide`, axioms `propext`, `Classical.choice`, `Quot.sound` only; axiom report in `PVGTwoRestAxioms.lean`. Typechecked module by module with Lean 4.35.0; no full `lake build`.
+
+- `below_bohr`: a precompact group topology contained in the usual one is contained in the Bohr topology (from the Peter-Weyl theorem in `ChainPW7`); `bohr_of_dilates`, `not_precompact_between`, `trace_null_between`, `no_dilated_convergence`.
+- `step1`, `criterion`, `not_lqc_Lambda`, `lqc_below_av`, `av_not_lqc`, `Lambda_uncountable`: locally quasi-convex topologies and the averaged topology.
+- `serves_dil`, `servable_group`, `servable_countable`, `countable_base_iff`, `countable_base_Hg`: which sets can be served; a countable base is enough.
+- `not_servable_two`, `not_servable_point`, `not_servable_union`, `maximal_servable`, `union_finest`, `two_finest`.
+- `cover_of_patterns`, `residual_patterns`, `comeagre_point`: a comeagre set of added points.
+
+## Section 8 for a general sequence (`PVGTwoFUGen`, 26 November 2026)
+
+No `sorry`, same three axioms; report in `PVGTwoFUGenAxioms.lean`.
+
+- The statements of `PVGTwoFU` for every sequence of nonzero reals with `|s (n+1)| / |s n|` tending to infinity.

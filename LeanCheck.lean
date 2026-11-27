@@ -718,3 +718,9 @@ import LeanCheck.TwoPrimesSum
 import LeanCheck.TwoPrimesAxioms22
 import LeanCheck.PVGTwoAlmost
 import LeanCheck.PVGTwoAlmostAxioms
+import LeanCheck.PVGTwoClassical
+import LeanCheck.PVGTwoRest
+import LeanCheck.PVGTwoComeagre
+import LeanCheck.PVGTwoRestAxioms
+import LeanCheck.PVGTwoFUGen
+import LeanCheck.PVGTwoFUGenAxioms

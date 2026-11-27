@@ -1,6 +1,6 @@
 # PGthree: Lean checks (25 and 26 November 2026)
 
-Modules: `LeanCheck/PGThreeSelective.lean`, `PGThreeSelectiveCH.lean`, `PGThreeExact.lean`, `PGThreeSparse.lean`, `PGThreeModification.lean`, `PGThreePPoint.lean`, `PGThreeNull.lean`, `PGThreeGeneral.lean`, `PGThreeNonHaus.lean`, `PGThreeIdem.lean`, `PGThreeNormal.lean`, `PGThreeHeight.lean`, `PGThreeWords.lean`, `PGThreeAnySel.lean`, `PGThreeBohr.lean`, `PGThreeOne.lean`, `PGThreeGroups.lean`, `PGThreeZFC.lean`, `PGThreeSequences.lean`, and the axiom report `PGThreeAxioms.lean`. They build on modules of the first two articles (see `PG_FORMALIZATION.md`, `PGTWO_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGThreeAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGthree`, Pseudotopological Groups III, unpublished) was checked by the author and has not been reviewed independently.
+Modules: `LeanCheck/PGThreeSelective.lean`, `PGThreeSelectiveCH.lean`, `PGThreeExact.lean`, `PGThreeSparse.lean`, `PGThreeModification.lean`, `PGThreePPoint.lean`, `PGThreeNull.lean`, `PGThreeGeneral.lean`, `PGThreeNonHaus.lean`, `PGThreeIdem.lean`, `PGThreeNormal.lean`, `PGThreeHeight.lean`, `PGThreeWords.lean`, `PGThreeAnySel.lean`, `PGThreeBohr.lean`, `PGThreeOne.lean`, `PGThreeGroups.lean`, `PGThreeZFC.lean`, `PGThreeSequences.lean`, `PGThreeUncountable.lean`, and the axiom report `PGThreeAxioms.lean`. They build on modules of the first two articles (see `PG_FORMALIZATION.md`, `PGTWO_FORMALIZATION.md`). Typechecked with Lean 4.35.0 and Mathlib (the `lean-toolchain` of this repository), one module at a time; no `sorry`; every declaration listed in `PGThreeAxioms.lean` depends only on `propext`, `Classical.choice` and `Quot.sound`. A Lean proof verifies its formal statement under its hypotheses; the correspondence with the statements of the article (`PGthree`, Pseudotopological Groups III, unpublished) was checked by the author and has not been reviewed independently.
 
 Statement numbers below are those of Sections 3 to 9 of the article.
 
@@ -215,3 +215,17 @@ The interpolation argument of `PGThreeZFC` is copied with a set in place of the 
 | `sharp` | The ultrafilters containing the range of a sequence generate a PG in which the shifted sequence converges. |
 
 The statements about group topologies in the article (no convergent sequences, no small infinite compact sets, an open finite subgroup in the first countable case) follow from these by passing from the topology to the PG and are not formalized separately.
+
+## `PGThreeUncountable` (Section 8: larger families, 26 November 2026)
+
+`y` is a rapidly growing sequence of positive integers, `v j` are pairwise different free ultrafilters on `ℕ`, and `gen y ε v j` is the image of `v j` under `n ↦ y (2 n)` or `n ↦ y (2 n + 1)` according to `ε j`. The hypothesis `hsep` says that no set of naturals belongs to `v j` exactly for the `j` with `ε j = true`.
+
+| Declaration | Statement |
+|---|---|
+| `isOpenMod_compl` | The complement of the sums `y (2 n) + y (2 n + 1)` is open for the topological modification. |
+| `exists_open_not_nhds` | Under `hsep` this set contains `0` and is a neighbourhood of `0` in no group topology in which all generators converge to `0`. |
+| `not_isGroupTopology` | Hence openness for the modification is not openness for a group topology. |
+| `exists_unseparated_of_card` | If there are more functions on the index set than sets of naturals, some `ε` satisfies `hsep`. |
+| `unseparated_of_limit` | If every member of `v j0` belongs to some other `v j`, then the indicator of `j0` satisfies `hsep`. |
+
+Not formalized: that images of selective ultrafilters are selective and pairwise non-isomorphic, and the choice of selective ultrafilters containing the members of a base.

@@ -12,8 +12,7 @@ import LeanCheck.PGThreeSelective
 * `bound_sharp` : on `ℕ →₀ ZMod 2` there is a set of at most continuum many ultrafilters with `ξ(S)` Hausdorff such
   that no infinite set of unit vectors has its complement in every filter converging to `0`.
 
-The strengthening from the distributivity number to the continuum, with the almost disjoint family, is due to ChatGPT
-(note of 27 November 2026). The existence of a set `B0` as above in every infinite set (an `I₀` set in the Bohr
+The proof uses an almost disjoint family of size continuum. The existence of a set `B0` as above in every infinite set (an `I₀` set in the Bohr
 compactification) is quoted, not proved here.
 
 A Lean proof verifies its formal statement under its hypotheses; the correspondence with the article requires

@@ -1,0 +1,5 @@
+import LeanCheck.TwoPrimesFreeHeight
+
+#print axioms TwoPrimesFreeHeight.exists_free
+#print axioms TwoPrimesFreeHeight.witness_of_density_wide
+#print axioms TwoPrimesFreeHeight.witness_of_free_heights

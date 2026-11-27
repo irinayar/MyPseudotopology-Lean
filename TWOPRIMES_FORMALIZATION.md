@@ -304,3 +304,14 @@ Sharpens `TwoPrimesEffective.witness_of_density`.
 
 One budget of `B+1` windows for all bases is also used in `ThreePrimesDensityM13`; its use here,
 and window ratios close to `sqrt 2`, were proposed by ChatGPT. Axioms: `TwoPrimesAxioms24`.
+
+## Free heights in bounded gaps (module `TwoPrimesFreeHeight`)
+
+* `exists_free`: for any finite set of bases, every `[R, 2 exp(H) R]` with
+  `H = (number of bases) * log(8D) + 1` contains a free height once `R` is explicitly large.
+* `witness_of_density_wide`: `witness_of_density_sharp` for targets `|t| <= exp(2.19 A)/5`.
+* `witness_of_free_heights`: if every large free height carries enough differences, every target
+  `t` has a witness `|k| <= 16 exp(H + E A0) (1+|t|)^(E/2.19)`, `E = (9/4)^(B+1)`.  The density is
+  a hypothesis.
+
+The bounded gap and the exponent are due to ChatGPT. Axioms: `TwoPrimesAxioms25`.

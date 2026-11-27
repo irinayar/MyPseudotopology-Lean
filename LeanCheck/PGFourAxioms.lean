@@ -9,6 +9,7 @@ import LeanCheck.PGFourPretopEx
 import LeanCheck.PGFourVicSeq
 import LeanCheck.PGFourContinuum
 import LeanCheck.PGFourQuotient
+import LeanCheck.PGFourCoreflection
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -69,3 +70,8 @@ import LeanCheck.PGFourQuotient
 #print axioms PG.QuotEx.admissible
 #print axioms PG.QuotEx.equal
 #print axioms PG.QuotEx.no_single
+#print axioms PG.NoCore.admissible
+#print axioms PG.NoCore.adic_t2
+#print axioms PG.NoCore.col_converges
+#print axioms PG.NoCore.few_terms
+#print axioms PG.NoCore.no_coarsest

@@ -123,3 +123,16 @@ Not formalized: the existence of such a set `B0` inside every infinite set (an `
 | `quotient_eq_iff` | They are equal iff for every `A ∈ I` and every choice of neighbourhoods `U B` of `0`, one for each `B ∈ I`, finitely many of the sets `q '' (U B ∩ B)` cover the trace of a neighbourhood of `0` on `q '' A`. |
 | `quotient_eq_of_compact_add` | They are equal if `N ⊆ K + M` with `K ⊆ N` compact and `M ⊆ N` a member of `I`. |
 | `QuotEx.equal`, `QuotEx.no_single` | A case with `N` compact, so that the families are equal, in which no single member of `I` serves for all neighbourhoods. |
+
+## `PGFourCoreflection` (27 November 2026)
+
+`β` is the 2-adic topology of `ℤ` and `I` the ideal of the sets contained in `F + A m r`, built from the numbers `2 ^ (n ^ 2)` split into infinitely many columns.
+
+| Declaration | Statement |
+|---|---|
+| `admissible`, `adic_t2` | `I` satisfies (I1)-(I5), and the 2-adic topology is Hausdorff. |
+| `few_terms` | Only finitely many terms of column `m + 1` lie in `F + A m r` with `F` finite. |
+| `col_converges` | Every filter convergent for the group topology of a column converges for the PG. |
+| `no_coarsest` | There is no coarsest group topology all of whose convergent filters converge for the PG. |
+
+Not formalized: that a coreflection exists exactly when there is such a coarsest topology (quoted).

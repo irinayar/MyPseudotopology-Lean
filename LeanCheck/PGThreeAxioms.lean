@@ -16,6 +16,7 @@ import LeanCheck.PGThreeBohr
 import LeanCheck.PGThreeOne
 import LeanCheck.PGThreeGroups
 import LeanCheck.PGThreeZFC
+import LeanCheck.PGThreeSequences
 
 /-! Axiom check for the modules of `PGthree`: every `#print axioms` below should list only
 `propext`, `Classical.choice`, `Quot.sound`. -/
@@ -354,3 +355,16 @@ import LeanCheck.PGThreeZFC
 #print axioms PG.ZFC.card_le_of_vicinity
 #print axioms PG.ZFC.vicinity_iff
 #print axioms PG.ZFC.int_cofinite
+#print axioms PG.Seq.lam_translate
+#print axioms PG.Seq.distinct_limits_core
+#print axioms PG.Seq.distinct_limits
+#print axioms PG.Seq.lam_of_convTo
+#print axioms PG.Seq.mk_K_lt
+#print axioms PG.Seq.exists_divergent
+#print axioms PG.Seq.no_convergent_sequence
+#print axioms PG.Seq.no_small_compact
+#print axioms PG.Seq.finite_mem_of_countably_generated
+#print axioms PG.Seq.sharp
+#print axioms PG.Seq.both_sides_set
+#print axioms PG.Seq.step_set
+#print axioms PG.Seq.interpolation_set

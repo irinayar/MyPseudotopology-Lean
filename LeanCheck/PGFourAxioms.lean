@@ -1,6 +1,7 @@
 import LeanCheck.PGFourGroupwise
 import LeanCheck.PGFourCover
 import LeanCheck.PGFourSums
+import LeanCheck.PGFourClassify
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -24,3 +25,12 @@ import LeanCheck.PGFourSums
 #print axioms PG.Sums.few_small
 #print axioms PG.Sums.exists_open_not_nhds
 #print axioms PG.Sums.not_isGroupTopology
+#print axioms PG.Classify.H_mem
+#print axioms PG.Classify.diff_mem
+#print axioms PG.Classify.diff_small
+#print axioms PG.Classify.exists_disjoint_members
+#print axioms PG.Classify.not_group_of_sep
+#print axioms PG.Classify.sumL_mem_of_base
+#print axioms PG.Classify.total_mem
+#print axioms PG.Classify.genFam_eq_of_one
+#print axioms PG.Classify.classification

@@ -17,6 +17,7 @@ import LeanCheck.PGFourDirected
 import LeanCheck.PGFourSubgroupIdeal
 import LeanCheck.PGFourMixed
 import LeanCheck.PGFourSection
+import LeanCheck.PGFourBohr
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -118,3 +119,10 @@ import LeanCheck.PGFourSection
 #print axioms PG.Section4.case_quot
 #print axioms PG.Section4.no_coreflection_of_quotient
 #print axioms PG.Section4.no_coreflection_rat
+#print axioms PG.Section4Bohr.additive_of_mem_K
+#print axioms PG.Section4Bohr.K_torsionfree
+#print axioms PG.Section4Bohr.bohr_null
+#print axioms PG.Section4Bohr.bohr_coarsest
+#print axioms PG.Section4Bohr.bog_of_dense
+#print axioms PG.Section4Bohr.bohr_coarsest_int
+#print axioms PG.Section4Bohr.indiscrete_not_pretopological

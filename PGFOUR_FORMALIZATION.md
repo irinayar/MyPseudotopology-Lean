@@ -217,3 +217,13 @@ One ultrafilter without a coreflection when a quotient has an infinite direct su
 | `no_coreflection_rat` | This holds for the rationals. |
 
 Groups with an infinite sequence of independent elements of their own are covered by `PGThreeGroups`. Not formalized: that a coreflection exists exactly when there is a coarsest group topology (quoted), and the statement about groups that are not minimax.
+
+## `PGFourBohr` (27 November 2026)
+
+| Declaration | Statement |
+|---|---|
+| `bohr_coarsest` | On a torsion-free abelian group, for countably many ultrafilters, if some ultrafilter converging to `0` has every `E + E - E - E` a Bohr neighbourhood of `0`, the Bohr topology is the coarsest group topology below the PG. |
+| `bohr_coarsest_int` | On `ℤ` this applies when all its members have positive upper density along the intervals `[-n, n]`. |
+| `indiscrete_not_pretopological` | Some nonprincipal ultrafilter on `ℤ` gives a PG in which every principal ultrafilter converges to `0`, and the trivial filter, which is then the intersection of the null filters, is not null. |
+
+Not formalized: Følner's theorem for upper Banach density and for other groups (quoted), and that a coreflection exists exactly when there is a coarsest group topology (quoted).

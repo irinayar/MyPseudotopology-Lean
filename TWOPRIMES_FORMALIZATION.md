@@ -406,6 +406,6 @@ Digits of one irrational number in two coprime bases `p < q`. With windows growi
 the golden ratio, at least `B+1` digit changes (and non-zero digits) of the two bases together occur
 among the first `n` digits once `n log p ≥ γ^(B+2) (x0+C) - C` (`golden_digits`, elementary and
 effective). With Corollary 1 of J.-H. Evertse, Compositio Math. 53 (1984), as the explicit hypothesis
-`EvertseCor1` (not proved here): for every `K` and all large `Y` there are more than `K` marks with
-position in `(Y, 13Y/4]` (`window_marks`), so the number of digit changes, and of non-zero digits,
+`EvertseCor1` (not proved here): for every `R > 2`, every `K` and all large `Y` there are more than `K` marks with
+position in `(Y, RY]` (`window_marks`; the extension from 13/4 to every `R > 2` was pointed out by ChatGPT), so the number of digit changes, and of non-zero digits,
 is not `O(log n)` (`digit_changes`, `nonzero_digits`). No rate and no effective threshold.

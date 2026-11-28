@@ -11,8 +11,8 @@ non-zero digits.
 * `golden_marks`: elementary and effective.  With windows growing like the powers of the golden
   ratio, at least `B + 1` marks lie below `w (B+2)`.
 * `window_marks`: with `EvertseCor1` (Corollary 1 of J.-H. Evertse, Compositio Math. 53 (1984)),
-  a **hypothesis** here: for every `K` and all large `Y` there are more than `K` marks with
-  position in `(Y, 13Y/4]`.  Hence the number of marks is not `O(log n)` (`tendsto_marks`).
+  a **hypothesis** here: for every `R > 2`, every `K` and all large `Y` there are more than `K`
+  marks with position in `(Y, RY]`.  Hence the number of marks is not `O(log n)` (`tendsto_marks`).
 
 The position of the index `j` of the base `l` is `j log l`.
 -/
@@ -826,13 +826,13 @@ lemma exists_free {K : ℕ} {Mp Mq : Finset ℕ} (hcard : Mp.card + Mq.card ≤ 
   rw [card_univ, Fintype.card_fin, card_disjSum] at this
   omega
 
-set_option maxHeartbeats 4000000 in
-/-- **More than `K` marks in `(Y, 13Y/4]`** for all large `Y`. -/
+set_option maxHeartbeats 1000000 in
+/-- **More than `K` marks in `(Y, RY]`**, for every `R > 2` and all large `Y`. -/
 theorem window_marks {p q : ℕ} (hp : 2 ≤ p) (hq : 2 ≤ q) (hpq : Nat.Coprime p q)
     (hE : EvertseCor1 (p * q).primeFactors) {ξ : ℝ} (hξ : Irrational ξ)
-    {α β : ℕ → ℚ} (hα : Approx p ξ α) (hβ : Approx q ξ β) (K : ℕ) :
+    {α β : ℕ → ℚ} (hα : Approx p ξ α) (hβ : Approx q ξ β) {R : ℝ} (hR : 2 < R) (K : ℕ) :
     ∃ Y1 : ℝ, 0 < Y1 ∧ ∀ Y, Y1 ≤ Y →
-      K + 1 ≤ (marksIn p α Y (13 / 4 * Y)).card + (marksIn q β Y (13 / 4 * Y)).card := by
+      K + 1 ≤ (marksIn p α Y (R * Y)).card + (marksIn q β Y (R * Y)).card := by
   classical
   set S := (p * q).primeFactors with hSdef
   have hS : ∀ r ∈ S, r.Prime := fun r hr => Nat.prime_of_mem_primeFactors hr
@@ -872,15 +872,14 @@ theorem window_marks {p q : ℕ} (hp : 2 ≤ p) (hq : 2 ≤ q) (hpq : Nat.Coprim
     have e : ξ - z / G = (ξ * k - z) / G := by rw [hkG]; field_simp
     rw [e, abs_div, abs_of_pos hG0]
     exact div_le_div_of_nonneg_right (round_le _ _) hG0.le
-  set eps : ℝ := 1 / (26 * ((K : ℝ) + 1)) with heps
+  set dd : ℝ := (R - 2) / 4 with hdd
+  have hdd0 : 0 < dd := by rw [hdd]; linarith
+  have hR0 : 0 < R := by linarith
+  set eps : ℝ := dd / (4 * R * ((K : ℝ) + 1)) with heps
   have hK1 : (0 : ℝ) < (K : ℝ) + 1 := by positivity
-  have heps0 : 0 < eps := by positivity
-  have heps26 : eps ≤ 1 / 26 := by
-    rw [heps]
-    have h1 : (26 : ℝ) ≤ 26 * ((K : ℝ) + 1) := by
-      have : (0 : ℝ) ≤ K := Nat.cast_nonneg _
-      linarith
-    exact one_div_le_one_div_of_le (by norm_num) h1
+  have heps0 : 0 < eps := div_pos hdd0 (by positivity)
+  have epsR : eps * (R * ((K : ℝ) + 1)) = dd / 4 := by
+    rw [heps]; field_simp
   set d : ℝ := 1 / (1 + eps) with hd
   have hd0 : 0 < d := by positivity
   have hd1 : d < 1 := by
@@ -892,45 +891,51 @@ theorem window_marks {p q : ℕ} (hp : 2 ≤ p) (hq : 2 ≤ q) (hpq : Nat.Coprim
   set A : ℝ := log C + (1 + eps) * (K * log E) + (1 + 2 * eps) * Cc + log p + log q with hA
   have hA0 : 0 ≤ A := by positivity
   set qq : ℝ := (q : ℝ) + p with hqq
-  set Y1 : ℝ := 1 + 8 * ((K : ℝ) + 1) * (A + 1) + 4 * ((K : ℝ) + 1) * (log p + log q)
-    + (|log (qq / δ)| + 1) with hY1
-  have hY1pos : 0 < Y1 := by positivity
+  set Y1 : ℝ := 1 + 4 * ((K : ℝ) + 1) * (A + 1) / dd + (|log (qq / δ)| + 1) with hY1
+  have hfrac : 0 ≤ 4 * ((K : ℝ) + 1) * (A + 1) / dd := div_nonneg (by positivity) hdd0.le
+  have hY1pos : 0 < Y1 := by
+    have := abs_nonneg (log (qq / δ))
+    linarith
   refine ⟨Y1, hY1pos, fun Y hY => ?_⟩
   have hY0 : 0 < Y := lt_of_lt_of_le hY1pos hY
-  have hYa : 8 * ((K : ℝ) + 1) * (A + 1) ≤ Y := by
-    have : 0 ≤ 4 * ((K : ℝ) + 1) * (log p + log q) + (|log (qq / δ)| + 1) := by positivity
+  have hYa : 4 * ((K : ℝ) + 1) * (A + 1) ≤ dd * Y := by
+    have h1 : 4 * ((K : ℝ) + 1) * (A + 1) / dd ≤ Y := by
+      have := abs_nonneg (log (qq / δ))
+      linarith
+    rw [div_le_iff₀ hdd0] at h1
     linarith
-  have hYb : 4 * ((K : ℝ) + 1) * (log p + log q) ≤ Y := by
-    have : 0 ≤ 8 * ((K : ℝ) + 1) * (A + 1) + (|log (qq / δ)| + 1) := by positivity
-    linarith
-  have hYc : |log (qq / δ)| < Y := by
-    have : 0 ≤ 8 * ((K : ℝ) + 1) * (A + 1) + 4 * ((K : ℝ) + 1) * (log p + log q) := by positivity
-    linarith
+  have hYc : |log (qq / δ)| < Y := by linarith
   by_contra hcon
   rw [not_le, Nat.lt_succ_iff] at hcon
-  set Mp := marksIn p α Y (13 / 4 * Y) with hMp
-  set Mq := marksIn q β Y (13 / 4 * Y) with hMq
-  have hX0 : 0 ≤ 13 / 4 * Y := by positivity
-  set h : ℝ := Y / (4 * ((K : ℝ) + 1)) with hh
-  have hh0 : 0 < h := div_pos hY0 (by positivity)
-  have hhY : (K : ℝ) * h + h = Y / 4 := by
+  set Mp := marksIn p α Y (R * Y) with hMp
+  set Mq := marksIn q β Y (R * Y) with hMq
+  have hX0 : 0 ≤ R * Y := mul_nonneg hR0.le hY0.le
+  set h : ℝ := dd * Y / ((K : ℝ) + 1) with hh
+  have hh0 : 0 < h := div_pos (mul_pos hdd0 hY0) hK1
+  have hhY : (K : ℝ) * h + h = dd * Y := by
     rw [hh]; field_simp
+  have hddY : 0 < dd * Y := mul_pos hdd0 hY0
+  have hR4 : R = 4 * dd + 2 := by rw [hdd]; ring
+  have hRY : R * Y = 4 * (dd * Y) + 2 * Y := by rw [hR4]; ring
   -- two free stretches
   obtain ⟨i0, hi0, f0p, f0q⟩ := exists_free hcon (log p) (log q) Y h hh0.le
-  obtain ⟨i1, hi1, f1p, f1q⟩ := exists_free hcon (log p) (log q) (3 * Y) h hh0.le
+  obtain ⟨i1, hi1, f1p, f1q⟩ := exists_free hcon (log p) (log q) ((R - dd) * Y) h hh0.le
   set c0 : ℝ := Y + i0 * h with hc0
-  set c1 : ℝ := 3 * Y + i1 * h with hc1
-  have hih : ∀ i : ℕ, i ≤ K → 0 ≤ (i : ℝ) * h ∧ (i : ℝ) * h + h ≤ Y / 4 := by
+  set c1 : ℝ := (R - dd) * Y + i1 * h with hc1
+  have hih : ∀ i : ℕ, i ≤ K → 0 ≤ (i : ℝ) * h ∧ (i : ℝ) * h + h ≤ dd * Y := by
     intro i hi
     have : (i : ℝ) ≤ K := by exact_mod_cast hi
     have := mul_le_mul_of_nonneg_right this hh0.le
     exact ⟨mul_nonneg (Nat.cast_nonneg _) hh0.le, by linarith⟩
+  have eR : (R - dd) * Y = R * Y - dd * Y := by ring
   have c0lo : Y ≤ c0 := by have := (hih i0 hi0).1; linarith
-  have c0hi : c0 + h ≤ 5 / 4 * Y := by have := (hih i0 hi0).2; linarith
-  have c1lo : 3 * Y ≤ c1 := by have := (hih i1 hi1).1; linarith
-  have c1hi : c1 + h ≤ 13 / 4 * Y := by have := (hih i1 hi1).2; linarith
+  have c0hi : c0 + h ≤ Y + dd * Y := by have := (hih i0 hi0).2; linarith
+  have c1lo : (R - dd) * Y ≤ c1 := by have := (hih i1 hi1).1; linarith
+  have c1hi : c1 + h ≤ R * Y := by have := (hih i1 hi1).2; linarith
+  have c0R : c0 + h ≤ R * Y := by linarith
+  have c1Y : Y ≤ c1 := by linarith
   -- the rationals and the integer at a free stretch
-  have at_free : ∀ c : ℝ, Y ≤ c → c + h ≤ 13 / 4 * Y →
+  have at_free : ∀ c : ℝ, Y ≤ c → c + h ≤ R * Y →
       (∀ n ∈ Mp, ¬ (c < (n : ℝ) * log p ∧ (n : ℝ) * log p ≤ c + h)) →
       (∀ n ∈ Mq, ¬ (c < (n : ℝ) * log q ∧ (n : ℝ) * log q ≤ c + h)) →
       ∃ N : ℤ, (N : ℚ) = ((p : ℚ) - 1) * ((q : ℚ) - 1) * (p : ℚ) ^ ⌊c / log p⌋₊
@@ -939,7 +944,7 @@ theorem window_marks {p q : ℕ} (hp : 2 ≤ p) (hq : 2 ≤ q) (hpq : Nat.Coprim
     intro c hcY hcX hfp hfq
     have hc00 : 0 ≤ c := le_trans hY0.le hcY
     have free : ∀ (l : ℕ) (hl : 2 ≤ l) (γ : ℕ → ℚ) (hγ : Approx l ξ γ),
-        (∀ n ∈ marksIn l γ Y (13 / 4 * Y),
+        (∀ n ∈ marksIn l γ Y (R * Y),
           ¬ (c < (n : ℝ) * log l ∧ (n : ℝ) * log l ≤ c + h)) →
         |ξ - (γ ⌊c / log l⌋₊ : ℝ)| < l * exp (-(c + h)) := by
       intro l hl γ hγ hf
@@ -1015,8 +1020,8 @@ theorem window_marks {p q : ℕ} (hp : 2 ≤ p) (hq : 2 ≤ q) (hpq : Nat.Coprim
     have := log_le_log hNpos hbound
     rw [log_mul hCcpos.ne' (exp_ne_zero _), log_exp, ← hCc] at this
     linarith
-  obtain ⟨N0, hN0e, hN0, hN0l⟩ := at_free c0 c0lo (by linarith) f0p f0q
-  obtain ⟨N1, hN1e, hN1, hN1l⟩ := at_free c1 (by linarith) c1hi f1p f1q
+  obtain ⟨N0, hN0e, hN0, hN0l⟩ := at_free c0 c0lo c0R f0p f0q
+  obtain ⟨N1, hN1e, hN1, hN1l⟩ := at_free c1 c1Y c1hi f1p f1q
   set n0 := ⌊c0 / log p⌋₊ with hn0
   set m0 := ⌊c0 / log q⌋₊ with hm0
   set n1 := ⌊c1 / log p⌋₊ with hn1
@@ -1031,7 +1036,7 @@ theorem window_marks {p q : ℕ} (hp : 2 ≤ p) (hq : 2 ≤ q) (hpq : Nat.Coprim
   set J' := (Ioc m0 m1).filter (fun j => β j ≠ β (j - 1)) with hJ'
   have between : ∀ (l : ℕ) (hl : 2 ≤ l) (γ : ℕ → ℚ),
       (Ioc ⌊c0 / log l⌋₊ ⌊c1 / log l⌋₊).filter (fun j => γ j ≠ γ (j - 1))
-        ⊆ marksIn l γ Y (13 / 4 * Y) := by
+        ⊆ marksIn l γ Y (R * Y) := by
     intro l hl γ j hj
     have hL : 0 < log (l : ℝ) := log_pos (by exact_mod_cast (by omega : 1 < l))
     rw [mem_filter, mem_Ioc] at hj
@@ -1384,18 +1389,27 @@ theorem window_marks {p q : ℕ} (hp : 2 ≤ p) (hq : 2 ≤ q) (hpq : Nat.Coprim
       mul_le_mul_of_nonneg_left hN0l heps0.le
     have u1 : (1 + eps) * log |(N1 : ℝ)| ≤ (1 + eps) * (Cc + c1 - h) :=
       mul_le_mul_of_nonneg_left hN1l (by linarith)
-    have uc : eps * (c0 + c1) ≤ 1 / 26 * (c0 + c1) :=
-      mul_le_mul_of_nonneg_right heps26 (by linarith)
-    have hAY : 8 * (A + 1) ≤ Y := by
-      have : 8 * 1 * (A + 1) ≤ 8 * ((K : ℝ) + 1) * (A + 1) := by
+    have uc : eps * (c0 + c1) ≤ dd * Y / 2 := by
+      have h1 : c0 + c1 ≤ 2 * (R * Y) := by linarith
+      have h2 := mul_le_mul_of_nonneg_left h1 heps0.le
+      have e : eps * (2 * (R * Y)) * ((K : ℝ) + 1) = dd * Y / 2 := by
+        have : eps * (2 * (R * Y)) * ((K : ℝ) + 1)
+            = 2 * Y * (eps * (R * ((K : ℝ) + 1))) := by ring
+        rw [this, epsR]; ring
+      have h3 : eps * (2 * (R * Y)) ≤ eps * (2 * (R * Y)) * ((K : ℝ) + 1) := by
+        refine le_mul_of_one_le_right (mul_nonneg heps0.le (by positivity)) ?_
+        have : (0 : ℝ) ≤ K := Nat.cast_nonneg _
+        linarith
+      linarith
+    have hAY : 4 * (A + 1) ≤ dd * Y := by
+      have : 4 * 1 * (A + 1) ≤ 4 * ((K : ℝ) + 1) * (A + 1) := by
         have : (0 : ℝ) ≤ K := Nat.cast_nonneg _
         exact mul_le_mul_of_nonneg_right (by linarith) (by linarith)
       linarith
     have final : c1 - 2 * c0 + h ≤ A + eps * (c0 + c1) := by
       rw [hA]
-      nlinarith [hb2, hn1l, hn0l, hm1l, hm0l, u0, u1, heh]
-    have c0hi' : c0 ≤ 5 / 4 * Y := by linarith
-    have c1hi' : c1 ≤ 13 / 4 * Y := by linarith
+      linarith only [hA, hb2, hn1l, hn0l, hm1l, hm0l, u0, u1, heh]
+    have far : dd * Y ≤ c1 - 2 * c0 := by linarith
     linarith [final, uc, hh0]
   · -- only digit terms besides the second anchor
     obtain ⟨b, hb1, hbT⟩ : ∃ b ∈ T, b ≠ a1 := by
@@ -1423,20 +1437,20 @@ theorem window_marks {p q : ℕ} (hp : 2 ≤ p) (hq : 2 ≤ q) (hpq : Nat.Coprim
       rw [exp_le_exp] at h1
       have u1 : (1 + eps) * log |(N1 : ℝ)| ≤ (1 + eps) * (Cc + c1 - h) :=
         mul_le_mul_of_nonneg_left hN1l (by linarith)
-      have uc : eps * c1 ≤ h / 2 := by
-        have h2 : c1 ≤ 13 / 4 * Y := by linarith
-        have h3 : eps * c1 ≤ eps * (13 / 4 * Y) := mul_le_mul_of_nonneg_left h2 heps0.le
-        have e : eps * (13 / 4 * Y) = h / 2 := by
-          rw [heps, hh]; field_simp; ring
+      have uc : eps * c1 ≤ h / 4 := by
+        have h2 : c1 ≤ R * Y := by linarith
+        have h3 : eps * c1 ≤ eps * (R * Y) := mul_le_mul_of_nonneg_left h2 heps0.le
+        have e : eps * (R * Y) = h / 4 := by
+          rw [hh, heps]; field_simp
         linarith
       have final : h ≤ A + eps * c1 := by
         have hlp0 : 0 ≤ log (p : ℝ) := hLp.le
         have hlq0 : 0 ≤ log (q : ℝ) := hLq.le
         have hcc : 0 ≤ eps * Cc := hAeps
         rw [hA]
-        nlinarith [h1, u1, hll, heh]
-      have hhA : A + 1 ≤ h / 2 := by
-        rw [hh, div_div, le_div_iff₀ (by positivity)]
+        linarith only [h1, u1, hll, heh, hcc, hlp0, hlq0]
+      have hhA : 4 * (A + 1) ≤ h := by
+        rw [hh, le_div_iff₀ hK1]
         linarith
       linarith
     rcases hd' with h | h
@@ -1492,7 +1506,8 @@ theorem tendsto_marks {p q : ℕ} (hp : 2 ≤ p) (hpq' : p < q) (hpq : Nat.Copri
   have hLp : 0 < log (p : ℝ) := log_pos (by linarith)
   have hW : 0 < log (13 / 4 : ℝ) := log_pos (by norm_num)
   obtain ⟨K, hK⟩ := exists_nat_ge (2 * |L| * log (13 / 4 : ℝ))
-  obtain ⟨Y1, hY1, hwin⟩ := window_marks hp hq hpq hE hξ hα hβ K
+  obtain ⟨Y1, hY1, hwin⟩ := window_marks hp hq hpq hE hξ hα hβ
+    (R := 13 / 4) (by norm_num) K
   set c : ℝ := log (Y1 / log p) with hc
   have hev : ∀ᶠ n : ℕ in Filter.atTop, 2 * (|c| + log (13 / 4 : ℝ)) + 1 ≤ log (n : ℝ) :=
     (Real.tendsto_log_atTop.comp tendsto_natCast_atTop_atTop).eventually_ge_atTop _

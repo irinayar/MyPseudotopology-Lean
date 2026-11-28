@@ -700,6 +700,8 @@ import LeanCheck.PGFourQuotient
 import LeanCheck.PGFourCoreflection
 import LeanCheck.PGFourOrder
 import LeanCheck.PGFourAllGroups
+import LeanCheck.PGFourQuotSeq
+import LeanCheck.PGFourDirected
 import LeanCheck.PGFourAxioms
 import LeanCheck.PVGTwoNoWitness
 import LeanCheck.PVGTwoNoWitnessAxioms

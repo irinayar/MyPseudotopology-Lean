@@ -12,6 +12,8 @@ import LeanCheck.PGFourQuotient
 import LeanCheck.PGFourCoreflection
 import LeanCheck.PGFourOrder
 import LeanCheck.PGFourAllGroups
+import LeanCheck.PGFourQuotSeq
+import LeanCheck.PGFourDirected
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -86,3 +88,7 @@ import LeanCheck.PGFourAllGroups
 #print axioms PG.NoCoreAll.no_coarsest
 #print axioms PG.NoCoreAll.every_infinite_group
 #print axioms PG.NoCoreAll.no_ideal_of_finite
+#print axioms PG.Quot.quotient_eq_iff_seq
+#print axioms PG.NoCoreAll.directed
+#print axioms PG.NoCoreAll.no_minimal
+#print axioms PG.NoCoreAll.chain

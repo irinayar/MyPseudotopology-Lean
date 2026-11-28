@@ -161,3 +161,19 @@ Correspondence with the article should be read through these two declarations.
 | `no_ideal_of_finite` | A finite abelian group carries no ideal with (I1)-(I5). |
 
 Not formalized: that a coreflection exists exactly when there is such a coarsest topology (quoted), the countable base of the topology and the countable generation of the ideal.
+
+## `PGFourQuotSeq` (27 November 2026)
+
+| Declaration | Statement |
+|---|---|
+| `quotient_eq_iff_seq` | For a first countable topology and a countably generated ideal, the final quotient equals the PG of the quotient topology and the image ideal iff every convergent sequence of the latter has a subsequence that is the image of a convergent sequence of `ξ`. |
+
+## `PGFourDirected` (27 November 2026)
+
+`InK` is the class of group topologies all of whose convergent filters converge for the PG.
+
+| Declaration | Statement |
+|---|---|
+| `directed` | Two members of `K` have a greatest lower bound among group topologies, and it belongs to `K`. |
+| `no_minimal` | For a sparse sequence `K` has no minimal member. |
+| `chain` | The topologies of the first `l + 1` columns form a strictly coarsening sequence in `K` with no common coarser member of `K`. |

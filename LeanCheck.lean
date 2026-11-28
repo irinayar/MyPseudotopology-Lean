@@ -706,6 +706,7 @@ import LeanCheck.PGFourSubgroupIdeal
 import LeanCheck.PGFourMixed
 import LeanCheck.PGFourSection
 import LeanCheck.PGFourBohr
+import LeanCheck.PGFourStrict
 import LeanCheck.PGFourAxioms
 import LeanCheck.PVGTwoNoWitness
 import LeanCheck.PVGTwoNoWitnessAxioms

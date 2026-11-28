@@ -227,3 +227,14 @@ Groups with an infinite sequence of independent elements of their own are covere
 | `indiscrete_not_pretopological` | Some nonprincipal ultrafilter on `ℤ` gives a PG in which every principal ultrafilter converges to `0`, and the trivial filter, which is then the intersection of the null filters, is not null. |
 
 Not formalized: Følner's theorem for upper Banach density and for other groups (quoted), and that a coreflection exists exactly when there is a coarsest group topology (quoted).
+
+## `PGFourStrict` (27 November 2026)
+
+Ultrafilters `s 0, s 1, …` on a countably infinite abelian group whose vicinity sets separate points.
+
+| Declaration | Statement |
+|---|---|
+| `null_iff_genFam`, `isOpenMod'_iff` | The notions of convergence and of open set used here are those of the generated PG. |
+| `strict_of_escape` | If some ultrafilter in the closure of the null ultrafilters is, for every filter sum, missed with all its translates by some member of the sum, then some vicinity set contains no open set about `0`. |
+| `strict_of_ppoints` | This applies when every `s i` is a P-point or principal and the PG is not pretopological. |
+| `strict_of_length` | And when every `s i` has a member of bounded length and no ball is a vicinity set. |

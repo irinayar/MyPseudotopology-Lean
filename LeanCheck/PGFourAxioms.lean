@@ -14,6 +14,7 @@ import LeanCheck.PGFourOrder
 import LeanCheck.PGFourAllGroups
 import LeanCheck.PGFourQuotSeq
 import LeanCheck.PGFourDirected
+import LeanCheck.PGFourSubgroupIdeal
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -92,3 +93,9 @@ import LeanCheck.PGFourDirected
 #print axioms PG.NoCoreAll.directed
 #print axioms PG.NoCoreAll.no_minimal
 #print axioms PG.NoCoreAll.chain
+#print axioms PG.SubIdeal.opening_inK
+#print axioms PG.SubIdeal.coarsest_iff
+#print axioms PG.SubIdeal.RatEx.admissible
+#print axioms PG.SubIdeal.RatEx.adic_t2
+#print axioms PG.SubIdeal.RatEx.generated
+#print axioms PG.SubIdeal.RatEx.no_coarsest

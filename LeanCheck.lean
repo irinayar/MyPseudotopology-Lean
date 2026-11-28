@@ -702,6 +702,7 @@ import LeanCheck.PGFourOrder
 import LeanCheck.PGFourAllGroups
 import LeanCheck.PGFourQuotSeq
 import LeanCheck.PGFourDirected
+import LeanCheck.PGFourSubgroupIdeal
 import LeanCheck.PGFourAxioms
 import LeanCheck.PVGTwoNoWitness
 import LeanCheck.PVGTwoNoWitnessAxioms

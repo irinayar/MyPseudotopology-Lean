@@ -795,3 +795,7 @@ import LeanCheck.PVGThreeUpperGapAxioms
 import LeanCheck.PVGThreeDimension
 import LeanCheck.PVGThreeShadow
 import LeanCheck.PVGThreeShadowAxioms
+import LeanCheck.PVGThreeBaire
+import LeanCheck.PVGThreeCover
+import LeanCheck.PVGThreeThreshold
+import LeanCheck.PVGThreeThresholdAxioms

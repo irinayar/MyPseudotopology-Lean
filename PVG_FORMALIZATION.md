@@ -794,3 +794,14 @@ No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only. No Kalton-R
 - `Dim.dimH_one` (`PVGThreeDimension`): Hausdorff dimension one for digits forced to vanish on a sparse set.
 - `exists_not_rig_dimH`: there is a dyadic sequence with unbounded gaps, `L_k - c^2 -> infinity`,
   `(c+1)^2 - L_k` of size at least about `k^2/(log k)^2`, `dim_H A(delta) = 1`, which is not rigid.
+
+## Uniform total boundedness, classes and covering numbers (27 November 2026)
+
+No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only. No Kalton-Roberts assumption.
+
+- `unif` (`PVGThreeBaire`): total boundedness of the dilates is uniform on uniformly small coefficients
+  (Baire's theorem for `A(delta)` with uniform convergence; any sequence `delta`).
+- `rig_of_classes`: rigidity of `2^(-L_k)` from finitely many classes of positions, window widths bounded.
+- `not_rig_of_covers` (`PVGThreeCover`): unbounded covering numbers at one width exclude rigidity.
+- `exists_threshold` (`PVGThreeThreshold`): one construction, rigid with bounded blocks (`rig_const`), not
+  rigid with growing blocks (`not_rig_grow`); `dim_H A(delta) = 1` in both cases.

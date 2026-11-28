@@ -784,3 +784,13 @@ No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only. Theorem and
 - `card_sqdiff_large`: for `M > U^4` at most one `n <= U` has `n^2 + M` a square larger than `n^2`.
 - `rig_iff_of_upper_gap`, `rig_iff_uncountable_of_upper_gap`: rigidity, `L_k - c^2 -> infinity` and
   uncountability of `A(delta)` are equivalent. This strengthens `rig_iff_of_sparse`.
+
+## A sequence with many coefficients that is not rigid (`PVGThreeShadow`, 27 November 2026)
+
+No `sorry`, axioms `propext`, `Classical.choice`, `Quot.sound` only. No Kalton-Roberts assumption.
+
+- `not_rig_of_dominated`: if every coefficient of `2^(-L_k)` is a coefficient of `2^(-M_i)` and the `L_k`
+  avoid long stretches above the `M_i`, then rigidity fails.
+- `Dim.dimH_one` (`PVGThreeDimension`): Hausdorff dimension one for digits forced to vanish on a sparse set.
+- `exists_not_rig_dimH`: there is a dyadic sequence with unbounded gaps, `L_k - c^2 -> infinity`,
+  `(c+1)^2 - L_k` of size at least about `k^2/(log k)^2`, `dim_H A(delta) = 1`, which is not rigid.

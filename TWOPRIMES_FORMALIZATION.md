@@ -409,3 +409,12 @@ effective). With Corollary 1 of J.-H. Evertse, Compositio Math. 53 (1984), as th
 `EvertseCor1` (not proved here): for every `R > 2`, every `K` and all large `Y` there are more than `K` marks with
 position in `(Y, RY]` (`window_marks`; the extension from 13/4 to every `R > 2` was pointed out by ChatGPT), so the number of digit changes, and of non-zero digits,
 is not `O(log n)` (`digit_changes`, `nonzero_digits`). No rate and no effective threshold.
+
+## TwoPrimesSharp (axioms: TwoPrimesAxioms35)
+
+The ratio 2 in the window theorem cannot be lowered. For coprime bases: for `R > 2` and irrational `ξ`
+every late window `(Y, RY]` contains a digit change (`one_mark`, elementary). For `1 < R < 2`, assuming
+`EvertseCor1`, every interval has, for all large `Y`, a subinterval of numbers with no non-zero digit in
+either base at positions in `(Y, RY]` (`free_windows`); hence a generic real number in the sense of Baire
+is irrational and has arbitrarily late such windows (`generic_free_windows`). The case `R = 2` is not
+treated.

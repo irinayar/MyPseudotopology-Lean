@@ -19,6 +19,7 @@ import LeanCheck.PGFourMixed
 import LeanCheck.PGFourSection
 import LeanCheck.PGFourBohr
 import LeanCheck.PGFourStrict
+import LeanCheck.PGFourBalls
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -133,3 +134,5 @@ import LeanCheck.PGFourStrict
 #print axioms PG.Strict.escape_of_ppoints
 #print axioms PG.Strict.strict_of_ppoints
 #print axioms PG.Strict.strict_of_length
+#print axioms PG.Strict.strict_of_balls
+#print axioms PG.Strict.pretop_of_uniform

@@ -707,6 +707,7 @@ import LeanCheck.PGFourMixed
 import LeanCheck.PGFourSection
 import LeanCheck.PGFourBohr
 import LeanCheck.PGFourStrict
+import LeanCheck.PGFourBalls
 import LeanCheck.PGFourAxioms
 import LeanCheck.PVGTwoNoWitness
 import LeanCheck.PVGTwoNoWitnessAxioms

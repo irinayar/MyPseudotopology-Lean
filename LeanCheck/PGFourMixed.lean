@@ -16,7 +16,8 @@ import LeanCheck.PGXi
   topology.
 * `norm_pretop_iff`, `xi_eq_norm` : if `β` is moreover invariant under the scalar multiplications, then the intersection
   of the null filters has a bounded member iff `β` agrees with the norm on the unit ball at `0`, and then `xi I` is the
-  norm convergence.
+  norm convergence;
+* `eq_normTop` : for a vector space topology that agreement means that it is the norm topology.
 
 A Lean proof verifies its formal statement under its hypotheses; the correspondence with the article requires
 mathematical review.
@@ -430,6 +431,56 @@ theorem xi_eq_norm (β : TopologicalSpace E) (hg : @IsTopologicalAddGroup E β _
     have h1 := norm_below β hβ x
     obtain ⟨_, h2, A, hA, hAF⟩ := h1
     exact ⟨inferInstance, hF.trans h2, A, hA, hF hAF⟩
+
+/-- For a vector space topology that is coarser than the norm and agrees with it on the unit ball at `0`, the topology
+is the norm topology. -/
+theorem eq_normTop (β : TopologicalSpace E) (hg : @IsTopologicalAddGroup E β _)
+    (hsm : @ContinuousSMul ℝ E _ _ β) (hβ : normTop E ≤ β)
+    (h : ∀ ε > 0, ∃ V ∈ @nhds E β 0, ∀ x ∈ V, ‖x‖ ≤ 1 → ‖x‖ ≤ ε) : β = normTop E := by
+  refine le_antisymm ?_ hβ
+  obtain ⟨V, hV, hV'⟩ := h (1 / 2) (by norm_num)
+  have hbal : ∃ W ∈ @nhds E β 0, Balanced ℝ W ∧ W ⊆ V := by
+    letI := β
+    haveI := hg
+    haveI := hsm
+    obtain ⟨W, ⟨hW, hWb⟩, hWV⟩ := (nhds_basis_balanced ℝ E).mem_iff.1 hV
+    exact ⟨W, hW, hWb, hWV⟩
+  obtain ⟨W, hW, hWb, hWV⟩ := hbal
+  have hbd : ∀ x ∈ W, ‖x‖ ≤ 1 / 2 := by
+    intro x hx
+    by_cases hx1 : ‖x‖ ≤ 1
+    · exact hV' x (hWV hx) hx1
+    · exfalso
+      have hpos : 0 < ‖x‖ := lt_trans one_pos (not_le.1 hx1)
+      have hmem : ‖x‖⁻¹ • x ∈ W := by
+        refine hWb.smul_mem ?_ hx
+        rw [norm_inv, norm_norm]
+        exact inv_le_one_of_one_le₀ (not_le.1 hx1).le
+      have hn : ‖‖x‖⁻¹ • x‖ = 1 := by
+        rw [norm_smul, norm_inv, norm_norm, inv_mul_cancel₀ hpos.ne']
+      have h2 := hV' _ (hWV hmem) hn.le
+      rw [hn] at h2
+      norm_num at h2
+  have h0 : ∀ T ∈ @nhds E (normTop E) 0, T ∈ @nhds E β 0 := by
+    intro T hT
+    have hbasis : (@nhds E (normTop E) 0).HasBasis (fun ε : ℝ => 0 < ε) (Metric.closedBall 0) :=
+      Metric.nhds_basis_closedBall
+    obtain ⟨ε, hε, hεT⟩ := hbasis.mem_iff.1 hT
+    have h1 : (fun x : E => (2 * ε)⁻¹ • x) ⁻¹' W ∈ @nhds E β 0 := by
+      letI := β
+      haveI := hsm
+      have hc : Continuous fun x : E => (2 * ε)⁻¹ • x := continuous_id.const_smul _
+      exact hc.continuousAt.preimage_mem_nhds (by rw [smul_zero]; exact hW)
+    refine mem_of_superset h1 (fun x hx => hεT ?_)
+    have h2 := hbd _ hx
+    have h3 : 0 < (2 * ε)⁻¹ := inv_pos.2 (by linarith)
+    rw [norm_smul, Real.norm_of_nonneg h3.le, inv_mul_eq_div, div_le_iff₀ (by linarith : 0 < 2 * ε)] at h2
+    rw [mem_closedBall_zero_iff]
+    linarith
+  refine le_of_nhds_le_nhds fun x => ?_
+  have hn : @IsTopologicalAddGroup E (normTop E) _ := normTop_group E
+  rw [PG.Mixed.nhds_translate β hg x, PG.Mixed.nhds_translate (normTop E) hn x]
+  exact Filter.map_mono h0
 
 end Normed
 

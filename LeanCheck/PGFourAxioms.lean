@@ -16,6 +16,7 @@ import LeanCheck.PGFourQuotSeq
 import LeanCheck.PGFourDirected
 import LeanCheck.PGFourSubgroupIdeal
 import LeanCheck.PGFourMixed
+import LeanCheck.PGFourSection
 
 #print axioms PG.Groupwise.nxt_spec
 #print axioms PG.Groupwise.nxt_mono
@@ -109,3 +110,11 @@ import LeanCheck.PGFourMixed
 #print axioms PG.Mixed.norm_coarsest
 #print axioms PG.Mixed.norm_pretop_iff
 #print axioms PG.Mixed.xi_eq_norm
+#print axioms PG.Mixed.eq_normTop
+#print axioms PG.Section4.lifted_no_coreflection
+#print axioms PG.Section4.chart
+#print axioms PG.Section4.bog_rank
+#print axioms PG.Section4.finite_rank_of_no_indep
+#print axioms PG.Section4.case_quot
+#print axioms PG.Section4.no_coreflection_of_quotient
+#print axioms PG.Section4.no_coreflection_rat

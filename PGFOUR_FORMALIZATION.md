@@ -201,5 +201,19 @@ The group topologies above and below the PG, and the case of a normed space. `B 
 | `coarsest_of_multiples` | If the multiples `x, 2x, …, nx` of a point in a member of the ideal force `x` to be small for `ν`, then every group topology below the PG is finer than `ν`. |
 | `norm_below`, `norm_coarsest` | For a normed space, a coarser topology and the bounded sets, the norm topology is the coarsest group topology below the PG. |
 | `norm_pretop_iff`, `xi_eq_norm` | If the base topology is invariant under scalar multiplications, a bounded set is a vicinity set iff the topology agrees with the norm on the unit ball at `0`, and then the PG is the norm convergence. |
+| `eq_normTop` | For a vector space topology, that agreement with the norm on the unit ball means that it is the norm topology. |
 
 Not formalized: the identification with Wiweger's mixed topology (the base differs only by requiring the neighbourhoods to be absolutely convex), and that a coreflection exists exactly when there is a coarsest such group topology (quoted).
+
+## `PGFourSection` (27 November 2026)
+
+One ultrafilter without a coreflection when a quotient has an infinite direct sum.
+
+| Declaration | Statement |
+|---|---|
+| `lifted_no_coreflection` | The construction of `PGThreeGroups`, with the ultrafilters on a group and the combinatorics read through a homomorphism into a direct sum. |
+| `bog_rank` | In a countably infinite abelian group with a finite set whose subgroup has torsion quotient, there is an idempotent that avoids every subgroup of infinite index and for whose members `E` the set `E + E - E - E` is a Bohr neighbourhood of `0`. |
+| `no_coreflection_of_quotient` | If a quotient of `G` has an infinite sequence of independent nonzero elements, some nonprincipal ultrafilter on `G` gives a PG with unique limits and no coarsest group topology below it. |
+| `no_coreflection_rat` | This holds for the rationals. |
+
+Groups with an infinite sequence of independent elements of their own are covered by `PGThreeGroups`. Not formalized: that a coreflection exists exactly when there is a coarsest group topology (quoted), and the statement about groups that are not minimax.

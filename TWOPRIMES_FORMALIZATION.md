@@ -399,3 +399,13 @@ For primes `p < q` and small `ε` there are arbitrarily large `t` all of whose w
 `|k| ≥ t / (32 R (1+R) ε)`, `R = exp(3 √(ln p ln q))` (`lower_linear`). If `m² ln q - n² ln p`
 comes arbitrarily close to zero, no bound `|k| ≤ C t` holds at a radius below `1/4`
 (`no_linear_bound`). No assumption beyond the stated ones.
+
+## TwoPrimesDigits (axioms: TwoPrimesAxioms34)
+
+Digits of one irrational number in two coprime bases `p < q`. With windows growing like the powers of
+the golden ratio, at least `B+1` digit changes (and non-zero digits) of the two bases together occur
+among the first `n` digits once `n log p ≥ γ^(B+2) (x0+C) - C` (`golden_digits`, elementary and
+effective). With Corollary 1 of J.-H. Evertse, Compositio Math. 53 (1984), as the explicit hypothesis
+`EvertseCor1` (not proved here): for every `K` and all large `Y` there are more than `K` marks with
+position in `(Y, 13Y/4]` (`window_marks`), so the number of digit changes, and of non-zero digits,
+is not `O(log n)` (`digit_changes`, `nonzero_digits`). No rate and no effective threshold.

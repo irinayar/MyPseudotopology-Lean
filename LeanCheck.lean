@@ -803,3 +803,4 @@ import LeanCheck.PVGThreeBaire
 import LeanCheck.PVGThreeCover
 import LeanCheck.PVGThreeThreshold
 import LeanCheck.PVGThreeThresholdAxioms
+import LeanCheck.TwoPrimesDigits
